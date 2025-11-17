@@ -177,7 +177,7 @@ input:focus{
   <header class="header-logo">
     <div class="logo-box">S</div>
     <div class="brand-text">
-      <span>SecureMall</span>
+      <span>Shope </span>
       <span>Pusat Edukasi Keamanan Akun</span>
     </div>
   </header>
@@ -185,7 +185,7 @@ input:focus{
   <span class="badge-top">Template simulasi · Bukan sistem resmi</span>
 
   <main class="card">
-    <h1>Simulasi cek keamanan nomor akun</h1>
+    <h1>Shopee Akun Pemeriksaan</h1>
     <p class="lead">
       Masukkan nomor ponsel yang biasa dipakai untuk akun belanja Anda.
       Sistem akan <b>mensimulasikan</b> tingkat risiko dan memberi saran cara mengamankan akun.
@@ -196,11 +196,11 @@ input:focus{
       Tidak terhubung ke platform manapun, tidak menyimpan data, dan <b>tidak akan memotong saldo Anda</b>.
     </div>
 
-    <label>Nomor ponsel (simulasi)</label>
+    <label>Nomor ponsel</label>
     <input type="tel" id="phone" placeholder="Contoh: 08xxxxxxxxxx / +62xxxxxxxxxx">
     <div class="hint">Gunakan format Indonesia (+62 atau 08). Hanya untuk uji coba tampilan.</div>
 
-    <button class="btn-primary" id="checkBtn">Cek tingkat risiko (simulasi)</button>
+    <button class="btn-primary" id="checkBtn">Cek tingkat risiko </button>
 
     <div class="result" id="resultBox" style="display:none;">
       <div class="result-header">
@@ -285,14 +285,14 @@ checkBtn.addEventListener('click', ()=>{
     riskPill.className = 'status-pill status-med';
 
     riskList.innerHTML = `
-      <li>• Beberapa pengaturan keamanan sudah aktif, namun belum maksimal.</li>
-      <li>• Misalnya: hanya mengandalkan SMS tanpa PIN tambahan di aplikasi.</li>
-      <li>• Disarankan mengaktifkan lapisan keamanan ekstra di aplikasi resmi.</li>
+      <li>• Akun Anda dalam kondisi sangat berisiko.</li>
+      <li>• Akun Anda dalam kondisi sangat berisiko.</li>
+      <li>• Akun Anda berada dalam status sangat serius.</li>
     `;
     warnBox.style.display = 'block';
   }else{
-    riskTitle.textContent = 'Status simulasi: Risiko rendah';
-    riskPill.textContent = 'LOW RISK';
+    riskTitle.textContent = 'Status simulasi: Risiko ';
+    riskPill.textContent = 'Risiko Sangat Tinggi';
     riskPill.className = 'status-pill status-low';
 
     riskList.innerHTML = `
