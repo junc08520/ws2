@@ -3,12 +3,13 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Pemberitahuan Keamanan Akun - Platform Belanja</title>
+<title>Simulasi Cek Keamanan Akun - Template Edukasi</title>
 <style>
 :root{
-  --primary:#f97316; /* 电商常见橙色，不写 Shopee */
+  --primary:#f97316;      /* 橙色电商风 */
   --primary-soft:#fff7ed;
   --danger:#dc2626;
+  --ok:#16a34a;
   --bg:#f3f4f6;
   --card:#ffffff;
   --text:#111827;
@@ -26,132 +27,146 @@ body{
   justify-content:center;
   padding:24px 12px;
 }
-.container{
-  width:100%;
-  max-width:480px;
-}
+.container{width:100%;max-width:480px;}
+
 .header-logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-bottom:16px;
+  display:flex;align-items:center;gap:10px;margin-bottom:16px;
 }
 .logo-box{
-  width:40px;height:40px;
-  border-radius:12px;
+  width:40px;height:40px;border-radius:12px;
   background:var(--primary);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#fff;
-  font-weight:900;
-  font-size:1.1rem;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-weight:900;font-size:1.1rem;
 }
-.brand-text{
-  display:flex;
-  flex-direction:column;
-}
+.brand-text{display:flex;flex-direction:column;}
 .brand-text span:nth-child(1){
-  font-weight:800;
-  letter-spacing:0.02em;
+  font-weight:800;letter-spacing:.02em;
 }
 .brand-text span:nth-child(2){
-  font-size:0.8rem;
-  color:var(--muted);
+  font-size:.8rem;color:var(--muted);
 }
+
+.badge-top{
+  font-size:.72rem;
+  border-radius:999px;
+  padding:4px 10px;
+  background:#e5e7eb;
+  color:#374151;
+  display:inline-block;
+  margin-bottom:8px;
+}
+
 .card{
   background:var(--card);
   border-radius:var(--radius);
   padding:18px 16px 20px;
-  box-shadow:0 18px 40px rgba(15,23,42,0.12);
+  box-shadow:0 18px 40px rgba(15,23,42,.12);
 }
-.badge{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  padding:4px 10px;
-  border-radius:999px;
-  background:var(--primary-soft);
-  color:var(--primary);
-  font-size:0.8rem;
-  font-weight:600;
-  margin-bottom:10px;
-}
-.badge-dot{
-  width:8px;height:8px;
-  border-radius:999px;
-  background:var(--primary);
-}
-h1{
-  font-size:1.2rem;
-  margin-bottom:6px;
-}
-.lead{
-  font-size:0.9rem;
-  color:var(--muted);
-  margin-bottom:12px;
-}
-.alert{
-  border-radius:12px;
-  padding:10px 12px;
-  background:#fef2f2;
-  border:1px solid #fecaca;
-  color:var(--danger);
-  font-size:0.85rem;
-  display:flex;
-  gap:8px;
+h1{font-size:1.18rem;margin-bottom:6px;}
+.lead{font-size:.88rem;color:var(--muted);margin-bottom:12px;}
+
+.sim-note{
+  font-size:.8rem;
+  color:#4b5563;
+  background:#fefce8;
+  border:1px solid #facc15;
+  border-radius:10px;
+  padding:8px 10px;
   margin-bottom:14px;
 }
-.alert-icon{
-  font-weight:900;
-}
-.list{
-  list-style:none;
-  font-size:0.9rem;
-  color:var(--text);
-  margin-bottom:14px;
-}
-.list li{
-  display:flex;
-  gap:8px;
-  margin-bottom:6px;
-}
-.list li span.bullet{
-  width:18px;
-  text-align:center;
-  color:var(--primary);
-  font-weight:700;
-}
-.box-steps{
-  background:#f9fafb;
-  border-radius:12px;
-  padding:10px 12px;
-  border:1px dashed #e5e7eb;
-  font-size:0.86rem;
-  margin-bottom:14px;
-}
-.box-steps b{
+
+label{
+  font-weight:650;
+  font-size:.86rem;
   display:block;
-  margin-bottom:4px;
+  margin:6px 0 4px;
 }
+input{
+  width:100%;
+  padding:10px 11px;
+  border-radius:999px;
+  border:1px solid #e5e7eb;
+  background:#f9fafb;
+  font-size:.94rem;
+  outline:none;
+  transition:border .2s,box-shadow .2s,background .2s;
+}
+input:focus{
+  border-color:var(--primary);
+  background:#fff;
+  box-shadow:0 0 0 2px rgba(249,115,22,.2);
+}
+.hint{font-size:.78rem;color:var(--muted);margin:2px 0 10px;}
+
 .btn-primary{
   width:100%;
-  margin-top:4px;
   background:var(--primary);
   color:#fff;
   border:none;
-  font-weight:700;
   border-radius:999px;
   padding:11px;
-  font-size:0.98rem;
+  font-weight:700;
+  font-size:.96rem;
   cursor:pointer;
+  margin-top:4px;
 }
-.btn-primary:active{
-  transform:scale(0.99);
+.btn-primary:active{transform:scale(.99);}
+
+.result{
+  margin-top:14px;
+  border-radius:12px;
+  padding:10px 11px;
+  background:#f9fafb;
+  border:1px solid #e5e7eb;
+  font-size:.86rem;
 }
-.note{
+.result-header{
+  display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;
+}
+.status-pill{
+  padding:3px 8px;
+  border-radius:999px;
+  font-size:.75rem;
+  font-weight:700;
+}
+.status-low{
+  background:#dcfce7;color:#166534;
+}
+.status-med{
+  background:#fef9c3;color:#854d0e;
+}
+.status-high{
+  background:#fee2e2;color:#b91c1c;
+}
+.result-title{font-weight:700;font-size:.9rem;}
+.result-list{margin-top:4px;padding-left:16px;}
+.result-list li{margin-bottom:4px;}
+
+.warning-box{
   margin-top:10px;
-  font-size:0.78rem;
+  font-size:.8rem;
+  color:#b91c1c;
+  background:#fef2f2;
+  border-radius:10px;
+  padding:8px 10px;
+  border:1px solid #fecaca;
+}
+.warning-box b{display:block;margin-bottom:3px;}
+
+.tip-box{
+  margin-top:10px;
+  font-size:.8rem;
+  color:#374151;
+  background:#ecfdf5;
+  border-radius:10px;
+  padding:8px 10px;
+  border:1px solid #bbf7d0;
+}
+.tip-box b{display:block;margin-bottom:3px;}
+
+.note-bottom{
+  margin-top:10px;
+  font-size:.75rem;
   color:var(--muted);
   text-align:center;
 }
@@ -160,63 +175,134 @@ h1{
 <body>
 <div class="container">
   <header class="header-logo">
-    <div class="logo-box">T</div>
+    <div class="logo-box">S</div>
     <div class="brand-text">
-      <span>Platform Belanja</span>
-      <span>Pusat Keamanan Akun</span>
+      <span>SecureMall</span>
+      <span>Pusat Edukasi Keamanan Akun</span>
     </div>
   </header>
 
+  <span class="badge-top">Template simulasi · Bukan sistem resmi</span>
+
   <main class="card">
-    <div class="badge">
-      <div class="badge-dot"></div>
-      Pemberitahuan keamanan akun
-    </div>
-    <h1>Channel verifikasi sementara ditutup</h1>
+    <h1>Simulasi cek keamanan nomor akun</h1>
     <p class="lead">
-      Demi keamanan, sistem verifikasi akun sementara <b>ditutup untuk pemeliharaan</b>.
-      Harap hanya melakukan pengecekan melalui aplikasi resmi dan jangan klik link mencurigakan.
+      Masukkan nomor ponsel yang biasa dipakai untuk akun belanja Anda.
+      Sistem akan <b>mensimulasikan</b> tingkat risiko dan memberi saran cara mengamankan akun.
     </p>
 
-    <div class="alert">
-      <div class="alert-icon">!</div>
-      <div>
-        Jangan bagikan kode OTP / SMS verifikasi kepada siapa pun, termasuk yang mengaku dari pihak layanan pelanggan.
+    <div class="sim-note">
+      <b>Penting:</b> Ini hanya <b>alat simulasi / edukasi</b>. 
+      Tidak terhubung ke platform manapun, tidak menyimpan data, dan <b>tidak akan memotong saldo Anda</b>.
+    </div>
+
+    <label>Nomor ponsel (simulasi)</label>
+    <input type="tel" id="phone" placeholder="Contoh: 08xxxxxxxxxx / +62xxxxxxxxxx">
+    <div class="hint">Gunakan format Indonesia (+62 atau 08). Hanya untuk uji coba tampilan.</div>
+
+    <button class="btn-primary" id="checkBtn">Cek tingkat risiko (simulasi)</button>
+
+    <div class="result" id="resultBox" style="display:none;">
+      <div class="result-header">
+        <div class="result-title" id="riskTitle">Status keamanan akun (simulasi)</div>
+        <span class="status-pill" id="riskPill"></span>
+      </div>
+      <ul class="result-list" id="riskList"></ul>
+
+      <div class="warning-box" id="warnBox" style="display:none;">
+        <b>Risiko kerugian saldo jika pengaturan kurang aman:</b>
+        <div>
+          Pada platform belanja asli, jika verifikasi keamanan dimatikan atau kode OTP mudah dibocorkan,
+          akun bisa disalahgunakan pihak lain dan <b>berpotensi menyebabkan kerugian saldo / pesanan fiktif</b>.
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <b>Saran umum untuk keamanan akun:</b>
+        <ul style="margin-top:2px;padding-left:16px;">
+          <li>Aktifkan verifikasi dua langkah / OTP dari aplikasi resmi.</li>
+          <li>Jangan pernah membacakan kode SMS / OTP ke siapa pun.</li>
+          <li>Login dan ubah pengaturan keamanan hanya lewat aplikasi / website resmi.</li>
+        </ul>
       </div>
     </div>
 
-    <ul class="list">
-      <li>
-        <span class="bullet">1</span>
-        <span>Jika ada pesan yang mengaku dari “tim verifikasi” dan meminta data login, abaikan dan laporkan.</span>
-      </li>
-      <li>
-        <span class="bullet">2</span>
-        <span>Selalu pastikan Anda hanya login melalui aplikasi resmi atau website resmi platform belanja Anda.</span>
-      </li>
-      <li>
-        <span class="bullet">3</span>
-        <span>Jangan pernah memasukkan kata sandi di halaman yang dikirim lewat chat, SMS, atau grup.</span>
-      </li>
-    </ul>
-
-    <div class="box-steps">
-      <b>Cara cek status akun dengan aman:</b>
-      <ol style="padding-left:18px;margin-top:4px;">
-        <li>Buka langsung aplikasi resmi di ponsel Anda.</li>
-        <li>Masuk ke menu <i>Pengaturan &gt; Keamanan Akun</i>.</li>
-        <li>Periksa notifikasi resmi dari sistem, bukan dari chat pribadi.</li>
-      </ol>
-    </div>
-
-    <button class="btn-primary">
-      Buka aplikasi resmi
-    </button>
-
-    <p class="note">
-      Pihak platform tidak akan pernah meminta kata sandi atau kode OTP melalui WhatsApp, SMS, atau media sosial.
+    <p class="note-bottom">
+      Untuk mengubah pengaturan keamanan yang <b>sebenarnya</b>, selalu gunakan aplikasi resmi platform Anda. 
+      Template ini hanya contoh UI untuk kebutuhan pengujian / edukasi.
     </p>
   </main>
 </div>
+
+<script>
+const phoneInput = document.getElementById('phone');
+const checkBtn = document.getElementById('checkBtn');
+const resultBox = document.getElementById('resultBox');
+const riskTitle = document.getElementById('riskTitle');
+const riskPill = document.getElementById('riskPill');
+const riskList = document.getElementById('riskList');
+const warnBox = document.getElementById('warnBox');
+
+function simulateRiskLevel(phone){
+  // 纯前端假逻辑，只为演示：根据尾号模拟不同风险等级
+  const clean = (phone || '').replace(/\D/g,'');
+  if(!clean) return 'none';
+  const last = parseInt(clean.slice(-1),10);
+  if(isNaN(last)) return 'none';
+  if(last === 0 || last === 5) return 'high';
+  if(last === 2 || last === 4 || last === 8) return 'medium';
+  return 'low';
+}
+
+checkBtn.addEventListener('click', ()=>{
+  const phone = phoneInput.value.trim();
+  if(!phone){
+    alert('Masukkan nomor ponsel terlebih dahulu (simulasi).');
+    return;
+  }
+  const level = simulateRiskLevel(phone);
+  if(level === 'none'){
+    alert('Format nomor tidak dikenali, namun ini hanya simulasi tampilan.');
+  }
+
+  resultBox.style.display = 'block';
+  riskList.innerHTML = '';
+
+  if(level === 'high'){
+    riskTitle.textContent = 'Status simulasi: Risiko tinggi';
+    riskPill.textContent = 'HIGH RISK';
+    riskPill.className = 'status-pill status-high';
+
+    riskList.innerHTML = `
+      <li>• Pengaturan keamanan dianggap sangat lemah dalam skenario simulasi.</li>
+      <li>• Misalnya: verifikasi dua langkah dimatikan dan kode OTP sering dibocorkan.</li>
+      <li>• Dalam sistem nyata, kondisi seperti ini sangat mudah dimanfaatkan pihak lain.</li>
+    `;
+    warnBox.style.display = 'block';
+  }else if(level === 'medium'){
+    riskTitle.textContent = 'Status simulasi: Risiko sedang';
+    riskPill.textContent = 'MEDIUM RISK';
+    riskPill.className = 'status-pill status-med';
+
+    riskList.innerHTML = `
+      <li>• Beberapa pengaturan keamanan sudah aktif, namun belum maksimal.</li>
+      <li>• Misalnya: hanya mengandalkan SMS tanpa PIN tambahan di aplikasi.</li>
+      <li>• Disarankan mengaktifkan lapisan keamanan ekstra di aplikasi resmi.</li>
+    `;
+    warnBox.style.display = 'block';
+  }else{
+    riskTitle.textContent = 'Status simulasi: Risiko rendah';
+    riskPill.textContent = 'LOW RISK';
+    riskPill.className = 'status-pill status-low';
+
+    riskList.innerHTML = `
+      <li>• Dalam simulasi, akun dianggap sudah memakai pengaturan yang relatif aman.</li>
+      <li>• Misalnya: verifikasi dua langkah aktif dan tidak pernah membagikan kode OTP.</li>
+      <li>• Tetap waspada terhadap pesan yang meminta kode OTP atau kata sandi.</li>
+    `;
+    warnBox.style.display = 'none';
+  }
+});
+</script>
 </body>
 </html>
