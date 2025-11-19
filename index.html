@@ -1,308 +1,344 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Simulasi Cek Keamanan Akun - Template Edukasi</title>
-<style>
-:root{
-  --primary:#f97316;      /* 橙色电商风 */
-  --primary-soft:#fff7ed;
-  --danger:#dc2626;
-  --ok:#16a34a;
-  --bg:#f3f4f6;
-  --card:#ffffff;
-  --text:#111827;
-  --muted:#6b7280;
-  --radius:16px;
-  --font: system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:var(--font);
-  background:var(--bg);
-  color:var(--text);
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  padding:24px 12px;
-}
-.container{width:100%;max-width:480px;}
-
-.header-logo{
-  display:flex;align-items:center;gap:10px;margin-bottom:16px;
-}
-.logo-box{
-  width:40px;height:40px;border-radius:12px;
-  background:var(--primary);
-  display:flex;align-items:center;justify-content:center;
-  color:#fff;font-weight:900;font-size:1.1rem;
-}
-.brand-text{display:flex;flex-direction:column;}
-.brand-text span:nth-child(1){
-  font-weight:800;letter-spacing:.02em;
-}
-.brand-text span:nth-child(2){
-  font-size:.8rem;color:var(--muted);
-}
-
-.badge-top{
-  font-size:.72rem;
-  border-radius:999px;
-  padding:4px 10px;
-  background:#e5e7eb;
-  color:#374151;
-  display:inline-block;
-  margin-bottom:8px;
-}
-
-.card{
-  background:var(--card);
-  border-radius:var(--radius);
-  padding:18px 16px 20px;
-  box-shadow:0 18px 40px rgba(15,23,42,.12);
-}
-h1{font-size:1.18rem;margin-bottom:6px;}
-.lead{font-size:.88rem;color:var(--muted);margin-bottom:12px;}
-
-.sim-note{
-  font-size:.8rem;
-  color:#4b5563;
-  background:#fefce8;
-  border:1px solid #facc15;
-  border-radius:10px;
-  padding:8px 10px;
-  margin-bottom:14px;
-}
-
-label{
-  font-weight:650;
-  font-size:.86rem;
-  display:block;
-  margin:6px 0 4px;
-}
-input{
-  width:100%;
-  padding:10px 11px;
-  border-radius:999px;
-  border:1px solid #e5e7eb;
-  background:#f9fafb;
-  font-size:.94rem;
-  outline:none;
-  transition:border .2s,box-shadow .2s,background .2s;
-}
-input:focus{
-  border-color:var(--primary);
-  background:#fff;
-  box-shadow:0 0 0 2px rgba(249,115,22,.2);
-}
-.hint{font-size:.78rem;color:var(--muted);margin:2px 0 10px;}
-
-.btn-primary{
-  width:100%;
-  background:var(--primary);
-  color:#fff;
-  border:none;
-  border-radius:999px;
-  padding:11px;
-  font-weight:700;
-  font-size:.96rem;
-  cursor:pointer;
-  margin-top:4px;
-}
-.btn-primary:active{transform:scale(.99);}
-
-.result{
-  margin-top:14px;
-  border-radius:12px;
-  padding:10px 11px;
-  background:#f9fafb;
-  border:1px solid #e5e7eb;
-  font-size:.86rem;
-}
-.result-header{
-  display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;
-}
-.status-pill{
-  padding:3px 8px;
-  border-radius:999px;
-  font-size:.75rem;
-  font-weight:700;
-}
-.status-low{
-  background:#dcfce7;color:#166534;
-}
-.status-med{
-  background:#fef9c3;color:#854d0e;
-}
-.status-high{
-  background:#fee2e2;color:#b91c1c;
-}
-.result-title{font-weight:700;font-size:.9rem;}
-.result-list{margin-top:4px;padding-left:16px;}
-.result-list li{margin-bottom:4px;}
-
-.warning-box{
-  margin-top:10px;
-  font-size:.8rem;
-  color:#b91c1c;
-  background:#fef2f2;
-  border-radius:10px;
-  padding:8px 10px;
-  border:1px solid #fecaca;
-}
-.warning-box b{display:block;margin-bottom:3px;}
-
-.tip-box{
-  margin-top:10px;
-  font-size:.8rem;
-  color:#374151;
-  background:#ecfdf5;
-  border-radius:10px;
-  padding:8px 10px;
-  border:1px solid #bbf7d0;
-}
-.tip-box b{display:block;margin-bottom:3px;}
-
-.note-bottom{
-  margin-top:10px;
-  font-size:.75rem;
-  color:var(--muted);
-  text-align:center;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Pelacakan Logistik - Dashboard Internal</title>
+    <style>
+        :root {
+            --primary-color: #1a1a2e;
+            --secondary-color: #16213e;
+            --accent-color: #e94560;
+            --warning-color: #ff9a3c;
+            --text-color: #f1f1f1;
+            --border-color: #2d4059;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+        
+        .logo span {
+            color: var(--accent-color);
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .search-section {
+            background-color: var(--secondary-color);
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .search-title {
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        
+        .search-form {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-color);
+            font-size: 16px;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+        
+        button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            align-self: flex-end;
+        }
+        
+        button:hover {
+            background-color: #d63447;
+        }
+        
+        .result-section {
+            display: none;
+            background-color: var(--secondary-color);
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .status-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .status-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .status-badge {
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .status-high-risk {
+            background-color: var(--accent-color);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(233, 69, 96, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(233, 69, 96, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(233, 69, 96, 0);
+            }
+        }
+        
+        .status-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .detail-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .detail-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #aaa;
+        }
+        
+        .detail-value {
+            font-size: 18px;
+            font-weight: 500;
+        }
+        
+        .warning-section {
+            background-color: rgba(233, 69, 96, 0.1);
+            border: 1px solid var(--accent-color);
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+        
+        .warning-title {
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .warning-icon {
+            font-size: 20px;
+        }
+        
+        .hidden-info {
+            color: #666;
+            font-style: italic;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .search-form {
+                flex-direction: column;
+            }
+            
+            .form-group {
+                min-width: 100%;
+            }
+            
+            button {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-  <header class="header-logo">
-    <div class="logo-box">S</div>
-    <div class="brand-text">
-      <span>Shope </span>
-      <span>Pusat Edukasi Keamanan Akun</span>
+    <div class="container">
+        <header>
+            <div class="logo">Logi<span>Track</span></div>
+            <div class="user-info">
+                <div class="user-avatar">AD</div>
+                <div>Admin Dashboard</div>
+            </div>
+        </header>
+        
+        <section class="search-section">
+            <h2 class="search-title">Pelacakan Paket Internal</h2>
+            <form class="search-form" id="tracking-form">
+                <div class="form-group">
+                    <label for="order-number">Nomor Pesanan</label>
+                    <input type="text" id="order-number" placeholder="Masukkan nomor pesanan" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone-number">Nomor Telepon</label>
+                    <input type="text" id="phone-number" placeholder="Masukkan nomor telepon" required>
+                </div>
+                <button type="submit">Lacak Paket</button>
+            </form>
+        </section>
+        
+        <section class="result-section" id="result-section">
+            <div class="status-header">
+                <h3 class="status-title">Status Paket</h3>
+                <div class="status-badge status-high-risk">RISIKO TINGGI</div>
+            </div>
+            
+            <div class="status-details">
+                <div class="detail-card">
+                    <div class="detail-title">Status Paket</div>
+                    <div class="detail-value">Kerusakan / Kehilangan</div>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-title">Tingkat Risiko</div>
+                    <div class="detail-value">Sangat Tinggi</div>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-title">Saluran Verifikasi</div>
+                    <div class="detail-value">ON</div>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-title">Tindakan Diperlukan</div>
+                    <div class="detail-value">Penanganan Darurat</div>
+                </div>
+            </div>
+            
+            <div class="warning-section">
+                <div class="warning-title">
+                    <span class="warning-icon">⚠️</span>
+                    PERINGATAN: PAKET MEMBUTUHKAN PENANGANAN SEGERA
+                </div>
+                <p>Paket ini telah ditandai dengan risiko tinggi kerusakan/kehilangan. Tim respons darurat telah diberitahu. Harap segera mengambil tindakan yang diperlukan.</p>
+            </div>
+            
+            <div class="hidden-info">
+                Informasi pelanggan disembunyikan untuk melindungi privasi
+            </div>
+        </section>
+        
+        <footer>
+            &copy; 2023 LogiTrack - Sistem Pelacakan Logistik Internal. Hak Cipta Dilindungi.
+        </footer>
     </div>
-  </header>
 
-  <span class="badge-top">Template simulasi · Bukan sistem resmi</span>
-
-  <main class="card">
-    <h1>Shopee Akun Pemeriksaan</h1>
-    <p class="lead">
-      Masukkan nomor ponsel yang biasa dipakai untuk akun belanja Anda.
-      Sistem akan <b>mensimulasikan</b> tingkat risiko dan memberi saran cara mengamankan akun.
-    </p>
-
-    <div class="sim-note">
-      <b>Penting:</b> Ini hanya <b>alat simulasi / edukasi</b>. 
-      Tidak terhubung ke platform manapun, tidak menyimpan data, dan <b>tidak akan memotong saldo Anda</b>.
-    </div>
-
-    <label>Nomor ponsel</label>
-    <input type="tel" id="phone" placeholder="Contoh: 08xxxxxxxxxx / +62xxxxxxxxxx">
-    <div class="hint">Gunakan format Indonesia (+62 atau 08). Hanya untuk uji coba tampilan.</div>
-
-    <button class="btn-primary" id="checkBtn">Cek tingkat risiko </button>
-
-    <div class="result" id="resultBox" style="display:none;">
-      <div class="result-header">
-        <div class="result-title" id="riskTitle">Status keamanan akun (simulasi)</div>
-        <span class="status-pill" id="riskPill"></span>
-      </div>
-      <ul class="result-list" id="riskList"></ul>
-
-      <div class="warning-box" id="warnBox" style="display:none;">
-        <b>Risiko kerugian saldo jika pengaturan kurang aman:</b>
-        <div>
-          Pada platform belanja asli, jika verifikasi keamanan dimatikan atau kode OTP mudah dibocorkan,
-          akun bisa disalahgunakan pihak lain dan <b>berpotensi menyebabkan kerugian saldo / pesanan fiktif</b>.
-        </div>
-      </div>
-
-      <div class="tip-box">
-        <b>Saran umum untuk keamanan akun:</b>
-        <ul style="margin-top:2px;padding-left:16px;">
-          <li>Aktifkan verifikasi dua langkah / OTP dari aplikasi resmi.</li>
-          <li>Jangan pernah membacakan kode SMS / OTP ke siapa pun.</li>
-          <li>Login dan ubah pengaturan keamanan hanya lewat aplikasi / website resmi.</li>
-        </ul>
-      </div>
-    </div>
-
-    <p class="note-bottom">
-      Untuk mengubah pengaturan keamanan yang <b>sebenarnya</b>, selalu gunakan aplikasi resmi platform Anda. 
-      Template ini hanya contoh UI untuk kebutuhan pengujian / edukasi.
-    </p>
-  </main>
-</div>
-
-<script>
-const phoneInput = document.getElementById('phone');
-const checkBtn = document.getElementById('checkBtn');
-const resultBox = document.getElementById('resultBox');
-const riskTitle = document.getElementById('riskTitle');
-const riskPill = document.getElementById('riskPill');
-const riskList = document.getElementById('riskList');
-const warnBox = document.getElementById('warnBox');
-
-function simulateRiskLevel(phone){
-  // 纯前端假逻辑，只为演示：根据尾号模拟不同风险等级
-  const clean = (phone || '').replace(/\D/g,'');
-  if(!clean) return 'none';
-  const last = parseInt(clean.slice(-1),10);
-  if(isNaN(last)) return 'none';
-  if(last === 0 || last === 5) return 'high';
-  if(last === 2 || last === 4 || last === 8) return 'medium';
-  return 'low';
-}
-
-checkBtn.addEventListener('click', ()=>{
-  const phone = phoneInput.value.trim();
-  if(!phone){
-    alert('Masukkan nomor ponsel terlebih dahulu (simulasi).');
-    return;
-  }
-  const level = simulateRiskLevel(phone);
-  if(level === 'none'){
-    alert('Format nomor tidak dikenali, namun ini hanya simulasi tampilan.');
-  }
-
-  resultBox.style.display = 'block';
-  riskList.innerHTML = '';
-
-  if(level === 'high'){
-    riskTitle.textContent = 'Status simulasi: Risiko tinggi';
-    riskPill.textContent = 'HIGH RISK';
-    riskPill.className = 'status-pill status-high';
-
-    riskList.innerHTML = `
-      <li>• Pengaturan keamanan dianggap sangat lemah dalam skenario simulasi.</li>
-      <li>• Misalnya: verifikasi dua langkah dimatikan dan kode OTP sering dibocorkan.</li>
-      <li>• Dalam sistem nyata, kondisi seperti ini sangat mudah dimanfaatkan pihak lain.</li>
-    `;
-    warnBox.style.display = 'block';
-  }else if(level === 'medium'){
-    riskTitle.textContent = 'Status simulasi: Risiko sedang';
-    riskPill.textContent = 'MEDIUM RISK';
-    riskPill.className = 'status-pill status-med';
-
-    riskList.innerHTML = `
-      <li>• Akun Anda dalam kondisi sangat berisiko.</li>
-      <li>• Akun Anda dalam kondisi sangat berisiko.</li>
-      <li>• Akun Anda berada dalam status sangat serius.</li>
-    `;
-    warnBox.style.display = 'block';
-  }else{
-    riskTitle.textContent = 'Status simulasi: Risiko ';
-    riskPill.textContent = 'Risiko Sangat Tinggi';
-    riskPill.className = 'status-pill status-low';
-
-    riskList.innerHTML = `
-      <li>• Dalam simulasi, akun dianggap sudah memakai pengaturan yang relatif aman.</li>
-      <li>• Misalnya: verifikasi dua langkah aktif dan tidak pernah membagikan kode OTP.</li>
-      <li>• Tetap waspada terhadap pesan yang meminta kode OTP atau kata sandi.</li>
-    `;
-    warnBox.style.display = 'none';
-  }
-});
-</script>
+    <script>
+        document.getElementById('tracking-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const orderNumber = document.getElementById('order-number').value;
+            const phoneNumber = document.getElementById('phone-number').value;
+            
+            // Simulasi validasi (dalam implementasi nyata, ini akan terhubung ke backend)
+            if (orderNumber && phoneNumber) {
+                document.getElementById('result-section').style.display = 'block';
+                
+                // Scroll ke hasil
+                document.getElementById('result-section').scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
+            }
+        });
+    </script>
 </body>
 </html>
