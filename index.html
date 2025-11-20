@@ -1,383 +1,1001 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <title>Simulasi Cek Kuota Subsidi Indonesia</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <style>
-    :root{
-      --primary:#2563eb;
-      --primary-soft:#e0ecff;
-      --bg:#0f172a;
-      --card:#ffffff;
-      --text:#0f172a;
-      --muted:#64748b;
-      --danger:#b91c1c;
-      --ok:#15803d;
-      --radius:14px;
-      --font: system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{
-      font-family:var(--font);
-      background:radial-gradient(circle at top,#1e293b,#020617);
-      min-height:100vh;
-      color:#e5e7eb;
-      padding:24px 12px 40px;
-      display:flex;
-      justify-content:center;
-    }
-    .wrap{width:100%;max-width:960px;}
-    .header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      margin-bottom:16px;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-    .logo{
-      width:40px;height:40px;
-      border-radius:12px;
-      background:linear-gradient(135deg,#1d4ed8,#38bdf8);
-      display:flex;align-items:center;justify-content:center;
-      font-weight:800;font-size:1.1rem;
-      color:#eff6ff;
-      box-shadow:0 12px 30px rgba(37,99,235,.5);
-    }
-    .brand-title{
-      display:flex;
-      flex-direction:column;
-    }
-    .brand-title span:nth-child(1){
-      font-weight:700;
-      letter-spacing:.03em;
-      font-size:.9rem;
-    }
-    .brand-title span:nth-child(2){
-      font-size:.78rem;
-      color:#9ca3af;
-    }
-    .badge-sim{
-      padding:5px 10px;
-      border-radius:999px;
-      background:#fef3c7;
-      color:#92400e;
-      font-size:.75rem;
-      font-weight:600;
-      border:1px solid #facc15;
-    }
-    .card{
-      background:var(--card);
-      color:var(--text);
-      border-radius:var(--radius);
-      padding:18px 16px 18px;
-      box-shadow:0 20px 45px rgba(15,23,42,.45);
-      margin-bottom:14px;
-    }
-    .card h1{
-      font-size:1.2rem;
-      margin-bottom:4px;
-    }
-    .card .lead{
-      font-size:.88rem;
-      color:var(--muted);
-      margin-bottom:10px;
-    }
-    .alert-info{
-      font-size:.8rem;
-      background:var(--primary-soft);
-      border-radius:10px;
-      padding:8px 10px;
-      border:1px solid #bfdbfe;
-      color:#1e3a8a;
-      margin-bottom:12px;
-    }
-    .filter-grid{
-      display:grid;
-      gap:10px;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      margin-bottom:10px;
-    }
-    @media(max-width:768px){
-      .filter-grid{grid-template-columns:1fr;}
-      .header{flex-direction:column;align-items:flex-start;gap:8px;}
-    }
-    label{
-      font-size:.8rem;
-      font-weight:600;
-      margin-bottom:4px;
-      display:block;
-      color:#111827;
-    }
-    select{
-      width:100%;
-      padding:9px 10px;
-      border-radius:999px;
-      border:1px solid #e5e7eb;
-      background:#f9fafb;
-      font-size:.9rem;
-      outline:none;
-      transition:border .15s,box-shadow .15s,background .15s;
-    }
-    select:focus{
-      border-color:var(--primary);
-      background:#ffffff;
-      box-shadow:0 0 0 2px rgba(37,99,235,.25);
-    }
-    .btn{
-      margin-top:4px;
-      border:none;
-      border-radius:999px;
-      padding:10px 18px;
-      font-size:.9rem;
-      font-weight:700;
-      cursor:pointer;
-      background:linear-gradient(90deg,#2563eb,#1d4ed8);
-      color:#eff6ff;
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      box-shadow:0 10px 24px rgba(37,99,235,.5);
-    }
-    .btn span.icon{
-      font-size:1rem;
-    }
-    .note-bottom{
-      margin-top:8px;
-      font-size:.78rem;
-      color:var(--muted);
-    }
-    .results{
-      background:#f9fafb;
-      border-radius:var(--radius);
-      padding:12px 14px;
-      border:1px solid #e5e7eb;
-      font-size:.86rem;
-    }
-    .results-header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin-bottom:6px;
-    }
-    .tag-ok,.tag-low,.tag-full{
-      padding:3px 9px;
-      border-radius:999px;
-      font-size:.72rem;
-      font-weight:700;
-    }
-    .tag-ok{
-      background:#dcfce7;
-      color:#166534;
-      border:1px solid #bbf7d0;
-    }
-    .tag-low{
-      background:#fef9c3;
-      color:#854d0e;
-      border:1px solid #fef08a;
-    }
-    .tag-full{
-      background:#fee2e2;
-      color:#b91c1c;
-      border:1px solid #fecaca;
-    }
-    .results-table{
-      width:100%;
-      border-collapse:collapse;
-      margin-top:4px;
-      font-size:.82rem;
-    }
-    .results-table th,
-    .results-table td{
-      padding:6px 4px;
-      text-align:left;
-      border-bottom:1px solid #e5e7eb;
-    }
-    .results-table th{
-      color:#6b7280;
-      font-weight:600;
-    }
-    .results-table tr:last-child td{
-      border-bottom:none;
-    }
-    .warn{
-      margin-top:8px;
-      font-size:.78rem;
-      color:#b91c1c;
-    }
-    .footer{
-      margin-top:8px;
-      font-size:.72rem;
-      color:#9ca3af;
-      text-align:left;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indonesia Subsidy Exclusive - Portal Khusus Subsidi Indonesia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-red: #e30a17;
+            --primary-white: #ffffff;
+            --dark-blue: #1e3a5f;
+            --light-blue: #4a76b2;
+            --light-gray: #f5f5f5;
+            --medium-gray: #e0e0e0;
+            --dark-gray: #333333;
+            --accent-yellow: #ffc107;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--light-blue) 100%);
+            color: var(--primary-white);
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--accent-yellow);
+        }
+
+        .logo-text h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--primary-white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-login {
+            background-color: transparent;
+            color: var(--primary-white);
+            border: 2px solid var(--primary-white);
+        }
+
+        .btn-login:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-register {
+            background-color: var(--primary-red);
+            color: var(--primary-white);
+        }
+
+        .btn-register:hover {
+            background-color: #c00914;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(30, 58, 95, 0.8), rgba(30, 58, 95, 0.9)), url('https://images.unsplash.com/photo-1528164344705-47542687000d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--primary-white);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            background-color: var(--primary-white);
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 18px 25px;
+            border: none;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-box button {
+            background-color: var(--primary-red);
+            color: var(--primary-white);
+            border: none;
+            padding: 0 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .search-box button:hover {
+            background-color: #c00914;
+        }
+
+        /* Stats Section */
+        .stats {
+            background-color: var(--primary-white);
+            padding: 40px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 0 20px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-red);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--dark-gray);
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-red);
+        }
+
+        .section-title p {
+            color: var(--dark-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .tab {
+            padding: 15px 30px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--dark-gray);
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab.active {
+            color: var(--primary-red);
+            border-bottom: 3px solid var(--primary-red);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Map Section */
+        .map-container {
+            background-color: var(--primary-white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+
+        .map-header {
+            padding: 20px;
+            background-color: var(--dark-blue);
+            color: var(--primary-white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .map-header h3 {
+            font-size: 1.3rem;
+        }
+
+        .map-filters {
+            display: flex;
+            gap: 15px;
+        }
+
+        .map-filters select {
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: 1px solid var(--medium-gray);
+            background-color: var(--primary-white);
+            color: var(--dark-gray);
+        }
+
+        .map-placeholder {
+            height: 400px;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Map_of_Indonesia.svg/800px-Map_of_Indonesia.svg.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .map-region {
+            position: absolute;
+            background-color: rgba(227, 10, 23, 0.7);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .map-region:hover {
+            background-color: rgba(227, 10, 23, 0.9);
+            transform: scale(1.05);
+        }
+
+        .region-jakarta {
+            top: 45%;
+            left: 52%;
+        }
+
+        .region-jawa-barat {
+            top: 50%;
+            left: 48%;
+        }
+
+        .region-jawa-timur {
+            top: 53%;
+            left: 55%;
+        }
+
+        .region-bali {
+            top: 60%;
+            left: 58%;
+        }
+
+        .region-sumatra {
+            top: 40%;
+            left: 40%;
+        }
+
+        .region-kalimantan {
+            top: 45%;
+            left: 50%;
+        }
+
+        .region-sulawesi {
+            top: 50%;
+            left: 60%;
+        }
+
+        /* Subsidies Grid */
+        .subsidies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .subsidy-card {
+            background-color: var(--primary-white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .subsidy-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .subsidy-header {
+            padding: 20px;
+            background-color: var(--dark-blue);
+            color: var(--primary-white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .subsidy-type {
+            font-size: 0.9rem;
+            background-color: var(--accent-yellow);
+            color: var(--dark-gray);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .subsidy-body {
+            padding: 20px;
+        }
+
+        .subsidy-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark-blue);
+        }
+
+        .subsidy-location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+
+        .subsidy-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .detail-item {
+            text-align: center;
+        }
+
+        .detail-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-red);
+        }
+
+        .detail-label {
+            font-size: 0.8rem;
+            color: var(--dark-gray);
+        }
+
+        .subsidy-status {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .status-available {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: #2e7d32;
+        }
+
+        .status-limited {
+            background-color: rgba(255, 152, 0, 0.2);
+            color: #ef6c00;
+        }
+
+        .status-full {
+            background-color: rgba(244, 67, 54, 0.2);
+            color: #d32f2f;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-blue);
+            color: var(--primary-white);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary-red);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul li a {
+            color: var(--medium-gray);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--primary-white);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stats-container {
+                flex-wrap: wrap;
+            }
+            
+            .stat-item {
+                width: 50%;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .search-box {
+                flex-direction: column;
+                border-radius: 10px;
+            }
+            
+            .search-box input {
+                border-radius: 10px 10px 0 0;
+            }
+            
+            .search-box button {
+                border-radius: 0 0 10px 10px;
+                padding: 15px;
+            }
+            
+            .map-filters {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .subsidies-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-container {
+                flex-direction: column;
+            }
+            
+            .stat-item {
+                width: 100%;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                text-align: center;
+                border-bottom: 1px solid var(--medium-gray);
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="wrap">
-  <header class="header">
-    <div class="brand">
-      <div class="logo">ID</div>
-      <div class="brand-title">
-        <span>Pusat Monitoring Subsidi</span>
-        <span>Internal Monitoring • Simulasi Tampilan</span>
-      </div>
-    </div>
-    <div class="badge-sim">SIMULASI • BUKAN SITUS RESMI PEMERINTAH</div>
-  </header>
-
-  <main class="card">
-    <h1>Simulasi Cek Kuota Subsidi Nasional</h1>
-    <p class="lead">
-      Halaman ini hanya contoh tampilan internal untuk memantau <b>kuota subsidi per wilayah</b>.
-      Data di bawah ini bersifat simulasi dan tidak mewakili data resmi apa pun.
-    </p>
-
-    <div class="alert-info">
-      <b>Penting:</b> Ini adalah <b>template simulasi</b> untuk pengujian dan pelatihan internal.
-      Bukan portal klaim bantuan dan tidak terhubung ke sistem pemerintah mana pun.
-    </div>
-
-    <form id="filterForm">
-      <div class="filter-grid">
-        <div>
-          <label for="provinsi">Provinsi</label>
-          <select id="provinsi" required>
-            <option value="">Pilih provinsi…</option>
-            <option value="DKI Jakarta">DKI Jakarta</option>
-            <option value="Jawa Barat">Jawa Barat</option>
-            <option value="Jawa Tengah">Jawa Tengah</option>
-            <option value="Jawa Timur">Jawa Timur</option>
-            <option value="Bali">Bali</option>
-            <option value="Sumatera Utara">Sumatera Utara</option>
-          </select>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>Subsidi Eksklusif Indonesia</h1>
+                        <p>Portal Khusus Pencarian Subsidi</p>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="active">Beranda</a></li>
+                        <li><a href="#">Cari Subsidi</a></li>
+                        <li><a href="#">Peta Daerah</a></li>
+                        <li><a href="#">Panduan</a></li>
+                        <li><a href="#">Berita</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+                    <button class="btn btn-login">Masuk</button>
+                    <button class="btn btn-register">Daftar</button>
+                </div>
+            </div>
         </div>
-        <div>
-          <label for="kota">Kabupaten / Kota</label>
-          <select id="kota">
-            <option value="">Semua kab/kota…</option>
-            <option value="Kota">Kota</option>
-            <option value="Kabupaten">Kabupaten</option>
-          </select>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Temukan Subsidi Eksklusif untuk Anda</h2>
+            <p>Portal resmi untuk mencari dan mengakses berbagai program subsidi pemerintah Indonesia yang tersedia di seluruh daerah.</p>
+            <div class="search-box">
+                <input type="text" placeholder="Cari berdasarkan daerah, jenis subsidi, atau kata kunci...">
+                <button><i class="fas fa-search"></i> Cari</button>
+            </div>
         </div>
-        <div>
-          <label for="program">Jenis Program Subsidi</label>
-          <select id="program">
-            <option value="">Semua program…</option>
-            <option value="Bantuan Tunai">Bantuan Tunai</option>
-            <option value="Subsidi Listrik">Subsidi Listrik</option>
-            <option value="BPJS Kesehatan Bersubsidi">BPJS Kesehatan Bersubsidi</option>
-            <option value="Sembako">Bantuan Pangan / Sembako</option>
-          </select>
-        </div>
-      </div>
-
-      <button type="submit" class="btn">
-        <span class="icon">🔎</span>
-        Lihat Kuota Simulasi
-      </button>
-
-      <p class="note-bottom">
-        Pencarian ini hanya menampilkan <b>contoh status kuota</b> (tersedia, menipis, penuh) untuk tujuan pengujian tampilan.
-      </p>
-    </form>
-
-    <section id="resultsSection" class="results" style="display:none;">
-      <div class="results-header">
-        <div>
-          <div id="resultTitle" style="font-weight:700;font-size:.9rem;">Hasil simulasi kuota</div>
-          <div id="resultSub" style="font-size:.8rem;color:#6b7280;"></div>
-        </div>
-        <span id="statusTag" class="tag-ok">Kuota tersedia</span>
-      </div>
-
-      <table class="results-table">
-        <thead>
-        <tr>
-          <th>Program</th>
-          <th>Kuota total</th>
-          <th>Terpakai</th>
-          <th>Sisa kuota</th>
-        </tr>
-        </thead>
-        <tbody id="resultBody">
-        </tbody>
-      </table>
-
-      <div class="warn">
-        Catatan: Angka di atas hanya angka acak untuk simulasi.
-        Untuk informasi resmi, masyarakat harus selalu mengacu pada situs dan kanal resmi pemerintah.
-      </div>
     </section>
 
-    <div class="footer">
-      © 2025 – Template simulasi internal. Dilarang digunakan untuk mengumpulkan data warga atau mengatasnamakan lembaga resmi.
-    </div>
-  </main>
-</div>
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">1,247</div>
+                    <div class="stat-label">Program Subsidi Aktif</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">34</div>
+                    <div class="stat-label">Provinsi Tercover</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">892,154</div>
+                    <div class="stat-label">Penerman Manfaat</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">Rp 4.2 T</div>
+                    <div class="stat-label">Dana Tersalurkan</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<script>
-  // Fungsi kecil untuk buat angka "kelihatannya像真"
-  function simulateQuota(){
-    const total = 1000 + Math.floor(Math.random()*5000);
-    const used = Math.floor(total * (0.2 + Math.random()*0.7));
-    const left = total - used;
-    return { total, used, left };
-  }
+    <!-- Main Content -->
+    <section class="main-content">
+        <div class="container">
+            <div class="section-title">
+                <h2>Peluang Subsidi Berdasarkan Daerah</h2>
+                <p>Temukan program subsidi yang tersedia di daerah Anda dan manfaatkan kesempatan ini untuk mengembangkan usaha atau memenuhi kebutuhan Anda.</p>
+            </div>
 
-  function formatNumber(n){
-    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,".");
-  }
+            <!-- Tabs -->
+            <div class="tabs">
+                <div class="tab active" data-tab="map">Peta Interaktif</div>
+                <div class="tab" data-tab="list">Daftar Subsidi</div>
+                <div class="tab" data-tab="popular">Terpopuler</div>
+            </div>
 
-  const form = document.getElementById('filterForm');
-  const resultsSection = document.getElementById('resultsSection');
-  const resultTitle = document.getElementById('resultTitle');
-  const resultSub = document.getElementById('resultSub');
-  const resultBody = document.getElementById('resultBody');
-  const statusTag = document.getElementById('statusTag');
+            <!-- Map Tab Content -->
+            <div class="tab-content active" id="map-tab">
+                <div class="map-container">
+                    <div class="map-header">
+                        <h3>Peta Persebaran Subsidi Indonesia</h3>
+                        <div class="map-filters">
+                            <select id="province-filter">
+                                <option value="all">Semua Provinsi</option>
+                                <option value="jakarta">DKI Jakarta</option>
+                                <option value="jawa-barat">Jawa Barat</option>
+                                <option value="jawa-timur">Jawa Timur</option>
+                                <option value="bali">Bali</option>
+                            </select>
+                            <select id="subsidy-type-filter">
+                                <option value="all">Semua Jenis Subsidi</option>
+                                <option value="umkm">UMKM</option>
+                                <option value="pendidikan">Pendidikan</option>
+                                <option value="kesehatan">Kesehatan</option>
+                                <option value="pertanian">Pertanian</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="map-placeholder">
+                        <div class="map-region region-jakarta">DKI Jakarta</div>
+                        <div class="map-region region-jawa-barat">Jawa Barat</div>
+                        <div class="map-region region-jawa-timur">Jawa Timur</div>
+                        <div class="map-region region-bali">Bali</div>
+                        <div class="map-region region-sumatra">Sumatra</div>
+                        <div class="map-region region-kalimantan">Kalimantan</div>
+                        <div class="map-region region-sulawesi">Sulawesi</div>
+                    </div>
+                </div>
+            </div>
 
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    const prov = document.getElementById('provinsi').value || 'Semua provinsi';
-    const kota = document.getElementById('kota').value || 'Semua kab/kota';
-    const prog = document.getElementById('program').value || 'Semua program subsidi';
+            <!-- List Tab Content -->
+            <div class="tab-content" id="list-tab">
+                <div class="subsidies-grid">
+                    <!-- Subsidy Card 1 -->
+                    <div class="subsidy-card">
+                        <div class="subsidy-header">
+                            <span>UMKM</span>
+                            <span class="subsidy-type">Baru</span>
+                        </div>
+                        <div class="subsidy-body">
+                            <h3 class="subsidy-title">Subsidi Modal Usaha Mikro</h3>
+                            <div class="subsidy-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>DKI Jakarta, Jawa Barat, Banten</span>
+                            </div>
+                            <div class="subsidy-details">
+                                <div class="detail-item">
+                                    <div class="detail-value">Rp 10 Jt</div>
+                                    <div class="detail-label">Nilai Subsidi</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-value">248</div>
+                                    <div class="detail-label">Kuota Tersedia</div>
+                                </div>
+                            </div>
+                            <div class="subsidy-status status-available">Tersedia</div>
+                        </div>
+                    </div>
 
-    const q = simulateQuota();
+                    <!-- Subsidy Card 2 -->
+                    <div class="subsidy-card">
+                        <div class="subsidy-header">
+                            <span>Pendidikan</span>
+                            <span class="subsidy-type">Populer</span>
+                        </div>
+                        <div class="subsidy-body">
+                            <h3 class="subsidy-title">Beasiswa Pendidikan Vokasi</h3>
+                            <div class="subsidy-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Seluruh Indonesia</span>
+                            </div>
+                            <div class="subsidy-details">
+                                <div class="detail-item">
+                                    <div class="detail-value">Rp 15 Jt</div>
+                                    <div class="detail-label">Per Semester</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-value">1,524</div>
+                                    <div class="detail-label">Kuota Tersedia</div>
+                                </div>
+                            </div>
+                            <div class="subsidy-status status-available">Tersedia</div>
+                        </div>
+                    </div>
 
-    // 判断状态：只是前端模拟
-    let status = 'ok';
-    if(q.left < q.total*0.2){ status = 'full'; }
-    else if(q.left < q.total*0.4){ status = 'low'; }
+                    <!-- Subsidy Card 3 -->
+                    <div class="subsidy-card">
+                        <div class="subsidy-header">
+                            <span>Pertanian</span>
+                            <span class="subsidy-type">Terbatas</span>
+                        </div>
+                        <div class="subsidy-body">
+                            <h3 class="subsidy-title">Subsidi Pupuk dan Benih</h3>
+                            <div class="subsidy-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Jawa Timur, Jawa Tengah</span>
+                            </div>
+                            <div class="subsidy-details">
+                                <div class="detail-item">
+                                    <div class="detail-value">Rp 5 Jt</div>
+                                    <div class="detail-label">Per Hektar</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-value">42</div>
+                                    <div class="detail-label">Kuota Tersedia</div>
+                                </div>
+                            </div>
+                            <div class="subsidy-status status-limited">Terbatas</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    if(status === 'ok'){
-      statusTag.textContent = 'Kuota tersedia';
-      statusTag.className = 'tag-ok';
-    }else if(status === 'low'){
-      statusTag.textContent = 'Kuota menipis';
-      statusTag.className = 'tag-low';
-    }else{
-      statusTag.textContent = 'Kuota penuh';
-      statusTag.className = 'tag-full';
-    }
+            <!-- Popular Tab Content -->
+            <div class="tab-content" id="popular-tab">
+                <div class="subsidies-grid">
+                    <!-- Subsidy Card 4 -->
+                    <div class="subsidy-card">
+                        <div class="subsidy-header">
+                            <span>Kesehatan</span>
+                            <span class="subsidy-type">Populer</span>
+                        </div>
+                        <div class="subsidy-body">
+                            <h3 class="subsidy-title">Bantuan BPJS Kesehatan</h3>
+                            <div class="subsidy-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Seluruh Indonesia</span>
+                            </div>
+                            <div class="subsidy-details">
+                                <div class="detail-item">
+                                    <div class="detail-value">100%</div>
+                                    <div class="detail-label">Coverage</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-value">5,842</div>
+                                    <div class="detail-label">Kuota Tersedia</div>
+                                </div>
+                            </div>
+                            <div class="subsidy-status status-available">Tersedia</div>
+                        </div>
+                    </div>
 
-    resultTitle.textContent = 'Hasil simulasi kuota untuk:';
-    resultSub.textContent = prov + ' • ' + kota + ' • ' + prog;
+                    <!-- Subsidy Card 5 -->
+                    <div class="subsidy-card">
+                        <div class="subsidy-header">
+                            <span>Energi</span>
+                            <span class="subsidy-type">Terbatas</span>
+                        </div>
+                        <div class="subsidy-body">
+                            <h3 class="subsidy-title">Subsidi Konversi ke Kompor Listrik</h3>
+                            <div class="subsidy-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>DKI Jakarta, Jawa Barat</span>
+                            </div>
+                            <div class="subsidy-details">
+                                <div class="detail-item">
+                                    <div class="detail-value">Rp 1.2 Jt</div>
+                                    <div class="detail-label">Per Keluarga</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-value">18</div>
+                                    <div class="detail-label">Kuota Tersedia</div>
+                                </div>
+                            </div>
+                            <div class="subsidy-status status-limited">Terbatas</div>
+                        </div>
+                    </div>
 
-    resultBody.innerHTML = `
-      <tr>
-        <td>${prog === 'Semua program subsidi' ? 'Seluruh program' : prog}</td>
-        <td>${formatNumber(q.total)}</td>
-        <td>${formatNumber(q.used)}</td>
-        <td>${formatNumber(q.left)}</td>
-      </tr>
-    `;
+                    <!-- Subsidy Card 6 -->
+                    <div class="subsidy-card">
+                        <div class="subsidy-header">
+                            <span>Perumahan</span>
+                            <span class="subsidy-type">Penuh</span>
+                        </div>
+                        <div class="subsidy-body">
+                            <h3 class="subsidy-title">Subsidi Bantuan Uang Muka Rumah</h3>
+                            <div class="subsidy-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Jawa Timur, Bali</span>
+                            </div>
+                            <div class="subsidy-details">
+                                <div class="detail-item">
+                                    <div class="detail-value">Rp 25 Jt</div>
+                                    <div class="detail-label">Per Keluarga</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-value">0</div>
+                                    <div class="detail-label">Kuota Tersedia</div>
+                                </div>
+                            </div>
+                            <div class="subsidy-status status-full">Kuota Penuh</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    resultsSection.style.display = 'block';
-  });
-</script>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Tentang Kami</h3>
+                    <ul>
+                        <li><a href="#">Profil Lembaga</a></li>
+                        <li><a href="#">Visi dan Misi</a></li>
+                        <li><a href="#">Struktur Organisasi</a></li>
+                        <li><a href="#">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Jenis Subsidi</h3>
+                    <ul>
+                        <li><a href="#">Subsidi UMKM</a></li>
+                        <li><a href="#">Subsidi Pendidikan</a></li>
+                        <li><a href="#">Subsidi Kesehatan</a></li>
+                        <li><a href="#">Subsidi Pertanian</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Panduan</h3>
+                    <ul>
+                        <li><a href="#">Cara Mendaftar</a></li>
+                        <li><a href="#">Syarat dan Ketentuan</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Glosarium</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Layanan Pengaduan</h3>
+                    <ul>
+                        <li><a href="#">Lapor Masalah</a></li>
+                        <li><a href="#">Cek Status Pengaduan</a></li>
+                        <li><a href="#">Hubungi Kami</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Subsidi Eksklusif Indonesia - Hak Cipta Dilindungi</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.getAttribute('data-tab');
+                    
+                    // Remove active class from all tabs and contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to current tab and content
+                    tab.classList.add('active');
+                    document.getElementById(`${tabId}-tab`).classList.add('active');
+                });
+            });
+            
+            // Map region click functionality
+            const mapRegions = document.querySelectorAll('.map-region');
+            mapRegions.forEach(region => {
+                region.addEventListener('click', () => {
+                    const regionName = region.textContent;
+                    alert(`Anda memilih daerah: ${regionName}. Akan menampilkan subsidi yang tersedia di daerah ini.`);
+                });
+            });
+            
+            // Search functionality
+            const searchButton = document.querySelector('.search-box button');
+            searchButton.addEventListener('click', () => {
+                const searchInput = document.querySelector('.search-box input');
+                if (searchInput.value.trim() !== '') {
+                    alert(`Melakukan pencarian untuk: "${searchInput.value}"`);
+                } else {
+                    alert('Silakan masukkan kata kunci pencarian');
+                }
+            });
+            
+            // Login/Register button functionality
+            const loginButton = document.querySelector('.btn-login');
+            const registerButton = document.querySelector('.btn-register');
+            
+            loginButton.addEventListener('click', () => {
+                alert('Fitur login akan segera tersedia');
+            });
+            
+            registerButton.addEventListener('click', () => {
+                alert('Fitur pendaftaran akan segera tersedia');
+            });
+        });
+    </script>
 </body>
 </html>
