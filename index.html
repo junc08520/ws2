@@ -3,563 +3,284 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ExpressID - Sistem Lacak Pengiriman Indonesia</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Sistem Back Office - Pencarian Nomor</title>
     <style>
+        :root {
+            --primary: #1a73e8;
+            --secondary: #34a853;
+            --danger: #ea4335;
+            --warning: #fbbc05;
+            --dark: #202124;
+            --light: #f8f9fa;
+            --gray: #dadce0;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
-        :root {
-            --primary-red: #e30a17;
-            --primary-white: #ffffff;
-            --dark-blue: #1e3a5f;
-            --light-blue: #4a76b2;
-            --light-gray: #f5f5f5;
-            --medium-gray: #e0e0e0;
-            --dark-gray: #333333;
-            --accent-yellow: #ffc107;
-            --accent-green: #28a745;
-            --accent-orange: #fd7e14;
-        }
-
+        
         body {
-            background-color: var(--light-gray);
-            color: var(--dark-gray);
+            background-color: #f5f5f5;
+            color: var(--dark);
             line-height: 1.6;
         }
-
+        
         .container {
-            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 20px;
         }
-
-        /* Header Styles */
+        
         header {
-            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--light-blue) 100%);
-            color: var(--primary-white);
-            padding: 15px 0;
+            background: linear-gradient(135deg, var(--primary), #0d47a1);
+            color: white;
+            padding: 20px 0;
+            border-radius: 10px;
+            margin-bottom: 30px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border-bottom: 5px solid var(--primary-red);
         }
-
+        
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 0 30px;
         }
-
+        
         .logo {
             display: flex;
             align-items: center;
             gap: 15px;
         }
-
-        .logo-icon {
-            font-size: 2.5rem;
-            color: var(--accent-yellow);
+        
+        .logo img {
+            height: 50px;
         }
-
-        .logo-text h1 {
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .logo-text p {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        .official-badge {
-            background-color: var(--primary-red);
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 0.8rem;
+        
+        .logo h1 {
+            font-size: 24px;
             font-weight: 600;
         }
-
-        /* Main Content */
-        .main-content {
-            padding: 30px 0;
-            min-height: calc(100vh - 200px);
-        }
-
-        .page-title {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 20px;
-            background-color: var(--primary-white);
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        .page-title h1 {
-            color: var(--dark-blue);
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .page-title p {
-            color: var(--dark-gray);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* Tracking Section */
-        .tracking-section {
-            background-color: var(--primary-white);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
-        }
-
-        .tracking-title {
+        
+        .user-info {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-            color: var(--dark-blue);
+            gap: 15px;
         }
-
-        .tracking-title i {
-            color: var(--primary-red);
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: bold;
         }
-
-        .tracking-form {
+        
+        .search-section {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .search-form {
             display: flex;
             gap: 15px;
             margin-bottom: 20px;
         }
-
-        .tracking-input {
+        
+        .search-input {
             flex: 1;
-            padding: 15px 20px;
-            border: 2px solid var(--medium-gray);
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
+            padding: 12px 15px;
+            border: 1px solid var(--gray);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
         }
-
-        .tracking-input:focus {
+        
+        .search-input:focus {
             outline: none;
-            border-color: var(--light-blue);
-            box-shadow: 0 0 0 3px rgba(74, 118, 178, 0.2);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
         }
-
-        .btn {
-            padding: 15px 30px;
-            border-radius: 5px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        
+        .search-btn {
+            background-color: var(--primary);
+            color: white;
             border: none;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn-track {
-            background-color: var(--primary-red);
-            color: var(--primary-white);
-        }
-
-        .btn-track:hover {
-            background-color: #c00914;
-            transform: translateY(-2px);
-        }
-
-        .tracking-notice {
-            background-color: rgba(255, 193, 7, 0.1);
-            border-left: 4px solid var(--accent-yellow);
-            padding: 15px;
-            border-radius: 4px;
-        }
-
-        .tracking-notice p {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.9rem;
-        }
-
-        /* Results Section */
-        .results-section {
-            background-color: var(--primary-white);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
-            display: none;
-        }
-
-        .results-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--medium-gray);
-        }
-
-        .results-title {
-            color: var(--dark-blue);
-            font-size: 1.5rem;
-        }
-
-        .tracking-number {
-            font-weight: 700;
-            color: var(--primary-red);
-        }
-
-        .status-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .status-card {
-            padding: 20px;
+            padding: 12px 25px;
             border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        .status-card i {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .status-card h3 {
-            font-size: 1rem;
-            margin-bottom: 5px;
-        }
-
-        .status-card p {
-            font-size: 0.9rem;
-            color: var(--dark-gray);
-        }
-
-        .status-picked {
-            background-color: rgba(40, 167, 69, 0.1);
-            border-left: 4px solid var(--accent-green);
-        }
-
-        .status-problem {
-            background-color: rgba(253, 126, 20, 0.1);
-            border-left: 4px solid var(--accent-orange);
-        }
-
-        .status-verified {
-            background-color: rgba(227, 10, 23, 0.1);
-            border-left: 4px solid var(--primary-red);
-        }
-
-        .status-delivered {
-            background-color: rgba(108, 117, 125, 0.1);
-            border-left: 4px solid #6c757d;
-        }
-
-        .verification-alert {
-            background-color: rgba(227, 10, 23, 0.1);
-            border: 2px solid var(--primary-red);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .alert-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .alert-header i {
-            color: var(--primary-red);
-            font-size: 1.5rem;
-        }
-
-        .alert-header h3 {
-            color: var(--primary-red);
-        }
-
-        .alert-content ul {
-            list-style-type: none;
-            margin-left: 10px;
-        }
-
-        .alert-content ul li {
-            margin-bottom: 10px;
-            padding-left: 25px;
-            position: relative;
-        }
-
-        .alert-content ul li:before {
-            content: "•";
-            color: var(--primary-red);
-            font-weight: bold;
-            position: absolute;
-            left: 10px;
-        }
-
-        .platform-action {
-            background-color: rgba(30, 58, 95, 0.1);
-            border: 2px solid var(--dark-blue);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .action-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .action-header i {
-            color: var(--dark-blue);
-            font-size: 1.5rem;
-        }
-
-        .action-header h3 {
-            color: var(--dark-blue);
-        }
-
-        .timeline {
-            margin-top: 30px;
-        }
-
-        .timeline-title {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            color: var(--dark-blue);
-        }
-
-        .timeline-item {
-            display: flex;
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .timeline-item:before {
-            content: '';
-            position: absolute;
-            left: 20px;
-            top: 0;
-            bottom: -20px;
-            width: 2px;
-            background-color: var(--medium-gray);
-        }
-
-        .timeline-item:last-child:before {
-            display: none;
-        }
-
-        .timeline-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: var(--light-blue);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 20px;
-            z-index: 1;
-        }
-
-        .timeline-content {
-            flex: 1;
-            padding-bottom: 20px;
-        }
-
-        .timeline-content h4 {
-            margin-bottom: 5px;
-            color: var(--dark-blue);
-        }
-
-        .timeline-content p {
-            color: var(--dark-gray);
-            font-size: 0.9rem;
-        }
-
-        /* Admin Panel */
-        .admin-panel {
-            background-color: var(--primary-white);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
-            display: none;
-        }
-
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--medium-gray);
-        }
-
-        .admin-title {
-            color: var(--dark-blue);
-            font-size: 1.5rem;
-        }
-
-        .admin-tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .admin-tab {
-            padding: 10px 20px;
-            background-color: var(--light-gray);
-            border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
             font-weight: 500;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s;
         }
-
-        .admin-tab.active {
-            background-color: var(--dark-blue);
-            color: white;
+        
+        .search-btn:hover {
+            background-color: #0d47a1;
         }
-
-        .admin-content {
+        
+        .info-box {
+            background-color: #e8f0fe;
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+        }
+        
+        .info-box h3 {
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        
+        .result-section {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
             display: none;
         }
-
-        .admin-content.active {
+        
+        .result-section.active {
             display: block;
         }
-
-        .admin-table {
-            width: 100%;
-            border-collapse: collapse;
+        
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--gray);
+        }
+        
+        .result-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .status-pending {
+            background-color: #fff8e1;
+            color: #f57c00;
+        }
+        
+        .status-completed {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .status-blocked {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+        
+        .result-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .detail-label {
+            font-size: 14px;
+            color: #5f6368;
+            margin-bottom: 5px;
+        }
+        
+        .detail-value {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .warning-box {
+            background-color: #fff8e1;
+            border: 1px solid var(--warning);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .warning-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .warning-icon {
+            color: var(--warning);
+            font-size: 20px;
+        }
+        
+        .warning-title {
+            font-weight: 600;
+            color: #f57c00;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
             margin-top: 20px;
         }
-
-        .admin-table th {
-            background-color: var(--dark-blue);
-            color: var(--primary-white);
-            padding: 15px;
-            text-align: left;
-            font-weight: 600;
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
         }
-
-        .admin-table td {
-            padding: 15px;
-            border-bottom: 1px solid var(--medium-gray);
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
         }
-
-        .admin-table tr:nth-child(even) {
-            background-color: var(--light-gray);
+        
+        .btn-primary:hover {
+            background-color: #0d47a1;
         }
-
-        .admin-table tr:hover {
-            background-color: rgba(74, 118, 178, 0.1);
+        
+        .btn-secondary {
+            background-color: var(--gray);
+            color: var(--dark);
         }
-
-        .status-badge {
-            display: inline-block;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.8rem;
+        
+        .btn-secondary:hover {
+            background-color: #c4c7ce;
         }
-
-        .status-problem-badge {
-            background-color: rgba(253, 126, 20, 0.2);
-            color: var(--accent-orange);
-        }
-
-        .status-resolved-badge {
-            background-color: rgba(40, 167, 69, 0.2);
-            color: var(--accent-green);
-        }
-
-        .status-pending-badge {
-            background-color: rgba(255, 193, 7, 0.2);
-            color: #b58900;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark-blue);
-            color: var(--primary-white);
-            padding: 40px 0 20px;
-            margin-top: 50px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-
-        .footer-column h3 {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background-color: var(--primary-red);
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 12px;
-        }
-
-        .footer-column ul li a {
-            color: var(--medium-gray);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-column ul li a:hover {
-            color: var(--primary-white);
-            padding-left: 5px;
-        }
-
-        .footer-bottom {
+        
+        .footer {
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--medium-gray);
-            font-size: 0.9rem;
+            padding: 20px;
+            color: #5f6368;
+            font-size: 14px;
+            border-top: 1px solid var(--gray);
+            margin-top: 30px;
         }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .status-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
+        
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -567,360 +288,195 @@
                 text-align: center;
             }
             
-            .tracking-form {
+            .search-form {
                 flex-direction: column;
             }
             
-            .status-container {
+            .result-details {
                 grid-template-columns: 1fr;
             }
             
-            .admin-tabs {
-                flex-wrap: wrap;
-            }
-            
-            .page-title h1 {
-                font-size: 1.7rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .tracking-section, .results-section, .admin-panel {
-                padding: 20px;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
+            .action-buttons {
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
+    <div class="container">
+        <header>
             <div class="header-content">
                 <div class="logo">
-                    <div class="logo-icon">
-                        <i class="fas fa-shipping-fast"></i>
-                    </div>
-                    <div class="logo-text">
-                        <h1>ExpressID</h1>
-                        <p>Sistem Lacak Pengiriman Indonesia</p>
-                    </div>
+                    <!-- Placeholder for logo -->
+                    <div style="width: 50px; height: 50px; background-color: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--primary); font-weight: bold;">LOGO</div>
+                    <h1>Sistem Back Office Keuangan</h1>
                 </div>
-                <div class="official-badge">
-                    SISTEM VERIFIKASI RESMI
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <div class="main-content">
-        <div class="container">
-            <!-- Page Title -->
-            <div class="page-title">
-                <h1><i class="fas fa-box"></i> Lacak Nomor Resi Pengiriman</h1>
-                <p>Gunakan sistem verifikasi resmi kami untuk melacak pengiriman dan memeriksa status verifikasi barang</p>
-            </div>
-
-            <!-- Tracking Section -->
-            <div class="tracking-section">
-                <div class="tracking-title">
-                    <i class="fas fa-search"></i>
-                    <h2>Lacak Pengiriman</h2>
-                </div>
-                <div class="tracking-form">
-                    <input type="text" class="tracking-input" id="trackingNumber" placeholder="Masukkan nomor resi (contoh: EXPID123456789)">
-                    <button class="btn btn-track" id="trackBtn">
-                        <i class="fas fa-search"></i> Lacak
-                    </button>
-                </div>
-                <div class="tracking-notice">
-                    <p><i class="fas fa-info-circle"></i> Sistem ini akan memverifikasi status pengiriman dan mencatat masalah kualitas barang secara otomatis.</p>
-                </div>
-            </div>
-
-            <!-- Results Section -->
-            <div class="results-section" id="resultsSection">
-                <div class="results-header">
-                    <h2 class="results-title">Hasil Pelacakan</h2>
-                    <div class="tracking-number">Nomor Resi: <span id="displayTrackingNumber">EXPID123456789</span></div>
-                </div>
-                
-                <div class="status-container">
-                    <div class="status-card status-picked">
-                        <i class="fas fa-box-open"></i>
-                        <h3>Barang Diterima</h3>
-                        <p>12 Nov 2023, 09:30</p>
-                    </div>
-                    <div class="status-card status-problem">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <h3>Masalah Terdeteksi</h3>
-                        <p>12 Nov 2023, 14:15</p>
-                    </div>
-                    <div class="status-card status-verified">
-                        <i class="fas fa-clipboard-check"></i>
-                        <h3>Verifikasi Platform</h3>
-                        <p>13 Nov 2023, 10:00</p>
-                    </div>
-                    <div class="status-card status-delivered">
-                        <i class="fas fa-truck-loading"></i>
-                        <h3>Status Pengiriman</h3>
-                        <p>Ditahan - Masalah Kualitas</p>
-                    </div>
-                </div>
-                
-                <div class="verification-alert">
-                    <div class="alert-header">
-                        <i class="fas fa-exclamation-circle"></i>
-                        <h3>BARANG TIDAK MEMENUHI STANDAR KUALITAS</h3>
-                    </div>
-                    <div class="alert-content">
-                        <p>Hasil verifikasi kami menunjukkan masalah serius dengan barang yang dikirim:</p>
-                        <ul>
-                            <li>Barang tidak sesuai dengan deskripsi yang diberikan</li>
-                            <li>Kondisi fisik barang rusak parah</li>
-                            <li>Kualitas bahan di bawah standar minimum</li>
-                            <li>Berpotensi melanggar peraturan keamanan produk</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="platform-action">
-                    <div class="action-header">
-                        <i class="fas fa-clipboard-list"></i>
-                        <h3>TINDAKAN PLATFORM</h3>
-                    </div>
-                    <div class="action-content">
-                        <p>Platform telah mengambil tindakan berikut:</p>
-                        <ul>
-                            <li>Pencatatan insiden dalam sistem verifikasi (ID: VF20231113-087)</li>
-                            <li>Pelaporan kepada pihak berwenang terkait</li>
-                            <li>Penangguhan pengiriman hingga masalah terselesaikan</li>
-                            <li>Pemberitahuan kepada pengirim dan penerima</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="timeline">
-                    <h3 class="timeline-title">Riwayat Pengiriman</h3>
-                    <div class="timeline-item">
-                        <div class="timeline-icon">
-                            <i class="fas fa-box"></i>
-                        </div>
-                        <div class="timeline-content">
-                            <h4>Barang Diterima di Gudang</h4>
-                            <p>12 November 2023, 09:30 - Barang diterima di pusat distribusi Jakarta</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-icon">
-                            <i class="fas fa-clipboard-check"></i>
-                        </div>
-                        <div class="timeline-content">
-                            <h4>Proses Verifikasi Awal</h4>
-                            <p>12 November 2023, 11:45 - Barang melewati pemeriksaan dokumen</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-icon">
-                            <i class="fas fa-exclamation-triangle"></i>
-                        </div>
-                        <div class="timeline-content">
-                            <h4>Masalah Terdeteksi</h4>
-                            <p>12 November 2023, 14:15 - Inspektur menemukan ketidaksesuaian kualitas barang</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-icon">
-                            <i class="fas fa-flag"></i>
-                        </div>
-                        <div class="timeline-content">
-                            <h4>Pelaporan ke Platform</h4>
-                            <p>13 November 2023, 08:00 - Masalah dilaporkan ke sistem verifikasi platform</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-icon">
-                            <i class="fas fa-ban"></i>
-                        </div>
-                        <div class="timeline-content">
-                            <h4>Pengiriman Ditangguhkan</h4>
-                            <p>13 November 2023, 10:00 - Pengiriman ditahan menunggu penyelesaian masalah</p>
-                        </div>
+                <div class="user-info">
+                    <div class="user-avatar">AD</div>
+                    <div>
+                        <div>Admin User</div>
+                        <div style="font-size: 12px;">Terakhir login: 15:30 WIB</div>
                     </div>
                 </div>
             </div>
-
-            <!-- Admin Panel -->
-            <div class="admin-panel" id="adminPanel">
-                <div class="admin-header">
-                    <h2 class="admin-title">Panel Admin - Sistem Verifikasi</h2>
-                    <button class="btn btn-track" id="backToSearch">
-                        <i class="fas fa-arrow-left"></i> Kembali ke Pencarian
-                    </button>
+        </header>
+        
+        <section class="search-section">
+            <h2 style="margin-bottom: 20px;">Pencarian Nomor Referensi</h2>
+            <div class="search-form">
+                <input type="text" class="search-input" placeholder="Masukkan nomor referensi..." id="searchInput">
+                <button class="search-btn" id="searchBtn">Cari</button>
+            </div>
+            <div class="info-box">
+                <h3>Informasi Program</h3>
+                <p>Program <strong>Dana Pengembalian Indonesia 2025</strong> dengan nilai minimum <strong>Rp 2.000.000</strong>. Pastikan untuk memverifikasi semua data sebelum melanjutkan proses.</p>
+            </div>
+        </section>
+        
+        <section class="result-section" id="resultSection">
+            <div class="result-header">
+                <div class="result-title">Hasil Pencarian</div>
+                <div class="status-badge status-pending" id="statusBadge">Menunggu Pengembalian</div>
+            </div>
+            
+            <div class="result-details">
+                <div class="detail-item">
+                    <div class="detail-label">Nomor Referensi</div>
+                    <div class="detail-value" id="refNumber">REF-2025-08765</div>
                 </div>
-                
-                <div class="admin-tabs">
-                    <div class="admin-tab active" data-tab="issues">Masalah Barang</div>
-                    <div class="admin-tab" data-tab="verifications">Verifikasi</div>
-                    <div class="admin-tab" data-tab="reports">Laporan</div>
+                <div class="detail-item">
+                    <div class="detail-label">Nama Pemegang</div>
+                    <div class="detail-value" id="holderName">Ahmad Santoso</div>
                 </div>
-                
-                <div class="admin-content active" id="issues-tab">
-                    <h3>Daftar Barang Bermasalah</h3>
-                    <table class="admin-table">
-                        <thead>
-                            <tr>
-                                <th>No. Resi</th>
-                                <th>Tanggal</th>
-                                <th>Jenis Masalah</th>
-                                <th>Status</th>
-                                <th>Tindakan</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>EXPID123456789</td>
-                                <td>13 Nov 2023</td>
-                                <td>Kualitas barang tidak memenuhi standar</td>
-                                <td><span class="status-badge status-pending-badge">Dalam Investigasi</span></td>
-                                <td><button class="btn" style="padding: 5px 10px; font-size: 0.8rem;">Detail</button></td>
-                            </tr>
-                            <tr>
-                                <td>EXPID987654321</td>
-                                <td>12 Nov 2023</td>
-                                <td>Barang tidak sesuai deskripsi</td>
-                                <td><span class="status-badge status-problem-badge">Perlu Tindakan</span></td>
-                                <td><button class="btn" style="padding: 5px 10px; font-size: 0.8rem;">Detail</button></td>
-                            </tr>
-                            <tr>
-                                <td>EXPID456789123</td>
-                                <td>10 Nov 2023</td>
-                                <td>Barang rusak selama pengiriman</td>
-                                <td><span class="status-badge status-resolved-badge">Selesai</span></td>
-                                <td><button class="btn" style="padding: 5px 10px; font-size: 0.8rem;">Detail</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="detail-item">
+                    <div class="detail-label">Nomor Kartu</div>
+                    <div class="detail-value" id="cardNumber">**** **** **** 4521</div>
                 </div>
-                
-                <div class="admin-content" id="verifications-tab">
-                    <h3>Verifikasi Barang</h3>
-                    <p>Fitur verifikasi barang akan ditampilkan di sini.</p>
+                <div class="detail-item">
+                    <div class="detail-label">Jumlah Pengembalian</div>
+                    <div class="detail-value" id="refundAmount">Rp 2.500.000</div>
                 </div>
-                
-                <div class="admin-content" id="reports-tab">
-                    <h3>Laporan Sistem</h3>
-                    <p>Laporan dan statistik sistem akan ditampilkan di sini.</p>
+                <div class="detail-item">
+                    <div class="detail-label">Tanggal Pengajuan</div>
+                    <div class="detail-value" id="submissionDate">15 Maret 2025</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Status Terakhir</div>
+                    <div class="detail-value" id="lastStatus">Menunggu Verifikasi</div>
                 </div>
             </div>
-        </div>
+            
+            <div class="warning-box">
+                <div class="warning-header">
+                    <div class="warning-icon">⚠</div>
+                    <div class="warning-title">Peringatan Keamanan</div>
+                </div>
+                <p>Akun ini telah ditandai sebagai <strong>memerlukan penyelesaian pengembalian dana</strong> sebelum dapat mengakses layanan lengkap. Proses verifikasi tambahan diperlukan untuk melanjutkan.</p>
+            </div>
+            
+            <div class="info-box">
+                <h3>Prosedur Pengembalian Dana</h3>
+                <p>Untuk menyelesaikan proses pengembalian dana, pastikan:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Data pemegang kartu telah diverifikasi</li>
+                    <li>Dokumen pendukung telah lengkap</li>
+                    <li>Proses verifikasi keamanan telah selesai</li>
+                    <li>Konfirmasi telah diterima dari pihak terkait</li>
+                </ul>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn btn-primary" id="processBtn">Proses Pengembalian</button>
+                <button class="btn btn-secondary" id="verifyBtn">Verifikasi Dokumen</button>
+                <button class="btn btn-secondary" id="contactBtn">Hubungi Pemegang</button>
+            </div>
+        </section>
+        
+        <footer class="footer">
+            <p>© 2025 Sistem Back Office Keuangan Indonesia. Semua hak dilindungi.</p>
+            <p>Versi 2.1.5 | Terakhir diperbarui: 10 April 2025</p>
+        </footer>
     </div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Layanan</h3>
-                    <ul>
-                        <li><a href="#">Lacak Pengiriman</a></li>
-                        <li><a href="#">Verifikasi Barang</a></li>
-                        <li><a href="#">Pengaduan</a></li>
-                        <li><a href="#">Bantuan</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Perusahaan</h3>
-                    <ul>
-                        <li><a href="#">Tentang Kami</a></li>
-                        <li><a href="#">Kebijakan Privasi</a></li>
-                        <li><a href="#">Syarat & Ketentuan</a></li>
-                        <li><a href="#">Karir</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Hubungi Kami</h3>
-                    <ul>
-                        <li><a href="#">Call Center: 1500-123</a></li>
-                        <li><a href="#">Email: support@expressid.co.id</a></li>
-                        <li><a href="#">Kantor Pusat: Jakarta</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Mitra</h3>
-                    <ul>
-                        <li><a href="#">Daftar Mitra Pengiriman</a></li>
-                        <li><a href="#">Sertifikasi</a></li>
-                        <li><a href="#">Pedoman Kualitas</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 ExpressID - Sistem Lacak Pengiriman Indonesia. Hak Cipta Dilindungi.</p>
-            </div>
-        </div>
-    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const trackBtn = document.getElementById('trackBtn');
-            const resultsSection = document.getElementById('resultsSection');
-            const adminPanel = document.getElementById('adminPanel');
-            const backToSearch = document.getElementById('backToSearch');
-            const trackingNumberInput = document.getElementById('trackingNumber');
-            const displayTrackingNumber = document.getElementById('displayTrackingNumber');
-            const adminTabs = document.querySelectorAll('.admin-tab');
-            const adminContents = document.querySelectorAll('.admin-content');
-
-            // Track button functionality
-            trackBtn.addEventListener('click', function() {
-                const trackingNumber = trackingNumberInput.value.trim();
+            const searchBtn = document.getElementById('searchBtn');
+            const searchInput = document.getElementById('searchInput');
+            const resultSection = document.getElementById('resultSection');
+            
+            // Sample data for demonstration
+            const sampleData = {
+                refNumber: 'REF-2025-08765',
+                holderName: 'Ahmad Santoso',
+                cardNumber: '**** **** **** 4521',
+                refundAmount: 'Rp 2.500.000',
+                submissionDate: '15 Maret 2025',
+                lastStatus: 'Menunggu Verifikasi',
+                status: 'pending'
+            };
+            
+            searchBtn.addEventListener('click', function() {
+                const searchValue = searchInput.value.trim();
                 
-                if (trackingNumber === '') {
-                    alert('Silakan masukkan nomor resi');
+                if (searchValue === '') {
+                    alert('Harap masukkan nomor referensi untuk pencarian.');
                     return;
                 }
                 
-                if (trackingNumber === 'ADMIN123') {
-                    // Show admin panel for special tracking number
-                    resultsSection.style.display = 'none';
-                    adminPanel.style.display = 'block';
-                } else {
-                    // Show regular tracking results
-                    displayTrackingNumber.textContent = trackingNumber;
-                    resultsSection.style.display = 'block';
-                    adminPanel.style.display = 'none';
+                // In a real application, you would make an API call here
+                // For demo purposes, we'll use the sample data
+                displayResults(sampleData);
+            });
+            
+            function displayResults(data) {
+                document.getElementById('refNumber').textContent = data.refNumber;
+                document.getElementById('holderName').textContent = data.holderName;
+                document.getElementById('cardNumber').textContent = data.cardNumber;
+                document.getElementById('refundAmount').textContent = data.refundAmount;
+                document.getElementById('submissionDate').textContent = data.submissionDate;
+                document.getElementById('lastStatus').textContent = data.lastStatus;
+                
+                // Update status badge
+                const statusBadge = document.getElementById('statusBadge');
+                statusBadge.className = 'status-badge';
+                
+                if (data.status === 'pending') {
+                    statusBadge.classList.add('status-pending');
+                    statusBadge.textContent = 'Menunggu Pengembalian';
+                } else if (data.status === 'completed') {
+                    statusBadge.classList.add('status-completed');
+                    statusBadge.textContent = 'Pengembalian Selesai';
+                } else if (data.status === 'blocked') {
+                    statusBadge.classList.add('status-blocked');
+                    statusBadge.textContent = 'Diblokir';
+                }
+                
+                // Show result section
+                resultSection.classList.add('active');
+                
+                // Scroll to results
+                resultSection.scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            // Add event listeners for action buttons
+            document.getElementById('processBtn').addEventListener('click', function() {
+                alert('Proses pengembalian dana akan dimulai. Pastikan semua data telah diverifikasi.');
+            });
+            
+            document.getElementById('verifyBtn').addEventListener('click', function() {
+                alert('Membuka panel verifikasi dokumen...');
+            });
+            
+            document.getElementById('contactBtn').addEventListener('click', function() {
+                alert('Membuka panel kontak pemegang kartu...');
+            });
+            
+            // Allow search on Enter key
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchBtn.click();
                 }
             });
-
-            // Back to search functionality
-            backToSearch.addEventListener('click', function() {
-                resultsSection.style.display = 'none';
-                adminPanel.style.display = 'none';
-                trackingNumberInput.value = '';
-            });
-
-            // Admin tabs functionality
-            adminTabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    const tabId = tab.getAttribute('data-tab');
-                    
-                    // Remove active class from all tabs and contents
-                    adminTabs.forEach(t => t.classList.remove('active'));
-                    adminContents.forEach(c => c.classList.remove('active'));
-                    
-                    // Add active class to current tab and content
-                    tab.classList.add('active');
-                    document.getElementById(`${tabId}-tab`).classList.add('active');
-                });
-            });
-
-            // Example tracking numbers for user convenience
-            trackingNumberInput.placeholder = "Masukkan nomor resi (contoh: EXPID123456789) atau ADMIN123 untuk panel admin";
         });
     </script>
 </body>
