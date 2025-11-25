@@ -3,18 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Back Office - Pencarian Nomor</title>
+    <title>Nusantara Bento - Penyedia Kotak Makanan Panas Otomatis Indonesia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary: #1a73e8;
-            --secondary: #34a853;
-            --danger: #ea4335;
-            --warning: #fbbc05;
-            --dark: #202124;
-            --light: #f8f9fa;
-            --gray: #dadce0;
-        }
-        
         * {
             margin: 0;
             padding: 0;
@@ -22,32 +13,43 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
+        :root {
+            --primary-red: #E60000;
+            --primary-white: #FFFFFF;
+            --accent-yellow: #FFD700;
+            --dark-red: #CC0000;
+            --light-gray: #F5F5F5;
+            --dark-gray: #333333;
+            --whatsapp-green: #25D366;
+        }
+        
         body {
-            background-color: #f5f5f5;
-            color: var(--dark);
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
             line-height: 1.6;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
         
+        /* Header Styles */
         header {
-            background: linear-gradient(135deg, var(--primary), #0d47a1);
-            color: white;
+            background: linear-gradient(to right, var(--primary-red), var(--dark-red));
+            color: var(--primary-white);
             padding: 20px 0;
-            border-radius: 10px;
-            margin-bottom: 30px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
         
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 30px;
         }
         
         .logo {
@@ -57,425 +59,717 @@
         }
         
         .logo img {
-            height: 50px;
+            height: 60px;
+            width: auto;
         }
         
         .logo h1 {
             font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: var(--accent-yellow);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: var(--primary-white);
+            text-decoration: none;
             font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 4px;
         }
         
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
         }
         
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--primary-white);
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .whatsapp-cta {
+            background-color: var(--whatsapp-green);
+            color: var(--primary-white);
+            padding: 15px 30px;
+            font-size: 20px;
             font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
         }
         
-        .search-section {
-            background-color: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
+        .whatsapp-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
         }
         
-        .search-form {
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--dark-red);
+            font-size: 36px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-red);
+            margin: 15px auto;
+        }
+        
+        /* About Section */
+        .about-content {
             display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
+            align-items: center;
+            gap: 40px;
         }
         
-        .search-input {
+        .about-text {
             flex: 1;
-            padding: 12px 15px;
-            border: 1px solid var(--gray);
-            border-radius: 8px;
-            font-size: 16px;
-            transition: all 0.3s;
         }
         
-        .search-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
-        }
-        
-        .search-btn {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 500;
-            transition: background-color 0.3s;
-        }
-        
-        .search-btn:hover {
-            background-color: #0d47a1;
-        }
-        
-        .info-box {
-            background-color: #e8f0fe;
-            border-left: 4px solid var(--primary);
-            padding: 15px;
-            border-radius: 0 8px 8px 0;
-            margin-bottom: 20px;
-        }
-        
-        .info-box h3 {
-            color: var(--primary);
-            margin-bottom: 8px;
-        }
-        
-        .result-section {
-            background-color: white;
-            padding: 25px;
+        .about-image {
+            flex: 1;
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
-            display: none;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
         
-        .result-section.active {
+        .about-image img {
+            width: 100%;
+            height: auto;
             display: block;
         }
         
-        .result-header {
+        /* Partners Section */
+        .partners {
+            background-color: var(--primary-white);
+        }
+        
+        .partner-logos {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--gray);
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 40px;
         }
         
-        .result-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--dark);
+        .partner-logo {
+            height: 80px;
+            width: auto;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
         }
         
-        .status-badge {
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 500;
+        .partner-logo:hover {
+            opacity: 1;
         }
         
-        .status-pending {
-            background-color: #fff8e1;
-            color: #f57c00;
-        }
-        
-        .status-completed {
-            background-color: #e8f5e9;
-            color: #2e7d32;
-        }
-        
-        .status-blocked {
-            background-color: #ffebee;
-            color: #c62828;
-        }
-        
-        .result-details {
+        /* Products Section */
+        .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: var(--primary-white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-name {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--dark-red);
+        }
+        
+        .product-description {
+            margin-bottom: 15px;
+            color: #666;
+        }
+        
+        .product-price {
+            font-weight: bold;
+            font-size: 18px;
+            color: var(--primary-red);
+            margin-bottom: 15px;
+        }
+        
+        .order-btn {
+            background-color: var(--primary-red);
+            color: var(--primary-white);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        
+        .order-btn:hover {
+            background-color: var(--dark-red);
+        }
+        
+        /* Contact Section */
+        .contact {
+            background-color: var(--primary-white);
+        }
+        
+        .contact-content {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-form {
+            flex: 1;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
             margin-bottom: 25px;
         }
         
-        .detail-item {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .detail-label {
-            font-size: 14px;
-            color: #5f6368;
-            margin-bottom: 5px;
-        }
-        
-        .detail-value {
-            font-size: 16px;
-            font-weight: 500;
-        }
-        
-        .warning-box {
-            background-color: #fff8e1;
-            border: 1px solid var(--warning);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .warning-header {
+        .contact-icon {
+            background-color: var(--primary-red);
+            color: var(--primary-white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-        
-        .warning-icon {
-            color: var(--warning);
+            justify-content: center;
+            margin-right: 15px;
             font-size: 20px;
         }
         
-        .warning-title {
-            font-weight: 600;
-            color: #f57c00;
+        .contact-details h3 {
+            margin-bottom: 5px;
+            color: var(--dark-red);
         }
         
-        .action-buttons {
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .submit-btn {
+            background-color: var(--primary-red);
+            color: var(--primary-white);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--dark-red);
+        }
+        
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--whatsapp-green);
+            color: var(--primary-white);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.7);
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-gray);
+            color: var(--primary-white);
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-column h3 {
+            color: var(--accent-yellow);
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column a:hover {
+            color: var(--primary-white);
+        }
+        
+        .social-links {
             display: flex;
             gap: 15px;
             margin-top: 20px;
         }
         
-        .btn {
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-weight: 500;
-            cursor: pointer;
-            border: none;
-            transition: all 0.3s;
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
         }
         
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
+        .social-links a:hover {
+            background-color: var(--primary-red);
+            transform: translateY(-3px);
         }
         
-        .btn-primary:hover {
-            background-color: #0d47a1;
-        }
-        
-        .btn-secondary {
-            background-color: var(--gray);
-            color: var(--dark);
-        }
-        
-        .btn-secondary:hover {
-            background-color: #c4c7ce;
-        }
-        
-        .footer {
+        .copyright {
             text-align: center;
-            padding: 20px;
-            color: #5f6368;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 14px;
-            border-top: 1px solid var(--gray);
-            margin-top: 30px;
+            color: #aaa;
         }
         
+        /* Responsive Design */
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
                 gap: 15px;
-                text-align: center;
             }
             
-            .search-form {
+            nav ul {
+                gap: 15px;
+            }
+            
+            .hero h2 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .about-content, .contact-content {
                 flex-direction: column;
             }
             
-            .result-details {
-                grid-template-columns: 1fr;
-            }
-            
-            .action-buttons {
-                flex-direction: column;
+            .section-title {
+                font-size: 28px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/628888888" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <!-- Placeholder for logo -->
-                    <div style="width: 50px; height: 50px; background-color: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--primary); font-weight: bold;">LOGO</div>
-                    <h1>Sistem Back Office Keuangan</h1>
+                    <i class="fas fa-utensils fa-2x"></i>
+                    <h1>Nusantara <span>Bento</span></h1>
                 </div>
-                <div class="user-info">
-                    <div class="user-avatar">AD</div>
-                    <div>
-                        <div>Admin User</div>
-                        <div style="font-size: 12px;">Terakhir login: 15:30 WIB</div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#about">Tentang Kami</a></li>
+                        <li><a href="#products">Produk</a></li>
+                        <li><a href="#partners">Mitra</a></li>
+                        <li><a href="#contact">Kontak</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>Kotak Makanan Panas Otomatis Berkualitas</h2>
+            <p>Nikmati hidangan Indonesia otentik kapan saja, di mana saja dengan teknologi pemanas otomatis kami. Bekerja sama dengan berbagai institusi di seluruh Jakarta.</p>
+            <a href="https://wa.me/628888888" class="whatsapp-cta">
+                <i class="fab fa-whatsapp"></i> Pesan via WhatsApp: +62 888-8888
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">Tentang Nusantara Bento</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Nusantara Bento adalah penyedia terkemuka kotak makanan panas otomatis di Jakarta, menghadirkan cita rasa masakan Indonesia tradisional dengan sentuhan inovasi modern. Dengan komitmen "Dari Dapur ke Meja, Kehangatan di Mana Saja", kami menyajikan hidangan lezat dalam kemasan praktis yang dapat dinikmati kapan saja.</p>
+                    <br>
+                    <p>Didirikan pada tahun 2018, kami telah melayani lebih dari 50 perusahaan di seluruh Jakarta dan sekitarnya. Dapur pusat kami yang berlokasi di <strong>Kebayoran Baru, Jakarta Selatan</strong> telah bersertifikat BPOM dan menerapkan standar kebersihan serta keamanan pangan tertinggi.</p>
+                    <br>
+                    <p>Kami bangga menjadi mitra terpercaya bagi berbagai institusi, termasuk perkantoran, sekolah, rumah sakit, dan acara-acara khusus. Chef kami yang berpengalaman memastikan setiap hidangan mempertahankan keaslian rasa Indonesia dengan kualitas terbaik.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Dapur Nusantara Bento">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners" id="partners">
+        <div class="container">
+            <h2 class="section-title">Mitra Kami</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">Kami bangga bekerja sama dengan berbagai institusi terkemuka di Indonesia untuk menyediakan solusi makanan praktis dan berkualitas.</p>
+            <div class="partner-logos">
+                <div class="partner-logo">
+                    <i class="fas fa-building fa-3x"></i>
+                    <p>Asosiasi Restoran Indonesia</p>
+                </div>
+                <div class="partner-logo">
+                    <i class="fas fa-city fa-3x"></i>
+                    <p>Dewan Bisnis Jakarta</p>
+                </div>
+                <div class="partner-logo">
+                    <i class="fas fa-hospital fa-3x"></i>
+                    <p>Rumah Sakit Umum Jakarta</p>
+                </div>
+                <div class="partner-logo">
+                    <i class="fas fa-school fa-3x"></i>
+                    <p>Yayasan Pendidikan Jakarta</p>
+                </div>
+                <div class="partner-logo">
+                    <i class="fas fa-industry fa-3x"></i>
+                    <p>Kawasan Industri Cikarang</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products">
+        <div class="container">
+            <h2 class="section-title">Produk Kami</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1552611052-33b04c8b7d5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Nasi Goreng Special" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">Nasi Goreng Special</h3>
+                        <p class="product-description">Nasi goreng istimewa dengan ayam, udang, dan telur, dilengkapi kerupuk dan acar.</p>
+                        <p class="product-price">Rp 35.000</p>
+                        <button class="order-btn">Pesan Sekarang</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Sate Ayam" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">Sate Ayam</h3>
+                        <p class="product-description">Sate ayam dengan bumbu kacang spesial, dilengkapi lontong dan bawang goreng.</p>
+                        <p class="product-price">Rp 42.000</p>
+                        <button class="order-btn">Pesan Sekarang</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Rendang Daging" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">Rendang Daging</h3>
+                        <p class="product-description">Rendang daging sapi asli Padang dengan nasi putih dan sayuran segar.</p>
+                        <p class="product-price">Rp 45.000</p>
+                        <button class="order-btn">Pesan Sekarang</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Gado-gado" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">Gado-gado</h3>
+                        <p class="product-description">Salad Indonesia dengan sayuran segar, telur, dan bumbu kacang yang lezat.</p>
+                        <p class="product-price">Rp 32.000</p>
+                        <button class="order-btn">Pesan Sekarang</button>
                     </div>
                 </div>
             </div>
-        </header>
-        
-        <section class="search-section">
-            <h2 style="margin-bottom: 20px;">Pencarian Nomor Referensi</h2>
-            <div class="search-form">
-                <input type="text" class="search-input" placeholder="Masukkan nomor referensi..." id="searchInput">
-                <button class="search-btn" id="searchBtn">Cari</button>
-            </div>
-            <div class="info-box">
-                <h3>Informasi Program</h3>
-                <p>Program <strong>Dana Pengembalian Indonesia 2025</strong> dengan nilai minimum <strong>Rp 2.000.000</strong>. Pastikan untuk memverifikasi semua data sebelum melanjutkan proses.</p>
-            </div>
-        </section>
-        
-        <section class="result-section" id="resultSection">
-            <div class="result-header">
-                <div class="result-title">Hasil Pencarian</div>
-                <div class="status-badge status-pending" id="statusBadge">Menunggu Pengembalian</div>
-            </div>
-            
-            <div class="result-details">
-                <div class="detail-item">
-                    <div class="detail-label">Nomor Referensi</div>
-                    <div class="detail-value" id="refNumber">REF-2025-08765</div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Hubungi Kami</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Lokasi Kami</h3>
+                            <p>Jl. Kebayoran Baru No. 123, Jakarta Selatan, Indonesia</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Telepon</h3>
+                            <p>+62 21 1234 5678</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>WhatsApp</h3>
+                            <p>+62 888-8888 (Test Number)</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>info@nusantarabento.co.id</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Jam Operasional</h3>
+                            <p>Senin - Minggu: 08.00 - 20.00 WIB</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="detail-item">
-                    <div class="detail-label">Nama Pemegang</div>
-                    <div class="detail-value" id="holderName">Ahmad Santoso</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Nomor Kartu</div>
-                    <div class="detail-value" id="cardNumber">**** **** **** 4521</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Jumlah Pengembalian</div>
-                    <div class="detail-value" id="refundAmount">Rp 2.500.000</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Tanggal Pengajuan</div>
-                    <div class="detail-value" id="submissionDate">15 Maret 2025</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Status Terakhir</div>
-                    <div class="detail-value" id="lastStatus">Menunggu Verifikasi</div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nama Lengkap</label>
+                            <input type="text" id="name" class="form-control" placeholder="Masukkan nama lengkap" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Nomor Telepon/WhatsApp</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="Masukkan nomor telepon" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" placeholder="Masukkan alamat email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Pesan</label>
+                            <textarea id="message" class="form-control" rows="5" placeholder="Tulis pesan Anda" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Kirim Pesan</button>
+                    </form>
                 </div>
             </div>
-            
-            <div class="warning-box">
-                <div class="warning-header">
-                    <div class="warning-icon">⚠</div>
-                    <div class="warning-title">Peringatan Keamanan</div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Nusantara Bento</h3>
+                    <p>Penyedia terkemuka kotak makanan panas otomatis di Jakarta, menghadirkan cita rasa masakan Indonesia tradisional dengan sentuhan inovasi modern.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
                 </div>
-                <p>Akun ini telah ditandai sebagai <strong>memerlukan penyelesaian pengembalian dana</strong> sebelum dapat mengakses layanan lengkap. Proses verifikasi tambahan diperlukan untuk melanjutkan.</p>
+                <div class="footer-column">
+                    <h3>Tautan Cepat</h3>
+                    <ul>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#about">Tentang Kami</a></li>
+                        <li><a href="#products">Produk</a></li>
+                        <li><a href="#partners">Mitra</a></li>
+                        <li><a href="#contact">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Layanan</h3>
+                    <ul>
+                        <li><a href="#">Katering Perusahaan</a></li>
+                        <li><a href="#">Pesanan Acara</a></li>
+                        <li><a href="#">Paket Bulanan</a></li>
+                        <li><a href="#">Pengiriman Express</a></li>
+                        <li><a href="#">Konsultasi Menu</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>WhatsApp Order</h3>
+                    <p>Untuk pemesanan cepat, hubungi kami melalui WhatsApp:</p>
+                    <a href="https://wa.me/628888888" class="whatsapp-cta" style="display: inline-flex; margin-top: 15px; font-size: 16px; padding: 10px 20px;">
+                        <i class="fab fa-whatsapp"></i> +62 888-8888
+                    </a>
+                </div>
             </div>
-            
-            <div class="info-box">
-                <h3>Prosedur Pengembalian Dana</h3>
-                <p>Untuk menyelesaikan proses pengembalian dana, pastikan:</p>
-                <ul style="margin-left: 20px; margin-top: 10px;">
-                    <li>Data pemegang kartu telah diverifikasi</li>
-                    <li>Dokumen pendukung telah lengkap</li>
-                    <li>Proses verifikasi keamanan telah selesai</li>
-                    <li>Konfirmasi telah diterima dari pihak terkait</li>
-                </ul>
+            <div class="copyright">
+                <p>&copy; 2023 Nusantara Bento. All rights reserved.</p>
             </div>
-            
-            <div class="action-buttons">
-                <button class="btn btn-primary" id="processBtn">Proses Pengembalian</button>
-                <button class="btn btn-secondary" id="verifyBtn">Verifikasi Dokumen</button>
-                <button class="btn btn-secondary" id="contactBtn">Hubungi Pemegang</button>
-            </div>
-        </section>
-        
-        <footer class="footer">
-            <p>© 2025 Sistem Back Office Keuangan Indonesia. Semua hak dilindungi.</p>
-            <p>Versi 2.1.5 | Terakhir diperbarui: 10 April 2025</p>
-        </footer>
-    </div>
+        </div>
+    </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const searchBtn = document.getElementById('searchBtn');
-            const searchInput = document.getElementById('searchInput');
-            const resultSection = document.getElementById('resultSection');
-            
-            // Sample data for demonstration
-            const sampleData = {
-                refNumber: 'REF-2025-08765',
-                holderName: 'Ahmad Santoso',
-                cardNumber: '**** **** **** 4521',
-                refundAmount: 'Rp 2.500.000',
-                submissionDate: '15 Maret 2025',
-                lastStatus: 'Menunggu Verifikasi',
-                status: 'pending'
-            };
-            
-            searchBtn.addEventListener('click', function() {
-                const searchValue = searchInput.value.trim();
-                
-                if (searchValue === '') {
-                    alert('Harap masukkan nomor referensi untuk pencarian.');
-                    return;
-                }
-                
-                // In a real application, you would make an API call here
-                // For demo purposes, we'll use the sample data
-                displayResults(sampleData);
+        // Form submission handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Terima kasih! Pesan Anda telah berhasil dikirim. Kami akan menghubungi Anda segera.');
+            this.reset();
+        });
+        
+        // Order button handlers
+        document.querySelectorAll('.order-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const productName = this.closest('.product-card').querySelector('.product-name').textContent;
+                const message = `Halo, saya ingin memesan ${productName}. Bisakah Anda memberikan informasi lebih lanjut?`;
+                const whatsappURL = `https://wa.me/628888888?text=${encodeURIComponent(message)}`;
+                window.open(whatsappURL, '_blank');
             });
-            
-            function displayResults(data) {
-                document.getElementById('refNumber').textContent = data.refNumber;
-                document.getElementById('holderName').textContent = data.holderName;
-                document.getElementById('cardNumber').textContent = data.cardNumber;
-                document.getElementById('refundAmount').textContent = data.refundAmount;
-                document.getElementById('submissionDate').textContent = data.submissionDate;
-                document.getElementById('lastStatus').textContent = data.lastStatus;
-                
-                // Update status badge
-                const statusBadge = document.getElementById('statusBadge');
-                statusBadge.className = 'status-badge';
-                
-                if (data.status === 'pending') {
-                    statusBadge.classList.add('status-pending');
-                    statusBadge.textContent = 'Menunggu Pengembalian';
-                } else if (data.status === 'completed') {
-                    statusBadge.classList.add('status-completed');
-                    statusBadge.textContent = 'Pengembalian Selesai';
-                } else if (data.status === 'blocked') {
-                    statusBadge.classList.add('status-blocked');
-                    statusBadge.textContent = 'Diblokir';
-                }
-                
-                // Show result section
-                resultSection.classList.add('active');
-                
-                // Scroll to results
-                resultSection.scrollIntoView({ behavior: 'smooth' });
-            }
-            
-            // Add event listeners for action buttons
-            document.getElementById('processBtn').addEventListener('click', function() {
-                alert('Proses pengembalian dana akan dimulai. Pastikan semua data telah diverifikasi.');
-            });
-            
-            document.getElementById('verifyBtn').addEventListener('click', function() {
-                alert('Membuka panel verifikasi dokumen...');
-            });
-            
-            document.getElementById('contactBtn').addEventListener('click', function() {
-                alert('Membuka panel kontak pemegang kartu...');
-            });
-            
-            // Allow search on Enter key
-            searchInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    searchBtn.click();
-                }
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
             });
         });
     </script>
