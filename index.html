@@ -3,21 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AnalisisProduk.id - AI Analisis Pasar Indonesia</title>
+    <title>NexusAnalytics.id - AI Market Intelligence Platform</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #1A56DB;
-            --primary-dark: #1E429F;
-            --secondary: #059669;
-            --dark: #111827;
-            --light: #F9FAFB;
-            --gray: #6B7280;
-            --gray-light: #E5E7EB;
-            --border-radius: 12px;
-            --shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            --shadow-heavy: 0 20px 40px rgba(0, 0, 0, 0.1);
+            --primary: #2563EB;
+            --primary-dark: #1D4ED8;
+            --primary-light: #3B82F6;
+            --secondary: #10B981;
+            --secondary-dark: #059669;
+            --accent: #8B5CF6;
+            --accent-dark: #7C3AED;
+            --dark: #0F172A;
+            --light: #F8FAFC;
+            --gray: #64748B;
+            --gray-light: #E2E8F0;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --border-radius: 16px;
+            --border-radius-sm: 8px;
+            --shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+            --shadow-heavy: 0 25px 50px rgba(15, 23, 42, 0.15);
+            --gradient-primary: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%);
+            --gradient-accent: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%);
+            --gradient-success: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+            --gradient-dark: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
         }
         
         * {
@@ -29,30 +41,32 @@
         body {
             font-family: 'Inter', sans-serif;
             color: var(--dark);
-            background-color: #f8fafc;
+            background-color: #f1f5f9;
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
-        h1, h2, h3, h4 {
+        h1, h2, h3, h4, h5 {
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 700;
         }
         
         .container {
             width: 100%;
-            max-width: 1280px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 24px;
         }
         
         /* Header Styles */
         header {
-            padding: 24px 0;
-            background-color: white;
-            box-shadow: var(--shadow);
+            padding: 20px 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
         }
         
         .header-content {
@@ -65,13 +79,24 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary);
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--dark);
         }
         
-        .logo i {
-            font-size: 28px;
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo-icon i {
+            color: white;
+            font-size: 20px;
         }
         
         nav ul {
@@ -82,53 +107,100 @@
         
         nav a {
             text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            font-size: 16px;
-            transition: color 0.3s;
+            color: var(--gray);
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s;
+            padding: 8px 0;
+            position: relative;
         }
         
         nav a:hover {
             color: var(--primary);
         }
         
+        nav a.active {
+            color: var(--primary);
+        }
+        
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: 3px;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
         .language-selector {
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 16px;
-            border-radius: 8px;
+            padding: 10px 16px;
+            border-radius: var(--border-radius-sm);
             border: 1px solid var(--gray-light);
             background-color: white;
             cursor: pointer;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .language-selector:hover {
+            border-color: var(--primary);
         }
         
         /* Hero Section */
         .hero {
-            padding: 100px 0;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            border-radius: 0 0 40px 40px;
-            margin-bottom: 60px;
+            padding: 120px 0 100px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #dbeafe 100%);
+            border-radius: 0 0 60px 60px;
+            margin-bottom: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, rgba(37, 99, 235, 0) 70%);
+            border-radius: 50%;
         }
         
         .hero-content {
             max-width: 800px;
-            text-align: center;
-            margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
         
         .hero h1 {
-            font-size: 48px;
-            line-height: 1.2;
-            margin-bottom: 20px;
+            font-size: 56px;
+            line-height: 1.1;
+            margin-bottom: 24px;
             color: var(--dark);
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
-        .hero p {
+        .hero-subtitle {
             font-size: 20px;
             color: var(--gray);
             margin-bottom: 40px;
+            font-weight: 400;
         }
         
         /* Search Section */
@@ -136,9 +208,11 @@
             background: white;
             padding: 40px;
             border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            max-width: 800px;
-            margin: 0 auto;
+            box-shadow: var(--shadow-heavy);
+            max-width: 900px;
+            margin: 0 auto 40px;
+            position: relative;
+            z-index: 2;
         }
         
         .search-box {
@@ -147,35 +221,68 @@
             margin-bottom: 24px;
         }
         
-        .search-input {
+        .search-input-container {
             flex: 1;
-            padding: 18px 24px;
-            border: 1px solid var(--gray-light);
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 22px 24px 22px 56px;
+            border: 2px solid var(--gray-light);
             border-radius: var(--border-radius);
             font-size: 16px;
             transition: all 0.3s;
+            background: white;
+            font-weight: 500;
         }
         
         .search-input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.1);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+            font-size: 18px;
         }
         
         .search-btn {
-            background-color: var(--primary);
+            background: var(--gradient-primary);
             color: white;
             border: none;
             border-radius: var(--border-radius);
-            padding: 0 36px;
+            padding: 0 42px;
             font-size: 16px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         .search-btn:hover {
-            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+        }
+        
+        .ai-powered-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 16px;
         }
         
         .example-searches {
@@ -183,20 +290,156 @@
             flex-wrap: wrap;
             gap: 12px;
             justify-content: center;
+            margin-top: 20px;
         }
         
         .example-tag {
-            padding: 8px 16px;
+            padding: 10px 20px;
             background-color: var(--light);
-            border-radius: 20px;
+            border-radius: 30px;
             font-size: 14px;
+            font-weight: 500;
             cursor: pointer;
             transition: all 0.3s;
+            border: 1px solid transparent;
         }
         
         .example-tag:hover {
-            background-color: var(--primary);
+            background-color: white;
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        /* Loader */
+        .loader {
+            display: none;
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .loader-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .ai-thinking {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .ai-avatar {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .ai-avatar i {
             color: white;
+            font-size: 24px;
+        }
+        
+        .thinking-text {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .thinking-dots {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .thinking-dots span {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+        
+        .thinking-dots span:nth-child(1) { animation-delay: -0.32s; }
+        .thinking-dots span:nth-child(2) { animation-delay: -0.16s; }
+        
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+        
+        .analysis-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            position: relative;
+        }
+        
+        .analysis-steps::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gray-light);
+            z-index: 1;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-icon {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border: 2px solid var(--gray-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            color: var(--gray);
+        }
+        
+        .step.active .step-icon {
+            background: var(--gradient-primary);
+            border-color: var(--primary);
+            color: white;
+            animation: stepPulse 2s infinite;
+        }
+        
+        @keyframes stepPulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(37, 99, 235, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+        }
+        
+        .step-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray);
+        }
+        
+        .step.active .step-label {
+            color: var(--primary);
         }
         
         /* Results Section */
@@ -205,137 +448,372 @@
             display: none;
         }
         
-        .section-title {
-            font-size: 32px;
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 40px;
-            text-align: center;
+        }
+        
+        .results-title {
+            font-size: 36px;
             color: var(--dark);
         }
         
-        .analysis-container {
+        .product-name {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .results-actions {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .action-btn {
+            padding: 12px 24px;
+            background: white;
+            border: 1px solid var(--gray-light);
+            border-radius: var(--border-radius-sm);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .action-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        
+        .action-btn.primary {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+        }
+        
+        .action-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+        }
+        
+        /* Dashboard */
+        .dashboard {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: 2fr 1fr;
             gap: 30px;
             margin-bottom: 60px;
         }
         
-        .analysis-card {
+        .dashboard-main {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .dashboard-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        /* Cards */
+        .card {
             background: white;
             border-radius: var(--border-radius);
             padding: 30px;
             box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         
-        .analysis-card.full-width {
-            grid-column: span 2;
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-heavy);
         }
         
         .card-header {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 12px;
             margin-bottom: 24px;
         }
         
-        .card-header i {
-            font-size: 24px;
-            color: var(--primary);
-        }
-        
-        .card-header h3 {
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             font-size: 20px;
+            font-weight: 700;
         }
         
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .icon-blue {
+            background: var(--gradient-primary);
+        }
+        
+        .icon-green {
+            background: var(--gradient-success);
+        }
+        
+        .icon-purple {
+            background: var(--gradient-accent);
+        }
+        
+        .card-badge {
+            padding: 6px 12px;
+            background: var(--light);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .badge-success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+        
+        .badge-warning {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+        
+        .badge-high {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+        }
+        
+        /* Stats Grid */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 20px;
         }
         
-        .stat-item {
-            padding: 20px;
-            border-radius: 12px;
-            background-color: var(--light);
+        .stat-card {
+            padding: 24px;
+            border-radius: var(--border-radius);
+            background: var(--light);
+            display: flex;
+            flex-direction: column;
         }
         
         .stat-value {
             font-size: 32px;
-            font-weight: 700;
+            font-weight: 800;
             margin-bottom: 8px;
-            color: var(--primary);
+            color: var(--dark);
         }
         
         .stat-label {
             font-size: 14px;
             color: var(--gray);
+            font-weight: 500;
         }
         
-        .chart-container {
-            height: 300px;
+        .stat-trend {
             display: flex;
             align-items: center;
-            justify-content: center;
+            gap: 6px;
+            margin-top: 12px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .trend-up {
+            color: var(--success);
+        }
+        
+        .trend-down {
+            color: var(--danger);
+        }
+        
+        /* Charts */
+        .chart-container {
+            height: 300px;
             margin-top: 20px;
+            position: relative;
         }
         
         .chart-placeholder {
             width: 100%;
             height: 100%;
             background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            border-radius: 8px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--gray);
             font-weight: 500;
+            position: relative;
+            overflow: hidden;
         }
         
-        /* Features Section */
-        .features {
-            padding: 80px 0;
-            background-color: white;
+        .chart-placeholder::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(90deg, transparent 49%, rgba(37, 99, 235, 0.1) 50%, transparent 51%),
+                linear-gradient(transparent 49%, rgba(37, 99, 235, 0.1) 50%, transparent 51%);
+            background-size: 30px 30px;
         }
         
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 40px;
+        /* Insights */
+        .insights-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
         
-        .feature-card {
-            padding: 30px;
-            border-radius: var(--border-radius);
-            background-color: var(--light);
-            transition: transform 0.3s, box-shadow 0.3s;
+        .insight-item {
+            display: flex;
+            gap: 16px;
+            padding: 20px;
+            background: var(--light);
+            border-radius: var(--border-radius-sm);
+            border-left: 4px solid var(--primary);
         }
         
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-heavy);
-        }
-        
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background-color: var(--primary);
-            border-radius: 12px;
+        .insight-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
+            color: var(--primary);
+            font-size: 18px;
         }
         
-        .feature-icon i {
+        .insight-content h4 {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        
+        .insight-content p {
+            font-size: 14px;
+            color: var(--gray);
+        }
+        
+        /* Market Map */
+        .market-map {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .market-region {
+            padding: 20px;
+            background: var(--light);
+            border-radius: var(--border-radius-sm);
+            text-align: center;
+        }
+        
+        .region-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .region-value {
             font-size: 24px;
-            color: white;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--primary);
+        }
+        
+        .region-growth {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--success);
+        }
+        
+        /* AI Recommendations */
+        .recommendations-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .recommendation-item {
+            padding: 24px;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+            border-radius: var(--border-radius-sm);
+            border-left: 4px solid var(--accent);
+        }
+        
+        .recommendation-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .recommendation-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .recommendation-priority {
+            padding: 4px 12px;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .recommendation-content {
+            font-size: 14px;
+            color: var(--gray);
+            margin-bottom: 16px;
+        }
+        
+        .recommendation-metrics {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .metric {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .metric-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .metric-label {
+            font-size: 12px;
+            color: var(--gray);
         }
         
         /* Footer */
         footer {
-            background-color: var(--dark);
+            background: var(--gradient-dark);
             color: white;
-            padding: 60px 0 30px;
+            padding: 80px 0 30px;
+            margin-top: 100px;
         }
         
         .footer-content {
@@ -347,14 +825,20 @@
         
         .footer-logo {
             font-size: 24px;
-            font-weight: 700;
+            font-weight: 800;
             margin-bottom: 20px;
-            color: white;
+        }
+        
+        .footer-description {
+            color: #CBD5E1;
+            font-size: 15px;
+            line-height: 1.7;
         }
         
         .footer-links h4 {
             font-size: 18px;
             margin-bottom: 20px;
+            color: white;
         }
         
         .footer-links ul {
@@ -366,9 +850,10 @@
         }
         
         .footer-links a {
-            color: #D1D5DB;
+            color: #CBD5E1;
             text-decoration: none;
             transition: color 0.3s;
+            font-size: 15px;
         }
         
         .footer-links a:hover {
@@ -378,27 +863,37 @@
         .copyright {
             text-align: center;
             padding-top: 30px;
-            border-top: 1px solid #374151;
-            color: #9CA3AF;
+            border-top: 1px solid #334155;
+            color: #94A3B8;
             font-size: 14px;
         }
         
         /* Responsive */
-        @media (max-width: 992px) {
-            .analysis-container {
+        @media (max-width: 1200px) {
+            .dashboard {
                 grid-template-columns: 1fr;
             }
             
-            .analysis-card.full-width {
-                grid-column: span 1;
-            }
-            
-            .features-grid {
+            .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             
+            .market-map {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 992px) {
             .footer-content {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero h1 {
+                font-size: 42px;
+            }
+            
+            nav ul {
+                gap: 20px;
             }
         }
         
@@ -409,15 +904,8 @@
             }
             
             nav ul {
-                gap: 20px;
-            }
-            
-            .hero h1 {
-                font-size: 36px;
-            }
-            
-            .hero p {
-                font-size: 18px;
+                flex-wrap: wrap;
+                justify-content: center;
             }
             
             .search-box {
@@ -425,91 +913,130 @@
             }
             
             .search-btn {
-                padding: 18px;
+                padding: 20px;
+                justify-content: center;
             }
             
-            .features-grid {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .results-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+            
+            .results-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .action-btn {
+                flex: 1;
+                justify-content: center;
+            }
+            
+            .market-map {
                 grid-template-columns: 1fr;
             }
             
-            .stats-grid {
+            .footer-content {
                 grid-template-columns: 1fr;
             }
         }
         
-        /* Loading Animation */
-        .loader {
+        @media (max-width: 576px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-container {
+                padding: 30px 20px;
+            }
+            
+            .card {
+                padding: 24px 20px;
+            }
+        }
+        
+        /* AI Data Visualization */
+        .data-visualization {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .data-item {
+            flex: 1;
+            min-width: 200px;
+            padding: 20px;
+            background: var(--light);
+            border-radius: var(--border-radius-sm);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .data-value {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+        
+        .data-label {
+            font-size: 14px;
+            color: var(--gray);
+            font-weight: 500;
+        }
+        
+        /* Success Animation */
+        .success-animation {
             display: none;
             text-align: center;
             padding: 40px;
         }
         
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(26, 86, 219, 0.2);
-            border-top-color: var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Result Item */
-        .result-item {
-            background: white;
-            border-radius: var(--border-radius);
-            padding: 24px;
-            margin-bottom: 20px;
-            box-shadow: var(--shadow);
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        
-        .product-image {
+        .success-icon {
             width: 80px;
             height: 80px;
-            border-radius: 12px;
-            background-color: var(--light);
+            background: var(--gradient-success);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            margin: 0 auto 20px;
+            animation: successScale 0.5s ease-out;
+        }
+        
+        @keyframes successScale {
+            0% { transform: scale(0); }
+            70% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .success-icon i {
+            color: white;
+            font-size: 36px;
+        }
+        
+        .success-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        
+        .success-subtext {
             color: var(--gray);
-        }
-        
-        .product-info h4 {
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-        
-        .product-info p {
-            color: var(--gray);
-            font-size: 14px;
-        }
-        
-        .trend-indicator {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 500;
-            margin-left: auto;
-        }
-        
-        .trend-up {
-            background-color: rgba(5, 150, 105, 0.1);
-            color: var(--secondary);
-        }
-        
-        .trend-down {
-            background-color: rgba(239, 68, 68, 0.1);
-            color: #EF4444;
+            font-size: 16px;
         }
     </style>
 </head>
@@ -519,21 +1046,29 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <i class="fas fa-chart-line"></i>
-                    <span>AnalisisProduk.id</span>
+                    <div class="logo-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <span>NexusAnalytics.id</span>
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#home" class="active">Beranda</a></li>
                         <li><a href="#analisis">Analisis AI</a></li>
-                        <li><a href="#trends">Trend Pasar</a></li>
-                        <li><a href="#tentang">Tentang Kami</a></li>
+                        <li><a href="#pasar">Intelijen Pasar</a></li>
+                        <li><a href="#trend">Tren Global</a></li>
+                        <li><a href="#enterprise">Solusi Enterprise</a></li>
                     </ul>
                 </nav>
-                <div class="language-selector">
-                    <i class="fas fa-globe"></i>
-                    <span>Bahasa Indonesia</span>
-                    <i class="fas fa-chevron-down"></i>
+                <div class="header-actions">
+                    <div class="language-selector">
+                        <i class="fas fa-globe"></i>
+                        <span>ID</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <button class="action-btn primary">
+                        <i class="fas fa-rocket"></i> Dashboard
+                    </button>
                 </div>
             </div>
         </div>
@@ -543,22 +1078,33 @@
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
-                <h1>Analisis Pasar AI untuk Produk di Indonesia</h1>
-                <p>Platform analisis kecerdasan buatan yang memberikan wawasan mendalam tentang potensi pasar, tren konsumen, dan data kompetitif untuk produk apa pun di Indonesia dan internasional.</p>
+                <h1>Analisis Pasar AI<br>Generasi Berikutnya</h1>
+                <p class="hero-subtitle">Platform intelijen pasar berbasis kecerdasan buatan yang memberikan wawasan mendalam, prediksi akurat, dan rekomendasi yang dapat ditindaklanjuti untuk produk apa pun di pasar Indonesia dan global.</p>
                 
                 <div class="search-container">
                     <div class="search-box">
-                        <input type="text" class="search-input" id="productInput" placeholder="Masukkan nama produk (contoh: Kopi Specialty, Skincare, Sepatu Olahraga, dll.)">
+                        <div class="search-input-container">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <input type="text" class="search-input" id="productInput" placeholder="Masukkan produk, kategori, atau industri untuk dianalisis...">
+                        </div>
                         <button class="search-btn" id="analyzeBtn">
-                            <i class="fas fa-search"></i> Analisis Sekarang
+                            <i class="fas fa-bolt"></i> Analisis AI
                         </button>
                     </div>
+                    <div class="ai-powered-badge">
+                        <i class="fas fa-robot"></i>
+                        <span>Didukung oleh AI Nexus Engine v3.2</span>
+                    </div>
+                    
                     <div class="example-searches">
-                        <span class="example-tag">Kopi Specialty</span>
-                        <span class="example-tag">Skincare Lokal</span>
-                        <span class="example-tag">Sepatu Olahraga</span>
-                        <span class="example-tag">Makanan Organik</span>
-                        <span class="example-tag">Fashion Muslim</span>
+                        <span class="example-tag">Kopi Specialty & Single Origin</span>
+                        <span class="example-tag">Skincare dengan Bahan Lokal</span>
+                        <span class="example-tag">Sepatu Olahraga Berteknologi Tinggi</span>
+                        <span class="example-tag">Makanan Organik & Plant-Based</span>
+                        <span class="example-tag">Fashion Muslim Modern</span>
+                        <span class="example-tag">Produk Elektronik IoT</span>
                     </div>
                 </div>
             </div>
@@ -567,457 +1113,115 @@
 
     <!-- Loader -->
     <div class="loader" id="loader">
-        <div class="spinner"></div>
-        <p>Menganalisis data pasar dan tren produk...</p>
+        <div class="loader-content">
+            <div class="ai-thinking">
+                <div class="ai-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="thinking-text">AI Sedang Menganalisis</div>
+                <div class="thinking-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            
+            <div class="analysis-steps">
+                <div class="step active" id="step1">
+                    <div class="step-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="step-label">Mengumpulkan Data</div>
+                </div>
+                <div class="step" id="step2">
+                    <div class="step-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="step-label">Analisis Tren</div>
+                </div>
+                <div class="step" id="step3">
+                    <div class="step-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="step-label">Pemetaan Global</div>
+                </div>
+                <div class="step" id="step4">
+                    <div class="step-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="step-label">Generasi Insight</div>
+                </div>
+                <div class="step" id="step5">
+                    <div class="step-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="step-label">Rekomendasi</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Animation -->
+    <div class="success-animation" id="successAnimation">
+        <div class="success-icon">
+            <i class="fas fa-check"></i>
+        </div>
+        <div class="success-text">Analisis Berhasil Dihasilkan!</div>
+        <div class="success-subtext">AI Nexus telah menganalisis data dari 85+ sumber untuk memberikan wawasan mendalam</div>
     </div>
 
     <!-- Results Section -->
     <section class="results-section" id="results">
         <div class="container">
-            <h2 class="section-title" id="resultTitle">Analisis Produk: <span id="productName"></span></h2>
+            <div class="results-header">
+                <div>
+                    <h2 class="results-title">Analisis: <span class="product-name" id="productName">Kopi Specialty</span></h2>
+                    <p>Laporan AI dihasilkan pada <span id="reportDate">12 Oktober 2023, 14:30 WIB</span> • Data diperbarui real-time</p>
+                </div>
+                <div class="results-actions">
+                    <button class="action-btn">
+                        <i class="fas fa-download"></i> Ekspor PDF
+                    </button>
+                    <button class="action-btn">
+                        <i class="fas fa-chart-bar"></i> Bandingkan
+                    </button>
+                    <button class="action-btn primary">
+                        <i class="fas fa-sync-alt"></i> Perbarui Data
+                    </button>
+                </div>
+            </div>
             
-            <div class="analysis-container">
-                <div class="analysis-card">
-                    <div class="card-header">
-                        <i class="fas fa-chart-bar"></i>
-                        <h3>Potensi Pasar</h3>
-                    </div>
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <div class="stat-value" id="marketSize">Rp 2.1 T</div>
-                            <div class="stat-label">Ukuran Pasar Indonesia</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value" id="growthRate">18.5%</div>
-                            <div class="stat-label">Pertumbuhan Tahunan</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value" id="globalDemand">89%</div>
-                            <div class="stat-label">Permintaan Global</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value" id="competitionLevel">Sedang</div>
-                            <div class="stat-label">Tingkat Kompetisi</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="analysis-card">
-                    <div class="card-header">
-                        <i class="fas fa-users"></i>
-                        <h3>Profil Konsumen</h3>
-                    </div>
-                    <div class="chart-container">
-                        <div class="chart-placeholder">
-                            <div>
-                                <p>Demografi Konsumen</p>
-                                <p>Usia 18-34: 68%</p>
-                                <p>Urban: 74%</p>
-                                <p>Digital Native: 82%</p>
+            <!-- Dashboard -->
+            <div class="dashboard">
+                <div class="dashboard-main">
+                    <!-- Market Overview -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <div class="card-icon icon-blue">
+                                    <i class="fas fa-chart-pie"></i>
+                                </div>
+                                <span>Gambaran Pasar</span>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="analysis-card full-width">
-                    <div class="card-header">
-                        <i class="fas fa-globe-asia"></i>
-                        <h3>Kinerja Internasional</h3>
-                    </div>
-                    <div class="chart-container">
-                        <div class="chart-placeholder">
-                            <div>
-                                <p>Populer di 15+ Negara</p>
-                                <p>Ekspor Teratas: Jepang, Singapura, Australia, AS, UAE</p>
-                                <p>Tren Global: +24% pertumbuhan YoY</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="analysis-card">
-                    <div class="card-header">
-                        <i class="fas fa-bolt"></i>
-                        <h3>Tren Terkini</h3>
-                    </div>
-                    <div id="trendsList">
-                        <div class="result-item">
-                            <div class="product-image">
-                                <i class="fas fa-mug-hot"></i>
-                            </div>
-                            <div class="product-info">
-                                <h4>Kopi Single Origin</h4>
-                                <p>Permintaan meningkat 45% dalam 6 bulan terakhir</p>
-                            </div>
-                            <div class="trend-indicator trend-up">
-                                <i class="fas fa-arrow-up"></i> +45%
-                            </div>
+                            <div class="card-badge badge-success">Potensi Sangat Tinggi</div>
                         </div>
                         
-                        <div class="result-item">
-                            <div class="product-image">
-                                <i class="fas fa-leaf"></i>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-value" id="marketSize">Rp 4.2T</div>
+                                <div class="stat-label">Ukuran Pasar Indonesia 2023</div>
+                                <div class="stat-trend trend-up">
+                                    <i class="fas fa-arrow-up"></i> 22.7% YoY
+                                </div>
                             </div>
-                            <div class="product-info">
-                                <h4>Produk Ramah Lingkungan</h4>
-                                <p>Pertumbuhan 32% YoY di pasar Indonesia</p>
+                            <div class="stat-card">
+                                <div class="stat-value" id="growthRate">18.9%</div>
+                                <div class="stat-label">CAGR 2023-2028</div>
+                                <div class="stat-trend trend-up">
+                                    <i class="fas fa-arrow-up"></i> Proyeksi stabil
+                                </div>
                             </div>
-                            <div class="trend-indicator trend-up">
-                                <i class="fas fa-arrow-up"></i> +32%
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="analysis-card">
-                    <div class="card-header">
-                        <i class="fas fa-lightbulb"></i>
-                        <h3>Rekomendasi AI</h3>
-                    </div>
-                    <div id="aiRecommendations">
-                        <div class="result-item">
-                            <div class="product-image">
-                                <i class="fas fa-robot"></i>
-                            </div>
-                            <div class="product-info">
-                                <h4>Fokus pada Ekspor Digital</h4>
-                                <p>Platform e-commerce lintas batas memiliki potensi tinggi</p>
-                            </div>
-                        </div>
-                        
-                        <div class="result-item">
-                            <div class="product-image">
-                                <i class="fas fa-bullseye"></i>
-                            </div>
-                            <div class="product-info">
-                                <h4>Target Generasi Z & Milenial</h4>
-                                <p>82% pembeli online berasal dari kelompok usia ini</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features" id="tentang">
-        <div class="container">
-            <h2 class="section-title">Keunggulan Platform Kami</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3>AI Canggih</h3>
-                    <p>Teknologi machine learning yang ditingkatkan dengan analisis data pasar real-time untuk prediksi akurat.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <h3>Data Komprehensif</h3>
-                    <p>Mengumpulkan dan menganalisis data dari 50+ sumber terpercaya di Indonesia dan internasional.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-pie"></i>
-                    </div>
-                    <h3>Visualisasi Data</h3>
-                    <p>Dashboard interaktif dengan grafik dan laporan yang mudah dipahami untuk pengambilan keputusan.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <h3>Cakupan Global</h3>
-                    <p>Analisis tidak hanya terbatas pada pasar Indonesia tetapi juga potensi ekspor ke 40+ negara.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3>Real-time Updates</h3>
-                    <p>Data diperbarui setiap hari dengan informasi tren terkini dan perubahan pasar.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Keamanan Data</h3>
-                    <p>Infrastruktur keamanan tingkat tinggi dengan enkripsi end-to-end untuk melindungi data Anda.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <div class="footer-logo">AnalisisProduk.id</div>
-                    <p>Platform analisis pasar berbasis AI terdepan di Indonesia, memberikan wawasan mendalam untuk pengambilan keputusan bisnis yang tepat.</p>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Perusahaan</h4>
-                    <ul>
-                        <li><a href="#">Tentang Kami</a></li>
-                        <li><a href="#">Karir</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Kontak</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Layanan</h4>
-                    <ul>
-                        <li><a href="#">Analisis Produk</a></li>
-                        <li><a href="#">Riset Pasar</a></li>
-                        <li><a href="#">Konsultasi Ekspor</a></li>
-                        <li><a href="#">Pelatihan</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="#">Kebijakan Privasi</a></li>
-                        <li><a href="#">Syarat & Ketentuan</a></li>
-                        <li><a href="#">Lisensi</a></li>
-                        <li><a href="#">GDPR</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 AnalisisProduk.id. Semua hak dilindungi undang-undang.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // DOM Elements
-        const productInput = document.getElementById('productInput');
-        const analyzeBtn = document.getElementById('analyzeBtn');
-        const loader = document.getElementById('loader');
-        const resultsSection = document.getElementById('results');
-        const resultTitle = document.getElementById('resultTitle');
-        const productName = document.getElementById('productName');
-        const marketSize = document.getElementById('marketSize');
-        const growthRate = document.getElementById('growthRate');
-        const globalDemand = document.getElementById('globalDemand');
-        const competitionLevel = document.getElementById('competitionLevel');
-        const trendsList = document.getElementById('trendsList');
-        const aiRecommendations = document.getElementById('aiRecommendations');
-        const exampleTags = document.querySelectorAll('.example-tag');
-        
-        // Example data for different product categories
-        const productData = {
-            "kopi": {
-                name: "Kopi Specialty",
-                marketSize: "Rp 4.2 T",
-                growthRate: "22.7%",
-                globalDemand: "94%",
-                competitionLevel: "Tinggi",
-                trends: [
-                    {name: "Kopi Single Origin", desc: "Permintaan meningkat 45% dalam 6 bulan terakhir", trend: "+45%"},
-                    {name: "Kopi Dingin (Cold Brew)", desc: "Pertumbuhan 65% di pasar perkotaan", trend: "+65%"},
-                    {name: "Kopi Ramah Lingkungan", desc: "Permintaan konsumen meningkat 38%", trend: "+38%"}
-                ],
-                recommendations: [
-                    {title: "Fokus pada Sertifikasi Organik", desc: "Meningkatkan nilai jual hingga 60% di pasar internasional"},
-                    {title: "Ekspor ke Asia Timur", desc: "Potensi pertumbuhan 120% di Jepang & Korea Selatan"},
-                    {title: "Kolaborasi dengan Kafe Lokal", desc: "Jangkauan pasar meningkat 75% dengan strategi B2B"}
-                ]
-            },
-            "skincare": {
-                name: "Skincare Lokal",
-                marketSize: "Rp 15.8 T",
-                growthRate: "25.3%",
-                globalDemand: "82%",
-                competitionLevel: "Sangat Tinggi",
-                trends: [
-                    {name: "Bahan-bahan Alami", desc: "Tren meningkat 55% pada produk lokal", trend: "+55%"},
-                    {name: "Skincare Pria", desc: "Pasar yang tumbuh cepat (+42% YoY)", trend: "+42%"},
-                    {name: "Produk Vegan", desc: "Permintaan meningkat 68% di kalangan milenial", trend: "+68%"}
-                ],
-                recommendations: [
-                    {title: "Ekspansi ke Pasar ASEAN", desc: "Potensi pertumbuhan 85% di Vietnam dan Thailand"},
-                    {title: "Konten Digital & Influencer", desc: "Peningkatan penjualan hingga 300% dengan strategi yang tepat"},
-                    {title: "Produk khusus iklim tropis", desc: "Differentiator unik untuk pasar global"}
-                ]
-            },
-            "sepatu": {
-                name: "Sepatu Olahraga",
-                marketSize: "Rp 9.3 T",
-                growthRate: "18.9%",
-                globalDemand: "87%",
-                competitionLevel: "Tinggi",
-                trends: [
-                    {name: "Sepatu Lari Premium", desc: "Pertumbuhan 33% di pasar domestik", trend: "+33%"},
-                    {name: "Sepatu Berbahan Daur Ulang", desc: "Tren keberlanjutan meningkat 72%", trend: "+72%"},
-                    {name: "Sepatu Casual Olahraga", desc: "Pasar hybrid tumbuh 28% pasca pandemi", trend: "+28%"}
-                ],
-                recommendations: [
-                    {title: "Kolaborasi dengan Atlet Lokal", desc: "Meningkatkan kredibilitas merek hingga 40%"},
-                    {title: "Ekspor ke Timur Tengah", desc: "Potensi pasar senilai Rp 1.2T di UAE dan Saudi"},
-                    {title: "Kustomisasi Online", desc: "Meningkatkan loyalitas pelanggan hingga 55%"}
-                ]
-            },
-            "makanan": {
-                name: "Makanan Organik",
-                marketSize: "Rp 6.5 T",
-                growthRate: "30.1%",
-                globalDemand: "91%",
-                competitionLevel: "Sedang",
-                trends: [
-                    {name: "Makanan Bebas Gluten", desc: "Pertumbuhan 58% di perkotaan besar", trend: "+58%"},
-                    {name: "Snack Sehat", desc: "Pasar meningkat 47% di kalangan pekerja", trend: "+47%"},
-                    {name: "Makanan Siap Saji Organik", desc: "Kombinasi trend convenience & health (+52%)", trend: "+52%"}
-                ],
-                recommendations: [
-                    {title: "Sertifikasi Internasional", desc: "Membuka akses ke 25+ pasar ekspor baru"},
-                    {title: "Subsription Box", desc: "Model bisnis dengan retensi pelanggan 70%"},
-                    {title: "Ekspansi ke Pasar Halal Global", desc: "Potensi nilai Rp 3.8T di pasar Muslim dunia"}
-                ]
-            },
-            "fashion": {
-                name: "Fashion Muslim",
-                marketSize: "Rp 18.7 T",
-                growthRate: "21.5%",
-                globalDemand: "96%",
-                competitionLevel: "Tinggi",
-                trends: [
-                    {name: "Busana Kerja Muslimah", desc: "Pertumbuhan 44% di sektor korporat", trend: "+44%"},
-                    {name: "Fashion Sporty Muslim", desc: "Trend athleisure meningkat 51%", trend: "+51%"},
-                    {name: "Bahan Ramah Lingkungan", desc: "Permintaan meningkat 63% di generasi Z", trend: "+63%"}
-                ],
-                recommendations: [
-                    {title: "Ekspor ke Afrika & Timur Tengah", desc: "Potensi pertumbuhan 150% dalam 3 tahun"},
-                    {title: "Teknologi Fashion (Smart Hijab)", desc: "Pasar niche dengan margin tinggi (+65%)"},
-                    {title: "Kolaborasi Desainer Internasional", desc: "Meningkatkan positioning merek secara global"}
-                ]
-            }
-        };
-        
-        // Function to analyze product
-        function analyzeProduct(productQuery) {
-            // Show loader
-            loader.style.display = 'block';
-            resultsSection.style.display = 'none';
-            
-            // Simulate API call delay
-            setTimeout(() => {
-                // Find matching product data
-                let matchedProduct = null;
-                const queryLower = productQuery.toLowerCase();
-                
-                for (const [key, data] of Object.entries(productData)) {
-                    if (queryLower.includes(key) || data.name.toLowerCase().includes(queryLower)) {
-                        matchedProduct = data;
-                        break;
-                    }
-                }
-                
-                // If no match found, use coffee as default
-                if (!matchedProduct) {
-                    matchedProduct = productData.kopi;
-                    matchedProduct.name = productQuery.charAt(0).toUpperCase() + productQuery.slice(1);
-                }
-                
-                // Update UI with product data
-                productName.textContent = matchedProduct.name;
-                marketSize.textContent = matchedProduct.marketSize;
-                growthRate.textContent = matchedProduct.growthRate;
-                globalDemand.textContent = matchedProduct.globalDemand;
-                competitionLevel.textContent = matchedProduct.competitionLevel;
-                
-                // Update trends
-                trendsList.innerHTML = '';
-                matchedProduct.trends.forEach(trend => {
-                    const trendElement = document.createElement('div');
-                    trendElement.className = 'result-item';
-                    trendElement.innerHTML = `
-                        <div class="product-image">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <div class="product-info">
-                            <h4>${trend.name}</h4>
-                            <p>${trend.desc}</p>
-                        </div>
-                        <div class="trend-indicator trend-up">
-                            <i class="fas fa-arrow-up"></i> ${trend.trend}
-                        </div>
-                    `;
-                    trendsList.appendChild(trendElement);
-                });
-                
-                // Update recommendations
-                aiRecommendations.innerHTML = '';
-                matchedProduct.recommendations.forEach(rec => {
-                    const recElement = document.createElement('div');
-                    recElement.className = 'result-item';
-                    recElement.innerHTML = `
-                        <div class="product-image">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <div class="product-info">
-                            <h4>${rec.title}</h4>
-                            <p>${rec.desc}</p>
-                        </div>
-                    `;
-                    aiRecommendations.appendChild(recElement);
-                });
-                
-                // Hide loader and show results
-                loader.style.display = 'none';
-                resultsSection.style.display = 'block';
-                
-                // Smooth scroll to results
-                resultsSection.scrollIntoView({ behavior: 'smooth' });
-            }, 1500);
-        }
-        
-        // Event Listeners
-        analyzeBtn.addEventListener('click', () => {
-            const query = productInput.value.trim();
-            if (query) {
-                analyzeProduct(query);
-            } else {
-                productInput.focus();
-            }
-        });
-        
-        productInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                const query = productInput.value.trim();
-                if (query) {
-                    analyzeProduct(query);
-                }
-            }
-        });
-        
-        // Example tags click events
-        exampleTags.forEach(tag => {
-            tag.addEventListener('click', () => {
-                productInput.value = tag.textContent;
-                analyzeProduct(tag.textContent);
-            });
-        });
-        
-        // Initialize with a default analysis
-        window.addEventListener('DOMContentLoaded', () => {
-            // Set default example
-            productInput.value = "Kopi Specialty";
-            // Don't auto-analyze on load to respect user choice
-        });
-    </script>
-</body>
-</html>
+                            <div class="stat-card">
+                                <div class="stat-value" id="globalDemand">94%</div>
+                                <div class="stat-label">Permintaan Global</div>
+                                <div class
