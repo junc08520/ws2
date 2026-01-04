@@ -25,6 +25,7 @@
             --success-color: #10b981;
             --exclusive-gold: #ffd700;
             --exclusive-gradient: linear-gradient(135deg, #ffd700, #ffaa00, #ff6b00);
+            --tg-color: #0088cc;
         }
         
         body {
@@ -44,6 +45,32 @@
             padding: 0 20px;
         }
         
+        /* 顶部TG按钮 */
+        .top-tg-button {
+            background-color: var(--tg-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            box-shadow: 0 4px 12px rgba(0, 136, 204, 0.4);
+            transition: all 0.3s;
+        }
+        
+        .top-tg-button:hover {
+            background-color: #0077b5;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 136, 204, 0.6);
+        }
+        
         /* 头部和导航 */
         header {
             background-color: rgba(26, 26, 26, 0.95);
@@ -53,6 +80,7 @@
             z-index: 1000;
             border-bottom: 1px solid rgba(98, 126, 234, 0.2);
             backdrop-filter: blur(10px);
+            margin-top: 60px;
         }
         
         .header-content {
@@ -362,7 +390,7 @@
         
         .tg-mentor-icon {
             font-size: 2rem;
-            color: #0088cc;
+            color: var(--tg-color);
         }
         
         .tg-mentor-text {
@@ -371,7 +399,7 @@
         
         .tg-mentor-title {
             font-weight: 700;
-            color: #0088cc;
+            color: var(--tg-color);
             margin-bottom: 5px;
         }
         
@@ -421,7 +449,7 @@
         }
         
         .btn-tg {
-            background: linear-gradient(90deg, #0088cc, #00a2e8);
+            background: linear-gradient(90deg, var(--tg-color), #00a2e8);
             color: white;
             box-shadow: 0 10px 20px rgba(0, 136, 204, 0.3);
         }
@@ -475,6 +503,17 @@
             .access-title {
                 font-size: 1.8rem;
             }
+            
+            .top-tg-button {
+                top: 15px;
+                right: 15px;
+                padding: 10px 16px;
+                font-size: 0.85rem;
+            }
+            
+            header {
+                margin-top: 50px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -510,6 +549,17 @@
                 padding: 16px 20px;
                 font-size: 1.1rem;
             }
+            
+            .top-tg-button {
+                top: 10px;
+                right: 10px;
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+            
+            header {
+                margin-top: 45px;
+            }
         }
         
         /* 浮动ETH图标 */
@@ -525,9 +575,29 @@
             0% { transform: translateY(0) rotate(0deg); }
             100% { transform: translateY(-1000px) rotate(360deg); }
         }
+        
+        /* 语言指示器 */
+        .language-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(26, 26, 26, 0.8);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(98, 126, 234, 0.2);
+            z-index: 999;
+        }
     </style>
 </head>
 <body>
+    <!-- 顶部TG按钮 -->
+    <a href="https://t.me/YOUR_TELEGRAM_LINK_HERE" class="top-tg-button" target="_blank" id="topTgButton">
+        <i class="fab fa-telegram"></i> <span id="topTgText">Join Telegram</span>
+    </a>
+
     <!-- 头部导航 -->
     <header>
         <div class="container">
@@ -562,7 +632,7 @@
             
             <div class="container">
                 <div class="exclusive-header">
-                    <i class="fas fa-crown"></i> EXCLUSIVE ACCESS REQUIRED
+                    <i class="fas fa-crown"></i> <span id="exclusiveHeader">EXCLUSIVE ACCESS REQUIRED</span>
                 </div>
                 
                 <div class="mining-animation">
@@ -618,6 +688,11 @@
         </section>
     </main>
 
+    <!-- 语言指示器 -->
+    <div class="language-indicator" id="languageIndicator">
+        <i class="fas fa-language"></i> <span id="currentLangDisplay">English</span>
+    </div>
+
     <!-- 页脚 -->
     <footer>
         <div class="container">
@@ -626,42 +701,25 @@
     </footer>
 
     <script>
-        // 多语言数据 - 支持29种语言（去掉中文）
+        // 10种主流语言数据（去掉中文）
         const languages = [
             { code: 'en', name: 'English', flag: '🇺🇸' },
             { code: 'es', name: 'Español', flag: '🇪🇸' },
             { code: 'fr', name: 'Français', flag: '🇫🇷' },
             { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
             { code: 'ja', name: '日本語', flag: '🇯🇵' },
-            { code: 'ko', name: '한국어', flag: '🇰🇷' },
             { code: 'ru', name: 'Русский', flag: '🇷🇺' },
             { code: 'pt', name: 'Português', flag: '🇵🇹' },
-            { code: 'it', name: 'Italiano', flag: '🇮🇹' },
             { code: 'ar', name: 'العربية', flag: '🇸🇦' },
             { code: 'hi', name: 'हिन्दी', flag: '🇮🇳' },
-            { code: 'tr', name: 'Türkçe', flag: '🇹🇷' },
-            { code: 'nl', name: 'Nederlands', flag: '🇳🇱' },
-            { code: 'pl', name: 'Polski', flag: '🇵🇱' },
-            { code: 'sv', name: 'Svenska', flag: '🇸🇪' },
-            { code: 'da', name: 'Dansk', flag: '🇩🇰' },
-            { code: 'fi', name: 'Suomi', flag: '🇫🇮' },
-            { code: 'no', name: 'Norsk', flag: '🇳🇴' },
-            { code: 'cs', name: 'Čeština', flag: '🇨🇿' },
-            { code: 'el', name: 'Ελληνικά', flag: '🇬🇷' },
-            { code: 'he', name: 'עברית', flag: '🇮🇱' },
-            { code: 'th', name: 'ไทย', flag: '🇹🇭' },
-            { code: 'vi', name: 'Tiếng Việt', flag: '🇻🇳' },
-            { code: 'id', name: 'Bahasa Indonesia', flag: '🇮🇩' },
-            { code: 'ms', name: 'Bahasa Malaysia', flag: '🇲🇾' },
-            { code: 'fil', name: 'Filipino', flag: '🇵🇭' },
-            { code: 'uk', name: 'Українська', flag: '🇺🇦' },
-            { code: 'ro', name: 'Română', flag: '🇷🇴' },
-            { code: 'hu', name: 'Magyar', flag: '🇭🇺' }
+            { code: 'tr', name: 'Türkçe', flag: '🇹🇷' }
         ];
 
-        // 翻译数据
+        // 翻译数据 - 完整10种语言
         const translations = {
             en: {
+                topTgText: "Join Telegram",
+                exclusiveHeader: "EXCLUSIVE ACCESS REQUIRED",
                 heroTitle: "EXCLUSIVE ETH MINING ACCESS",
                 heroSubtitle: "Limited spots available for qualified individuals. Join our exclusive mining program with Telegram mentor guidance. No upfront investment required.",
                 statNodes: "Exclusive Members",
@@ -677,6 +735,8 @@
                 footerText: "© 2023 ETH-MINING EXCLUSIVE PLATFORM. By accessing this platform, you agree to our terms of service."
             },
             es: {
+                topTgText: "Unirse a Telegram",
+                exclusiveHeader: "ACCESO EXCLUSIVO REQUERIDO",
                 heroTitle: "ACCESO EXCLUSIVO A MINERÍA ETH",
                 heroSubtitle: "Plazas limitadas disponibles para personas calificadas. Únase a nuestro programa exclusivo de minería con orientación de mentores de Telegram. No se requiere inversión inicial.",
                 statNodes: "Miembros Exclusivos",
@@ -692,6 +752,8 @@
                 footerText: "© 2023 PLATAFORMA EXCLUSIVA ETH-MINING. Al acceder a esta plataforma, acepta nuestros términos de servicio."
             },
             fr: {
+                topTgText: "Rejoindre Telegram",
+                exclusiveHeader: "ACCÈS EXCLUSIF REQUIS",
                 heroTitle: "ACCÈS EXCLUSIF AU MINAGE ETH",
                 heroSubtitle: "Places limitées disponibles pour les personnes qualifiées. Rejoignez notre programme de minage exclusif avec l'accompagnement d'un mentor Telegram. Aucun investissement initial requis.",
                 statNodes: "Membres Exclusifs",
@@ -707,6 +769,8 @@
                 footerText: "© 2023 PLATEFORME EXCLUSIVE ETH-MINING. En accédant à cette plateforme, vous acceptez nos conditions de service."
             },
             de: {
+                topTgText: "Telegram beitreten",
+                exclusiveHeader: "EXKLUSIVER ZUGANG ERFORDERLICH",
                 heroTitle: "EXKLUSIVER ETH-MINING-ZUGANG",
                 heroSubtitle: "Begrenzte Plätze für qualifizierte Personen verfügbar. Nehmen Sie an unserem exklusiven Mining-Programm mit Telegram-Mentor-Betreuung teil. Keine Vorabinvestition erforderlich.",
                 statNodes: "Exklusive Mitglieder",
@@ -722,6 +786,8 @@
                 footerText: "© 2023 EXKLUSIVE ETH-MINING-PLATTFORM. Durch den Zugriff auf diese Plattform stimmen Sie unseren Nutzungsbedingungen zu."
             },
             ja: {
+                topTgText: "Telegramに参加",
+                exclusiveHeader: "独占的アクセスが必要",
                 heroTitle: "独占的ETHマイニングアクセス",
                 heroSubtitle: "資格のある個人向けの限定枠。Telegramメンターの指導付き独占マイニングプログラムにご参加ください。初期投資は不要です。",
                 statNodes: "独占メンバー",
@@ -735,140 +801,43 @@
                 startMiningText: "無料マイニングを開始",
                 tgMentorText: "Telegramメンターに連絡",
                 footerText: "© 2023 独占的ETHマイニングプラットフォーム。このプラットフォームにアクセスすることにより、利用規約に同意したものとみなされます。"
-            }
-            // 更多语言的翻译可以根据需要添加
-        };
-
-        // Telegram链接配置
-        const telegramLinks = {
-            qualify: "https://t.me/YOUR_TELEGRAM_LINK_HERE",
-            startMining: "https://t.me/YOUR_TELEGRAM_LINK_HERE",
-            tgMentor: "https://t.me/YOUR_TELEGRAM_LINK_HERE"
-        };
-
-        // 默认语言
-        let currentLang = 'en';
-
-        // 初始化语言选择器
-        function initLanguageSelector() {
-            const languageGrid = document.getElementById('languageGrid');
-            const currentLanguageElement = document.getElementById('currentLanguage');
-            
-            // 生成语言选项
-            languages.forEach(lang => {
-                const langOption = document.createElement('div');
-                langOption.className = `language-option ${lang.code === currentLang ? 'active' : ''}`;
-                langOption.dataset.code = lang.code;
-                langOption.innerHTML = `
-                    <span class="language-flag">${lang.flag}</span>
-                    <span>${lang.name}</span>
-                `;
-                
-                langOption.addEventListener('click', () => {
-                    changeLanguage(lang.code);
-                    document.querySelectorAll('.language-option').forEach(opt => opt.classList.remove('active'));
-                    langOption.classList.add('active');
-                    currentLanguageElement.textContent = lang.name;
-                    closeLanguageDropdown();
-                });
-                
-                languageGrid.appendChild(langOption);
-            });
-            
-            // 切换语言下拉菜单
-            const languageBtn = document.getElementById('languageBtn');
-            const languageDropdown = document.getElementById('languageDropdown');
-            
-            languageBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                languageDropdown.classList.toggle('show');
-            });
-            
-            // 点击其他地方关闭下拉菜单
-            document.addEventListener('click', () => {
-                languageDropdown.classList.remove('show');
-            });
-            
-            // 防止下拉菜单内部点击时关闭
-            languageDropdown.addEventListener('click', (e) => {
-                e.stopPropagation();
-            });
-        }
-        
-        // 关闭语言下拉菜单
-        function closeLanguageDropdown() {
-            document.getElementById('languageDropdown').classList.remove('show');
-        }
-        
-        // 更改语言
-        function changeLanguage(langCode) {
-            currentLang = langCode;
-            updateContent();
-            
-            // 保存语言选择到本地存储
-            localStorage.setItem('preferredLanguage', langCode);
-        }
-        
-        // 更新页面内容
-        function updateContent() {
-            const langData = translations[currentLang] || translations['en'];
-            
-            // 更新所有文本内容
-            document.getElementById('heroTitle').textContent = langData.heroTitle;
-            document.getElementById('heroSubtitle').textContent = langData.heroSubtitle;
-            document.getElementById('statNodes').textContent = langData.statNodes;
-            document.getElementById('statEth').textContent = langData.statEth;
-            document.getElementById('statReward').textContent = langData.statReward;
-            document.getElementById('accessTitle').textContent = langData.accessTitle;
-            document.getElementById('accessDescription').textContent = langData.accessDescription;
-            document.getElementById('mentorTitle').textContent = langData.mentorTitle;
-            document.getElementById('mentorDesc').textContent = langData.mentorDesc;
-            document.getElementById('qualifyText').textContent = langData.qualifyText;
-            document.getElementById('startMiningText').textContent = langData.startMiningText;
-            document.getElementById('tgMentorText').textContent = langData.tgMentorText;
-            document.getElementById('footerText').textContent = langData.footerText;
-            
-            // 更新当前语言显示
-            const currentLangObj = languages.find(lang => lang.code === currentLang);
-            if (currentLangObj) {
-                document.getElementById('currentLanguage').textContent = currentLangObj.name;
-            }
-        }
-        
-        // 初始化挖矿统计数据
-        function initMiningStats() {
-            // 模拟实时更新的挖矿数据
-            setInterval(() => {
-                const activeNodes = document.getElementById('activeNodes');
-                const totalEth = document.getElementById('totalEth');
-                const avgReward = document.getElementById('avgReward');
-                
-                // 增加节点数
-                let nodes = parseInt(activeNodes.textContent.replace(/,/g, ''));
-                nodes += Math.floor(Math.random() * 5);
-                activeNodes.textContent = nodes.toLocaleString();
-                
-                // 增加ETH总量
-                let eth = parseFloat(totalEth.textContent);
-                eth += Math.random() * 0.2;
-                totalEth.textContent = eth.toFixed(2);
-                
-                // 随机变化日均收益
-                let reward = parseFloat(avgReward.textContent);
-                reward = 0.125 + (Math.random() * 0.02 - 0.01);
-                avgReward.textContent = reward.toFixed(3);
-            }, 5000);
-        }
-        
-        // 创建浮动ETH图标背景
-        function createFloatingIcons() {
-            const container = document.getElementById('floatingIcons');
-            const iconCount = 15;
-            
-            for (let i = 0; i < iconCount; i++) {
-                const icon = document.createElement('i');
-                icon.className = 'fab fa-ethereum floating-eth';
-                
-                // 随机位置
-                const left = Math.random() * 100;
-                const size = Math.random() * 20 + 10
+            },
+            ru: {
+                topTgText: "Присоединиться к Telegram",
+                exclusiveHeader: "ТРЕБУЕТСЯ ЭКСКЛЮЗИВНЫЙ ДОСТУП",
+                heroTitle: "ЭКСКЛЮЗИВНЫЙ ДОСТУП К МАЙНИНГУ ETH",
+                heroSubtitle: "Ограниченное количество мест для квалифицированных лиц. Присоединяйтесь к нашей эксклюзивной программе майнинга с наставником в Telegram. Начальные инвестиции не требуются.",
+                statNodes: "Эксклюзивные Участники",
+                statEth: "Всего намайнено ETH",
+                statReward: "Ежедневная награда (ETH)",
+                accessTitle: "ПОЛУЧИТЬ ЭКСКЛЮЗИВНЫЙ ДОСТУП",
+                accessDescription: "Только квалифицированные заявители получат доступ к нашей премиальной программе майнинга ETH. Наши наставники Telegram помогут вам в процессе настройки и обеспечат круглосуточную поддержку для оптимальных результатов майнинга.",
+                mentorTitle: "Руководство наставника Telegram",
+                mentorDesc: "Персональная помощь в настройке и ежедневные советы по оптимизации от наших экспертов-наставников по майнингу.",
+                qualifyText: "ПОЛУЧИТЬ КВАЛИФИКАЦИЮ",
+                startMiningText: "НАЧАТЬ БЕСПЛАТНЫЙ МАЙНИНГ",
+                tgMentorText: "СВЯЗАТЬСЯ С НАСТАВНИКОМ TELEGRAM",
+                footerText: "© 2023 ЭКСКЛЮЗИВНАЯ ПЛАТФОРМА ETH-MINING. Используя эту платформу, вы соглашаетесь с нашими условиями обслуживания."
+            },
+            pt: {
+                topTgText: "Entrar no Telegram",
+                exclusiveHeader: "ACESSO EXCLUSIVO NECESSÁRIO",
+                heroTitle: "ACESSO EXCLUSIVO À MINERAÇÃO ETH",
+                heroSubtitle: "Vagas limitadas disponíveis para indivíduos qualificados. Junte-se ao nosso programa exclusivo de mineração com orientação de mentores do Telegram. Nenhum investimento inicial necessário.",
+                statNodes: "Membros Exclusivos",
+                statEth: "Total de ETH Minerado",
+                statReward: "Recompensa Diária (ETH)",
+                accessTitle: "OBTER ACESSO EXCLUSIVO",
+                accessDescription: "Apenas candidatos qualificados terão acesso ao nosso programa premium de mineração ETH. Nossos mentores do Telegram irão guiá-lo através do processo de configuração e fornecer suporte 24/7 para resultados ideais de mineração.",
+                mentorTitle: "Orientação do Mentor do Telegram",
+                mentorDesc: "Assistência personalizada na configuração e dicas diárias de otimização de nossos especialistas mentores de mineração.",
+                qualifyText: "QUALIFICAR-SE AGORA",
+                startMiningText: "INICIAR MINERAÇÃO GRATUITA",
+                tgMentorText: "CONTATAR MENTOR DO TELEGRAM",
+                footerText: "© 2023 PLATAFORMA EXCLUSIVA ETH-MINING. Ao acessar esta plataforma, você concorda com nossos termos de serviço."
+            },
+            ar: {
+                topTgText: "الانضمام إلى Telegram",
+                exclusiveHeader: "مطلوب وصول حصري",
+                heroTitle: "الوصول الحصري لتعدين ETH",
+                heroSubtitle: "أماكن
