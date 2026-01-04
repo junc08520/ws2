@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ETH挖矿 - 免费开启节点</title>
+    <title>ETH Mining - Exclusive Access</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;500;600&display=swap">
     <style>
@@ -23,6 +23,8 @@
             --bg-dark: #121212;
             --bg-card: #1a1a1a;
             --success-color: #10b981;
+            --exclusive-gold: #ffd700;
+            --exclusive-gradient: linear-gradient(135deg, #ffd700, #ffaa00, #ff6b00);
         }
         
         body {
@@ -31,6 +33,9 @@
             color: var(--text-light);
             line-height: 1.6;
             overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(98, 126, 234, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.05) 0%, transparent 20%);
         }
         
         .container {
@@ -47,6 +52,7 @@
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid rgba(98, 126, 234, 0.2);
+            backdrop-filter: blur(10px);
         }
         
         .header-content {
@@ -70,13 +76,25 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 24px;
             font-weight: 700;
-            background: linear-gradient(90deg, var(--eth-color), var(--eth-light));
+            background: var(--exclusive-gradient);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            position: relative;
         }
         
-        /* 语言切换 - 改进版 */
+        .exclusive-badge {
+            background: var(--exclusive-gradient);
+            color: #000;
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: 8px;
+            font-weight: 700;
+            vertical-align: middle;
+        }
+        
+        /* 语言切换 */
         .language-selector {
             position: relative;
             display: flex;
@@ -168,16 +186,26 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 30% 20%, rgba(98, 126, 234, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 80%, rgba(98, 126, 234, 0.05) 0%, transparent 50%);
             z-index: -1;
+        }
+        
+        .exclusive-header {
+            background: var(--exclusive-gradient);
+            color: #000;
+            padding: 8px 20px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 30px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
         }
         
         .hero-title {
             font-family: 'Orbitron', sans-serif;
             font-size: 3.5rem;
             margin-bottom: 20px;
-            background: linear-gradient(90deg, var(--eth-color), var(--eth-light));
+            background: var(--exclusive-gradient);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -214,6 +242,18 @@
             min-width: 200px;
             border: 1px solid rgba(255, 255, 255, 0.05);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--exclusive-gradient);
         }
         
         .stat-value {
@@ -233,15 +273,16 @@
         /* 挖矿动画效果 */
         .mining-animation {
             position: relative;
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             margin: 0 auto 40px;
         }
         
         .eth-rotate {
-            font-size: 80px;
+            font-size: 90px;
             color: var(--eth-color);
             animation: rotate 10s linear infinite;
+            filter: drop-shadow(0 0 10px rgba(98, 126, 234, 0.5));
         }
         
         @keyframes rotate {
@@ -251,9 +292,9 @@
         
         .pulse-dot {
             position: absolute;
-            width: 12px;
-            height: 12px;
-            background-color: var(--success-color);
+            width: 16px;
+            height: 16px;
+            background: var(--exclusive-gradient);
             border-radius: 50%;
             top: 50%;
             left: 50%;
@@ -263,101 +304,138 @@
         
         @keyframes pulse {
             0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-            100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(2.5); opacity: 0; }
         }
         
-        /* 生成短语 */
-        .generated-phrase {
-            background-color: rgba(42, 43, 60, 0.5);
-            border: 1px dashed rgba(98, 126, 234, 0.5);
-            border-radius: 8px;
-            padding: 20px;
-            margin: 30px auto;
-            max-width: 600px;
+        /* 独家资格区域 */
+        .exclusive-access {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(98, 126, 234, 0.1));
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto 60px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
         
-        .phrase-title {
-            color: var(--eth-light);
-            margin-bottom: 10px;
-            font-size: 1.1rem;
+        .exclusive-access::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            z-index: -1;
         }
         
-        .phrase-text {
-            font-family: 'Courier New', monospace;
-            background-color: rgba(0, 0, 0, 0.3);
-            padding: 15px;
-            border-radius: 6px;
+        .access-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            background: var(--exclusive-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .access-description {
             color: var(--text-light);
-            word-break: break-all;
             font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.8;
         }
         
-        /* 注册按钮区 */
-        .registration-cta {
-            text-align: center;
-            margin: 40px 0 60px;
+        .tg-mentor {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding: 15px;
+            background: rgba(0, 136, 204, 0.1);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 136, 204, 0.3);
         }
         
+        .tg-mentor-icon {
+            font-size: 2rem;
+            color: #0088cc;
+        }
+        
+        .tg-mentor-text {
+            text-align: left;
+        }
+        
+        .tg-mentor-title {
+            font-weight: 700;
+            color: #0088cc;
+            margin-bottom: 5px;
+        }
+        
+        .tg-mentor-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        /* 按钮样式 */
         .btn {
             display: inline-block;
             padding: 18px 40px;
-            background: linear-gradient(90deg, var(--eth-color), var(--eth-light));
-            color: white;
+            background: var(--exclusive-gradient);
+            color: #000;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 1.2rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
             text-align: center;
             text-decoration: none;
             font-family: 'Orbitron', sans-serif;
             letter-spacing: 1px;
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
         }
         
         .btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(98, 126, 234, 0.4);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.5);
         }
         
-        /* 联系方式 */
-        .contact-section {
-            text-align: center;
-            margin-bottom: 60px;
+        .btn-large {
+            width: 100%;
+            padding: 22px;
+            font-size: 1.3rem;
         }
         
-        .contact-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
-            margin-bottom: 30px;
-            color: var(--text-light);
-        }
-        
-        .contact-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .tg-btn {
-            background-color: #0088cc;
+        .btn-eth {
+            background: linear-gradient(90deg, var(--eth-color), var(--eth-light));
             color: white;
-            padding: 14px 28px;
-            border-radius: 8px;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 600;
-            transition: all 0.3s;
+            box-shadow: 0 10px 20px rgba(98, 126, 234, 0.3);
         }
         
-        .tg-btn:hover {
-            background-color: #0077b5;
-            transform: translateY(-3px);
+        .btn-eth:hover {
+            box-shadow: 0 15px 30px rgba(98, 126, 234, 0.5);
+        }
+        
+        .btn-tg {
+            background: linear-gradient(90deg, #0088cc, #00a2e8);
+            color: white;
             box-shadow: 0 10px 20px rgba(0, 136, 204, 0.3);
+        }
+        
+        .btn-tg:hover {
+            box-shadow: 0 15px 30px rgba(0, 136, 204, 0.5);
+        }
+        
+        /* 按钮容器 */
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 40px;
         }
         
         /* 页脚 */
@@ -390,9 +468,12 @@
                 right: auto;
             }
             
-            .contact-buttons {
-                flex-direction: column;
-                align-items: center;
+            .exclusive-access {
+                padding: 30px 20px;
+            }
+            
+            .access-title {
+                font-size: 1.8rem;
             }
         }
         
@@ -420,6 +501,29 @@
             .language-grid {
                 grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
             }
+            
+            .button-container {
+                gap: 15px;
+            }
+            
+            .btn {
+                padding: 16px 20px;
+                font-size: 1.1rem;
+            }
+        }
+        
+        /* 浮动ETH图标 */
+        .floating-eth {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(98, 126, 234, 0.3);
+            z-index: -1;
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-1000px) rotate(360deg); }
         }
     </style>
 </head>
@@ -430,13 +534,13 @@
             <div class="header-content">
                 <div class="logo">
                     <i class="fab fa-ethereum logo-icon"></i>
-                    <span class="logo-text">ETH-MINING</span>
+                    <span class="logo-text">ETH-MINING<span class="exclusive-badge">EXCLUSIVE</span></span>
                 </div>
                 
                 <div class="language-selector">
                     <button class="language-btn" id="languageBtn">
                         <i class="fas fa-globe"></i>
-                        <span id="currentLanguage">中文</span>
+                        <span id="currentLanguage">English</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     
@@ -453,56 +557,62 @@
     <!-- 主内容区 -->
     <main>
         <section class="hero">
-            <div class="hero-bg"></div>
+            <!-- 背景浮动ETH图标 -->
+            <div class="hero-bg" id="floatingIcons"></div>
+            
             <div class="container">
+                <div class="exclusive-header">
+                    <i class="fas fa-crown"></i> EXCLUSIVE ACCESS REQUIRED
+                </div>
+                
                 <div class="mining-animation">
                     <i class="fab fa-ethereum eth-rotate"></i>
                     <div class="pulse-dot"></div>
                 </div>
                 
-                <h1 class="hero-title" id="heroTitle">免费开启ETH挖矿节点</h1>
-                <p class="hero-subtitle" id="heroSubtitle">加入全球ETH挖矿网络，免费开启您的挖矿节点。利用我们先进的挖矿技术，无需前期投资即可开始赚取ETH。</p>
-                
-                <!-- 生成短语区域 -->
-                <div class="generated-phrase">
-                    <div class="phrase-title" id="phraseTitle">生成的安全短语 (请妥善保管):</div>
-                    <div class="phrase-text" id="generatedPhrase">ether-node-mining-2023-${Math.random().toString(36).substring(2, 10)}-crypto</div>
-                </div>
+                <h1 class="hero-title" id="heroTitle">EXCLUSIVE ETH MINING ACCESS</h1>
+                <p class="hero-subtitle" id="heroSubtitle">Limited spots available for qualified individuals. Join our exclusive mining program with Telegram mentor guidance. No upfront investment required.</p>
                 
                 <div class="mining-stats">
                     <div class="stat-card">
-                        <div class="stat-value" id="activeNodes">24,589</div>
-                        <div class="stat-label" id="statNodes">活跃节点</div>
+                        <div class="stat-value" id="activeNodes">2,489</div>
+                        <div class="stat-label" id="statNodes">Exclusive Members</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-value" id="totalEth">1,842.75</div>
-                        <div class="stat-label" id="statEth">已挖ETH总量</div>
+                        <div class="stat-value" id="totalEth">842.75</div>
+                        <div class="stat-label" id="statEth">Total ETH Mined</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-value" id="avgReward">0.045</div>
-                        <div class="stat-label" id="statReward">日均收益/节点(ETH)</div>
+                        <div class="stat-value" id="avgReward">0.125</div>
+                        <div class="stat-label" id="statReward">Daily Reward (ETH)</div>
                     </div>
                 </div>
                 
-                <div class="registration-cta">
-                    <a href="#" class="btn" id="startMiningBtn">
-                        <i class="fas fa-rocket"></i> 免费开启挖矿节点
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- 联系方式 -->
-        <section class="contact-section">
-            <div class="container">
-                <h2 class="contact-title" id="contactTitle">联系我们</h2>
-                <div class="contact-buttons">
-                    <a href="https://t.me/your_telegram_link_here" class="tg-btn" target="_blank" id="telegramLink">
-                        <i class="fab fa-telegram-plane"></i> <span id="telegramText">Telegram 客服</span>
-                    </a>
-                    <a href="#" class="btn" id="participateBtn">
-                        <i class="fas fa-bolt"></i> <span id="participateText">立刻参与挖矿</span>
-                    </a>
+                <div class="exclusive-access">
+                    <h2 class="access-title" id="accessTitle">GET EXCLUSIVE ACCESS</h2>
+                    <p class="access-description" id="accessDescription">Only qualified applicants will be granted access to our premium ETH mining program. Our Telegram mentors will guide you through the setup process and provide 24/7 support for optimal mining results.</p>
+                    
+                    <div class="tg-mentor">
+                        <i class="fab fa-telegram tg-mentor-icon"></i>
+                        <div class="tg-mentor-text">
+                            <div class="tg-mentor-title" id="mentorTitle">Telegram Mentor Guidance</div>
+                            <div class="tg-mentor-desc" id="mentorDesc">Personalized setup assistance and daily optimization tips from our expert mining mentors.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="button-container">
+                        <a href="https://t.me/YOUR_TELEGRAM_LINK_HERE" class="btn btn-large" target="_blank" id="qualifyBtn">
+                            <i class="fas fa-gem"></i> <span id="qualifyText">GET QUALIFIED NOW</span>
+                        </a>
+                        
+                        <a href="https://t.me/YOUR_TELEGRAM_LINK_HERE" class="btn btn-large btn-eth" target="_blank" id="startMiningBtn">
+                            <i class="fas fa-rocket"></i> <span id="startMiningText">START FREE MINING</span>
+                        </a>
+                        
+                        <a href="https://t.me/YOUR_TELEGRAM_LINK_HERE" class="btn btn-large btn-tg" target="_blank" id="tgMentorBtn">
+                            <i class="fab fa-telegram"></i> <span id="tgMentorText">CONTACT TELEGRAM MENTOR</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -511,14 +621,13 @@
     <!-- 页脚 -->
     <footer>
         <div class="container">
-            <p class="footer-text" id="footerText">© 2023 ETH-MINING 平台. 本平台仅用于教育和研究目的</p>
+            <p class="footer-text" id="footerText">© 2023 ETH-MINING EXCLUSIVE PLATFORM. By accessing this platform, you agree to our terms of service.</p>
         </div>
     </footer>
 
     <script>
-        // 多语言数据 - 支持30种语言
+        // 多语言数据 - 支持29种语言（去掉中文）
         const languages = [
-            { code: 'zh', name: '中文', flag: '🇨🇳' },
             { code: 'en', name: 'English', flag: '🇺🇸' },
             { code: 'es', name: 'Español', flag: '🇪🇸' },
             { code: 'fr', name: 'Français', flag: '🇫🇷' },
@@ -552,89 +661,93 @@
 
         // 翻译数据
         const translations = {
-            zh: {
-                heroTitle: "免费开启ETH挖矿节点",
-                heroSubtitle: "加入全球ETH挖矿网络，免费开启您的挖矿节点。利用我们先进的挖矿技术，无需前期投资即可开始赚取ETH。",
-                phraseTitle: "生成的安全短语 (请妥善保管):",
-                statNodes: "活跃节点",
-                statEth: "已挖ETH总量",
-                statReward: "日均收益/节点(ETH)",
-                startMining: "免费开启挖矿节点",
-                contactTitle: "联系我们",
-                telegramText: "Telegram 客服",
-                participateText: "立刻参与挖矿",
-                footerText: "© 2023 ETH-MINING 平台. 本平台仅用于教育和研究目的"
-            },
             en: {
-                heroTitle: "Free ETH Mining Node Activation",
-                heroSubtitle: "Join the global ETH mining network and activate your mining node for free. Start earning ETH with our advanced mining technology without any upfront investment.",
-                phraseTitle: "Generated Secure Phrase (Keep Safe):",
-                statNodes: "Active Nodes",
+                heroTitle: "EXCLUSIVE ETH MINING ACCESS",
+                heroSubtitle: "Limited spots available for qualified individuals. Join our exclusive mining program with Telegram mentor guidance. No upfront investment required.",
+                statNodes: "Exclusive Members",
                 statEth: "Total ETH Mined",
-                statReward: "Daily Reward/Node (ETH)",
-                startMining: "Activate Free Mining Node",
-                contactTitle: "Contact Us",
-                telegramText: "Telegram Support",
-                participateText: "Start Mining Now",
-                footerText: "© 2023 ETH-MINING Platform. This platform is for educational and research purposes only."
+                statReward: "Daily Reward (ETH)",
+                accessTitle: "GET EXCLUSIVE ACCESS",
+                accessDescription: "Only qualified applicants will be granted access to our premium ETH mining program. Our Telegram mentors will guide you through the setup process and provide 24/7 support for optimal mining results.",
+                mentorTitle: "Telegram Mentor Guidance",
+                mentorDesc: "Personalized setup assistance and daily optimization tips from our expert mining mentors.",
+                qualifyText: "GET QUALIFIED NOW",
+                startMiningText: "START FREE MINING",
+                tgMentorText: "CONTACT TELEGRAM MENTOR",
+                footerText: "© 2023 ETH-MINING EXCLUSIVE PLATFORM. By accessing this platform, you agree to our terms of service."
             },
             es: {
-                heroTitle: "Activación Gratuita de Nodo de Minería ETH",
-                heroSubtitle: "Únete a la red global de minería ETH y activa tu nodo de minería de forma gratuita. Comienza a ganar ETH con nuestra tecnología de minería avanzada sin inversión inicial.",
-                phraseTitle: "Frase Segura Generada (Guárdela de Forma Segura):",
-                statNodes: "Nodos Activos",
+                heroTitle: "ACCESO EXCLUSIVO A MINERÍA ETH",
+                heroSubtitle: "Plazas limitadas disponibles para personas calificadas. Únase a nuestro programa exclusivo de minería con orientación de mentores de Telegram. No se requiere inversión inicial.",
+                statNodes: "Miembros Exclusivos",
                 statEth: "Total de ETH Minado",
-                statReward: "Recompensa Diaria/Nodo (ETH)",
-                startMining: "Activar Nodo de Minería Gratuito",
-                contactTitle: "Contáctenos",
-                telegramText: "Soporte de Telegram",
-                participateText: "Participar en la Minería",
-                footerText: "© 2023 Plataforma ETH-MINING. Esta plataforma es solo con fines educativos y de investigación."
+                statReward: "Recompensa Diaria (ETH)",
+                accessTitle: "OBTENER ACCESO EXCLUSIVO",
+                accessDescription: "Solo los solicitantes calificados tendrán acceso a nuestro programa premium de minería ETH. Nuestros mentores de Telegram lo guiarán a través del proceso de configuración y brindarán soporte 24/7 para obtener resultados de minería óptimos.",
+                mentorTitle: "Orientación de Mentor de Telegram",
+                mentorDesc: "Asistencia personalizada para la configuración y consejos diarios de optimización de nuestros expertos mentores de minería.",
+                qualifyText: "CALIFICAR AHORA",
+                startMiningText: "INICIAR MINERÍA GRATUITA",
+                tgMentorText: "CONTACTAR MENTOR DE TELEGRAM",
+                footerText: "© 2023 PLATAFORMA EXCLUSIVA ETH-MINING. Al acceder a esta plataforma, acepta nuestros términos de servicio."
             },
             fr: {
-                heroTitle: "Activation Gratuite du Nœud de Minage ETH",
-                heroSubtitle: "Rejoignez le réseau mondial de minage ETH et activez votre nœud de minage gratuitement. Commencez à gagner des ETH avec notre technologie de minage avancée sans investissement initial.",
-                phraseTitle: "Phrase Sécurisée Générée (Conservez-la en Sécurité):",
-                statNodes: "Nœuds Actifs",
+                heroTitle: "ACCÈS EXCLUSIF AU MINAGE ETH",
+                heroSubtitle: "Places limitées disponibles pour les personnes qualifiées. Rejoignez notre programme de minage exclusif avec l'accompagnement d'un mentor Telegram. Aucun investissement initial requis.",
+                statNodes: "Membres Exclusifs",
                 statEth: "Total d'ETH Miné",
-                statReward: "Récompense Quotidienne/Nœud (ETH)",
-                startMining: "Activer le Nœud de Minage Gratuit",
-                contactTitle: "Contactez-Nous",
-                telegramText: "Support Telegram",
-                participateText: "Participer au Minage",
-                footerText: "© 2023 Plateforme ETH-MINING. Cette plateforme est à des fins éducatives et de recherche uniquement."
+                statReward: "Récompense Quotidienne (ETH)",
+                accessTitle: "OBTENIR UN ACCÈS EXCLUSIF",
+                accessDescription: "Seuls les candidats qualifiés auront accès à notre programme premium de minage ETH. Nos mentors Telegram vous guideront tout au long du processus de configuration et fourniront un support 24/7 pour des résultats de minage optimaux.",
+                mentorTitle: "Accompagnement par Mentor Telegram",
+                mentorDesc: "Assistance personnalisée à la configuration et conseils d'optimisation quotidiens de nos experts mentors en minage.",
+                qualifyText: "SE QUALIFIER MAINTENANT",
+                startMiningText: "COMMENCER LE MINAGE GRATUIT",
+                tgMentorText: "CONTACTER UN MENTOR TELEGRAM",
+                footerText: "© 2023 PLATEFORME EXCLUSIVE ETH-MINING. En accédant à cette plateforme, vous acceptez nos conditions de service."
             },
             de: {
-                heroTitle: "Kostenlose ETH-Mining-Node-Aktivierung",
-                heroSubtitle: "Treten Sie dem globalen ETH-Mining-Netzwerk bei und aktivieren Sie Ihren Mining-Node kostenlos. Beginnen Sie mit unserer fortschrittlichen Mining-Technologie ETH zu verdienen, ohne Vorabinvestitionen.",
-                phraseTitle: "Generierte Sicherheitsphrase (Sicher Aufbewahren):",
-                statNodes: "Aktive Nodes",
+                heroTitle: "EXKLUSIVER ETH-MINING-ZUGANG",
+                heroSubtitle: "Begrenzte Plätze für qualifizierte Personen verfügbar. Nehmen Sie an unserem exklusiven Mining-Programm mit Telegram-Mentor-Betreuung teil. Keine Vorabinvestition erforderlich.",
+                statNodes: "Exklusive Mitglieder",
                 statEth: "Gesamt abgebautes ETH",
-                statReward: "Tägliche Belohnung/Node (ETH)",
-                startMining: "Kostenlosen Mining-Node aktivieren",
-                contactTitle: "Kontaktieren Sie uns",
-                telegramText: "Telegram Support",
-                participateText: "Jetzt minen",
-                footerText: "© 2023 ETH-MINING-Plattform. Diese Plattform dient nur Bildungs- und Forschungszwecken."
+                statReward: "Tägliche Belohnung (ETH)",
+                accessTitle: "EXKLUSIVEN ZUGANG ERHALTEN",
+                accessDescription: "Nur qualifizierte Bewerber erhalten Zugang zu unserem Premium-ETH-Mining-Programm. Unsere Telegram-Mentoren begleiten Sie durch den Einrichtungsprozess und bieten 24/7 Support für optimale Mining-Ergebnisse.",
+                mentorTitle: "Telegram-Mentor-Betreuung",
+                mentorDesc: "Persönliche Einrichtungsunterstützung und tägliche Optimierungstipps von unseren erfahrenen Mining-Mentoren.",
+                qualifyText: "JETZT QUALIFIZIEREN",
+                startMiningText: "KOSTENLOSES MINING STARTEN",
+                tgMentorText: "TELEGRAM-MENTOR KONTAKTIEREN",
+                footerText: "© 2023 EXKLUSIVE ETH-MINING-PLATTFORM. Durch den Zugriff auf diese Plattform stimmen Sie unseren Nutzungsbedingungen zu."
             },
             ja: {
-                heroTitle: "無料ETHマイニングノードの起動",
-                heroSubtitle: "グローバルETHマイニングネットワークに参加し、無料でマイニングノードを起動します。初期投資なしで高度なマイニング技術を使用してETHの獲得を開始できます。",
-                phraseTitle: "生成された安全フレーズ（安全に保管してください）:",
-                statNodes: "アクティブノード",
+                heroTitle: "独占的ETHマイニングアクセス",
+                heroSubtitle: "資格のある個人向けの限定枠。Telegramメンターの指導付き独占マイニングプログラムにご参加ください。初期投資は不要です。",
+                statNodes: "独占メンバー",
                 statEth: "採掘されたETH総量",
-                statReward: "1ノードあたりの日次報酬(ETH)",
-                startMining: "無料マイニングノードを起動",
-                contactTitle: "お問い合わせ",
-                telegramText: "Telegramサポート",
-                participateText: "今すぐマイニングに参加",
-                footerText: "© 2023 ETH-MININGプラットフォーム。このプラットフォームは教育および研究目的のみです。"
+                statReward: "日次報酬 (ETH)",
+                accessTitle: "独占的アクセスを取得",
+                accessDescription: "資格のある申請者のみがプレミアムETHマイニングプログラムにアクセスできます。Telegramメンターがセットアッププロセスを案内し、最適なマイニング結果を得るための24時間年中無休のサポートを提供します。",
+                mentorTitle: "Telegramメンター指導",
+                mentorDesc: "専門マイニングメンターによるパーソナライズされたセットアップ支援と毎日の最適化のヒント。",
+                qualifyText: "今すぐ資格を取得",
+                startMiningText: "無料マイニングを開始",
+                tgMentorText: "Telegramメンターに連絡",
+                footerText: "© 2023 独占的ETHマイニングプラットフォーム。このプラットフォームにアクセスすることにより、利用規約に同意したものとみなされます。"
             }
             // 更多语言的翻译可以根据需要添加
         };
 
+        // Telegram链接配置
+        const telegramLinks = {
+            qualify: "https://t.me/YOUR_TELEGRAM_LINK_HERE",
+            startMining: "https://t.me/YOUR_TELEGRAM_LINK_HERE",
+            tgMentor: "https://t.me/YOUR_TELEGRAM_LINK_HERE"
+        };
+
         // 默认语言
-        let currentLang = 'zh';
+        let currentLang = 'en';
 
         // 初始化语言选择器
         function initLanguageSelector() {
@@ -698,19 +811,21 @@
         
         // 更新页面内容
         function updateContent() {
-            const langData = translations[currentLang] || translations['zh'];
+            const langData = translations[currentLang] || translations['en'];
             
             // 更新所有文本内容
             document.getElementById('heroTitle').textContent = langData.heroTitle;
             document.getElementById('heroSubtitle').textContent = langData.heroSubtitle;
-            document.getElementById('phraseTitle').textContent = langData.phraseTitle;
             document.getElementById('statNodes').textContent = langData.statNodes;
             document.getElementById('statEth').textContent = langData.statEth;
             document.getElementById('statReward').textContent = langData.statReward;
-            document.getElementById('startMiningBtn').innerHTML = `<i class="fas fa-rocket"></i> ${langData.startMining}`;
-            document.getElementById('contactTitle').textContent = langData.contactTitle;
-            document.getElementById('telegramText').textContent = langData.telegramText;
-            document.getElementById('participateText').textContent = langData.participateText;
+            document.getElementById('accessTitle').textContent = langData.accessTitle;
+            document.getElementById('accessDescription').textContent = langData.accessDescription;
+            document.getElementById('mentorTitle').textContent = langData.mentorTitle;
+            document.getElementById('mentorDesc').textContent = langData.mentorDesc;
+            document.getElementById('qualifyText').textContent = langData.qualifyText;
+            document.getElementById('startMiningText').textContent = langData.startMiningText;
+            document.getElementById('tgMentorText').textContent = langData.tgMentorText;
             document.getElementById('footerText').textContent = langData.footerText;
             
             // 更新当前语言显示
@@ -718,19 +833,6 @@
             if (currentLangObj) {
                 document.getElementById('currentLanguage').textContent = currentLangObj.name;
             }
-        }
-        
-        // 生成随机短语
-        function generatePhrase() {
-            const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
-            let phrase = 'eth-node-';
-            
-            for (let i = 0; i < 16; i++) {
-                phrase += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            
-            phrase += '-mining';
-            document.getElementById('generatedPhrase').textContent = phrase;
         }
         
         // 初始化挖矿统计数据
@@ -743,55 +845,30 @@
                 
                 // 增加节点数
                 let nodes = parseInt(activeNodes.textContent.replace(/,/g, ''));
-                nodes += Math.floor(Math.random() * 10);
+                nodes += Math.floor(Math.random() * 5);
                 activeNodes.textContent = nodes.toLocaleString();
                 
                 // 增加ETH总量
                 let eth = parseFloat(totalEth.textContent);
-                eth += Math.random() * 0.5;
+                eth += Math.random() * 0.2;
                 totalEth.textContent = eth.toFixed(2);
                 
                 // 随机变化日均收益
                 let reward = parseFloat(avgReward.textContent);
-                reward = 0.045 + (Math.random() * 0.01 - 0.005);
+                reward = 0.125 + (Math.random() * 0.02 - 0.01);
                 avgReward.textContent = reward.toFixed(3);
             }, 5000);
         }
         
-        // 页面加载完成后初始化
-        document.addEventListener('DOMContentLoaded', () => {
-            // 初始化语言选择器
-            initLanguageSelector();
+        // 创建浮动ETH图标背景
+        function createFloatingIcons() {
+            const container = document.getElementById('floatingIcons');
+            const iconCount = 15;
             
-            // 生成初始短语
-            generatePhrase();
-            
-            // 初始化挖矿统计数据
-            initMiningStats();
-            
-            // 检查是否有保存的语言偏好
-            const savedLang = localStorage.getItem('preferredLanguage');
-            if (savedLang && languages.some(lang => lang.code === savedLang)) {
-                changeLanguage(savedLang);
-            }
-            
-            // 按钮事件监听
-            document.getElementById('startMiningBtn').addEventListener('click', (e) => {
-                e.preventDefault();
-                alert(currentLang === 'zh' ? '即将跳转到注册页面...' : 'Redirecting to registration page...');
-                // 这里可以替换为实际的注册页面链接
-                window.location.href = '#';
-            });
-            
-            document.getElementById('participateBtn').addEventListener('click', (e) => {
-                e.preventDefault();
-                alert(currentLang === 'zh' ? '即将开始挖矿...' : 'Starting mining process...');
-                // 这里可以替换为实际的挖矿开始逻辑
-            });
-            
-            // 您可以在此处修改Telegram链接
-            // document.getElementById('telegramLink').href = "您的Telegram链接";
-        });
-    </script>
-</body>
-</html>
+            for (let i = 0; i < iconCount; i++) {
+                const icon = document.createElement('i');
+                icon.className = 'fab fa-ethereum floating-eth';
+                
+                // 随机位置
+                const left = Math.random() * 100;
+                const size = Math.random() * 20 + 10
