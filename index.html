@@ -1,180 +1,148 @@
-江湖宝典( @jhbdk), [2026/1/5 1:35]
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xassly - Secure and Decentralized Platform</title>
-    <meta name="description" content="Xassly provides a secure and decentralized platform for various blockchain-based services.">
-    <meta name="keywords" content="Xassly, blockchain, crypto, decentralized, security, platform">
-    <link rel="icon" href="/favicon.ico">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/theme.css">
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts (example) -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ETH Secure Mining & Staking Pool</title>
+  <meta name="description" content="Secure ETH mining & staking pool. High-performance nodes, blockchain security, and rational staking returns." />
+  <style>
+    :root{
+      --bg:#0b0f1a; --card:#121831; --primary:#6c7cff; --accent:#22f3a6; --text:#e7ebff; --muted:#9aa3c7;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Arial;background:radial-gradient(1200px 600px at 10% -10%,#1a2150,transparent),radial-gradient(1200px 600px at 110% 10%,#102a3a,transparent),var(--bg);color:var(--text)}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1200px;margin:auto;padding:24px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:800}
+    .logo span{color:var(--accent)}
+    .lang-wrap{display:flex;align-items:center;gap:8px}
+    .lang-icon{font-size:18px;opacity:.9}
+    .lang{background:var(--card);border:1px solid #1f2650;color:var(--text);padding:8px 10px;border-radius:10px}
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center;margin-top:32px}
+    @media(max-width:900px){.hero{grid-template-columns:1fr}}
+    .card{background:linear-gradient(180deg,#151c3f, #0f1533);border:1px solid #1f2650;border-radius:20px;padding:24px;box-shadow:0 20px 40px rgba(0,0,0,.35)}
+    h1{font-size:42px;line-height:1.1;margin:0 0 12px}
+    h2{margin:0 0 12px}
+    h3{margin-top:0}
+    p{color:var(--muted)}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+    .btn{padding:14px 18px;border-radius:14px;font-weight:700;cursor:pointer;border:1px solid transparent}
+    .btn.primary{background:linear-gradient(135deg,var(--primary),#9aa7ff)}
+    .btn.ghost{border-color:#2a3475;background:transparent}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+    .stat{background:var(--card);border:1px solid #1f2650;border-radius:16px;padding:14px}
+    .stat b{font-size:22px}
+    .eth-art{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .eth{border-radius:18px;min-height:140px;background:linear-gradient(135deg,#1a1f5a,#0d7aa6);position:relative;overflow:hidden}
+    .eth::after{content:"ETH";position:absolute;right:12px;bottom:12px;font-weight:900;opacity:.15;font-size:48px}
+    section{margin-top:56px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}}
+    footer{margin:48px 0 16px;color:var(--muted);text-align:center;font-size:14px}
+  </style>
 </head>
 <body>
-    <header id="main-header">
-        <nav class="container">
-            <div class="logo">
-                <a href="/">XASSLY</a>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#ecosystem">Ecosystem</a></li>
-                <li><a href="#roadmap">Roadmap</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#safety">Safety</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="cta-buttons">
-                <a href="/login" class="btn btn-secondary">Log In</a>
-                <a href="/signup" class="btn btn-primary">Sign Up</a>
-            </div>
-            <div class="mobile-menu-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
-        </nav>
+  <div class="container">
+    <header>
+      <div class="logo">🔐 <span>ETH</span> Secure Pool</div>
+      <div class="lang-wrap">
+        <span class="lang-icon">🌐</span>
+        <select id="lang" class="lang"></select>
+      </div>
     </header>
 
-    <main>
-        <section id="hero-section" class="hero">
-            <div class="container text-center">
-                <h1>Welcome to Xassly</h1>
-                <p>Your gateway to secure and innovative decentralized solutions.</p>
-                <a href="#get-started" class="btn btn-primary btn-large">Get Started</a>
-            </div>
-        </section>
-
-        <section id="features" class="section-padding">
-            <div class="container">
-                <h2 class="section-title">Key Features</h2>
-                <div class="feature-grid">
-                    <div class="feature-item">
-                        <i class="fas fa-shield-alt icon"></i>
-                        <h3>Advanced Security</h3>
-                        <p>Leveraging cutting-edge encryption and blockchain technology.</p>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-decentralized icon"></i>
-                        <h3>Fully Decentralized</h3>
-                        <p>No single point of failure, ensuring censorship resistance.</p>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-cogs icon"></i>
-                        <h3>Scalable Infrastructure</h3>
-                        <p>Designed for high performance and future growth.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="safety" class="section-padding bg-light">
-            <div class="container">
-                <h2 class="section-title">Our Commitment to Your Safety</h2>
-                <div class="safety-content">
-                    <p>At Xassly, security is paramount. We understand the critical importance of protecting your assets and data in the decentralized world. Our platform is built with a multi-layered security architecture, designed to withstand sophisticated threats and ensure the integrity of all transactions.</p>
-
-江湖宝典( @jhbdk), [2026/1/5 1:35]
-（续 2/3）
-
-<h3>Robust Security Measures:</h3>
-                    <ul>
-                        <li><strong>End-to-End Encryption:</strong> All communications and data transfers are secured with industry-leading encryption protocols.</li>
-                        <li><strong>Smart Contract Audits:</strong> Our smart contracts undergo rigorous independent audits by top-tier blockchain security firms.</li>
-                        <li><strong>Decentralized Infrastructure:</strong> Distribution across numerous nodes mitigates risks associated with centralized points of attack.</li>
-                        <li><strong>Multi-Factor Authentication (MFA):</strong> Enhanced login security to protect your accounts from unauthorized access.</li>
-                        <li><strong>Regular Penetration Testing:</strong> Continuous testing and vulnerability assessments to identify and patch potential weaknesses.</li>
-                        <li><strong>Cold Storage Solutions:</strong> A significant portion of digital assets are held in secure cold storage to prevent online theft.</li>
-                        <li><strong>Community-Driven Security:</strong> Active monitoring and reporting mechanisms allowing our community to contribute to platform safety.</li>
-                    </ul>
-
-                    <p>We are constantly evolving our security practices to stay ahead of emerging threats, ensuring a safe and reliable environment for all Xassly users. Your trust is our highest priority.</p>
-
-                    <div class="safety-badges">
-                        <img src="/img/security-audit-badge.png" alt="Security Audit Certified">
-                        <img src="/img/ssl-encrypted-badge.png" alt="SSL Encrypted">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="ecosystem" class="section-padding">
-            <div class="container">
-                <h2 class="section-title">Xassly Ecosystem</h2>
-                <p class="text-center">Explore the various components that make up the Xassly network.</p>
-                <!-- Placeholder for ecosystem components -->
-            </div>
-        </section>
-
-        <section id="roadmap" class="section-padding bg-light">
-            <div class="container">
-                <h2 class="section-title">Roadmap</h2>
-                <div class="roadmap-timeline">
-                    <!-- Placeholder for roadmap items -->
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="section-padding">
-            <div class="container">
-                <h2 class="section-title">Get in Touch</h2>
-                <p class="text-center">Have questions? We're here to help.</p>
-                <form class="contact-form">
-                    <input type="text" placeholder="Your Name">
-                    <input type="email" placeholder="Your Email">
-                    <textarea placeholder="Your Message"></textarea>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
-            </div>
-        </section>
-    </main>
-
-    <footer id="main-footer">
-        <div class="container">
-            <div class="footer-links">
-                <ul>
-                    <li><a href="/privacy">Privacy Policy</a></li>
-                    <li><a href="/terms">Terms of Service</a></li>
-                    <li><a href="/faq">FAQ</a></li>
-                    <li><a href="/support">Support</a></li>
-                </ul>
-            </div>
-            <div class="social-media">
-                <a href="https://twitter.com/xassly" target="_blank"><i class="fab fa-twitter"></i></a>
-                <a href="https://telegram.org/xassly" target="_blank"><i class="fab fa-telegram-plane"></i></a>
-                <a href="https://github.com/xassly" target="_
-
-江湖宝典( @jhbdk), [2026/1/5 1:35]
-（续 3/3）
-
-blank"><i class="fab fa-github"></i></a>
-            </div>
-            <p>&copy; 2023 Xassly. All rights reserved.</p>
+    <div class="hero">
+      <div class="card">
+        <h1 id="t-title"></h1>
+        <p id="t-sub"></p>
+        <div class="stats">
+          <div class="stat"><b>2–4%</b><div id="t-s1"></div></div>
+          <div class="stat"><b>24/7</b><div id="t-s2"></div></div>
+          <div class="stat"><b>PoS</b><div id="t-s3"></div></div>
         </div>
-    </footer>
+        <div class="cta">
+          <a id="tg1" class="btn primary" href="#">🚀 <span id="t-cta1"></span></a>
+          <a id="tg2" class="btn ghost" href="#">💬 <span id="t-cta2"></span></a>
+        </div>
+        <div class="cta" style="margin-top:12px">
+          <button id="q1" class="btn ghost">✔ I understand cryptocurrency basics</button>
+          <button id="q2" class="btn ghost">⚙ I want to join ETH staking & mining</button>
+        </div>
+      </div>
+      <div class="eth-art">
+        <div class="eth"></div>
+        <div class="eth"></div>
+        <div class="eth"></div>
+        <div class="eth"></div>
+      </div>
+    </div>
 
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/main.js"></script>
-    <script>
-        // Example for mobile menu toggle
-        document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        });
+    <section>
+      <h2 id="t-how"></h2>
+      <div class="grid">
+        <div class="card"><h3>Telegram Access</h3><p id="t-h1"></p></div>
+        <div class="card"><h3>Secure Pool Node</h3><p id="t-h2"></p></div>
+        <div class="card"><h3>Automated Rewards</h3><p id="t-h3"></p></div>
+      </div>
+      <div class="cta" style="margin-top:16px">
+        <a id="tg3" class="btn primary" href="#">⚡ <span id="t-join"></span></a>
+      </div>
+    </section>
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+    <section>
+      <h2 id="t-edu"></h2>
+      <div class="grid">
+        <div class="card"><p id="t-e1"></p></div>
+        <div class="card"><p id="t-e2"></p></div>
+        <div class="card"><p id="t-e3"></p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2 id="t-sec"></h2>
+      <div class="grid">
+        <div class="card"><p id="t-sec1"></p></div>
+        <div class="card"><p id="t-sec2"></p></div>
+        <div class="card"><p id="t-sec3"></p></div>
+      </div>
+    </section>
+
+    <footer>© 2026 ETH Secure Mining & Staking Pool · Access via Telegram Assistance</footer>
+  </div>
+
+  <script>
+    // ===== Qualification Flow =====
+    document.addEventListener('DOMContentLoaded',()=>{
+      const q1=document.getElementById('q1');
+      const q2=document.getElementById('q2');
+      if(q1&&q2){
+        q1.onclick=()=>window.location.href=TG_LINK;
+        q2.onclick=()=>window.location.href=TG_LINK;
+      }
+    });
+
+    const TG_LINK = 'https://t.me/CHANGE_ME';
+
+    const i18n = {
+      en:{name:'English', title:'Secure ETH Mining & Rational Staking Returns', sub:'Ethereum Proof-of-Stake network with high-security pool nodes and automated yield distribution.', s1:'Estimated Yield', s2:'Auto Operation', s3:'Consensus Security', cta1:'Join via Telegram', cta2:'Contact Telegram to Activate Pool', how:'How to Activate Your Pool Node', h1:'Contact our Telegram assistant to receive guidance and activate your mining or staking node.', h2:'Your funds connect to a high-performance ETH pool secured by Proof-of-Stake validators.', h3:'Rewards are calculated automatically and distributed transparently.', join:'Activate Pool Node Now', edu:'Ethereum Mining & Staking Overview', e1:'Ethereum operates on a Proof-of-Stake blockchain that prioritizes network security and decentralization.', e2:'Staking ETH helps secure blocks while generating rational, market-based rewards.', e3:'Pooling resources improves efficiency, reduces volatility, and enhances stability.', sec:'Blockchain Security & Risk Control', sec1:'ETH blocks are validated by distributed validators, preventing single-point failure.', sec2:'Smart contract rules ensure transparent reward logic and on-chain verification.', sec3:'Rational yield models aim for sustainability instead of short-term speculation.'},
+      es:{name:'Español', title:'Minería ETH Segura y Staking Racional', sub:'Red Ethereum PoS con nodos seguros y rendimiento automatizado.', s1:'Rendimiento', s2:'Automático', s3:'Seguridad', cta1:'Unirse por Telegram', cta2:'Contactar para Activar Pool', how:'Cómo Activar', h1:'Contacta con el asistente en Telegram.', h2:'Conexión a pool ETH seguro.', h3:'Distribución automática.', join:'Activar Nodo', edu:'Introducción a ETH', e1:'Ethereum usa Proof-of-Stake.', e2:'El staking asegura la red.', e3:'Pools mejoran estabilidad.', sec:'Seguridad Blockchain', sec1:'Validadores distribuidos.', sec2:'Contratos transparentes.', sec3:'Rendimientos sostenibles.'},
+      fr:{name:'Français', title:'Minage ETH Sécurisé & Staking', sub:'Réseau PoS sécurisé avec rendement automatique.', s1:'Rendement', s2:'Automatique', s3:'Sécurité', cta1:'Rejoindre via Telegram', cta2:'Contacter pour Activer', how:'Activation', h1:'Contact Telegram.', h2:'Connexion au pool sécurisé.', h3:'Récompenses automatiques.', join:'Activer le Nœud', edu:'ETH Présentation', e1:'Ethereum en Proof-of-Stake.', e2:'Le staking sécurise.', e3:'Les pools stabilisent.', sec:'Sécurité Blockchain', sec1:'Validation distribuée.', sec2:'Contrats transparents.', sec3:'Rendement durable.'},
+      de:{name:'Deutsch', title:'Sicheres ETH Mining & Staking', sub:'PoS-Netzwerk mit automatischen Erträgen.', s1:'Ertrag', s2:'Automatisch', s3:'Sicherheit', cta1:'Über Telegram starten', cta2:'Kontakt für Aktivierung', how:'Aktivierung', h1:'Telegram-Assistent kontaktieren.', h2:'Verbindung zum sicheren Pool.', h3:'Automatische Erträge.', join:'Node aktivieren', edu:'ETH Überblick', e1:'Proof-of-Stake Netzwerk.', e2:'Staking sichert das Netz.', e3:'Pools erhöhen Stabilität.', sec:'Blockchain-Sicherheit', sec1:'Verteilte Validatoren.', sec2:'Transparente Logik.', sec3:'Nachhaltige Rendite.'},
+      ru:{name:'Русский', title:'Безопасный ETH Майнинг и Стейкинг', sub:'PoS сеть с автоматическим доходом.', s1:'Доходность', s2:'Авто', s3:'Безопасность', cta1:'Через Telegram', cta2:'Связаться для активации', how:'Активация', h1:'Связь через Telegram.', h2:'Подключение к пулу.', h3:'Автодоход.', join:'Активировать', edu:'ETH Обзор', e1:'Proof-of-Stake.', e2:'Стейкинг защищает сеть.', e3:'Пулы стабильны.', sec:'Безопасность', sec1:'Распределённые валидаторы.', sec2:'Прозрачные контракты.', sec3:'Устойчивый доход.'},
+      pt:{name:'Português', title:'Mineração ETH Segura & Staking', sub:'Rede PoS com ganhos automáticos.', s1:'Retorno', s2:'Automático', s3:'Segurança', cta1:'Entrar via Telegram', cta2:'Contato para Ativar', how:'Ativação', h1:'Contato Telegram.', h2:'Pool seguro.', h3:'Ganhos automáticos.', join:'Ativar Nó', edu:'ETH Visão Geral', e1:'Proof-of-Stake.', e2:'Staking protege.', e3:'Pools estabilizam.', sec:'Segurança', sec1:'Validadores distribuídos.', sec2:'Contratos claros.', sec3:'Retorno sustentável.'},
+      ar:{name:'العربية', title:'تعدين ETH آمن وتحصيص', sub:'شبكة PoS مع أرباح تلقائية.', s1:'العائد', s2:'تلقائي', s3:'الأمان', cta1:'الانضمام عبر تيليجرام', cta2:'التواصل للتفعيل', how:'طريقة التفعيل', h1:'التواصل عبر تيليجرام.', h2:'الاتصال بمجمع آمن.', h3:'توزيع تلقائي.', join:'تفعيل العقدة', edu:'نظرة عامة ETH', e1:'إثبات الحصة.', e2:'التحصيص يؤمن الشبكة.', e3:'المجمعات تزيد الاستقرار.', sec:'أمن البلوكشين', sec1:'مدققون موزعون.', sec2:'عقود شفافة.', sec3:'عوائد مستدامة.'},
+      hi:{name:'हिंदी', title:'सुरक्षित ETH माइनिंग और स्टेकिंग', sub:'PoS नेटवर्क के साथ ऑटो रिटर्न.', s1:'रिटर्न', s2:'ऑटो', s3:'सुरक्षा', cta1:'Telegram से जुड़ें', cta2:'संपर्क कर सक्रिय करें', how:'कैसे सक्रिय करें', h1:'Telegram पर संपर्क करें.', h2:'सुरक्षित पूल से कनेक्ट.', h3:'स्वचालित रिवार्ड.', join:'नोड सक्रिय करें', edu:'ETH परिचय', e1:'Proof-of-Stake.', e2:'स्टेकिंग नेटवर्क सुरक्षित करता है.', e3:'पूल स्थिरता बढ़ाते हैं.', sec:'ब्लॉकचेन सुरक्षा', sec1:'वितरित वैलिडेटर.', sec2:'पारदर्शी नियम.', sec3:'स्थायी रिटर्न.'}
+    };
+
+    const map={title:'t-title',sub:'t-sub',s1:'t-s1',s2:'t-s2',s3:'t-s3',cta1:'t-cta1',cta2:'t-cta2',how:'t-how',h1:'t-h1',h2:'t-h2',h3:'t-h3',join:'t-join',edu:'t-edu',e1:'t-e1',e2:'t-e2',e3:'t-e3',sec:'t-sec',sec1:'t-sec1',sec2:'t-sec2',sec3:'t-sec3'};
+
+    const langSel=document.getElementById('lang');
+    Object.keys(i18n).forEach(k=>{const o=document.createElement('option');o.value=k;o.textContent=i18n[k].name;langSel.appendChild(o);});
+    function render(l){Object.keys(map).forEach(k=>document.getElementById(map[k]).textContent=i18n[l][k]);}
+    langSel.value='en'; render('en'); langSel.onchange=()=>render(langSel.value);
+
+    ['tg1','tg2','tg3'].forEach(id=>document.getElementById(id).href=TG_LINK);
+  </script>
 </body>
 </html>
-```
