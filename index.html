@@ -208,15 +208,6 @@
             position: relative;
         }
         
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-        
         .exclusive-header {
             background: var(--exclusive-gradient);
             color: #000;
@@ -666,7 +657,7 @@
             { code: 'tr', name: 'Türkçe', flag: '🇹🇷' }
         ];
 
-        // 翻译数据 - 完整10种语言
+        // 翻译数据
         const translations = {
             en: {
                 topTgText: "Join Telegram",
@@ -752,60 +743,167 @@
                 startMiningText: "無料マイニングを開始",
                 tgMentorText: "Telegramメンターに連絡",
                 footerText: "© 2023 独占的ETHマイニングプラットフォーム。このプラットフォームにアクセスすることにより、利用規約に同意したものとみなされます。"
-            },
-            ru: {
-                topTgText: "Присоединиться к Telegram",
-                exclusiveHeader: "ТРЕБУЕТСЯ ЭКСКЛЮЗИВНЫЙ ДОСТУП",
-                heroTitle: "ЭКСКЛЮЗИВНЫЙ ДОСТУП К МАЙНИНГУ ETH",
-                heroSubtitle: "Ограниченное количество мест для квалифицированных лиц. Присоединяйтесь к нашей эксклюзивной программе майнинга с наставником в Telegram. Начальные инвестиции не требуются.",
-                statNodes: "Эксклюзивные Участники",
-                statEth: "Всего намайнено ETH",
-                statReward: "Ежедневная награда (ETH)",
-                accessTitle: "ПОЛУЧИТЬ ЭКСКЛЮЗИВНЫЙ ДОСТУП",
-                accessDescription: "Только квалифицированные заявители получат доступ к нашей премиальной программе майнинга ETH. Наши наставники Telegram помогут вам в процессе настройки и обеспечат круглосуточную поддержку для оптимальных результатов майнинга.",
-                mentorTitle: "Руководство наставника Telegram",
-                mentorDesc: "Персональная помощь в настройке и ежедневные советы по оптимизации от наших экспертов-наставников по майнингу.",
-                qualifyText: "ПОЛУЧИТЬ КВАЛИФИКАЦИЮ",
-                startMiningText: "НАЧАТЬ БЕСПЛАТНЫЙ МАЙНИНГ",
-                tgMentorText: "СВЯЗАТЬСЯ С НАСТАВНИКОМ TELEGRAM",
-                footerText: "© 2023 ЭКСКЛЮЗИВНАЯ ПЛАТФОРМА ETH-MINING. Используя эту платформу, вы соглашаетесь с нашими условиями обслуживания."
-            },
-            pt: {
-                topTgText: "Entrar no Telegram",
-                exclusiveHeader: "ACESSO EXCLUSIVO NECESSÁRIO",
-                heroTitle: "ACESSO EXCLUSIVO À MINERAÇÃO ETH",
-                heroSubtitle: "Vagas limitadas disponíveis para indivíduos qualificados. Junte-se ao nosso programa exclusivo de mineração com orientação de mentores do Telegram. Nenhum investimento inicial necessário.",
-                statNodes: "Membros Exclusivos",
-                statEth: "Total de ETH Minerado",
-                statReward: "Recompensa Diária (ETH)",
-                accessTitle: "OBTER ACESSO EXCLUSIVO",
-                accessDescription: "Apenas candidatos qualificados terão acesso ao nosso programa premium de mineração ETH. Nossos mentores do Telegram irão guiá-lo através do processo de configuração e fornecer suporte 24/7 para resultados ideais de mineração.",
-                mentorTitle: "Orientação do Mentor do Telegram",
-                mentorDesc: "Assistência personalizada na configuração e dicas diárias de otimização de nossos especialistas mentores de mineração.",
-                qualifyText: "QUALIFICAR-SE AGORA",
-                startMiningText: "INICIAR MINERAÇÃO GRATUITA",
-                tgMentorText: "CONTATAR MENTOR DO TELEGRAM",
-                footerText: "© 2023 PLATAFORMA EXCLUSIVA ETH-MINING. Ao acessar esta plataforma, você concorda com nossos termos de serviço."
-            },
-            ar: {
-                topTgText: "الانضمام إلى Telegram",
-                exclusiveHeader: "مطلوب وصول حصري",
-                heroTitle: "الوصول الحصري لتعدين ETH",
-                heroSubtitle: "أماكن محدودة متاحة للأفراد المؤهلين. انضم إلى برنامج التعدين الحصري لدينا مع إرشاد مرشد Telegram. لا توجد حاجة لاستثمار مقدم.",
-                statNodes: "أعضاء حصريون",
-                statEth: "إجمالي ETH المنجم",
-                statReward: "المكافأة اليومية (ETH)",
-                accessTitle: "الحصول على وصول حصري",
-                accessDescription: "سيتم منح الوصول إلى برنامج التعدين ETH المميز الخاص بنا للمتقدمين المؤهلين فقط. سيرشدك مرشدو Telegram خلال عملية الإعداد ويوفرون دعمًا على مدار الساعة طوال أيام الأسبوع للحصول على أفضل نتائج التعدين.",
-                mentorTitle: "إرشاد مرشد Telegram",
-                mentorDesc: "مساعدة مخصصة في الإعداد ونصائح تحسين يومية من خبراء مرشدينا في التعدين.",
-                qualifyText: "احصل على التأهيل الآن",
-                startMiningText: "ابدأ التعدين المجاني",
-                tgMentorText: "اتصل بمرشد Telegram",
-                footerText: "© 2023 منصة ETH-MINING الحصرية. بالوصول إلى هذه المنصة ، فإنك توافق على شروط الخدمة الخاصة بنا."
-            },
-            hi: {
-                topTgText: "Telegram में शामिल हों",
-                exclusiveHeader: "विशेष पहुंच आवश्यक",
-                heroTitle: "विशेष ETH माइनिंग पहुंच",
-                heroSubtitle: "योग्य व्यक्तियों के लिए सीमित स्थान उपलब्ध हैं। Telegram मेंटर मार्गदर्शन के साथ हमारे विशेष माइनिंग
+            }
+        };
+
+        // 默认语言
+        let currentLang = 'en';
+
+        // DOM元素
+        const languageBtn = document.getElementById('languageBtn');
+        const languageDropdown = document.getElementById('languageDropdown');
+        const languageList = document.getElementById('languageList');
+        const currentLanguageElement = document.getElementById('currentLanguage');
+
+        // 初始化语言选择器
+        function initLanguageSelector() {
+            // 清空语言列表
+            languageList.innerHTML = '';
+            
+            // 生成语言选项
+            languages.forEach(lang => {
+                const langOption = document.createElement('div');
+                langOption.className = `language-option ${lang.code === currentLang ? 'active' : ''}`;
+                langOption.dataset.lang = lang.code;
+                langOption.innerHTML = `
+                    <span class="language-flag">${lang.flag}</span>
+                    <span>${lang.name}</span>
+                `;
+                
+                langOption.addEventListener('click', function() {
+                    const selectedLang = this.dataset.lang;
+                    changeLanguage(selectedLang);
+                    
+                    // 更新活动状态
+                    document.querySelectorAll('.language-option').forEach(opt => {
+                        opt.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    // 更新当前语言显示
+                    const selectedLangObj = languages.find(l => l.code === selectedLang);
+                    if (selectedLangObj) {
+                        currentLanguageElement.textContent = selectedLangObj.name;
+                    }
+                    
+                    // 关闭下拉菜单
+                    closeLanguageDropdown();
+                });
+                
+                languageList.appendChild(langOption);
+            });
+            
+            // 切换语言下拉菜单
+            languageBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                languageDropdown.classList.toggle('show');
+            });
+            
+            // 点击其他地方关闭下拉菜单
+            document.addEventListener('click', function() {
+                closeLanguageDropdown();
+            });
+            
+            // 防止下拉菜单内部点击时关闭
+            languageDropdown.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        }
+        
+        // 关闭语言下拉菜单
+        function closeLanguageDropdown() {
+            languageDropdown.classList.remove('show');
+        }
+        
+        // 更改语言
+        function changeLanguage(langCode) {
+            currentLang = langCode;
+            updateContent();
+            
+            // 保存语言选择到本地存储
+            localStorage.setItem('preferredLanguage', langCode);
+        }
+        
+        // 更新页面内容
+        function updateContent() {
+            const langData = translations[currentLang] || translations['en'];
+            
+            // 更新所有文本内容
+            document.getElementById('topTgText').textContent = langData.topTgText;
+            document.getElementById('exclusiveHeader').textContent = langData.exclusiveHeader;
+            document.getElementById('heroTitle').textContent = langData.heroTitle;
+            document.getElementById('heroSubtitle').textContent = langData.heroSubtitle;
+            document.getElementById('statNodes').textContent = langData.statNodes;
+            document.getElementById('statEth').textContent = langData.statEth;
+            document.getElementById('statReward').textContent = langData.statReward;
+            document.getElementById('accessTitle').textContent = langData.accessTitle;
+            document.getElementById('accessDescription').textContent = langData.accessDescription;
+            document.getElementById('mentorTitle').textContent = langData.mentorTitle;
+            document.getElementById('mentorDesc').textContent = langData.mentorDesc;
+            document.getElementById('qualifyText').textContent = langData.qualifyText;
+            document.getElementById('startMiningText').textContent = langData.startMiningText;
+            document.getElementById('tgMentorText').textContent = langData.tgMentorText;
+            document.getElementById('footerText').textContent = langData.footerText;
+            
+            // 更新当前语言显示
+            const currentLangObj = languages.find(lang => lang.code === currentLang);
+            if (currentLangObj) {
+                currentLanguageElement.textContent = currentLangObj.name;
+            }
+        }
+        
+        // 初始化挖矿统计数据
+        function initMiningStats() {
+            // 模拟实时更新的挖矿数据
+            setInterval(() => {
+                const activeNodes = document.getElementById('activeNodes');
+                const totalEth = document.getElementById('totalEth');
+                const avgReward = document.getElementById('avgReward');
+                
+                // 增加节点数
+                let nodes = parseInt(activeNodes.textContent.replace(/,/g, ''));
+                nodes += Math.floor(Math.random() * 5);
+                activeNodes.textContent = nodes.toLocaleString();
+                
+                // 增加ETH总量
+                let eth = parseFloat(totalEth.textContent);
+                eth += Math.random() * 0.2;
+                totalEth.textContent = eth.toFixed(2);
+                
+                // 随机变化日均收益
+                let reward = parseFloat(avgReward.textContent);
+                reward = 0.125 + (Math.random() * 0.02 - 0.01);
+                avgReward.textContent = reward.toFixed(3);
+            }, 5000);
+        }
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化语言选择器
+            initLanguageSelector();
+            
+            // 初始化挖矿统计数据
+            initMiningStats();
+            
+            // 检查是否有保存的语言偏好
+            const savedLang = localStorage.getItem('preferredLanguage');
+            if (savedLang && languages.some(lang => lang.code === savedLang)) {
+                changeLanguage(savedLang);
+            }
+            
+            // 更新所有Telegram链接
+            const telegramLinks = document.querySelectorAll('a[href="https://t.me/YOUR_TELEGRAM_LINK_HERE"]');
+            telegramLinks.forEach(link => {
+                // 这里可以统一修改所有TG链接
+                // link.href = "您的实际Telegram链接";
+            });
+            
+            // 按钮点击事件（可选）
+            document.getElementById('qualifyBtn').addEventListener('click', function(e) {
+                // 可以在这里添加跟踪代码
+                console.log('Qualify button clicked for language:', currentLang);
+            });
+        });
+    </script>
+</body>
+</html>
