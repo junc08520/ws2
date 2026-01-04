@@ -1,294 +1,180 @@
+江湖宝典( @jhbdk), [2026/1/5 1:35]
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apex Mining | Non-Custodial ETH Mining</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #3b82f6;
-            --primary-dark: #1d4ed8;
-            --secondary: #10b981;
-            --dark: #0f172a;
-            --darker: #0a0f1b;
-            --light: #1a202c;
-            --gray: #64748b;
-            --gray-light: #e2e8f0;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --border-radius: 12px;
-            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--light);
-            background-color: var(--dark);
-            overflow-x: hidden;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 14px 32px;
-            background-color: var(--primary);
-            color: white;
-            border-radius: var(--border-radius);
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            font-size: 16px;
-            text-align: center;
-        }
-
-        .btn:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .btn-success {
-            background-color: var(--success);
-        }
-
-        .btn-success:hover {
-            background-color: #0da271;
-        }
-
-        .btn-large {
-            padding: 16px 40px;
-            font-size: 18px;
-        }
-
-        .btn-block {
-            display: block;
-            width: 100%;
-        }
-
-        header {
-            background-color: var(--dark);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 700;
-            font-size: 24px;
-            color: var(--light);
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background-color: var(--primary);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .language-selector {
-            position: relative;
-            cursor: pointer;
-        }
-
-        .language-current {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 12px;
-            border-radius: 8px;
-            background-color: var(--gray-light);
-            font-weight: 500;
-        }
-
-        .language-dropdown {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background-color: var(--dark);
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            min-width: 120px;
-            display: none;
-            z-index: 100;
-        }
-
-        .language-selector:hover .language-dropdown {
-            display: block;
-        }
-
-        .language-option {
-            padding: 12px 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: var(--transition);
-        }
-
-        .language-option:hover {
-            background-color: var(--gray-light);
-        }
-
-        .language-option.active {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .contact-telegram {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background-color: #0088cc;
-            color: white;
-            padding: 12px 24px;
-            border-radius: var(--border-radius);
-            font-weight: 600;
-            transition: var(--transition);
-            margin-top: 20px;
-        }
-
-        .contact-telegram:hover {
-            background-color: #0077b5;
-            transform: translateY(-3px);
-        }
-
-        @media (max-width: 992px) {
-            .nav-links, .header-actions .btn {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero h1 {
-                font-size: 36px;
-            }
-        }
-    </style>
+    <title>Xassly - Secure and Decentralized Platform</title>
+    <meta name="description" content="Xassly provides a secure and decentralized platform for various blockchain-based services.">
+    <meta name="keywords" content="Xassly, blockchain, crypto, decentralized, security, platform">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/theme.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts (example) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container header-container">
-            <a href="#" class="logo">
-                <div class="logo-icon">A</div>
-                <span>Apex Mining</span>
-            </a>
-            
-            <div class="nav-links">
-                <a href="#why">Why Choose Us</a>
-                <a href="#how">How It Works</a>
-                <a href="#plans">VIP Plans</a>
-                <a href="#calculator">Calculator</a>
-                <a href="#safety">Safety</a>
-                <a href="#faq">FAQ</a>
+    <header id="main-header">
+        <nav class="container">
+            <div class="logo">
+                <a href="/">XASSLY</a>
             </div>
-            
-            <div class="header-actions">
-                <div class="language-selector">
-                    <div class="language-current">
-                        <i class="fas fa-globe"></i>
-                        <span class="current-lang">EN</span>
-                        <i class="fas fa-chevron-down"></i>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#ecosystem">Ecosystem</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#safety">Safety</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="cta-buttons">
+                <a href="/login" class="btn btn-secondary">Log In</a>
+                <a href="/signup" class="btn btn-primary">Sign Up</a>
+            </div>
+            <div class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero-section" class="hero">
+            <div class="container text-center">
+                <h1>Welcome to Xassly</h1>
+                <p>Your gateway to secure and innovative decentralized solutions.</p>
+                <a href="#get-started" class="btn btn-primary btn-large">Get Started</a>
+            </div>
+        </section>
+
+        <section id="features" class="section-padding">
+            <div class="container">
+                <h2 class="section-title">Key Features</h2>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt icon"></i>
+                        <h3>Advanced Security</h3>
+                        <p>Leveraging cutting-edge encryption and blockchain technology.</p>
                     </div>
-                    <div class="language-dropdown">
-                        <div class="language-option active" data-lang="en">
-                            <span>English</span>
-                        </div>
-                        <div class="language-option" data-lang="es">
-                            <span>Español</span>
-                        </div>
-                        <div class="language-option" data-lang="fr">
-                            <span>Français</span>
-                        </div>
-                        <div class="language-option" data-lang="de">
-                            <span>Deutsch</span>
-                        </div>
-                        <div class="language-option" data-lang="pt">
-                            <span>Português</span>
-                        </div>
-                        <div class="language-option" data-lang="ru">
-                            <span>Русский</span>
-                        </div>
-                        <div class="language-option" data-lang="ja">
-                            <span>日本語</span>
-                        </div>
-                        <div class="language-option" data-lang="ko">
-                            <span>한국어</span>
-                        </div>
-                        <div class="language-option" data-lang="ar">
-                            <span>العربية</span>
-                        </div>
-                        <div class="language-option" data-lang="it">
-                            <
+                    <div class="feature-item">
+                        <i class="fas fa-decentralized icon"></i>
+                        <h3>Fully Decentralized</h3>
+                        <p>No single point of failure, ensuring censorship resistance.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-cogs icon"></i>
+                        <h3>Scalable Infrastructure</h3>
+                        <p>Designed for high performance and future growth.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="safety" class="section-padding bg-light">
+            <div class="container">
+                <h2 class="section-title">Our Commitment to Your Safety</h2>
+                <div class="safety-content">
+                    <p>At Xassly, security is paramount. We understand the critical importance of protecting your assets and data in the decentralized world. Our platform is built with a multi-layered security architecture, designed to withstand sophisticated threats and ensure the integrity of all transactions.</p>
+
+江湖宝典( @jhbdk), [2026/1/5 1:35]
+（续 2/3）
+
+<h3>Robust Security Measures:</h3>
+                    <ul>
+                        <li><strong>End-to-End Encryption:</strong> All communications and data transfers are secured with industry-leading encryption protocols.</li>
+                        <li><strong>Smart Contract Audits:</strong> Our smart contracts undergo rigorous independent audits by top-tier blockchain security firms.</li>
+                        <li><strong>Decentralized Infrastructure:</strong> Distribution across numerous nodes mitigates risks associated with centralized points of attack.</li>
+                        <li><strong>Multi-Factor Authentication (MFA):</strong> Enhanced login security to protect your accounts from unauthorized access.</li>
+                        <li><strong>Regular Penetration Testing:</strong> Continuous testing and vulnerability assessments to identify and patch potential weaknesses.</li>
+                        <li><strong>Cold Storage Solutions:</strong> A significant portion of digital assets are held in secure cold storage to prevent online theft.</li>
+                        <li><strong>Community-Driven Security:</strong> Active monitoring and reporting mechanisms allowing our community to contribute to platform safety.</li>
+                    </ul>
+
+                    <p>We are constantly evolving our security practices to stay ahead of emerging threats, ensuring a safe and reliable environment for all Xassly users. Your trust is our highest priority.</p>
+
+                    <div class="safety-badges">
+                        <img src="/img/security-audit-badge.png" alt="Security Audit Certified">
+                        <img src="/img/ssl-encrypted-badge.png" alt="SSL Encrypted">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ecosystem" class="section-padding">
+            <div class="container">
+                <h2 class="section-title">Xassly Ecosystem</h2>
+                <p class="text-center">Explore the various components that make up the Xassly network.</p>
+                <!-- Placeholder for ecosystem components -->
+            </div>
+        </section>
+
+        <section id="roadmap" class="section-padding bg-light">
+            <div class="container">
+                <h2 class="section-title">Roadmap</h2>
+                <div class="roadmap-timeline">
+                    <!-- Placeholder for roadmap items -->
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section-padding">
+            <div class="container">
+                <h2 class="section-title">Get in Touch</h2>
+                <p class="text-center">Have questions? We're here to help.</p>
+                <form class="contact-form">
+                    <input type="text" placeholder="Your Name">
+                    <input type="email" placeholder="Your Email">
+                    <textarea placeholder="Your Message"></textarea>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer id="main-footer">
+        <div class="container">
+            <div class="footer-links">
+                <ul>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                    <li><a href="/terms">Terms of Service</a></li>
+                    <li><a href="/faq">FAQ</a></li>
+                    <li><a href="/support">Support</a></li>
+                </ul>
+            </div>
+            <div class="social-media">
+                <a href="https://twitter.com/xassly" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://telegram.org/xassly" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+                <a href="https://github.com/xassly" target="_
+
+江湖宝典( @jhbdk), [2026/1/5 1:35]
+（续 3/3）
+
+blank"><i class="fab fa-github"></i></a>
+            </div>
+            <p>&copy; 2023 Xassly. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script>
+        // Example for mobile menu toggle
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+```
