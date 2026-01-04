@@ -155,34 +155,35 @@
             background-color: var(--bg-card);
             border: 1px solid rgba(98, 126, 234, 0.3);
             border-radius: 8px;
-            width: 280px;
+            width: 200px;
             max-height: 400px;
             overflow-y: auto;
             display: none;
             z-index: 100;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            padding: 10px;
         }
         
         .language-dropdown.show {
             display: block;
         }
         
-        .language-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-            gap: 8px;
+        .language-list {
+            display: flex;
+            flex-direction: column;
         }
         
         .language-option {
-            padding: 10px 12px;
+            padding: 12px 16px;
             cursor: pointer;
             transition: background-color 0.2s;
             display: flex;
             align-items: center;
-            gap: 10px;
-            border-radius: 6px;
-            font-size: 14px;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .language-option:last-child {
+            border-bottom: none;
         }
         
         .language-option:hover {
@@ -195,10 +196,9 @@
         }
         
         .language-flag {
-            width: 20px;
-            height: 15px;
-            object-fit: cover;
-            border-radius: 2px;
+            font-size: 1.2rem;
+            min-width: 24px;
+            text-align: center;
         }
         
         /* 主内容区 */
@@ -245,13 +245,6 @@
             color: var(--text-muted);
             max-width: 700px;
             margin: 0 auto 40px;
-        }
-        
-        .eth-icon-large {
-            font-size: 60px;
-            color: var(--eth-color);
-            margin-bottom: 30px;
-            display: inline-block;
         }
         
         /* 挖矿统计 */
@@ -491,9 +484,7 @@
             }
             
             .language-dropdown {
-                width: 250px;
-                left: 0;
-                right: auto;
+                width: 200px;
             }
             
             .exclusive-access {
@@ -534,11 +525,8 @@
             .language-dropdown {
                 left: 50%;
                 transform: translateX(-50%);
+                right: auto;
                 width: 90vw;
-            }
-            
-            .language-grid {
-                grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
             }
             
             .button-container {
@@ -560,35 +548,6 @@
             header {
                 margin-top: 45px;
             }
-        }
-        
-        /* 浮动ETH图标 */
-        .floating-eth {
-            position: absolute;
-            font-size: 24px;
-            color: rgba(98, 126, 234, 0.3);
-            z-index: -1;
-            animation: float 20s infinite linear;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); }
-            100% { transform: translateY(-1000px) rotate(360deg); }
-        }
-        
-        /* 语言指示器 */
-        .language-indicator {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: rgba(26, 26, 26, 0.8);
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(98, 126, 234, 0.2);
-            z-index: 999;
         }
     </style>
 </head>
@@ -615,7 +574,7 @@
                     </button>
                     
                     <div class="language-dropdown" id="languageDropdown">
-                        <div class="language-grid" id="languageGrid">
+                        <div class="language-list" id="languageList">
                             <!-- 语言选项将通过JavaScript动态生成 -->
                         </div>
                     </div>
@@ -627,9 +586,6 @@
     <!-- 主内容区 -->
     <main>
         <section class="hero">
-            <!-- 背景浮动ETH图标 -->
-            <div class="hero-bg" id="floatingIcons"></div>
-            
             <div class="container">
                 <div class="exclusive-header">
                     <i class="fas fa-crown"></i> <span id="exclusiveHeader">EXCLUSIVE ACCESS REQUIRED</span>
@@ -688,11 +644,6 @@
         </section>
     </main>
 
-    <!-- 语言指示器 -->
-    <div class="language-indicator" id="languageIndicator">
-        <i class="fas fa-language"></i> <span id="currentLangDisplay">English</span>
-    </div>
-
     <!-- 页脚 -->
     <footer>
         <div class="container">
@@ -701,7 +652,7 @@
     </footer>
 
     <script>
-        // 10种主流语言数据（去掉中文）
+        // 10种主流语言数据
         const languages = [
             { code: 'en', name: 'English', flag: '🇺🇸' },
             { code: 'es', name: 'Español', flag: '🇪🇸' },
@@ -840,4 +791,21 @@
                 topTgText: "الانضمام إلى Telegram",
                 exclusiveHeader: "مطلوب وصول حصري",
                 heroTitle: "الوصول الحصري لتعدين ETH",
-                heroSubtitle: "أماكن
+                heroSubtitle: "أماكن محدودة متاحة للأفراد المؤهلين. انضم إلى برنامج التعدين الحصري لدينا مع إرشاد مرشد Telegram. لا توجد حاجة لاستثمار مقدم.",
+                statNodes: "أعضاء حصريون",
+                statEth: "إجمالي ETH المنجم",
+                statReward: "المكافأة اليومية (ETH)",
+                accessTitle: "الحصول على وصول حصري",
+                accessDescription: "سيتم منح الوصول إلى برنامج التعدين ETH المميز الخاص بنا للمتقدمين المؤهلين فقط. سيرشدك مرشدو Telegram خلال عملية الإعداد ويوفرون دعمًا على مدار الساعة طوال أيام الأسبوع للحصول على أفضل نتائج التعدين.",
+                mentorTitle: "إرشاد مرشد Telegram",
+                mentorDesc: "مساعدة مخصصة في الإعداد ونصائح تحسين يومية من خبراء مرشدينا في التعدين.",
+                qualifyText: "احصل على التأهيل الآن",
+                startMiningText: "ابدأ التعدين المجاني",
+                tgMentorText: "اتصل بمرشد Telegram",
+                footerText: "© 2023 منصة ETH-MINING الحصرية. بالوصول إلى هذه المنصة ، فإنك توافق على شروط الخدمة الخاصة بنا."
+            },
+            hi: {
+                topTgText: "Telegram में शामिल हों",
+                exclusiveHeader: "विशेष पहुंच आवश्यक",
+                heroTitle: "विशेष ETH माइनिंग पहुंच",
+                heroSubtitle: "योग्य व्यक्तियों के लिए सीमित स्थान उपलब्ध हैं। Telegram मेंटर मार्गदर्शन के साथ हमारे विशेष माइनिंग
