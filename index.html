@@ -167,52 +167,26 @@
             border: 1px solid rgba(139, 195, 74, 0.3);
         }
 
-        /* Report Form */
-        .report-form-container {
-            background-color: white;
+        .free-consultation-box {
+            background-color: rgba(255, 255, 255, 0.1);
             border-radius: var(--border-radius);
             padding: 40px;
-            max-width: 600px;
+            max-width: 700px;
             margin: 40px auto 0;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .form-title {
-            text-align: center;
-            color: var(--primary-color);
+        .free-consultation-box h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #8bc34a;
+        }
+
+        .free-consultation-box p {
+            font-size: 18px;
             margin-bottom: 25px;
-            font-size: 26px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: var(--border-radius);
-            font-size: 16px;
-            transition: var(--transition);
-        }
-
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: var(--secondary-color);
-            box-shadow: 0 0 0 2px rgba(42, 110, 63, 0.2);
-        }
-
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
+            opacity: 0.9;
         }
 
         /* Buttons */
@@ -238,11 +212,6 @@
             border: none;
             cursor: pointer;
             min-width: 220px;
-        }
-
-        .btn-report {
-            background-color: var(--secondary-color);
-            color: white;
         }
 
         .btn-whatsapp {
@@ -397,6 +366,7 @@
             box-shadow: var(--box-shadow);
             transition: var(--transition);
             border: 1px solid #eee;
+            text-align: center;
         }
 
         .report-card:hover {
@@ -531,7 +501,7 @@
                 font-size: 18px;
             }
             
-            .report-form-container {
+            .free-consultation-box {
                 padding: 30px 20px;
             }
             
@@ -549,10 +519,6 @@
                 font-size: 30px;
             }
             
-            .research-stats {
-                grid-template-columns: 1fr;
-            }
-            
             .cta h2 {
                 font-size: 32px;
             }
@@ -566,68 +532,6 @@
             .services-grid, .reports-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .form-title {
-                font-size: 22px;
-            }
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content {
-            background-color: white;
-            border-radius: var(--border-radius);
-            padding: 40px;
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .modal-icon {
-            font-size: 60px;
-            color: var(--secondary-color);
-            margin-bottom: 20px;
-        }
-
-        .modal h3 {
-            color: var(--primary-color);
-            font-size: 28px;
-            margin-bottom: 15px;
-        }
-
-        .modal p {
-            color: var(--text-light);
-            margin-bottom: 25px;
-            font-size: 18px;
-        }
-
-        .close-modal {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: var(--border-radius);
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .close-modal:hover {
-            background-color: var(--secondary-color);
         }
     </style>
 </head>
@@ -661,48 +565,20 @@
                 <h2 id="hero-title">بحوث مالية <span class="highlight">مجانية</span> لتوعية المستثمرين وتمكينهم</h2>
                 <p id="hero-description">مختبرات برينستون هي مبادرة بحثية غير ربحية تقدم تحليلات مالية متعمقة واستشارات موضوعية مجانية. نحن نؤمن بأن المعرفة المالية يجب أن تكون متاحة للجميع لاتخاذ قرارات مالية مستنيرة.</p>
                 
-                <div class="report-form-container">
-                    <h3 class="form-title" id="form-title">اطلب تقريرك المالي المجاني المخصص</h3>
-                    <form id="report-form">
-                        <div class="form-group">
-                            <label for="name" id="name-label">الاسم الكامل</label>
-                            <input type="text" id="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email" id="email-label">البريد الإلكتروني</label>
-                            <input type="email" id="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="interest" id="interest-label">مجال الاهتمام المالي</label>
-                            <select id="interest" required>
-                                <option value="" disabled selected id="select-default">اختر مجال اهتمامك</option>
-                                <option value="investment" id="option1">تخطيط الاستثمار</option>
-                                <option value="retirement" id="option2">تخطيط التقاعد</option>
-                                <option value="education" id="option3">تخطيط التعليم</option>
-                                <option value="wealth" id="option4">إدارة الثروة</option>
-                                <option value="risk" id="option5">تقييم المخاطر المالية</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="message" id="message-label">ملاحظات إضافية (اختياري)</label>
-                            <textarea id="message" placeholder="أخبرنا المزيد عن احتياجاتك المالية..."></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-report" id="submit-btn">
-                            <i class="fas fa-file-download"></i>
-                            <span>اطلب تقريري المجاني</span>
-                        </button>
-                    </form>
-                </div>
-                
-                <div class="action-buttons">
-                    <a href="https://wa.me/966500000000?text=مرحبًا، أريد الحصول على تقرير مالي مجاني" class="btn btn-whatsapp" target="_blank" id="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i>
-                        <span>استشارة عبر واتساب</span>
-                    </a>
-                    <a href="https://t.me/PrincetonLabs" class="btn btn-telegram" target="_blank" id="telegram-btn">
-                        <i class="fab fa-telegram"></i>
-                        <span>استشارة عبر تليجرام</span>
-                    </a>
+                <div class="free-consultation-box">
+                    <h3 id="consultation-title">استشارات مالية مجانية بالكامل</h3>
+                    <p id="consultation-description">تواصل مع خبرائنا للحصول على تحليل مالي مخصص وإجابات على أسئلتك المالية. جميع خدماتنا مقدمة مجانًا كجزء من رسالتنا في نشر الوعي المالي.</p>
+                    
+                    <div class="action-buttons">
+                        <a href="https://wa.me/966500000000?text=مرحبًا، أريد استشارة مالية مجانية من مختبرات برينستون" class="btn btn-whatsapp" target="_blank" id="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>استشارة مجانية عبر واتساب</span>
+                        </a>
+                        <a href="https://t.me/PrincetonLabs" class="btn btn-telegram" target="_blank" id="telegram-btn">
+                            <i class="fab fa-telegram"></i>
+                            <span>استشارة مجانية عبر تليجرام</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -754,7 +630,7 @@
                     <p id="research-description2">نحن نؤمن بأن المعلومات المالية الدقيقة والمحايدة هي حق للجميع، ونسعى إلى سد الفجوة المعرفية في المجال المالي من خلال أبحاثنا المجانية والموثوقة.</p>
                     
                     <div class="free-report-highlight">
-                        <h3 id="highlight-title">جميع تقاريرنا مجانية بالكامل</h3>
+                        <h3 id="highlight-title">جميع خدماتنا مجانية بالكامل</h3>
                         <p id="highlight-description">نرفض أي نموذج عمل قائم على الربح من الاستشارات المالية. يتم تمويل أبحاثنا من خلال منح مؤسساتية وداعمين يؤمنون برسالتنا في نشر المعرفة المالية المجانية.</p>
                     </div>
                 </div>
@@ -772,8 +648,8 @@
     <section class="reports">
         <div class="container">
             <div class="section-title">
-                <h2 id="reports-title">نماذج من تقاريرنا المجانية</h2>
-                <p id="reports-description">تصفح بعض الأمثلة من التقارير البحثية المجانية التي نقدمها في مختلف المجالات المالية</p>
+                <h2 id="reports-title">مجالات بحثنا المجانية</h2>
+                <p id="reports-description">نتخصص في تقديم تحليلات ودراسات مجانية في المجالات المالية المختلفة لزيادة الوعي والتمكين المالي</p>
             </div>
             
             <div class="reports-grid">
@@ -782,9 +658,9 @@
                         <i class="fas fa-chart-pie" style="color: #2a6e3f;"></i>
                     </div>
                     <div class="report-content">
-                        <div class="report-tag" id="report-tag1">تقرير مجاني</div>
-                        <h3 id="report1-title">دليل تخطيط الاستثمار للمبتدئين</h3>
-                        <p id="report1-description">دليل شامل يشرح أساسيات الاستثمار للمبتدئين بدون تعقيدات، مع نصائح عملية لتجنب المخاطر الشائعة.</p>
+                        <div class="report-tag" id="report-tag1">مجال بحثي</div>
+                        <h3 id="report1-title">تخطيط الاستثمار الشخصي</h3>
+                        <p id="report1-description">تحليلات واستشارات مجانية تساعد الأفراد على فهم أساسيات الاستثمار وبناء خطط استثمارية تناسب ظروفهم المالية.</p>
                     </div>
                 </div>
                 
@@ -793,9 +669,9 @@
                         <i class="fas fa-shield-alt" style="color: #1565c0;"></i>
                     </div>
                     <div class="report-content">
-                        <div class="report-tag" id="report-tag2">تقرير مجاني</div>
-                        <h3 id="report2-title">إدارة المخاطر المالية الشخصية</h3>
-                        <p id="report2-description">تحليل لمخاطر المالية الشخصية وكيفية بناء خطة حماية مالية فعالة تحمي مستقبلك المالي.</p>
+                        <div class="report-tag" id="report-tag2">مجال بحثي</div>
+                        <h3 id="report2-title">إدارة المخاطر المالية</h3>
+                        <p id="report2-description">دراسات مجانية حول تقييم المخاطر المالية الشخصية والعائلية وبناء استراتيجيات حماية مالية فعالة.</p>
                     </div>
                 </div>
                 
@@ -804,9 +680,9 @@
                         <i class="fas fa-university" style="color: #ef6c00;"></i>
                     </div>
                     <div class="report-content">
-                        <div class="report-tag" id="report-tag3">تقرير مجاني</div>
-                        <h3 id="report3-title">تخطيط التقاعد في العالم العربي</h3>
-                        <p id="report3-description">دراسة معمقة حول واقع التخطيط للتقاعد في المنطقة العربية مع حلول عملية لضمان تقاعد مريح.</p>
+                        <div class="report-tag" id="report-tag3">مجال بحثي</div>
+                        <h3 id="report3-title">التخطيط المالي طويل الأجل</h3>
+                        <p id="report3-description">أبحاث مجانية حول التخطيط للتقاعد والتعليم والأهداف المالية طويلة المدى مع تقديم إرشادات عملية.</p>
                     </div>
                 </div>
             </div>
@@ -816,17 +692,17 @@
     <!-- CTA Section -->
     <section class="cta">
         <div class="container">
-            <h2 id="cta-title">اطلب تقريرك المالي المجاني اليوم</h2>
-            <p id="cta-description">انضم إلى الآلاف الذين استفادوا من أبحاثنا المجانية. احصل على تقرير مالي مخصص لاحتياجاتك بدون أي تكلفة.</p>
+            <h2 id="cta-title">احصل على استشارة مالية مجانية اليوم</h2>
+            <p id="cta-description">انضم إلى الآلاف الذين استفادوا من خدماتنا المجانية. تواصل مع خبرائنا للحصول على إجابات لأسئلتك المالية وتوجيه محايد.</p>
             
             <div class="action-buttons">
-                <a href="#report-form" class="btn btn-report" id="cta-report-btn">
-                    <i class="fas fa-file-download"></i>
-                    <span>اطلب تقرير مجاني</span>
-                </a>
-                <a href="https://wa.me/966500000000?text=مرحبًا، أريد الحصول على تقرير مالي مجاني" class="btn btn-whatsapp" target="_blank" id="whatsapp-btn2">
+                <a href="https://wa.me/966500000000?text=مرحبًا، أريد استشارة مالية مجانية من مختبرات برينستون" class="btn btn-whatsapp" target="_blank" id="whatsapp-btn2">
                     <i class="fab fa-whatsapp"></i>
-                    <span>تواصل عبر واتساب</span>
+                    <span>استشارة مجانية عبر واتساب</span>
+                </a>
+                <a href="https://t.me/PrincetonLabs" class="btn btn-telegram" target="_blank" id="telegram-btn2">
+                    <i class="fab fa-telegram"></i>
+                    <span>استشارة مجانية عبر تليجرام</span>
                 </a>
             </div>
         </div>
@@ -852,28 +728,16 @@
                     <h3 id="footer-links-title">روابط سريعة</h3>
                     <a href="#services" id="footer-link1">خدماتنا المجانية</a>
                     <a href="#research" id="footer-link2">منهجية البحث</a>
-                    <a href="#reports" id="footer-link3">التقارير المجانية</a>
-                    <a href="#contact" id="footer-link4">طلب تقرير</a>
+                    <a href="#reports" id="footer-link3">مجالات البحث</a>
+                    <a href="#contact" id="footer-link4">استشارة مجانية</a>
                 </div>
             </div>
             
             <div class="copyright">
-                <p id="copyright-text">© 2023 مختبرات برينستون - مبادرة غير ربحية. جميع التقارير والاستشارات مقدمة مجانًا.</p>
+                <p id="copyright-text">© 2023 مختبرات برينستون - مبادرة غير ربحية. جميع الخدمات والاستشارات مقدمة مجانًا.</p>
             </div>
         </div>
     </footer>
-
-    <!-- Success Modal -->
-    <div class="modal" id="success-modal">
-        <div class="modal-content">
-            <div class="modal-icon">
-                <i class="fas fa-check-circle"></i>
-            </div>
-            <h3 id="modal-title">تم استلام طلبك بنجاح!</h3>
-            <p id="modal-description">سيقوم فريقنا بإعداد تقريرك المالي المجاني المخصص وسيتم إرساله إلى بريدك الإلكتروني خلال 3-5 أيام عمل.</p>
-            <button class="close-modal" id="close-modal">حسنًا</button>
-        </div>
-    </div>
 
     <script>
         // Language content
@@ -887,27 +751,12 @@
                 nonProfitBadge: "مبادرة غير ربحية",
                 heroTitle: "بحوث مالية <span class='highlight'>مجانية</span> لتوعية المستثمرين وتمكينهم",
                 heroDescription: "مختبرات برينستون هي مبادرة بحثية غير ربحية تقدم تحليلات مالية متعمقة واستشارات موضوعية مجانية. نحن نؤمن بأن المعرفة المالية يجب أن تكون متاحة للجميع لاتخاذ قرارات مالية مستنيرة.",
-                
-                // Report Form
-                formTitle: "اطلب تقريرك المالي المجاني المخصص",
-                nameLabel: "الاسم الكامل",
-                emailLabel: "البريد الإلكتروني",
-                interestLabel: "مجال الاهتمام المالي",
-                selectDefault: "اختر مجال اهتمامك",
-                option1: "تخطيط الاستثمار",
-                option2: "تخطيط التقاعد",
-                option3: "تخطيط التعليم",
-                option4: "إدارة الثروة",
-                option5: "تقييم المخاطر المالية",
-                messageLabel: "ملاحظات إضافية (اختياري)",
-                messagePlaceholder: "أخبرنا المزيد عن احتياجاتك المالية...",
-                submitBtn: "اطلب تقريري المجاني",
+                consultationTitle: "استشارات مالية مجانية بالكامل",
+                consultationDescription: "تواصل مع خبرائنا للحصول على تحليل مالي مخصص وإجابات على أسئلتك المالية. جميع خدماتنا مقدمة مجانًا كجزء من رسالتنا في نشر الوعي المالي.",
                 
                 // Buttons
-                whatsappBtn: "استشارة عبر واتساب",
-                telegramBtn: "استشارة عبر تليجرام",
-                ctaWhatsappBtn: "تواصل عبر واتساب",
-                ctaReportBtn: "اطلب تقرير مجاني",
+                whatsappBtn: "استشارة مجانية عبر واتساب",
+                telegramBtn: "استشارة مجانية عبر تليجرام",
                 
                 // Services
                 servicesTitle: "خدماتنا البحثية المجانية",
@@ -923,14 +772,90 @@
                 researchTitle: "منهجيتنا البحثية المحايدة",
                 researchDescription1: "تعتمد مختبرات برينستون على منهجية بحثية أكاديمية صارمة تهدف إلى تقديم تحليلات مالية موضوعية وخالية من أي تأثير تجاري. فريقنا من الباحثين يعملون بشكل مستقل بدون أي ارتباط بمؤسسات استثمارية.",
                 researchDescription2: "نحن نؤمن بأن المعلومات المالية الدقيقة والمحايدة هي حق للجميع، ونسعى إلى سد الفجوة المعرفية في المجال المالي من خلال أبحاثنا المجانية والموثوقة.",
-                highlightTitle: "جميع تقاريرنا مجانية بالكامل",
+                highlightTitle: "جميع خدماتنا مجانية بالكامل",
                 highlightDescription: "نرفض أي نموذج عمل قائم على الربح من الاستشارات المالية. يتم تمويل أبحاثنا من خلال منح مؤسساتية وداعمين يؤمنون برسالتنا في نشر المعرفة المالية المجانية.",
                 
                 // Reports
-                reportsTitle: "نماذج من تقاريرنا المجانية",
-                reportsDescription: "تصفح بعض الأمثلة من التقارير البحثية المجانية التي نقدمها في مختلف المجالات المالية",
-                reportTag1: "تقرير مجاني",
-                reportTag2: "تقرير مجاني",
-                reportTag3: "تقرير مجاني",
-                report1Title: "دليل تخطيط الاستثمار للمبتدئين",
-                report1Description: "دليل شامل يشرح أساسيات الاست
+                reportsTitle: "مجالات بحثنا المجانية",
+                reportsDescription: "نتخصص في تقديم تحليلات ودراسات مجانية في المجالات المالية المختلفة لزيادة الوعي والتمكين المالي",
+                reportTag1: "مجال بحثي",
+                reportTag2: "مجال بحثي",
+                reportTag3: "مجال بحثي",
+                report1Title: "تخطيط الاستثمار الشخصي",
+                report1Description: "تحليلات واستشارات مجانية تساعد الأفراد على فهم أساسيات الاستثمار وبناء خطط استثمارية تناسب ظروفهم المالية.",
+                report2Title: "إدارة المخاطر المالية",
+                report2Description: "دراسات مجانية حول تقييم المخاطر المالية الشخصية والعائلية وبناء استراتيجيات حماية مالية فعالة.",
+                report3Title: "التخطيط المالي طويل الأجل",
+                report3Description: "أبحاث مجانية حول التخطيط للتقاعد والتعليم والأهداف المالية طويلة المدى مع تقديم إرشادات عملية.",
+                
+                // CTA
+                ctaTitle: "احصل على استشارة مالية مجانية اليوم",
+                ctaDescription: "انضم إلى الآلاف الذين استفادوا من خدماتنا المجانية. تواصل مع خبرائنا للحصول على إجابات لأسئلتك المالية وتوجيه محايد.",
+                
+                // Footer
+                footerAboutTitle: "مختبرات برينستون",
+                footerAboutDescription: "مبادرة بحثية غير ربحية تهدف إلى نشر المعرفة المالية الموضوعية والمجانية لتمكين الأفراد من اتخاذ قرارات مالية مستنيرة.",
+                footerContactTitle: "اتصل بنا",
+                footerAddress: "الرياض، المملكة العربية السعودية",
+                footerPhone: "+966 500 000 000",
+                footerEmail: "info@princetonlabs.com",
+                footerLinksTitle: "روابط سريعة",
+                footerLink1: "خدماتنا المجانية",
+                footerLink2: "منهجية البحث",
+                footerLink3: "مجالات البحث",
+                footerLink4: "استشارة مجانية",
+                copyrightText: "© 2023 مختبرات برينستون - مبادرة غير ربحية. جميع الخدمات والاستشارات مقدمة مجانًا."
+            },
+            en: {
+                // Header
+                companyName: "Princeton Labs",
+                companyTagline: "Free Financial Research & Non-Profit Consultations",
+                
+                // Hero Section
+                nonProfitBadge: "Non-Profit Initiative",
+                heroTitle: "Free Financial <span class='highlight'>Research</span> to Educate and Empower Investors",
+                heroDescription: "Princeton Labs is a non-profit research initiative offering in-depth financial analysis and objective free consultations. We believe financial knowledge should be accessible to all for making informed financial decisions.",
+                consultationTitle: "Completely Free Financial Consultations",
+                consultationDescription: "Connect with our experts for personalized financial analysis and answers to your financial questions. All our services are provided free of charge as part of our mission to spread financial awareness.",
+                
+                // Buttons
+                whatsappBtn: "Free Consultation via WhatsApp",
+                telegramBtn: "Free Consultation via Telegram",
+                
+                // Services
+                servicesTitle: "Our Free Research Services",
+                servicesDescription: "We offer a range of free research and consultation services designed to increase financial awareness and empower individuals to make better financial decisions",
+                service1Title: "Objective Market Analysis",
+                service1Description: "Neutral analytical reports on market trends without any commercial bias, aimed at educating investors about real market opportunities and risks.",
+                service2Title: "Financial Literacy",
+                service2Description: "Free educational materials and workshops to raise financial literacy levels and empower individuals to manage their financial affairs with confidence.",
+                service3Title: "Non-Profit Consultations",
+                service3Description: "Completely free consultation sessions aimed at providing objective and unbiased guidance for personal financial planning.",
+                
+                // Research
+                researchTitle: "Our Neutral Research Methodology",
+                researchDescription1: "Princeton Labs relies on a rigorous academic research methodology aimed at providing objective financial analysis free from any commercial influence. Our team of researchers work independently without any ties to investment institutions.",
+                researchDescription2: "We believe that accurate and neutral financial information is a right for everyone, and we seek to bridge the knowledge gap in the financial field through our free and reliable research.",
+                highlightTitle: "All Our Services Are Completely Free",
+                highlightDescription: "We reject any business model based on profiting from financial consultations. Our research is funded through institutional grants and supporters who believe in our mission to spread free financial knowledge.",
+                
+                // Reports
+                reportsTitle: "Our Free Research Areas",
+                reportsDescription: "We specialize in providing free analysis and studies in various financial fields to increase awareness and financial empowerment",
+                reportTag1: "Research Area",
+                reportTag2: "Research Area",
+                reportTag3: "Research Area",
+                report1Title: "Personal Investment Planning",
+                report1Description: "Free analysis and consultations that help individuals understand investment basics and build investment plans suitable for their financial circumstances.",
+                report2Title: "Financial Risk Management",
+                report2Description: "Free studies on assessing personal and family financial risks and building effective financial protection strategies.",
+                report3Title: "Long-Term Financial Planning",
+                report3Description: "Free research on retirement planning, education, and long-term financial goals with practical guidance.",
+                
+                // CTA
+                ctaTitle: "Get a Free Financial Consultation Today",
+                ctaDescription: "Join the thousands who have benefited from our free services. Connect with our experts for answers to your financial questions and neutral guidance.",
+                
+                // Footer
+                footerAboutTitle: "Princeton Labs",
+                footerAboutDescription: "A non-profit research initiative aimed at spreading objective and free
