@@ -1,78 +1,139 @@
 <!DOCTYPE html>
 <html>
 <head>
-    // add this before event code to all pages where PII data postback is expected and appropriate 
-ttq.identify({
-  "email": "<hashed_email_address>", // string. The email of the customer if available. It must be hashed with SHA-256 on the client side.
-  "phone_number": "<hashed_phone_number>", // string. The phone number of the customer if available. It must be hashed with SHA-256 on the client side.
-  "external_id": "<hashed_external_id>" // string. Any unique identifier, such as loyalty membership IDs, user IDs, and external cookie IDs.It must be hashed with SHA-256 on the client side.
-});
+    <!-- TikTok Pixel Code Start -->
+    <script>
+    !function (w, d, t) {
+        w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t][];
+        ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],
+        ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};
+        for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);
+        ttq.instance=function(t){
+            for(var e=ttq._i[t][],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);
+            return e
+        },
+        ttq.load=function(e,n){
+            var r="https://analytics.tiktok.com/i18n/pixel/events.js",
+            o=n&&n.partner;
+            ttq._i=ttq._i||{},
+            ttq._i[e]=[],
+            ttq._i[e]._u=r,
+            ttq._t=ttq._t||{},
+            ttq._t[e]=+new Date,
+            ttq._o=ttq._o||{},
+            ttq._o[e]=n||{};
+            n=document.createElement("script");
+            n.type="text/javascript",
+            n.async=!0,
+            n.src=r+"?sdkid="+e+"&lib="+t;
+            e=document.getElementsByTagName("script")[0];
+            e.parentNode.insertBefore(n,e)
+        };
 
-ttq.track('ViewContent', {
-  "contents": [
-    {
-      "content_id": "<content_identifier>", // string. ID of the product. Example: "1077218".
-      "content_type": "<content_type>", // string. Either product or product_group.
-      "content_name": "<content_name>" // string. The name of the page or product. Example: "shirt".
-    }
-  ],
-  "value": "<content_value>", // number. Value of the order or items sold. Example: 100.
-  "currency": "<content_currency>" // string. The 4217 currency code. Example: "USD".
-});
-
-ttq.track('Search', {
-  "contents": [
-    {
-      "content_id": "<content_identifier>", // string. ID of the product. Example: "1077218".
-      "content_type": "<content_type>", // string. Either product or product_group.
-      "content_name": "<content_name>" // string. The name of the page or product. Example: "shirt".
-    }
-  ],
-  "value": "<content_value>", // number. Value of the order or items sold. Example: 100.
-  "currency": "<content_currency>", // string. The 4217 currency code. Example: "USD".
-  "search_string": "<search_keywords>" // string. The word or phrase used to search. Example: "SAVE10COUPON".
-});
-
-ttq.track('ClickButton', {
-  "contents": [
-    {
-      "content_id": "<content_identifier>", // string. ID of the product. Example: "1077218".
-      "content_type": "<content_type>", // string. Either product or product_group.
-      "content_name": "<content_name>" // string. The name of the page or product. Example: "shirt".
-    }
-  ],
-  "value": "<content_value>", // number. Value of the order or items sold. Example: 100.
-  "currency": "<content_currency>" // string. The 4217 currency code. Example: "USD".
-});
-
-ttq.track('CompleteRegistration', {
-  "contents": [
-    {
-      "content_id": "<content_identifier>", // string. ID of the product. Example: "1077218".
-      "content_type": "<content_type>", // string. Either product or product_group.
-      "content_name": "<content_name>" // string. The name of the page or product. Example: "shirt".
-    }
-  ],
-  "value": "<content_value>", // number. Value of the order or items sold. Example: 100.
-  "currency": "<content_currency>" // string. The 4217 currency code. Example: "USD".
-});
-
-ttq.track('Lead', {
-  "contents": [
-    {
-      "content_id": "<content_identifier>", // string. ID of the product. Example: "1077218".
-      "content_type": "<content_type>", // string. Either product or product_group.
-      "content_name": "<content_name>" // string. The name of the page or product. Example: "shirt".
-    }
-  ],
-  "value": "<content_value>", // number. Value of the order or items sold. Example: 100.
-  "currency": "<content_currency>" // string. The 4217 currency code. Example: "USD".
-});
+        ttq.load('D5N15T3C77UFLMP0ACJG');
+        ttq.page();
+    }(window, document, 'ttq');
+    </script>
+    <!-- TikTok Pixel Code End -->
     
     <script>
-        window.location.href = "https://api.whatsapp.com/send?phone=12678341019&text=%20";
+        // TikTok PII 数据回传和事件跟踪
+        // 注意：在实际使用前需要替换占位符并确保符合隐私法规
+        
+        // 用户识别（如果用户已登录且同意数据收集）
+        function hashSHA256(value) {
+            // 这里需要实现SHA-256哈希函数
+            // 或者使用现有的加密库
+            // 例如：CryptoJS.SHA256(value).toString()
+            // 返回：哈希后的字符串
+            return value ? btoa(value).replace(/=+$/, '') : ''; // 简化示例，实际应用需使用SHA-256
+        }
+        
+        // 假设我们有以下用户数据（实际应从登录系统获取）
+        const userData = {
+            email: "user@example.com", // 实际应用中应从系统获取
+            phone_number: "+1234567890", // 实际应用中应从系统获取
+            external_id: "user_12345" // 实际应用中应从系统获取
+        };
+        
+        // 检查用户是否已登录且同意跟踪
+        const isUserLoggedIn = false; // 根据实际情况设置
+        const hasConsent = true; // 根据实际情况设置
+        
+        if (isUserLoggedIn && hasConsent) {
+            // 对PII数据进行哈希处理
+            ttq.identify({
+                "email": hashSHA256(userData.email), // string. 客户邮箱，需SHA-256哈希
+                "phone_number": hashSHA256(userData.phone_number), // string. 客户电话，需SHA-256哈希
+                "external_id": hashSHA256(userData.external_id) // string. 任何唯一标识符
+            });
+        }
+        
+        // 跟踪页面浏览内容（假设这是产品页面）
+        // 这些值应根据实际页面内容动态设置
+        ttq.track('ViewContent', {
+            "contents": [
+                {
+                    "content_id": "whatsapp_redirect", // string. 产品ID
+                    "content_type": "product", // string. product 或 product_group
+                    "content_name": "WhatsApp咨询服务" // string. 页面或产品名称
+                }
+            ],
+            "value": 0, // number. 订单或商品价值
+            "currency": "USD" // string. ISO 4217货币代码
+        });
+        
+        // 由于这是WhatsApp重定向页面，我们可能想跟踪点击事件
+        // 注意：由于立即重定向，可能需要调整触发时机
+        
+        // 跟踪按钮点击事件
+        function trackButtonClick() {
+            ttq.track('ClickButton', {
+                "contents": [
+                    {
+                        "content_id": "whatsapp_redirect_btn",
+                        "content_type": "product",
+                        "content_name": "WhatsApp联系按钮"
+                    }
+                ],
+                "value": 0,
+                "currency": "USD"
+            });
+            
+            // 跟踪潜在客户生成
+            ttq.track('Lead', {
+                "contents": [
+                    {
+                        "content_id": "whatsapp_lead",
+                        "content_type": "product",
+                        "content_name": "WhatsApp咨询潜在客户"
+                    }
+                ],
+                "value": 0,
+                "currency": "USD"
+            });
+        }
+        
+        // 立即执行重定向（延迟500ms确保像素加载）
+        setTimeout(function() {
+            // 在重定向前触发点击跟踪
+            trackButtonClick();
+            
+            // 执行重定向
+            window.location.href = "https://api.whatsapp.com/send?phone=12678341019&text=%20";
+        }, 500);
+        
     </script>
 </head>
 <body>
+    <!-- 可选：添加一个可见的按钮用于更好的用户体验 -->
+    <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
+        <h2>正在为您连接到WhatsApp...</h2>
+        <p>如果没有自动跳转，请点击下面的按钮</p>
+        <button onclick="window.location.href='https://api.whatsapp.com/send?phone=12678341019&text=%20'" 
+                style="padding: 15px 30px; font-size: 16px; background-color: #25D366; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            点击打开WhatsApp
+        </button>
+    </div>
 </body>
 </html>
