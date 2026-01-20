@@ -334,194 +334,8 @@
             font-size: 1.3rem;
         }
         
-        /* Features Section */
-        .features {
-            max-width: 1200px;
-            margin: 80px auto;
-            padding: 0 20px;
-        }
-        
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            background: var(--tinder-gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .feature-card {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .feature-icon {
-            width: 70px;
-            height: 70px;
-            background: var(--tinder-gradient);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
-        
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #333;
-        }
-        
-        /* Testimonials */
-        .testimonials {
-            max-width: 1200px;
-            margin: 80px auto;
-            padding: 0 20px;
-        }
-        
-        .testimonial-slider {
-            display: flex;
-            overflow-x: auto;
-            gap: 30px;
-            padding: 20px 0;
-            scrollbar-width: thin;
-        }
-        
-        .testimonial-card {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-            min-width: 300px;
-            flex-shrink: 0;
-        }
-        
-        .testimonial-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .testimonial-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: #ddd;
-            margin-left: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #666;
-            font-size: 1.5rem;
-        }
-        
-        /* Footer */
-        footer {
-            background: #111;
-            color: white;
-            padding: 60px 20px 30px;
-            margin-top: 80px;
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-        }
-        
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            color: white;
-        }
-        
-        .footer-column ul {
-            list-style: none;
-        }
-        
-        .footer-column ul li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-column a {
-            color: #aaa;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-column a:hover {
-            color: white;
-        }
-        
-        .copyright {
-            text-align: center;
-            margin-top: 50px;
-            padding-top: 20px;
-            border-top: 1px solid #333;
-            color: #aaa;
-            font-size: 0.9rem;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero-title {
-                font-size: 2.2rem;
-            }
-            
-            .phone-mockup {
-                width: 280px;
-                height: 560px;
-            }
-        }
-        
-        /* Animations */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        @keyframes matching {
-            0% { content: "جاري البحث عن مطابقة"; }
-            33% { content: "جاري البحث عن مطابقة."; }
-            66% { content: "جاري البحث عن مطابقة.."; }
-            100% { content: "جاري البحث عن مطابقة..."; }
-        }
-        
-        .pulse-animation {
-            animation: pulse 2s infinite;
-        }
-        
-        /* Matching Modal */
-        .matching-modal {
+        /* Matching Overlay */
+        .matching-overlay {
             display: none;
             position: fixed;
             top: 0;
@@ -593,31 +407,33 @@
             animation: progress 2s ease-in-out forwards;
         }
         
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes matching {
+            0% { content: "جاري البحث عن مطابقة"; }
+            33% { content: "جاري البحث عن مطابقة."; }
+            66% { content: "جاري البحث عن مطابقة.."; }
+            100% { content: "جاري البحث عن مطابقة..."; }
+        }
+        
         @keyframes progress {
             0% { width: 0%; }
             100% { width: 100%; }
         }
         
-        /* Button Loading State */
-        .btn-loading {
-            pointer-events: none;
-            opacity: 0.8;
-        }
-        
-        .btn-loading::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            animation: loadingShine 1.5s infinite;
-        }
-        
-        @keyframes loadingShine {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+        .pulse-animation {
+            animation: pulse 2s infinite;
         }
     </style>
 </head>
@@ -632,8 +448,6 @@
             <ul class="nav-links">
                 <li><a href="#features">الميزات</a></li>
                 <li><a href="#testimonials">تجارب المستخدمين</a></li>
-                <li><a href="#safety">السلامة</a></li>
-                <li><a href="#faq">الأسئلة الشائعة</a></li>
             </ul>
             <button class="download-btn">
                 <i class="fas fa-download"></i> تحميل التطبيق
@@ -661,7 +475,7 @@
             <ul class="feature-list">
                 <li><i class="fas fa-check-circle"></i> مطابقات عشوائية فورية</li>
                 <li><i class="fas fa-check-circle"></i> تواصل مباشر على واتساب</li>
-                <li><i class="fas fa-check-circle"></i> خصوصية كاملة - لا أسماء ولا مسافات</li>
+                <li><i class="fas fa-check-circle"></i> خصوصية كاملة</li>
                 <li><i class="fas fa-check-circle"></i> آلاف المطابقات الناجحة يومياً</li>
             </ul>
             
@@ -673,10 +487,6 @@
                     <i class="fas fa-play-circle"></i> شاهد تجربة المطابقة
                 </button>
             </div>
-            
-            <p style="margin-top: 20px; color: #666; font-size: 0.9rem;">
-                <i class="fas fa-shield-alt"></i> جميع المطابقات عشوائية وآمنة. لا نطلب معلومات شخصية.
-            </p>
         </div>
         
         <div class="app-preview">
@@ -703,144 +513,19 @@
                         <div class="match-message">
                             <p>انقر على الزر أدناه للبحث عن مطابقة عشوائية.</p>
                             <p>سيتم ربطك تلقائياً على واتساب للتواصل الفوري.</p>
-                            <p style="color: var(--tinder-red); font-weight: 600; margin-top: 10px;">
-                                <i class="fas fa-lock"></i> خصوصية كاملة
-                            </p>
                         </div>
                         
                         <button class="whatsapp-btn" id="whatsappBtnPhone">
                             <i class="fab fa-whatsapp"></i> ابحث عن مطابقة عشوائية
                         </button>
-                        
-                        <p style="text-align: center; margin-top: 15px; color: #666; font-size: 0.8rem;">
-                            <i class="fas fa-sync-alt"></i> مطابقات جديدة كل ثانية
-                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <h2 class="section-title">كيف تعمل المطابقة العشوائية</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-random"></i>
-                </div>
-                <h3>مطابقة عشوائية فورية</h3>
-                <p>اضغط على الزر وابحث عن مطابقة عشوائية في ثوانٍ معدودة.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fab fa-whatsapp"></i>
-                </div>
-                <h3>انتقال مباشر إلى واتساب</h3>
-                <p>بعد المطابقة، يتم تحويلك مباشرة إلى محادثة واتساب.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-user-shield"></i>
-                </div>
-                <h3>خصوصية كاملة</h3>
-                <p>لا نكشف أي معلومات شخصية. المطابقة عشوائية وآمنة تماماً.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="testimonials" id="testimonials">
-        <h2 class="section-title">تجارب المستخدمين</h2>
-        <div class="testimonial-slider">
-            <div class="testimonial-card">
-                <div class="testimonial-header">
-                    <div class="testimonial-avatar">
-                        <i class="fas fa-user-tie"></i>
-                    </div>
-                    <div>
-                        <h3>مستخدم سعودي</h3>
-                        <p>الرياض</p>
-                    </div>
-                </div>
-                <p>"أفضل تطبيق للتعارف! اضغط وتنتقل مباشرة لواتساب دون تعقيدات."</p>
-            </div>
-            
-            <div class="testimonial-card">
-                <div class="testimonial-header">
-                    <div class="testimonial-avatar">
-                        <i class="fas fa-user-graduate"></i>
-                    </div>
-                    <div>
-                        <h3>مستخدمة إماراتية</h3>
-                        <p>دبي</p>
-                    </div>
-                </div>
-                <p>"بضغطة واحدة أحصل على مطابقة وأنتقل لواتساب. بسيط وسريع!"</p>
-            </div>
-            
-            <div class="testimonial-card">
-                <div class="testimonial-header">
-                    <div class="testimonial-avatar">
-                        <i class="fas fa-user-check"></i>
-                    </div>
-                    <div>
-                        <h3>مستخدم كويتي</h3>
-                        <p>الكويت</p>
-                    </div>
-                </div>
-                <p>"في أقل من 5 ثوانٍ أكون على واتساب مع مطابقة جديدة. رائع!"</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>Tinder</h3>
-                <ul>
-                    <li><a href="#">الرئيسية</a></li>
-                    <li><a href="#">الميزات</a></li>
-                    <li><a href="#">التطبيقات</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h3>الدعم</h3>
-                <ul>
-                    <li><a href="#">الأسئلة الشائعة</a></li>
-                    <li><a href="#">مركز المساعدة</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h3>القوانين</h3>
-                <ul>
-                    <li><a href="#">سياسة الخصوصية</a></li>
-                    <li><a href="#">شروط الخدمة</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h3>تابعنا</h3>
-                <ul>
-                    <li><a href="#"><i class="fab fa-instagram"></i> إنستغرام</a></li>
-                    <li><a href="#"><i class="fab fa-tiktok"></i> تيك توك</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="copyright">
-            <p>© 2023 Tinder. جميع الحقوق محفوظة. هذا الموقع مخصص للتعارف والصداقة.</p>
-            <p style="margin-top: 10px; font-size: 0.8rem;">واتساب هي علامة تجارية مسجلة لشركة واتساب LLC.</p>
-        </div>
-    </footer>
-
-    <!-- Matching Modal -->
-    <div class="matching-modal" id="matchingModal">
+    <!-- Matching Overlay -->
+    <div class="matching-overlay" id="matchingOverlay">
         <div class="matching-content">
             <div class="matching-icon">
                 <i class="fas fa-heartbeat"></i>
@@ -854,104 +539,75 @@
     </div>
 
     <script>
-        // WhatsApp链接数组 - 可以直接修改这些链接为你自己的WhatsApp链接
-        // 格式: "https://wa.me/国家代码手机号"
+        // ============================================
+        // WhatsApp链接配置 - 只需修改这里
+        // ============================================
         const whatsappLinks = [
-            "https://wa.me/971501234567",  // 阿联酋号码示例
-            "https://wa.me/966501234567",  // 沙特号码示例
-            "https://wa.me/965501234567",  // 科威特号码示例
-            "https://wa.me/968501234567",  // 阿曼号码示例
-            "https://wa.me/974501234567",  // 卡塔尔号码示例
-            "https://wa.me/973501234567",  // 巴林号码示例
-            "https://wa.me/962501234567",  // 约旦号码示例
-            "https://wa.me/212601234567",  // 摩洛哥号码示例
-            "https://wa.me/21620123456",   // 突尼斯号码示例
-            "https://wa.me/201001234567"   // 埃及号码示例
+            // 在这里添加你的WhatsApp链接
+            // 格式: "https://wa.me/国家代码手机号"
+            // 例如: "https://wa.me/971501234567"
+            
+            "https://wa.me/1234567890",  // 示例链接1 - 替换为你的链接
+            "https://wa.me/1234567891",  // 示例链接2 - 替换为你的链接
+            "https://wa.me/1234567892"   // 示例链接3 - 替换为你的链接
+            
+            // 可以继续添加更多链接...
         ];
+        // ============================================
         
         // 获取DOM元素
         const startMatchingBtn = document.getElementById('startMatching');
         const whatsappBtnPhone = document.getElementById('whatsappBtnPhone');
         const viewDemoBtn = document.getElementById('viewDemo');
-        const matchingModal = document.getElementById('matchingModal');
+        const matchingOverlay = document.getElementById('matchingOverlay');
         
-        // 显示匹配中模态窗口并跳转到WhatsApp
+        // 开始匹配过程
         function startMatchingProcess() {
-            // 防止重复点击
-            if (startMatchingBtn.classList.contains('btn-loading')) return;
+            // 检查是否有配置WhatsApp链接
+            if (whatsappLinks.length === 0) {
+                console.error("请先在代码中配置WhatsApp链接！");
+                return;
+            }
             
-            // 添加加载状态到所有按钮
-            [startMatchingBtn, whatsappBtnPhone, viewDemoBtn].forEach(btn => {
-                btn.classList.add('btn-loading');
-                btn.disabled = true;
-            });
-            
-            // 显示匹配中模态窗口
-            matchingModal.style.display = 'flex';
+            // 显示加载界面
+            matchingOverlay.style.display = 'flex';
             
             // 随机选择一个WhatsApp链接
             const randomIndex = Math.floor(Math.random() * whatsappLinks.length);
             const whatsappUrl = whatsappLinks[randomIndex];
             
-            console.log(`即将跳转到WhatsApp链接: ${whatsappUrl}`);
+            console.log(`正在跳转到WhatsApp链接: ${whatsappUrl}`);
             
-            // 2秒后跳转到WhatsApp
+            // 1.5秒后直接跳转（加载条动画时间）
             setTimeout(() => {
-                // 在实际部署中，取消下面这行注释以启用实际跳转
-                // window.open(whatsappUrl, '_blank');
+                // 直接跳转到WhatsApp
+                window.open(whatsappUrl, '_blank');
                 
-                // 演示用：显示跳转信息
-                alert(`تم العثور على مطابقة! سيتم تحويلك الآن إلى واتساب.\n\n(في التطبيق الحقيقي، سيتم فتح واتساب مباشرةً)`);
-                
-                // 关闭模态窗口
-                matchingModal.style.display = 'none';
-                
-                // 移除按钮加载状态
-                [startMatchingBtn, whatsappBtnPhone, viewDemoBtn].forEach(btn => {
-                    btn.classList.remove('btn-loading');
-                    btn.disabled = false;
-                });
-                
-                // 重置进度条动画
-                const progressBar = document.querySelector('.matching-progress-bar');
-                progressBar.style.animation = 'none';
+                // 重置加载界面
                 setTimeout(() => {
-                    progressBar.style.animation = 'progress 2s ease-in-out forwards';
-                }, 10);
+                    matchingOverlay.style.display = 'none';
+                    
+                    // 重置进度条动画
+                    const progressBar = document.querySelector('.matching-progress-bar');
+                    progressBar.style.animation = 'none';
+                    setTimeout(() => {
+                        progressBar.style.animation = 'progress 2s ease-in-out forwards';
+                    }, 10);
+                }, 500);
                 
-            }, 2000); // 2秒延迟后跳转
+            }, 1500); // 加载条显示时间
         }
         
-        // 事件监听器 - 所有按钮都触发相同流程
+        // 事件监听器
         startMatchingBtn.addEventListener('click', startMatchingProcess);
         whatsappBtnPhone.addEventListener('click', startMatchingProcess);
         viewDemoBtn.addEventListener('click', startMatchingProcess);
         
-        // 自动滚动用户评价
-        let scrollPosition = 0;
-        const testimonialSlider = document.querySelector('.testimonial-slider');
-        
-        function autoScrollTestimonials() {
-            if (testimonialSlider) {
-                scrollPosition += 1;
-                
-                if (scrollPosition >= testimonialSlider.scrollWidth - testimonialSlider.clientWidth) {
-                    scrollPosition = 0;
-                }
-                
-                testimonialSlider.scrollLeft = scrollPosition;
-            }
-        }
-        
-        // 每50ms滚动一次
-        setInterval(autoScrollTestimonials, 50);
-        
-        // 开发人员备注：
-        // 1. 要启用实际跳转到WhatsApp，请取消第270行的注释：window.open(whatsappUrl, '_blank');
-        // 2. 替换whatsappLinks数组中的链接为你自己的WhatsApp链接
-        // 3. 格式必须是: "https://wa.me/国家代码手机号" (例如: "https://wa.me/971501234567")
-        // 4. 可以添加任意数量的WhatsApp链接，系统会随机选择一个跳转
-        // 5. 当前设置为2秒延迟后跳转，可以调整第268行的延迟时间（2000毫秒=2秒）
+        // 开发人员说明：
+        // 1. 只需修改第270-279行的whatsappLinks数组，添加你的WhatsApp链接
+        // 2. 格式必须是完整的WhatsApp链接，如："https://wa.me/971501234567"
+        // 3. 系统会随机选择一个链接跳转
+        // 4. 加载条显示1.5秒后自动跳转，无任何提示
     </script>
 </body>
 </html>
