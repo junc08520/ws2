@@ -27,6 +27,7 @@
             color: #333;
             line-height: 1.6;
             direction: rtl;
+            overflow-x: hidden;
         }
         
         /* Header */
@@ -183,7 +184,9 @@
             cursor: pointer;
             display: flex;
             align-items: center;
+            justify-content: center;
             transition: transform 0.3s;
+            min-width: 200px;
         }
         
         .cta-primary:hover {
@@ -254,16 +257,36 @@
         }
         
         .match-avatar {
-            width: 80px;
-            height: 80px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            background: linear-gradient(to right, #4facfe, #00f2fe);
+            background: linear-gradient(45deg, #4facfe, #00f2fe, #FF6B6B, #FFD93D);
+            background-size: 400% 400%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 2rem;
-            margin: 0 auto 20px;
+            font-size: 3rem;
+            margin: 40px auto 30px;
+            animation: gradientShift 5s ease infinite;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .match-avatar::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(30deg);
+            animation: shine 3s infinite;
+        }
+        
+        .match-avatar i {
+            z-index: 1;
         }
         
         .match-name {
@@ -271,19 +294,17 @@
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 10px;
+            color: #555;
         }
         
-        .match-location {
+        .match-status {
             text-align: center;
             color: #666;
             margin-bottom: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-        
-        .match-location i {
-            margin-left: 5px;
+            font-size: 0.9rem;
         }
         
         .match-message {
@@ -292,11 +313,13 @@
             border-radius: 20px;
             margin-bottom: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
         }
         
         .match-message p {
             margin-bottom: 15px;
             line-height: 1.5;
+            color: #555;
         }
         
         .whatsapp-btn {
@@ -313,16 +336,32 @@
             justify-content: center;
             width: 100%;
             margin-top: 20px;
-            transition: background 0.3s;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
         }
         
         .whatsapp-btn:hover {
             background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
         }
         
         .whatsapp-btn i {
             margin-left: 10px;
             font-size: 1.3rem;
+        }
+        
+        .whatsapp-btn::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(30deg);
+            animation: shine 3s infinite;
         }
         
         /* Features Section */
@@ -487,93 +526,184 @@
             }
         }
         
-        /* Animation */
+        /* Animations */
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
         
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes shine {
+            0% { transform: rotate(30deg) translateX(-100%); }
+            100% { transform: rotate(30deg) translateX(200%); }
+        }
+        
+        @keyframes matching {
+            0% { content: "جاري البحث عن مطابقة"; }
+            33% { content: "جاري البحث عن مطابقة."; }
+            66% { content: "جاري البحث عن مطابقة.."; }
+            100% { content: "جاري البحث عن مطابقة..."; }
+        }
+        
         .pulse-animation {
             animation: pulse 2s infinite;
         }
         
-        /* WhatsApp Modal */
-        .whatsapp-modal {
+        /* Matching Modal */
+        .matching-modal {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
         }
         
-        .modal-content {
-            background: white;
+        .matching-content {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
             width: 90%;
-            max-width: 500px;
-            border-radius: 20px;
-            padding: 40px;
+            max-width: 400px;
+            border-radius: 25px;
+            padding: 40px 30px;
             text-align: center;
             position: relative;
+            color: white;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #666;
-        }
-        
-        .modal-icon {
-            font-size: 4rem;
-            color: var(--whatsapp-green);
-            margin-bottom: 20px;
-        }
-        
-        .modal-title {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: #333;
-        }
-        
-        .modal-text {
-            color: #666;
+        .matching-icon {
+            font-size: 5rem;
             margin-bottom: 30px;
-            line-height: 1.6;
+            color: var(--tinder-red);
+            animation: pulse 1.5s infinite;
         }
         
-        .phone-input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
+        .matching-title {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            background: var(--tinder-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .matching-text {
+            color: #aaa;
+            margin-bottom: 40px;
             font-size: 1.1rem;
-            margin-bottom: 20px;
-            text-align: center;
+            min-height: 30px;
         }
         
-        .modal-btn {
+        .matching-text::after {
+            content: "جاري البحث عن مطابقة";
+            animation: matching 2s infinite;
+        }
+        
+        .matching-progress {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            margin-top: 30px;
+            overflow: hidden;
+        }
+        
+        .matching-progress-bar {
+            height: 100%;
+            width: 0%;
+            background: var(--tinder-gradient);
+            border-radius: 4px;
+            animation: progress 3s ease-in-out forwards;
+        }
+        
+        /* Success Modal */
+        .success-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        .success-content {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            width: 90%;
+            max-width: 400px;
+            border-radius: 25px;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            color: white;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .success-icon {
+            font-size: 5rem;
+            margin-bottom: 30px;
+            color: var(--whatsapp-green);
+            animation: pulse 1s 3;
+        }
+        
+        .success-title {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .success-text {
+            color: #aaa;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+        
+        .success-whatsapp-btn {
             background: var(--whatsapp-green);
             color: white;
             border: none;
             padding: 15px 30px;
             border-radius: 50px;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 600;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 100%;
-            transition: background 0.3s;
+            margin-top: 20px;
+            transition: all 0.3s;
         }
         
-        .modal-btn:hover {
+        .success-whatsapp-btn:hover {
             background: #128C7E;
+            transform: scale(1.05);
+        }
+        
+        .success-whatsapp-btn i {
+            margin-left: 10px;
+        }
+        
+        @keyframes progress {
+            0% { width: 0%; }
+            100% { width: 100%; }
         }
     </style>
 </head>
@@ -610,25 +740,29 @@
                 <i class="fab fa-whatsapp"></i>
                 <div>
                     <h3>محادثة فورية على واتساب</h3>
-                    <p>بعد المطابقة، تواصل مباشرة على واتساب بدون انتظار</p>
+                    <p>اضغط للبحث عن مطابقة والانتقال مباشرة إلى واتساب</p>
                 </div>
             </div>
             
             <ul class="feature-list">
-                <li><i class="fas fa-check-circle"></i> مطابقات محلية في منطقتك</li>
-                <li><i class="fas fa-check-circle"></i> تواصل مباشر وآمن</li>
-                <li><i class="fas fa-check-circle"></i> احترام الخصوصية والثقافة</li>
-                <li><i class="fas fa-check-circle"></i> آلاف المستخدمين النشطين يومياً</li>
+                <li><i class="fas fa-check-circle"></i> مطابقات عشوائية عالية الجودة</li>
+                <li><i class="fas fa-check-circle"></i> تواصل مباشر على واتساب فور المطابقة</li>
+                <li><i class="fas fa-check-circle"></i> خصوصية كاملة - لا أسماء ولا مسافات</li>
+                <li><i class="fas fa-check-circle"></i> آلاف المطابقات الناجحة يومياً</li>
             </ul>
             
             <div class="cta-buttons">
                 <button class="cta-primary pulse-animation" id="startMatching">
-                    <i class="fas fa-heart"></i> ابدأ المطابقة الآن
+                    <i class="fas fa-heart"></i> ابدأ المطابقة العشوائية
                 </button>
-                <button class="cta-secondary">
-                    <i class="fas fa-play-circle"></i> شاهد كيفية العمل
+                <button class="cta-secondary" id="viewDemo">
+                    <i class="fas fa-play-circle"></i> شاهد تجربة المطابقة
                 </button>
             </div>
+            
+            <p style="margin-top: 20px; color: #666; font-size: 0.9rem;">
+                <i class="fas fa-shield-alt"></i> جميع المطابقات عشوائية وآمنة. لا نطلب معلومات شخصية.
+            </p>
         </div>
         
         <div class="app-preview">
@@ -642,27 +776,30 @@
                         </div>
                         
                         <div class="match-avatar">
-                            <i class="fas fa-user"></i>
+                            <i class="fas fa-user-secret"></i>
                         </div>
                         
-                        <h2 class="match-name">ليلى</h2>
+                        <div class="match-name">مطابقة عشوائية</div>
                         
-                        <div class="match-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            دبي، 2 كم فقط
+                        <div class="match-status">
+                            <i class="fas fa-random"></i>
+                            جاهز للمطابقة العشوائية
                         </div>
                         
                         <div class="match-message">
-                            <p>مرحباً! أنا ليلى، مهتمة بالتعرف على أصدقاء جدد في المنطقة. نحب السفر والطعام الجيد.</p>
-                            <p>مطابقتنا تعني أننا نشارك اهتمامات مشتركة!</p>
+                            <p>انقر على الزر أدناه للبحث عن مطابقة عشوائية.</p>
+                            <p>سيتم ربطك تلقائياً على واتساب للتواصل الفوري.</p>
+                            <p style="color: var(--tinder-red); font-weight: 600; margin-top: 10px;">
+                                <i class="fas fa-lock"></i> خصوصية كاملة
+                            </p>
                         </div>
                         
                         <button class="whatsapp-btn" id="whatsappBtnPhone">
-                            <i class="fab fa-whatsapp"></i> محادثة مباشرة على واتساب
+                            <i class="fab fa-whatsapp"></i> ابحث عن مطابقة عشوائية
                         </button>
                         
-                        <p style="text-align: center; margin-top: 15px; color: #666; font-size: 0.9rem;">
-                            <i class="fas fa-lock"></i> محادثة آمنة ومشفرة
+                        <p style="text-align: center; margin-top: 15px; color: #666; font-size: 0.8rem;">
+                            <i class="fas fa-sync-alt"></i> مطابقات جديدة كل ثانية
                         </p>
                     </div>
                 </div>
@@ -672,75 +809,75 @@
 
     <!-- Features Section -->
     <section class="features" id="features">
-        <h2 class="section-title">كيف يعمل Tinder</h2>
+        <h2 class="section-title">كيف تعمل المطابقة العشوائية</h2>
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">
-                    <i class="fas fa-user-check"></i>
+                    <i class="fas fa-random"></i>
                 </div>
-                <h3>انشاء ملف شخصي</h3>
-                <p>أنشئ ملفك الشخصي بصورتك واهتماماتك. نحترم خصوصيتك وثقافتك.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-heart"></i>
-                </div>
-                <h3>البحث والمطابقة</h3>
-                <p>تصفح الملفات في منطقتك. اضغط على القلب للإعجاب أو X للتخطي.</p>
+                <h3>مطابقة عشوائية فورية</h3>
+                <p>نظامنا يبحث عن أفضل مطابقة لك في ثوانٍ معدودة. لا حاجة لملفات شخصية أو تفاصيل.</p>
             </div>
             
             <div class="feature-card">
                 <div class="feature-icon">
                     <i class="fab fa-whatsapp"></i>
                 </div>
-                <h3>تواصل مباشر على واتساب</h3>
-                <p>عند المطابقة، احصل على رابط واتساب مباشر للتواصل الفوري.</p>
+                <h3>انتقال تلقائي إلى واتساب</h3>
+                <p>بعد المطابقة، يتم تحويلك مباشرة إلى محادثة واتساب مع مطابقتك.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <h3>خصوصية كاملة</h3>
+                <p>لا نكشف أي معلومات شخصية. المطابقة عشوائية وآمنة تماماً.</p>
             </div>
         </div>
     </section>
 
     <!-- Testimonials -->
     <section class="testimonials" id="testimonials">
-        <h2 class="section-title">قالوا عن Tinder</h2>
+        <h2 class="section-title">تجارب المستخدمين</h2>
         <div class="testimonial-slider">
             <div class="testimonial-card">
                 <div class="testimonial-header">
                     <div class="testimonial-avatar">
-                        <i class="fas fa-user"></i>
+                        <i class="fas fa-user-tie"></i>
                     </div>
                     <div>
-                        <h3>أحمد</h3>
-                        <p>الرياض، 28 سنة</p>
+                        <h3>مستخدم سعودي</h3>
+                        <p>جدة</p>
                     </div>
                 </div>
-                <p>"منصتنا المفضلة للتعرف على أشخاص جدد. المطابقة على واتساب مباشرة توفر الوقت وتجعل التواصل أكثر سلاسة."</p>
+                <p>"أسرع طريقة للتعرف على أشخاص جدد. المطابقة العشوائية والانتقال المباشر لواتساب وفر علي الكثير من الوقت."</p>
             </div>
             
             <div class="testimonial-card">
                 <div class="testimonial-header">
                     <div class="testimonial-avatar">
-                        <i class="fas fa-user"></i>
+                        <i class="fas fa-user-graduate"></i>
                     </div>
                     <div>
-                        <h3>سارة</h3>
-                        <p>دبي، 25 سنة</p>
+                        <h3>مستخدمة إماراتية</h3>
+                        <p>دبي</p>
                     </div>
                 </div>
-                <p>"كنت مترددة في البداية، لكن خاصية التواصل عبر واتساب جعلتني أشعر بالأمان أكثر. قابلت أصدقاء رائعين!"</p>
+                <p>"الخصوصية كانت هدفي الأول وهذا التطبيق وفرها. مطابقات عشوائية بدون أي معلومات شخصية."</p>
             </div>
             
             <div class="testimonial-card">
                 <div class="testimonial-header">
                     <div class="testimonial-avatar">
-                        <i class="fas fa-user"></i>
+                        <i class="fas fa-user-check"></i>
                     </div>
                     <div>
-                        <h3>خالد</h3>
-                        <p>الكويت، 32 سنة</p>
+                        <h3>مستخدم كويتي</h3>
+                        <p>الكويت</p>
                     </div>
                 </div>
-                <p>"التطبيق يحترم عاداتنا وتقاليدنا مع تقديم وسيلة عصرية للتعارف. أنصح به بشدة."</p>
+                <p>"في أول تجربة لي حصلت على ٣ مطابقات خلال دقائق وانتقلت معهم لواتساب مباشرة. تجربة رائعة."</p>
             </div>
         </div>
     </section>
@@ -764,7 +901,6 @@
                     <li><a href="#">الأسئلة الشائعة</a></li>
                     <li><a href="#">سلامة المستخدمين</a></li>
                     <li><a href="#">مركز المساعدة</a></li>
-                    <li><a href="#">اتصل بنا</a></li>
                 </ul>
             </div>
             
@@ -774,7 +910,6 @@
                     <li><a href="#">شروط الخدمة</a></li>
                     <li><a href="#">سياسة الخصوصية</a></li>
                     <li><a href="#">إرشادات المجتمع</a></li>
-                    <li><a href="#">الإبلاغ عن إساءة</a></li>
                 </ul>
             </div>
             
@@ -783,7 +918,6 @@
                 <ul>
                     <li><a href="#"><i class="fab fa-instagram"></i> إنستغرام</a></li>
                     <li><a href="#"><i class="fab fa-twitter"></i> تويتر</a></li>
-                    <li><a href="#"><i class="fab fa-facebook"></i> فيسبوك</a></li>
                     <li><a href="#"><i class="fab fa-tiktok"></i> تيك توك</a></li>
                 </ul>
             </div>
@@ -795,86 +929,130 @@
         </div>
     </footer>
 
-    <!-- WhatsApp Modal -->
-    <div class="whatsapp-modal" id="whatsappModal">
-        <div class="modal-content">
-            <div class="close-modal" id="closeModal">&times;</div>
-            <div class="modal-icon">
-                <i class="fab fa-whatsapp"></i>
+    <!-- Matching Modal -->
+    <div class="matching-modal" id="matchingModal">
+        <div class="matching-content">
+            <div class="matching-icon">
+                <i class="fas fa-heartbeat"></i>
             </div>
-            <h2 class="modal-title">التواصل المباشر على واتساب</h2>
-            <p class="modal-text">أدخل رقم هاتفك وسنقوم بربطك مباشرة بمطابقتك على واتساب</p>
-            
-            <input type="tel" class="phone-input" id="phoneInput" placeholder="5XXXXXXXX" dir="ltr">
-            <button class="modal-btn" id="connectWhatsApp">
-                <i class="fab fa-whatsapp"></i> تواصل على واتساب الآن
+            <h2 class="matching-title">جاري البحث عن مطابقة</h2>
+            <div class="matching-text"></div>
+            <div class="matching-progress">
+                <div class="matching-progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="successModal">
+        <div class="success-content">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2 class="success-title">تم العثور على مطابقة!</h2>
+            <p class="success-text">تهانينا! تم العثور على مطابقة عشوائية لك. سيتم تحويلك إلى واتساب الآن.</p>
+            <button class="success-whatsapp-btn" id="redirectToWhatsApp">
+                <i class="fab fa-whatsapp"></i> انتقل إلى واتساب الآن
             </button>
-            
             <p style="margin-top: 20px; color: #aaa; font-size: 0.9rem;">
-                <i class="fas fa-lock"></i> نحن نحترم خصوصيتك. لن نشارك رقمك مع أي طرف ثالث.
+                <i class="fas fa-info-circle"></i> سينتقل تلقائياً خلال <span id="countdown">5</span> ثوانٍ
             </p>
         </div>
     </div>
 
     <script>
-        // WhatsApp modal functionality
+        // WhatsApp账号池 - 多个账号轮流转粉
+        const whatsappAccounts = [
+            "971501234567",  // 阿联酋号码示例
+            "966501234567",  // 沙特号码示例
+            "965501234567",  // 科威特号码示例
+            "968501234567",  // 阿曼号码示例
+            "974501234567",  // 卡塔尔号码示例
+            "973501234567",  // 巴林号码示例
+            "962501234567"   // 约旦号码示例
+        ];
+        
+        // 当前使用的账号索引
+        let currentAccountIndex = 0;
+        
+        // 获取DOM元素
         const startMatchingBtn = document.getElementById('startMatching');
         const whatsappBtnPhone = document.getElementById('whatsappBtnPhone');
-        const whatsappModal = document.getElementById('whatsappModal');
-        const closeModal = document.getElementById('closeModal');
-        const connectWhatsAppBtn = document.getElementById('connectWhatsApp');
-        const phoneInput = document.getElementById('phoneInput');
+        const viewDemoBtn = document.getElementById('viewDemo');
+        const matchingModal = document.getElementById('matchingModal');
+        const successModal = document.getElementById('successModal');
+        const redirectToWhatsAppBtn = document.getElementById('redirectToWhatsApp');
+        const countdownElement = document.getElementById('countdown');
         
-        // Open modal when clicking any CTA button
-        [startMatchingBtn, whatsappBtnPhone].forEach(btn => {
-            btn.addEventListener('click', () => {
-                whatsappModal.style.display = 'flex';
-            });
-        });
+        // 匹配中倒计时
+        let countdownInterval;
+        let countdownSeconds = 5;
         
-        // Close modal
-        closeModal.addEventListener('click', () => {
-            whatsappModal.style.display = 'none';
-        });
-        
-        // Close modal when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target === whatsappModal) {
-                whatsappModal.style.display = 'none';
-            }
-        });
-        
-        // Connect to WhatsApp
-        connectWhatsAppBtn.addEventListener('click', () => {
-            const phoneNumber = phoneInput.value.trim();
+        // 打开匹配模态窗口
+        function openMatchingModal() {
+            matchingModal.style.display = 'flex';
             
-            if (!phoneNumber) {
-                alert('الرجاء إدخال رقم الهاتف');
-                return;
-            }
-            
-            if (!/^[0-9]{9,}$/.test(phoneNumber)) {
-                alert('الرجاء إدخال رقم هاتف صحيح (9 أرقام على الأقل)');
-                return;
-            }
-            
-            // Simulate WhatsApp connection
-            alert(`سيتم ربطك الآن على واتساب بالرقم: ${phoneNumber}\n\n(هذا نموذج توضيحي - في التطبيق الحقيقي سيتم فتح واتساب مباشرة)`);
-            
-            // In a real implementation, this would open WhatsApp
-            // window.open(`https://wa.me/${phoneNumber}`, '_blank');
-            
-            whatsappModal.style.display = 'none';
-        });
+            // 3秒后显示成功模态窗口
+            setTimeout(() => {
+                matchingModal.style.display = 'none';
+                openSuccessModal();
+            }, 3000);
+        }
         
-        // Simulate phone number input for demo
-        phoneInput.addEventListener('focus', () => {
-            if (phoneInput.value === '') {
-                phoneInput.value = '5';
-            }
-        });
+        // 打开成功模态窗口
+        function openSuccessModal() {
+            successModal.style.display = 'flex';
+            countdownSeconds = 5;
+            countdownElement.textContent = countdownSeconds;
+            
+            // 开始倒计时
+            clearInterval(countdownInterval);
+            countdownInterval = setInterval(() => {
+                countdownSeconds--;
+                countdownElement.textContent = countdownSeconds;
+                
+                if (countdownSeconds <= 0) {
+                    clearInterval(countdownInterval);
+                    redirectToWhatsApp();
+                }
+            }, 1000);
+        }
         
-        // Auto-scroll testimonials
+        // 重定向到WhatsApp
+        function redirectToWhatsApp() {
+            // 轮询使用不同的WhatsApp账号
+            const phoneNumber = whatsappAccounts[currentAccountIndex];
+            currentAccountIndex = (currentAccountIndex + 1) % whatsappAccounts.length;
+            
+            // 实际应用中应该打开WhatsApp链接
+            const whatsappUrl = `https://wa.me/${phoneNumber}`;
+            
+            // 显示即将跳转的信息
+            alert(`سيتم تحويلك الآن إلى واتساب للتواصل مع مطابقتك.\n\n(هذا نموذج توضيحي - في التطبيق الحقيقي سيتم فتح واتساب مباشرةً)`);
+            
+            // 在实际应用中，这里应该使用：
+            // window.open(whatsappUrl, '_blank');
+            
+            // 关闭模态窗口
+            successModal.style.display = 'none';
+            
+            // 重置按钮状态
+            resetButtons();
+        }
+        
+        // 重置按钮状态
+        function resetButtons() {
+            // 可以在这里添加按钮状态重置逻辑
+            console.log("تم إعادة تعيين حالة الأزرار");
+        }
+        
+        // 事件监听器
+        startMatchingBtn.addEventListener('click', openMatchingModal);
+        whatsappBtnPhone.addEventListener('click', openMatchingModal);
+        viewDemoBtn.addEventListener('click', openMatchingModal);
+        redirectToWhatsAppBtn.addEventListener('click', redirectToWhatsApp);
+        
+        // 自动滚动用户评价
         let scrollPosition = 0;
         const testimonialSlider = document.querySelector('.testimonial-slider');
         
@@ -890,8 +1068,6 @@
             }
         }
         
-        // Scroll every 50ms
+        // 每50ms滚动一次
         setInterval(autoScrollTestimonials, 50);
-    </script>
-</body>
-</html>
+        
