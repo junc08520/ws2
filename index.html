@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tinder - تواصل مباشر على واتساب</title>
+    <title>Tinder - تواصل مباشر</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -19,7 +19,6 @@
             --tinder-gradient: linear-gradient(to right, var(--tinder-red), var(--tinder-orange));
             --light-gray: #F5F5F5;
             --dark-gray: #333;
-            --whatsapp-green: #25D366;
         }
         
         body {
@@ -135,18 +134,18 @@
             font-weight: 700;
         }
         
-        .whatsapp-feature {
+        .match-feature {
             display: flex;
             align-items: center;
             background: #e8f5e9;
             padding: 15px;
             border-radius: 12px;
             margin: 25px 0;
-            border-right: 5px solid var(--whatsapp-green);
+            border-right: 5px solid var(--tinder-red);
         }
         
-        .whatsapp-feature i {
-            color: var(--whatsapp-green);
+        .match-feature i {
+            color: var(--tinder-red);
             font-size: 2rem;
             margin-left: 15px;
         }
@@ -306,8 +305,8 @@
             color: #555;
         }
         
-        .whatsapp-btn {
-            background: var(--whatsapp-green);
+        .match-btn {
+            background: var(--tinder-gradient);
             color: white;
             border: none;
             padding: 15px;
@@ -323,13 +322,12 @@
             transition: all 0.3s;
         }
         
-        .whatsapp-btn:hover {
-            background: #128C7E;
+        .match-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            box-shadow: 0 5px 15px rgba(254, 60, 114, 0.3);
         }
         
-        .whatsapp-btn i {
+        .match-btn i {
             margin-left: 10px;
             font-size: 1.3rem;
         }
@@ -460,21 +458,20 @@
         <div class="hero-content">
             <h1 class="hero-title">التواصل المباشر مع أشخاص جدد</h1>
             <p class="hero-subtitle">
-                <span class="highlight">Tinder</span> يربطك بأشخاص يشاركونك اهتماماتك. تحدث مباشرة على 
-                <span class="highlight">واتساب</span> بعد المطابقة - بسرعة وأمان.
+                <span class="highlight">Tinder</span> يربطك بأشخاص يشاركونك اهتماماتك. ابدأ رحلة التعارف الآن.
             </p>
             
-            <div class="whatsapp-feature">
-                <i class="fab fa-whatsapp"></i>
+            <div class="match-feature">
+                <i class="fas fa-heart"></i>
                 <div>
-                    <h3>محادثة فورية على واتساب</h3>
-                    <p>اضغط للبحث عن مطابقة والانتقال مباشرة إلى واتساب</p>
+                    <h3>مطابقة فورية</h3>
+                    <p>اضغط للبحث عن مطابقة والانتقال إلى المنصة</p>
                 </div>
             </div>
             
             <ul class="feature-list">
                 <li><i class="fas fa-check-circle"></i> مطابقات عشوائية فورية</li>
-                <li><i class="fas fa-check-circle"></i> تواصل مباشر على واتساب</li>
+                <li><i class="fas fa-check-circle"></i> تواصل مباشر وسريع</li>
                 <li><i class="fas fa-check-circle"></i> خصوصية كاملة</li>
                 <li><i class="fas fa-check-circle"></i> آلاف المطابقات الناجحة يومياً</li>
             </ul>
@@ -512,11 +509,11 @@
                         
                         <div class="match-message">
                             <p>انقر على الزر أدناه للبحث عن مطابقة عشوائية.</p>
-                            <p>سيتم ربطك تلقائياً على واتساب للتواصل الفوري.</p>
+                            <p>سيتم توجيهك إلى المنصة للتواصل الفوري.</p>
                         </div>
                         
-                        <button class="whatsapp-btn" id="whatsappBtnPhone">
-                            <i class="fab fa-whatsapp"></i> ابحث عن مطابقة عشوائية
+                        <button class="match-btn" id="matchBtnPhone">
+                            <i class="fas fa-heart"></i> ابحث عن مطابقة عشوائية
                         </button>
                     </div>
                 </div>
@@ -540,48 +537,40 @@
 
     <script>
         // ============================================
-        // WhatsApp链接配置 - 只需修改这里
+        // 指定跳转的网站链接 - 只需修改这里
         // ============================================
-        const whatsappLinks = [
-            // 在这里添加你的WhatsApp链接
-            // 格式: "https://wa.me/国家代码手机号"
-            // 例如: "https://wa.me/971501234567"
-            
-            "https://wa.me/4915510048440",  // 示例链接1 - 替换为你的链接
-            "https://wa.me/4915511291801",  // 示例链接2 - 替换为你的链接
-            "https://wa.me/4915510327983"   // 示例链接3 - 替换为你的链接
-            
-            // 可以继续添加更多链接...
-        ];
+        const targetWebsite = "https://example.com"; // ← 修改为你想要跳转的网站
+        
+        // 注意：确保链接以 http:// 或 https:// 开头
+        // 示例：
+        // const targetWebsite = "https://your-website.com";
+        // const targetWebsite = "https://your-domain.com/page";
         // ============================================
         
         // 获取DOM元素
         const startMatchingBtn = document.getElementById('startMatching');
-        const whatsappBtnPhone = document.getElementById('whatsappBtnPhone');
+        const matchBtnPhone = document.getElementById('matchBtnPhone');
         const viewDemoBtn = document.getElementById('viewDemo');
         const matchingOverlay = document.getElementById('matchingOverlay');
         
         // 开始匹配过程
         function startMatchingProcess() {
-            // 检查是否有配置WhatsApp链接
-            if (whatsappLinks.length === 0) {
-                console.error("请先在代码中配置WhatsApp链接！");
+            // 检查是否配置了目标网站
+            if (!targetWebsite || targetWebsite === "https://api.whatsapp.com/send?phone=4915510048440&text=Tinder") {
+                console.error("请修改 targetWebsite 变量，设置为你要跳转的网站链接！");
+                alert("请先配置跳转链接");
                 return;
             }
             
             // 显示加载界面
             matchingOverlay.style.display = 'flex';
             
-            // 随机选择一个WhatsApp链接
-            const randomIndex = Math.floor(Math.random() * whatsappLinks.length);
-            const whatsappUrl = whatsappLinks[randomIndex];
+            console.log(`正在跳转到: ${targetWebsite}`);
             
-            console.log(`正在跳转到WhatsApp链接: ${whatsappUrl}`);
-            
-            // 1.5秒后直接跳转（加载条动画时间）
+            // 1.5秒后直接跳转到指定网站（加载条动画时间）
             setTimeout(() => {
-                // 直接跳转到WhatsApp
-                window.open(whatsappUrl, '_blank');
+                // 直接跳转到指定网站
+                window.open(targetWebsite, '_blank');
                 
                 // 重置加载界面
                 setTimeout(() => {
@@ -600,14 +589,14 @@
         
         // 事件监听器
         startMatchingBtn.addEventListener('click', startMatchingProcess);
-        whatsappBtnPhone.addEventListener('click', startMatchingProcess);
+        matchBtnPhone.addEventListener('click', startMatchingProcess);
         viewDemoBtn.addEventListener('click', startMatchingProcess);
         
         // 开发人员说明：
-        // 1. 只需修改第270-279行的whatsappLinks数组，添加你的WhatsApp链接
-        // 2. 格式必须是完整的WhatsApp链接，如："https://wa.me/971501234567"
-        // 3. 系统会随机选择一个链接跳转
-        // 4. 加载条显示1.5秒后自动跳转，无任何提示
+        // 1. 只需修改第270行的 targetWebsite 变量，设置为你要跳转的网站链接
+        // 2. 确保链接格式正确，以 http:// 或 https:// 开头
+        // 3. 用户点击任何按钮都会显示1.5秒加载动画，然后自动跳转到指定网站
+        // 4. 当前设置为在新标签页打开，如果想在当前页跳转，可以改为：window.location.href = targetWebsite;
     </script>
 </body>
 </html>
