@@ -1,139 +1,897 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar" dir="rtl">
 <head>
-    <!-- TikTok Pixel Code Start -->
-    <script>
-    !function (w, d, t) {
-        w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t][];
-        ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],
-        ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};
-        for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);
-        ttq.instance=function(t){
-            for(var e=ttq._i[t][],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);
-            return e
-        },
-        ttq.load=function(e,n){
-            var r="https://analytics.tiktok.com/i18n/pixel/events.js",
-            o=n&&n.partner;
-            ttq._i=ttq._i||{},
-            ttq._i[e]=[],
-            ttq._i[e]._u=r,
-            ttq._t=ttq._t||{},
-            ttq._t[e]=+new Date,
-            ttq._o=ttq._o||{},
-            ttq._o[e]=n||{};
-            n=document.createElement("script");
-            n.type="text/javascript",
-            n.async=!0,
-            n.src=r+"?sdkid="+e+"&lib="+t;
-            e=document.getElementsByTagName("script")[0];
-            e.parentNode.insertBefore(n,e)
-        };
-
-        ttq.load('D5N15T3C77UFLMP0ACJG');
-        ttq.page();
-    }(window, document, 'ttq');
-    </script>
-    <!-- TikTok Pixel Code End -->
-    
-    <script>
-        // TikTok PII 数据回传和事件跟踪
-        // 注意：在实际使用前需要替换占位符并确保符合隐私法规
-        
-        // 用户识别（如果用户已登录且同意数据收集）
-        function hashSHA256(value) {
-            // 这里需要实现SHA-256哈希函数
-            // 或者使用现有的加密库
-            // 例如：CryptoJS.SHA256(value).toString()
-            // 返回：哈希后的字符串
-            return value ? btoa(value).replace(/=+$/, '') : ''; // 简化示例，实际应用需使用SHA-256
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tinder - تواصل مباشر على واتساب</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
-        // 假设我们有以下用户数据（实际应从登录系统获取）
-        const userData = {
-            email: "user@example.com", // 实际应用中应从系统获取
-            phone_number: "+1234567890", // 实际应用中应从系统获取
-            external_id: "user_12345" // 实际应用中应从系统获取
-        };
-        
-        // 检查用户是否已登录且同意跟踪
-        const isUserLoggedIn = false; // 根据实际情况设置
-        const hasConsent = true; // 根据实际情况设置
-        
-        if (isUserLoggedIn && hasConsent) {
-            // 对PII数据进行哈希处理
-            ttq.identify({
-                "email": hashSHA256(userData.email), // string. 客户邮箱，需SHA-256哈希
-                "phone_number": hashSHA256(userData.phone_number), // string. 客户电话，需SHA-256哈希
-                "external_id": hashSHA256(userData.external_id) // string. 任何唯一标识符
-            });
+        :root {
+            --tinder-red: #FE3C72;
+            --tinder-orange: #FF7F50;
+            --tinder-gradient: linear-gradient(to right, var(--tinder-red), var(--tinder-orange));
+            --light-gray: #F5F5F5;
+            --dark-gray: #333;
+            --whatsapp-green: #25D366;
         }
         
-        // 跟踪页面浏览内容（假设这是产品页面）
-        // 这些值应根据实际页面内容动态设置
-        ttq.track('ViewContent', {
-            "contents": [
-                {
-                    "content_id": "whatsapp_redirect", // string. 产品ID
-                    "content_type": "product", // string. product 或 product_group
-                    "content_name": "WhatsApp咨询服务" // string. 页面或产品名称
-                }
-            ],
-            "value": 0, // number. 订单或商品价值
-            "currency": "USD" // string. ISO 4217货币代码
-        });
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            direction: rtl;
+        }
         
-        // 由于这是WhatsApp重定向页面，我们可能想跟踪点击事件
-        // 注意：由于立即重定向，可能需要调整触发时机
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
         
-        // 跟踪按钮点击事件
-        function trackButtonClick() {
-            ttq.track('ClickButton', {
-                "contents": [
-                    {
-                        "content_id": "whatsapp_redirect_btn",
-                        "content_type": "product",
-                        "content_name": "WhatsApp联系按钮"
-                    }
-                ],
-                "value": 0,
-                "currency": "USD"
-            });
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 28px;
+            font-weight: 700;
+            background: var(--tinder-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .logo i {
+            margin-left: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 25px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--tinder-red);
+        }
+        
+        .download-btn {
+            background: var(--tinder-gradient);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .download-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .hero-content {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            background: var(--tinder-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .highlight {
+            color: var(--tinder-red);
+            font-weight: 700;
+        }
+        
+        .whatsapp-feature {
+            display: flex;
+            align-items: center;
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border-right: 5px solid var(--whatsapp-green);
+        }
+        
+        .whatsapp-feature i {
+            color: var(--whatsapp-green);
+            font-size: 2rem;
+            margin-left: 15px;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin: 25px 0;
+        }
+        
+        .feature-list li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-list i {
+            color: var(--tinder-red);
+            margin-left: 10px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .cta-primary {
+            background: var(--tinder-gradient);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s;
+        }
+        
+        .cta-primary:hover {
+            transform: scale(1.05);
+        }
+        
+        .cta-primary i {
+            margin-left: 10px;
+        }
+        
+        .cta-secondary {
+            background: white;
+            color: var(--tinder-red);
+            border: 2px solid var(--tinder-red);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .cta-secondary:hover {
+            background: var(--tinder-red);
+            color: white;
+        }
+        
+        /* App Preview */
+        .app-preview {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+        
+        .phone-mockup {
+            background: white;
+            width: 300px;
+            height: 600px;
+            margin: 0 auto;
+            border-radius: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            border: 12px solid #111;
+        }
+        
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: var(--light-gray);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .match-screen {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+        
+        .match-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .match-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            margin: 0 auto 20px;
+        }
+        
+        .match-name {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .match-location {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .match-location i {
+            margin-left: 5px;
+        }
+        
+        .match-message {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .match-message p {
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .whatsapp-btn {
+            background: var(--whatsapp-green);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        
+        .whatsapp-btn:hover {
+            background: #128C7E;
+        }
+        
+        .whatsapp-btn i {
+            margin-left: 10px;
+            font-size: 1.3rem;
+        }
+        
+        /* Features Section */
+        .features {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            background: var(--tinder-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--tinder-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+        
+        .testimonial-slider {
+            display: flex;
+            overflow-x: auto;
+            gap: 30px;
+            padding: 20px 0;
+            scrollbar-width: thin;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            min-width: 300px;
+            flex-shrink: 0;
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #ddd;
+            margin-left: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: #111;
+            color: white;
+            padding: 60px 20px 30px;
+            margin-top: 80px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
             
-            // 跟踪潜在客户生成
-            ttq.track('Lead', {
-                "contents": [
-                    {
-                        "content_id": "whatsapp_lead",
-                        "content_type": "product",
-                        "content_name": "WhatsApp咨询潜在客户"
-                    }
-                ],
-                "value": 0,
-                "currency": "USD"
-            });
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .phone-mockup {
+                width: 280px;
+                height: 560px;
+            }
         }
         
-        // 立即执行重定向（延迟500ms确保像素加载）
-        setTimeout(function() {
-            // 在重定向前触发点击跟踪
-            trackButtonClick();
-            
-            // 执行重定向
-            window.location.href = "https://api.whatsapp.com/send?phone=12678341019&text=%20";
-        }, 500);
+        /* Animation */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
         
-    </script>
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        /* WhatsApp Modal */
+        .whatsapp-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .modal-icon {
+            font-size: 4rem;
+            color: var(--whatsapp-green);
+            margin-bottom: 20px;
+        }
+        
+        .modal-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .modal-text {
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .phone-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .modal-btn {
+            background: var(--whatsapp-green);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+        
+        .modal-btn:hover {
+            background: #128C7E;
+        }
+    </style>
 </head>
 <body>
-    <!-- 可选：添加一个可见的按钮用于更好的用户体验 -->
-    <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
-        <h2>正在为您连接到WhatsApp...</h2>
-        <p>如果没有自动跳转，请点击下面的按钮</p>
-        <button onclick="window.location.href='https://api.whatsapp.com/send?phone=12678341019&text=%20'" 
-                style="padding: 15px 30px; font-size: 16px; background-color: #25D366; color: white; border: none; border-radius: 5px; cursor: pointer;">
-            点击打开WhatsApp
-        </button>
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-fire"></i>
+                Tinder
+            </div>
+            <ul class="nav-links">
+                <li><a href="#features">الميزات</a></li>
+                <li><a href="#testimonials">تجارب المستخدمين</a></li>
+                <li><a href="#safety">السلامة</a></li>
+                <li><a href="#faq">الأسئلة الشائعة</a></li>
+            </ul>
+            <button class="download-btn">
+                <i class="fas fa-download"></i> تحميل التطبيق
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">التواصل المباشر مع أشخاص جدد</h1>
+            <p class="hero-subtitle">
+                <span class="highlight">Tinder</span> يربطك بأشخاص يشاركونك اهتماماتك. تحدث مباشرة على 
+                <span class="highlight">واتساب</span> بعد المطابقة - بسرعة وأمان.
+            </p>
+            
+            <div class="whatsapp-feature">
+                <i class="fab fa-whatsapp"></i>
+                <div>
+                    <h3>محادثة فورية على واتساب</h3>
+                    <p>بعد المطابقة، تواصل مباشرة على واتساب بدون انتظار</p>
+                </div>
+            </div>
+            
+            <ul class="feature-list">
+                <li><i class="fas fa-check-circle"></i> مطابقات محلية في منطقتك</li>
+                <li><i class="fas fa-check-circle"></i> تواصل مباشر وآمن</li>
+                <li><i class="fas fa-check-circle"></i> احترام الخصوصية والثقافة</li>
+                <li><i class="fas fa-check-circle"></i> آلاف المستخدمين النشطين يومياً</li>
+            </ul>
+            
+            <div class="cta-buttons">
+                <button class="cta-primary pulse-animation" id="startMatching">
+                    <i class="fas fa-heart"></i> ابدأ المطابقة الآن
+                </button>
+                <button class="cta-secondary">
+                    <i class="fas fa-play-circle"></i> شاهد كيفية العمل
+                </button>
+            </div>
+        </div>
+        
+        <div class="app-preview">
+            <div class="phone-mockup">
+                <div class="phone-screen">
+                    <div class="match-screen">
+                        <div class="match-header">
+                            <i class="fas fa-times-circle" style="color: #FF4757; font-size: 1.5rem;"></i>
+                            <i class="fas fa-fire" style="color: var(--tinder-red); font-size: 1.8rem;"></i>
+                            <i class="fas fa-star" style="color: #1E90FF; font-size: 1.5rem;"></i>
+                        </div>
+                        
+                        <div class="match-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        
+                        <h2 class="match-name">ليلى</h2>
+                        
+                        <div class="match-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            دبي، 2 كم فقط
+                        </div>
+                        
+                        <div class="match-message">
+                            <p>مرحباً! أنا ليلى، مهتمة بالتعرف على أصدقاء جدد في المنطقة. نحب السفر والطعام الجيد.</p>
+                            <p>مطابقتنا تعني أننا نشارك اهتمامات مشتركة!</p>
+                        </div>
+                        
+                        <button class="whatsapp-btn" id="whatsappBtnPhone">
+                            <i class="fab fa-whatsapp"></i> محادثة مباشرة على واتساب
+                        </button>
+                        
+                        <p style="text-align: center; margin-top: 15px; color: #666; font-size: 0.9rem;">
+                            <i class="fas fa-lock"></i> محادثة آمنة ومشفرة
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2 class="section-title">كيف يعمل Tinder</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-user-check"></i>
+                </div>
+                <h3>انشاء ملف شخصي</h3>
+                <p>أنشئ ملفك الشخصي بصورتك واهتماماتك. نحترم خصوصيتك وثقافتك.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>البحث والمطابقة</h3>
+                <p>تصفح الملفات في منطقتك. اضغط على القلب للإعجاب أو X للتخطي.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <h3>تواصل مباشر على واتساب</h3>
+                <p>عند المطابقة، احصل على رابط واتساب مباشر للتواصل الفوري.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <h2 class="section-title">قالوا عن Tinder</h2>
+        <div class="testimonial-slider">
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div>
+                        <h3>أحمد</h3>
+                        <p>الرياض، 28 سنة</p>
+                    </div>
+                </div>
+                <p>"منصتنا المفضلة للتعرف على أشخاص جدد. المطابقة على واتساب مباشرة توفر الوقت وتجعل التواصل أكثر سلاسة."</p>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div>
+                        <h3>سارة</h3>
+                        <p>دبي، 25 سنة</p>
+                    </div>
+                </div>
+                <p>"كنت مترددة في البداية، لكن خاصية التواصل عبر واتساب جعلتني أشعر بالأمان أكثر. قابلت أصدقاء رائعين!"</p>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div>
+                        <h3>خالد</h3>
+                        <p>الكويت، 32 سنة</p>
+                    </div>
+                </div>
+                <p>"التطبيق يحترم عاداتنا وتقاليدنا مع تقديم وسيلة عصرية للتعارف. أنصح به بشدة."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Tinder</h3>
+                <ul>
+                    <li><a href="#">الرئيسية</a></li>
+                    <li><a href="#">الميزات</a></li>
+                    <li><a href="#">الأسعار</a></li>
+                    <li><a href="#">التطبيقات</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>الدعم</h3>
+                <ul>
+                    <li><a href="#">الأسئلة الشائعة</a></li>
+                    <li><a href="#">سلامة المستخدمين</a></li>
+                    <li><a href="#">مركز المساعدة</a></li>
+                    <li><a href="#">اتصل بنا</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>القوانين</h3>
+                <ul>
+                    <li><a href="#">شروط الخدمة</a></li>
+                    <li><a href="#">سياسة الخصوصية</a></li>
+                    <li><a href="#">إرشادات المجتمع</a></li>
+                    <li><a href="#">الإبلاغ عن إساءة</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>تابعنا</h3>
+                <ul>
+                    <li><a href="#"><i class="fab fa-instagram"></i> إنستغرام</a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i> تويتر</a></li>
+                    <li><a href="#"><i class="fab fa-facebook"></i> فيسبوك</a></li>
+                    <li><a href="#"><i class="fab fa-tiktok"></i> تيك توك</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>© 2023 Tinder. جميع الحقوق محفوظة. هذا الموقع مخصص للتعارف والصداقة مع احترام القيم والتقاليد.</p>
+            <p style="margin-top: 10px; font-size: 0.8rem;">واتساب هي علامة تجارية مسجلة لشركة واتساب LLC. هذا الموقع غير تابع لواتساب.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Modal -->
+    <div class="whatsapp-modal" id="whatsappModal">
+        <div class="modal-content">
+            <div class="close-modal" id="closeModal">&times;</div>
+            <div class="modal-icon">
+                <i class="fab fa-whatsapp"></i>
+            </div>
+            <h2 class="modal-title">التواصل المباشر على واتساب</h2>
+            <p class="modal-text">أدخل رقم هاتفك وسنقوم بربطك مباشرة بمطابقتك على واتساب</p>
+            
+            <input type="tel" class="phone-input" id="phoneInput" placeholder="5XXXXXXXX" dir="ltr">
+            <button class="modal-btn" id="connectWhatsApp">
+                <i class="fab fa-whatsapp"></i> تواصل على واتساب الآن
+            </button>
+            
+            <p style="margin-top: 20px; color: #aaa; font-size: 0.9rem;">
+                <i class="fas fa-lock"></i> نحن نحترم خصوصيتك. لن نشارك رقمك مع أي طرف ثالث.
+            </p>
+        </div>
     </div>
+
+    <script>
+        // WhatsApp modal functionality
+        const startMatchingBtn = document.getElementById('startMatching');
+        const whatsappBtnPhone = document.getElementById('whatsappBtnPhone');
+        const whatsappModal = document.getElementById('whatsappModal');
+        const closeModal = document.getElementById('closeModal');
+        const connectWhatsAppBtn = document.getElementById('connectWhatsApp');
+        const phoneInput = document.getElementById('phoneInput');
+        
+        // Open modal when clicking any CTA button
+        [startMatchingBtn, whatsappBtnPhone].forEach(btn => {
+            btn.addEventListener('click', () => {
+                whatsappModal.style.display = 'flex';
+            });
+        });
+        
+        // Close modal
+        closeModal.addEventListener('click', () => {
+            whatsappModal.style.display = 'none';
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === whatsappModal) {
+                whatsappModal.style.display = 'none';
+            }
+        });
+        
+        // Connect to WhatsApp
+        connectWhatsAppBtn.addEventListener('click', () => {
+            const phoneNumber = phoneInput.value.trim();
+            
+            if (!phoneNumber) {
+                alert('الرجاء إدخال رقم الهاتف');
+                return;
+            }
+            
+            if (!/^[0-9]{9,}$/.test(phoneNumber)) {
+                alert('الرجاء إدخال رقم هاتف صحيح (9 أرقام على الأقل)');
+                return;
+            }
+            
+            // Simulate WhatsApp connection
+            alert(`سيتم ربطك الآن على واتساب بالرقم: ${phoneNumber}\n\n(هذا نموذج توضيحي - في التطبيق الحقيقي سيتم فتح واتساب مباشرة)`);
+            
+            // In a real implementation, this would open WhatsApp
+            // window.open(`https://wa.me/${phoneNumber}`, '_blank');
+            
+            whatsappModal.style.display = 'none';
+        });
+        
+        // Simulate phone number input for demo
+        phoneInput.addEventListener('focus', () => {
+            if (phoneInput.value === '') {
+                phoneInput.value = '5';
+            }
+        });
+        
+        // Auto-scroll testimonials
+        let scrollPosition = 0;
+        const testimonialSlider = document.querySelector('.testimonial-slider');
+        
+        function autoScrollTestimonials() {
+            if (testimonialSlider) {
+                scrollPosition += 1;
+                
+                if (scrollPosition >= testimonialSlider.scrollWidth - testimonialSlider.clientWidth) {
+                    scrollPosition = 0;
+                }
+                
+                testimonialSlider.scrollLeft = scrollPosition;
+            }
+        }
+        
+        // Scroll every 50ms
+        setInterval(autoScrollTestimonials, 50);
+    </script>
 </body>
 </html>
