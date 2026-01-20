@@ -27,7 +27,6 @@
             color: #333;
             line-height: 1.6;
             direction: rtl;
-            overflow-x: hidden;
         }
         
         /* Header */
@@ -91,11 +90,6 @@
             border-radius: 50px;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.3s;
-        }
-        
-        .download-btn:hover {
-            transform: scale(1.05);
         }
         
         /* Hero Section */
@@ -115,7 +109,7 @@
         }
         
         .hero-title {
-            font-size: 3rem;
+            font-size: 2.5rem;
             background: var(--tinder-gradient);
             -webkit-background-clip: text;
             background-clip: text;
@@ -125,14 +119,9 @@
         }
         
         .hero-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #666;
             margin-bottom: 30px;
-        }
-        
-        .highlight {
-            color: var(--tinder-red);
-            font-weight: 700;
         }
         
         .whatsapp-feature {
@@ -185,14 +174,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s;
             min-width: 200px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cta-primary:hover {
-            transform: scale(1.05);
+            text-decoration: none;
         }
         
         .cta-primary i {
@@ -208,12 +191,10 @@
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .cta-secondary:hover {
-            background: var(--tinder-red);
-            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         /* App Preview */
@@ -225,14 +206,14 @@
         
         .phone-mockup {
             background: white;
-            width: 300px;
-            height: 600px;
+            width: 280px;
+            height: 560px;
             margin: 0 auto;
-            border-radius: 40px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border-radius: 35px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
             position: relative;
             overflow: hidden;
-            border: 12px solid #111;
+            border: 10px solid #111;
         }
         
         .phone-screen {
@@ -248,34 +229,32 @@
             height: 100%;
             display: flex;
             flex-direction: column;
-            padding: 20px;
+            padding: 15px;
         }
         
         .match-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         
         .match-avatar {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
-            background: linear-gradient(45deg, #4facfe, #00f2fe, #FF6B6B, #FFD93D);
-            background-size: 400% 400%;
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 3rem;
-            margin: 40px auto 30px;
-            animation: gradientShift 5s ease infinite;
+            font-size: 2.5rem;
+            margin: 30px auto 20px;
         }
         
         .match-name {
             text-align: center;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
             margin-bottom: 10px;
             color: #555;
@@ -284,7 +263,7 @@
         .match-status {
             text-align: center;
             color: #666;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -293,147 +272,62 @@
         
         .match-message {
             background: white;
-            padding: 20px;
-            border-radius: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
             text-align: center;
         }
         
         .match-message p {
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             line-height: 1.5;
             color: #555;
+            font-size: 0.9rem;
         }
         
         .whatsapp-btn {
             background: var(--whatsapp-green);
             color: white;
             border: none;
-            padding: 15px;
+            padding: 12px;
             border-radius: 50px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             width: 100%;
-            margin-top: 20px;
-            transition: all 0.3s;
-        }
-        
-        .whatsapp-btn:hover {
-            background: #128C7E;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            margin-top: 15px;
+            text-decoration: none;
         }
         
         .whatsapp-btn i {
             margin-left: 10px;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
         
-        /* Matching Overlay */
-        .matching-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .phone-mockup {
+                width: 250px;
+                height: 500px;
+            }
         }
         
-        .matching-content {
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            width: 90%;
-            max-width: 400px;
-            border-radius: 25px;
-            padding: 40px 30px;
-            text-align: center;
-            position: relative;
-            color: white;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .matching-icon {
-            font-size: 5rem;
-            margin-bottom: 30px;
-            color: var(--tinder-red);
-            animation: pulse 1s infinite;
-        }
-        
-        .matching-title {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            background: var(--tinder-gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .matching-text {
-            color: #aaa;
-            margin-bottom: 40px;
-            font-size: 1.1rem;
-            min-height: 30px;
-        }
-        
-        .matching-text::after {
-            content: "جاري البحث عن مطابقة";
-            animation: matching 2s infinite;
-        }
-        
-        .matching-progress {
-            width: 100%;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            margin-top: 30px;
-            overflow: hidden;
-        }
-        
-        .matching-progress-bar {
-            height: 100%;
-            width: 0%;
-            background: var(--tinder-gradient);
-            border-radius: 4px;
-            animation: progress 2s ease-in-out forwards;
-        }
-        
-        /* Animations */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        @keyframes matching {
-            0% { content: "جاري البحث عن مطابقة"; }
-            33% { content: "جاري البحث عن مطابقة."; }
-            66% { content: "جاري البحث عن مطابقة.."; }
-            100% { content: "جاري البحث عن مطابقة..."; }
-        }
-        
-        @keyframes progress {
-            0% { width: 0%; }
-            100% { width: 100%; }
-        }
-        
-        .pulse-animation {
-            animation: pulse 2s infinite;
+        .whatsapp-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
     </style>
 </head>
@@ -449,9 +343,9 @@
                 <li><a href="#features">الميزات</a></li>
                 <li><a href="#testimonials">تجارب المستخدمين</a></li>
             </ul>
-            <button class="download-btn">
+            <a href="https://api.whatsapp.com/send?phone=4915510048440&text=Tinder" class="download-btn whatsapp-link">
                 <i class="fas fa-download"></i> تحميل التطبيق
-            </button>
+            </a>
         </div>
     </header>
 
@@ -460,15 +354,15 @@
         <div class="hero-content">
             <h1 class="hero-title">التواصل المباشر مع أشخاص جدد</h1>
             <p class="hero-subtitle">
-                <span class="highlight">Tinder</span> يربطك بأشخاص يشاركونك اهتماماتك. تحدث مباشرة على 
-                <span class="highlight">واتساب</span> بعد المطابقة - بسرعة وأمان.
+                <span style="color: #FE3C72; font-weight: 700;">Tinder</span> يربطك بأشخاص يشاركونك اهتماماتك. تحدث مباشرة على 
+                <span style="color: #25D366; font-weight: 700;">واتساب</span> - بسرعة وأمان.
             </p>
             
             <div class="whatsapp-feature">
                 <i class="fab fa-whatsapp"></i>
                 <div>
                     <h3>محادثة فورية على واتساب</h3>
-                    <p>اضغط للبحث عن مطابقة والانتقال مباشرة إلى واتساب</p>
+                    <p>انقر للانتقال مباشرة إلى واتساب للتواصل</p>
                 </div>
             </div>
             
@@ -480,12 +374,12 @@
             </ul>
             
             <div class="cta-buttons">
-                <button class="cta-primary pulse-animation" id="startMatching">
+                <a href="https://api.whatsapp.com/send?phone=4915510048440&text=Tinder" class="cta-primary whatsapp-link">
                     <i class="fas fa-heart"></i> ابدأ المطابقة العشوائية
-                </button>
-                <button class="cta-secondary" id="viewDemo">
+                </a>
+                <a href="https://api.whatsapp.com/send?phone=4915510048440&text=Tinder" class="cta-secondary whatsapp-link">
                     <i class="fas fa-play-circle"></i> شاهد تجربة المطابقة
-                </button>
+                </a>
             </div>
         </div>
         
@@ -494,9 +388,9 @@
                 <div class="phone-screen">
                     <div class="match-screen">
                         <div class="match-header">
-                            <i class="fas fa-times-circle" style="color: #FF4757; font-size: 1.5rem;"></i>
-                            <i class="fas fa-fire" style="color: var(--tinder-red); font-size: 1.8rem;"></i>
-                            <i class="fas fa-star" style="color: #1E90FF; font-size: 1.5rem;"></i>
+                            <i class="fas fa-times-circle" style="color: #FF4757; font-size: 1.3rem;"></i>
+                            <i class="fas fa-fire" style="color: #FE3C72; font-size: 1.5rem;"></i>
+                            <i class="fas fa-star" style="color: #1E90FF; font-size: 1.3rem;"></i>
                         </div>
                         
                         <div class="match-avatar">
@@ -515,78 +409,30 @@
                             <p>سيتم ربطك تلقائياً على واتساب للتواصل الفوري.</p>
                         </div>
                         
-                        <button class="whatsapp-btn" id="whatsappBtnPhone">
+                        <a href="https://api.whatsapp.com/send?phone=4915510048440&text=Tinder" class="whatsapp-btn whatsapp-link">
                             <i class="fab fa-whatsapp"></i> ابحث عن مطابقة عشوائية
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Matching Overlay -->
-    <div class="matching-overlay" id="matchingOverlay">
-        <div class="matching-content">
-            <div class="matching-icon">
-                <i class="fas fa-heartbeat"></i>
-            </div>
-            <h2 class="matching-title">جاري البحث عن مطابقة</h2>
-            <div class="matching-text"></div>
-            <div class="matching-progress">
-                <div class="matching-progress-bar"></div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // ============================================
-        // 指定的WhatsApp跳转链接 - 已设置为你要的链接
-        // ============================================
-        const whatsappLink = "https://api.whatsapp.com/send?phone=4915510048440&text=Tinder";
-        // ============================================
+        // 直接使用a标签跳转，无需JavaScript
+        // 所有按钮都是直接链接，不会被拦截
         
-        // 获取DOM元素
-        const startMatchingBtn = document.getElementById('startMatching');
-        const whatsappBtnPhone = document.getElementById('whatsappBtnPhone');
-        const viewDemoBtn = document.getElementById('viewDemo');
-        const matchingOverlay = document.getElementById('matchingOverlay');
-        
-        // 开始匹配过程
-        function startMatchingProcess() {
-            // 显示加载界面
-            matchingOverlay.style.display = 'flex';
+        // 如果有需要，可以添加简单的点击统计
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('.whatsapp-link');
             
-            console.log(`正在跳转到WhatsApp: ${whatsappLink}`);
-            
-            // 1.5秒后直接跳转到WhatsApp（加载条动画时间）
-            setTimeout(() => {
-                // 直接跳转到WhatsApp
-                window.open(whatsappLink, '_blank');
-                
-                // 重置加载界面
-                setTimeout(() => {
-                    matchingOverlay.style.display = 'none';
-                    
-                    // 重置进度条动画
-                    const progressBar = document.querySelector('.matching-progress-bar');
-                    progressBar.style.animation = 'none';
-                    setTimeout(() => {
-                        progressBar.style.animation = 'progress 2s ease-in-out forwards';
-                    }, 10);
-                }, 500);
-                
-            }, 1500); // 加载条显示时间
-        }
-        
-        // 事件监听器
-        startMatchingBtn.addEventListener('click', startMatchingProcess);
-        whatsappBtnPhone.addEventListener('click', startMatchingProcess);
-        viewDemoBtn.addEventListener('click', startMatchingProcess);
-        
-        // 说明：
-        // 1. 已设置为直接跳转到：https://api.whatsapp.com/send?phone=4915510048440&text=Tinder
-        // 2. 用户点击任何按钮都会显示1.5秒加载动画，然后自动跳转
-        // 3. 跳转链接已在第270行配置好
+            links.forEach(link => {
+                link.addEventListener('click', function() {
+                    console.log('跳转到WhatsApp链接');
+                    // 这里可以添加统计代码
+                });
+            });
+        });
     </script>
 </body>
 </html>
