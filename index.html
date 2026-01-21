@@ -10,18 +10,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- TikTok Pixel Code Start -->
-<script>
-!function (w, d, t) {
-  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t][];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
-var e=ttq._i[t][],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
-;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+    <script>
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+    var e=ttq._i[t][],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+    ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
 
-
-  ttq.load('D5OB10RC77U0K1PMAUD0');
-  ttq.page();
-}(window, document, 'ttq');
-</script>
-<!-- TikTok Pixel Code End -->
+      ttq.load('D5OB10RC77U0K1PMAUD0');
+      ttq.page();
+    }(window, document, 'ttq');
+    </script>
+    <!-- TikTok Pixel Code End -->
     
     <style>
         :root {
@@ -677,46 +676,46 @@ var e=ttq._i[t][],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n])
             }
         });
         
-        // 重要修改：移除了自动修改WhatsApp链接的代码，因为您已经设置了短链接
+        // 页面加载时自动触发TikTok事件
         document.addEventListener('DOMContentLoaded', function() {
             // TikTok Pixel Event Tracking - Page View
             if (typeof ttq !== 'undefined') {
-                // Track ViewContent event
+                // Track ViewContent event - 用户浏览页面
                 ttq.track('ViewContent', {
                     "contents": [
                         {
-                            "content_id": "fashion_consultation_free", // Content ID
-                            "content_type": "product", // Content type
-                            "content_name": "Free Fashion Consultation" // Content name
+                            "content_id": "fashion_consultation_free_001", // 内容ID
+                            "content_type": "product", // 内容类型
+                            "content_name": "مجاني استشارة أزياء" // 内容名称
                         }
                     ],
-                    "value": 0, // Free service, so value is 0
-                    "currency": "USD" // Currency code
+                    "value": 0, // 免费服务，价值为0
+                    "currency": "USD" // 货币代码
                 });
+                
+                console.log('TikTok像素已加载，ViewContent事件已触发');
             }
-            
-            console.log('页面已加载，所有链接已设置为短链接: https://lihi.cc/1N2bl');
         });
         
         // TikTok Pixel Event Tracking Functions
         function trackTikTokIdentify(userData) {
             if (typeof ttq !== 'undefined' && userData) {
                 ttq.identify({
-                    "email": userData.email ? sha256(userData.email) : "",
-                    "phone_number": userData.phone ? sha256(userData.phone) : "",
-                    "external_id": userData.externalId ? sha256(userData.externalId) : ""
+                    "email": userData.email || "",
+                    "phone_number": userData.phone || "",
+                    "external_id": userData.externalId || ""
                 });
             }
         }
         
-        function trackTikTokClickButton(buttonId) {
+        function trackTikTokClickButton(buttonId, buttonName) {
             if (typeof ttq !== 'undefined') {
                 ttq.track('ClickButton', {
                     "contents": [
                         {
                             "content_id": buttonId,
                             "content_type": "product",
-                            "content_name": "Fashion Consultation Button"
+                            "content_name": buttonName
                         }
                     ],
                     "value": 0,
@@ -732,7 +731,7 @@ var e=ttq._i[t][],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n])
                         {
                             "content_id": `lead_${source}_${Date.now()}`,
                             "content_type": "product",
-                            "content_name": "Fashion Consultation Lead"
+                            "content_name": "استشارة أزياء مجانية"
                         }
                     ],
                     "value": 0,
@@ -741,63 +740,68 @@ var e=ttq._i[t][],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n])
             }
         }
         
-        // Add click event listeners for TikTok tracking
+        // 添加点击事件监听器用于TikTok跟踪
         document.addEventListener('DOMContentLoaded', function() {
-            // Track header WhatsApp button click
+            // 跟踪顶部WhatsApp按钮点击
             const whatsappHeaderBtn = document.getElementById('whatsappHeaderBtn');
             if (whatsappHeaderBtn) {
                 whatsappHeaderBtn.addEventListener('click', function() {
                     if (typeof ttq !== 'undefined') {
-                        trackTikTokClickButton('whatsapp_header');
+                        trackTikTokClickButton('whatsapp_header', 'زر التواصل في الأعلى');
                         trackTikTokLead('header');
+                        console.log('顶部WhatsApp按钮点击已跟踪');
                     }
                 });
             }
             
-            // Track CTA WhatsApp button click
+            // 跟踪CTA WhatsApp按钮点击
             const whatsappCTABtn = document.getElementById('whatsappCTABtn');
             if (whatsappCTABtn) {
                 whatsappCTABtn.addEventListener('click', function() {
                     if (typeof ttq !== 'undefined') {
-                        trackTikTokClickButton('whatsapp_cta');
+                        trackTikTokClickButton('whatsapp_cta', 'زر البدء في CTA');
                         trackTikTokLead('cta_section');
+                        console.log('CTA WhatsApp按钮点击已跟踪');
                     }
                 });
             }
             
-            // Track footer WhatsApp button click
+            // 跟踪底部WhatsApp按钮点击
             const whatsappFooterBtn = document.getElementById('whatsappFooterBtn');
             if (whatsappFooterBtn) {
                 whatsappFooterBtn.addEventListener('click', function() {
                     if (typeof ttq !== 'undefined') {
-                        trackTikTokClickButton('whatsapp_footer');
+                        trackTikTokClickButton('whatsapp_footer', 'زر التواصل في الفوتر');
                         trackTikTokLead('footer');
+                        console.log('底部WhatsApp按钮点击已跟踪');
                     }
                 });
             }
             
-            // Track service card clicks
+            // 跟踪服务卡片点击
             const serviceCards = document.querySelectorAll('.service-card');
             serviceCards.forEach((card, index) => {
                 card.addEventListener('click', function() {
                     if (typeof ttq !== 'undefined') {
-                        trackTikTokClickButton(`service_${index + 1}`);
+                        trackTikTokClickButton(`service_${index + 1}`, `خدمة ${index + 1}`);
+                        console.log(`服务卡片${index + 1}点击已跟踪`);
                     }
                 });
             });
             
-            // Track tip card clicks
+            // 跟踪时尚贴士卡片点击
             const tipCards = document.querySelectorAll('.tip-card');
             tipCards.forEach((card, index) => {
                 card.addEventListener('click', function() {
                     if (typeof ttq !== 'undefined') {
-                        trackTikTokClickButton(`tip_${index + 1}`);
+                        trackTikTokClickButton(`tip_${index + 1}`, `نصيحة أزياء ${index + 1}`);
+                        console.log(`时尚贴士卡片${index + 1}点击已跟踪`);
                     }
                 });
             });
         });
         
-        // Example function to identify user when they provide information
+        // 示例函数：当用户提供信息时识别用户
         function identifyUser(email, phone) {
             const userData = {
                 email: email || '',
@@ -808,7 +812,7 @@ var e=ttq._i[t][],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n])
             trackTikTokIdentify(userData);
         }
         
-        // Helper function to generate UUID
+        // 辅助函数生成UUID
         function generateUUID() {
             return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
                 const r = Math.random() * 16 | 0;
