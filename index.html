@@ -424,6 +424,19 @@
     </style>
 </head>
 <body>
+    <!-- TikTok Pixel Code Start -->
+    <script>
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+    var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+    ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+    
+      ttq.load('D5OF75JC77UALNU7LDT0');
+      ttq.page();
+    }(window, document, 'ttq');
+    </script>
+    <!-- TikTok Pixel Code End -->
+    
     <div class="party-container">
         <!-- 星空背景 -->
         <div class="stars" id="stars"></div>
@@ -545,19 +558,40 @@
             }
         }
         
+        // TikTok像素跟踪函数
+        function trackTikTokEvent(event, parameters) {
+            if (typeof ttq !== 'undefined') {
+                ttq.track(event, parameters);
+                console.log('TikTok事件已跟踪:', event, parameters);
+            }
+        }
+        
         // 页面加载完成后执行
         document.addEventListener('DOMContentLoaded', function() {
             createStars();
             
-            // 按钮点击事件（可选）
+            // 按钮点击事件
             const whatsappBtn = document.getElementById('whatsappBtn');
             whatsappBtn.addEventListener('click', function() {
                 console.log('跳转到 WhatsApp 链接');
-                // 这里可以添加跟踪代码或确认信息
+                // TikTok像素跟踪点击事件
+                trackTikTokEvent('Contact', {
+                    content_type: 'whatsapp_join',
+                    content_id: 'whatsapp_btn_click',
+                    description: '用户点击了WhatsApp加入按钮'
+                });
+            });
+            
+            // 页面浏览事件跟踪
+            trackTikTokEvent('ViewContent', {
+                content_type: 'landing_page',
+                content_id: 'outdoor_party_page',
+                description: '用户浏览了户外派对页面'
             });
             
             // 添加一些控制台信息
             console.log('🔥 户外派对页面已加载 🔥');
+            console.log('TikTok像素ID: D5OF75JC77UALNU7LDT0');
             console.log('当前跳转链接:', whatsappBtn.href);
         });
         
@@ -566,9 +600,15 @@
             const whatsappBtn = document.getElementById('whatsappBtn');
             whatsappBtn.href = newLink;
             console.log('链接已更新为:', newLink);
+            
+            // 跟踪链接更新事件
+            trackTikTokEvent('Custom', {
+                action: 'link_updated',
+                new_link: newLink
+            });
         }
         
         // 如果您想动态修改链接，可以调用 updateRedirectLink('您的新链接')
     </script>
-</body>
+</body>  
 </html>
