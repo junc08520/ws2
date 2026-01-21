@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- TikTok Pixel Code Start -->
+    <!-- TikTok Pixel Base Code -->
     <script>
     !function (w, d, t) {
       w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
@@ -20,7 +20,7 @@
       ttq.page();
     }(window, document, 'ttq');
     </script>
-    <!-- TikTok Pixel Code End -->
+    <!-- End TikTok Pixel Code -->
     
     <style>
         :root {
@@ -437,9 +437,28 @@
             margin-top: 20px;
             font-style: italic;
         }
+        
+        /* Debug Info */
+        .debug-info {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 10000;
+            display: none;
+        }
     </style>
 </head>
 <body>
+    <!-- Debug Info Panel -->
+    <div class="debug-info" id="debugInfo">
+        TikTok Pixel Status: <span id="pixelStatus">Checking...</span>
+    </div>
+
     <!-- Language Toggle Button -->
     <button class="lang-toggle" id="langToggle">EN</button>
 
@@ -464,8 +483,8 @@
                 I offer you FREE lessons in clothing coordination and fashion. Benefit from my extensive experience in the fashion world!
             </p>
             
-            <!-- WhatsApp Link - 已设置为短链接 -->
-            <a href="https://lihi.cc/1N2bl" class="whatsapp-cta" target="_blank" id="whatsappHeaderBtn">
+            <!-- WhatsApp Link - 添加了点击跟踪 -->
+            <a href="https://lihi.cc/1N2bl" class="whatsapp-cta" target="_blank" id="whatsappHeaderBtn" onclick="trackTikTokClick('header')">
                 <i class="fab fa-whatsapp"></i>
                 <span class="lang-ar">تواصل معي على واتساب الآن</span>
                 <span class="lang-en">Contact me on WhatsApp Now</span>
@@ -600,8 +619,8 @@
                 Contact me now on WhatsApp for free personalized advice. Don't hesitate to ask anything about fashion and coordination!
             </p>
             
-            <!-- WhatsApp Link - 已设置为短链接 -->
-            <a href="https://lihi.cc/1N2bl" class="whatsapp-cta" target="_blank" id="whatsappCTABtn">
+            <!-- WhatsApp Link - 添加了点击跟踪 -->
+            <a href="https://lihi.cc/1N2bl" class="whatsapp-cta" target="_blank" id="whatsappCTABtn" onclick="trackTikTokClick('cta')">
                 <i class="fab fa-whatsapp"></i>
                 <span class="lang-ar">ابدأ الاستشارة المجانية</span>
                 <span class="lang-en">Start Free Consultation</span>
@@ -632,8 +651,8 @@
                 <a href="#" class="lang-en" title="YouTube"><i class="fab fa-youtube"></i></a>
             </div>
             
-            <!-- WhatsApp Link - 已设置为短链接 -->
-            <a href="https://lihi.cc/1N2bl" style="color: var(--primary-color); font-weight: 600; font-size: 1.1rem;" id="whatsappFooterBtn">
+            <!-- WhatsApp Link - 添加了点击跟踪 -->
+            <a href="https://lihi.cc/1N2bl" style="color: var(--primary-color); font-weight: 600; font-size: 1.1rem;" id="whatsappFooterBtn" onclick="trackTikTokClick('footer')">
                 <i class="fab fa-whatsapp"></i>
                 <span class="lang-ar">رابط الواتساب للتواصل المباشر</span>
                 <span class="lang-en">Direct WhatsApp Contact Link</span>
@@ -656,7 +675,7 @@
         </div>
     </footer>
 
-    <!-- TikTok Event Tracking Code -->
+    <!-- 事件跟踪JavaScript代码 -->
     <script>
         // Language Toggle Functionality
         const langToggle = document.getElementById('langToggle');
@@ -676,150 +695,136 @@
             }
         });
         
-        // 页面加载时自动触发TikTok事件
+        // TikTok像素状态检查
         document.addEventListener('DOMContentLoaded', function() {
-            // TikTok Pixel Event Tracking - Page View
-            if (typeof ttq !== 'undefined') {
-                // Track ViewContent event - 用户浏览页面
-                ttq.track('ViewContent', {
-                    "contents": [
-                        {
-                            "content_id": "fashion_consultation_free_001", // 内容ID
-                            "content_type": "product", // 内容类型
-                            "content_name": "مجاني استشارة أزياء" // 内容名称
+            // 显示调试信息
+            const debugInfo = document.getElementById('debugInfo');
+            const pixelStatus = document.getElementById('pixelStatus');
+            
+            setTimeout(function() {
+                if (typeof ttq !== 'undefined') {
+                    pixelStatus.textContent = 'Loaded Successfully';
+                    pixelStatus.style.color = 'lightgreen';
+                    console.log('✅ TikTok像素已成功加载');
+                    
+                    // 跟踪页面浏览事件
+                    try {
+                        if (typeof ttq.track === 'function') {
+                            ttq.track('ViewContent', {
+                                "contents": [{
+                                    "content_id": "fashion_expert_landing",
+                                    "content_type": "product",
+                                    "content_name": "Fashion Expert Landing Page"
+                                }],
+                                "value": 0,
+                                "currency": "USD"
+                            });
+                            console.log('✅ ViewContent事件已触发');
                         }
-                    ],
-                    "value": 0, // 免费服务，价值为0
-                    "currency": "USD" // 货币代码
-                });
-                
-                console.log('TikTok像素已加载，ViewContent事件已触发');
-            }
+                    } catch (e) {
+                        console.log('❌ ViewContent事件触发失败:', e);
+                    }
+                    
+                    // 3秒后隐藏调试信息
+                    setTimeout(function() {
+                        debugInfo.style.display = 'none';
+                    }, 3000);
+                } else {
+                    pixelStatus.textContent = 'Not Loaded';
+                    pixelStatus.style.color = 'red';
+                    console.log('❌ TikTok像素未加载');
+                }
+            }, 2000);
         });
         
-        // TikTok Pixel Event Tracking Functions
-        function trackTikTokIdentify(userData) {
-            if (typeof ttq !== 'undefined' && userData) {
-                ttq.identify({
-                    "email": userData.email || "",
-                    "phone_number": userData.phone || "",
-                    "external_id": userData.externalId || ""
-                });
-            }
-        }
-        
-        function trackTikTokClickButton(buttonId, buttonName) {
-            if (typeof ttq !== 'undefined') {
-                ttq.track('ClickButton', {
-                    "contents": [
-                        {
-                            "content_id": buttonId,
-                            "content_type": "product",
-                            "content_name": buttonName
-                        }
-                    ],
-                    "value": 0,
-                    "currency": "USD"
-                });
-            }
-        }
-        
-        function trackTikTokLead(source) {
-            if (typeof ttq !== 'undefined') {
-                ttq.track('Lead', {
-                    "contents": [
-                        {
-                            "content_id": `lead_${source}_${Date.now()}`,
-                            "content_type": "product",
-                            "content_name": "استشارة أزياء مجانية"
-                        }
-                    ],
-                    "value": 0,
-                    "currency": "USD"
-                });
-            }
-        }
-        
-        // 添加点击事件监听器用于TikTok跟踪
-        document.addEventListener('DOMContentLoaded', function() {
-            // 跟踪顶部WhatsApp按钮点击
-            const whatsappHeaderBtn = document.getElementById('whatsappHeaderBtn');
-            if (whatsappHeaderBtn) {
-                whatsappHeaderBtn.addEventListener('click', function() {
-                    if (typeof ttq !== 'undefined') {
-                        trackTikTokClickButton('whatsapp_header', 'زر التواصل في الأعلى');
-                        trackTikTokLead('header');
-                        console.log('顶部WhatsApp按钮点击已跟踪');
-                    }
-                });
+        // TikTok点击事件跟踪函数
+        function trackTikTokClick(source) {
+            // 阻止默认行为，先触发事件再跳转
+            event.preventDefault();
+            
+            console.log(`🟡 开始跟踪点击事件: ${source}`);
+            
+            // 检查ttq对象是否可用
+            if (typeof ttq === 'undefined') {
+                console.log('❌ ttq对象未定义，直接跳转');
+                window.open('https://lihi.cc/1N2bl', '_blank');
+                return;
             }
             
-            // 跟踪CTA WhatsApp按钮点击
-            const whatsappCTABtn = document.getElementById('whatsappCTABtn');
-            if (whatsappCTABtn) {
-                whatsappCTABtn.addEventListener('click', function() {
-                    if (typeof ttq !== 'undefined') {
-                        trackTikTokClickButton('whatsapp_cta', 'زر البدء في CTA');
-                        trackTikTokLead('cta_section');
-                        console.log('CTA WhatsApp按钮点击已跟踪');
-                    }
-                });
-            }
-            
-            // 跟踪底部WhatsApp按钮点击
-            const whatsappFooterBtn = document.getElementById('whatsappFooterBtn');
-            if (whatsappFooterBtn) {
-                whatsappFooterBtn.addEventListener('click', function() {
-                    if (typeof ttq !== 'undefined') {
-                        trackTikTokClickButton('whatsapp_footer', 'زر التواصل في الفوتر');
-                        trackTikTokLead('footer');
-                        console.log('底部WhatsApp按钮点击已跟踪');
-                    }
-                });
-            }
-            
-            // 跟踪服务卡片点击
-            const serviceCards = document.querySelectorAll('.service-card');
-            serviceCards.forEach((card, index) => {
-                card.addEventListener('click', function() {
-                    if (typeof ttq !== 'undefined') {
-                        trackTikTokClickButton(`service_${index + 1}`, `خدمة ${index + 1}`);
-                        console.log(`服务卡片${index + 1}点击已跟踪`);
-                    }
-                });
-            });
-            
-            // 跟踪时尚贴士卡片点击
-            const tipCards = document.querySelectorAll('.tip-card');
-            tipCards.forEach((card, index) => {
-                card.addEventListener('click', function() {
-                    if (typeof ttq !== 'undefined') {
-                        trackTikTokClickButton(`tip_${index + 1}`, `نصيحة أزياء ${index + 1}`);
-                        console.log(`时尚贴士卡片${index + 1}点击已跟踪`);
-                    }
-                });
-            });
-        });
-        
-        // 示例函数：当用户提供信息时识别用户
-        function identifyUser(email, phone) {
-            const userData = {
-                email: email || '',
-                phone: phone || '',
-                externalId: generateUUID()
+            // 定义事件参数
+            let eventParams = {
+                "contents": [{
+                    "content_id": `fashion_expert_${source}`,
+                    "content_type": "product",
+                    "content_name": `Fashion Expert ${source} Button`
+                }],
+                "value": 0,
+                "currency": "USD"
             };
             
-            trackTikTokIdentify(userData);
+            // 根据来源设置不同的内容
+            if (source === 'header') {
+                eventParams.contents[0].content_name = 'Header WhatsApp Button';
+            } else if (source === 'cta') {
+                eventParams.contents[0].content_name = 'CTA WhatsApp Button';
+            } else if (source === 'footer') {
+                eventParams.contents[0].content_name = 'Footer WhatsApp Button';
+            }
+            
+            try {
+                // 跟踪ClickButton事件
+                ttq.track('ClickButton', eventParams);
+                console.log(`✅ ClickButton事件已触发: ${source}`);
+                
+                // 跟踪Lead事件
+                ttq.track('Lead', {
+                    "contents": [{
+                        "content_id": `lead_${source}_${Date.now()}`,
+                        "content_type": "product",
+                        "content_name": "Fashion Consultation Lead"
+                    }],
+                    "value": 0,
+                    "currency": "USD"
+                });
+                console.log(`✅ Lead事件已触发: ${source}`);
+                
+                // 短暂延迟后跳转（确保事件发送完成）
+                setTimeout(function() {
+                    console.log(`🔗 跳转到: https://lihi.cc/1N2bl`);
+                    window.open('https://lihi.cc/1N2bl', '_blank');
+                }, 300);
+                
+            } catch (error) {
+                console.log('❌ 事件跟踪失败:', error);
+                // 如果跟踪失败，直接跳转
+                window.open('https://lihi.cc/1N2bl', '_blank');
+            }
+            
+            return false;
         }
         
-        // 辅助函数生成UUID
-        function generateUUID() {
-            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-                const r = Math.random() * 16 | 0;
-                const v = c === 'x' ? r : (r & 0x3 | 0x8);
-                return v.toString(16);
+        // 为所有WhatsApp链接添加事件监听器（备用方案）
+        document.addEventListener('DOMContentLoaded', function() {
+            const whatsappLinks = document.querySelectorAll('a[href*="lihi.cc"]');
+            whatsappLinks.forEach(link => {
+                // 移除旧的onclick（如果有）
+                link.removeAttribute('onclick');
+                
+                // 添加新的点击事件监听器
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // 确定来源
+                    let source = 'unknown';
+                    if (this.id === 'whatsappHeaderBtn') source = 'header';
+                    else if (this.id === 'whatsappCTABtn') source = 'cta';
+                    else if (this.id === 'whatsappFooterBtn') source = 'footer';
+                    
+                    // 调用跟踪函数
+                    trackTikTokClick(source);
+                });
             });
-        }
+        });
     </script>
 </body>
 </html>
