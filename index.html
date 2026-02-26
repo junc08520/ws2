@@ -1,97 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Contact & Consultation Page</title>
-
-<!-- TikTok Pixel Code -->
 <script>
-!function (w, d, t) {
-  w.TiktokAnalyticsObject=t;
-  var ttq=w[t]=w[t][];
-  ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"];
-  ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0))) }};
-  for(var i=0;i<ttq.methods.length;i++){ttq.setAndDefer(ttq,ttq.methods[i]);}
-  ttq.instance=function(t){
-    var e=ttq._i[t][];
-    for(var n=0;n<ttq.methods.length;n++){ttq.setAndDefer(e,ttq.methods[n]);}
-    return e
-  };
-  ttq.load('YOUR_PIXEL_ID'); 
-  ttq.page();
-}(window, document, 'ttq');
-</script>
-<!-- End TikTok Pixel Code -->
+function redirectWS(){
 
-<style>
-body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:#f4f6f9;
-  text-align:center;
-}
-.container{
-  max-width:500px;
-  margin:50px auto;
-  background:white;
-  padding:30px;
-  border-radius:12px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.1);
-}
-button{
-  background:#000;
-  color:white;
-  padding:15px 25px;
-  border:none;
-  border-radius:8px;
-  font-size:16px;
-  cursor:pointer;
-}
-button:hover{
-  opacity:0.85;
-}
-.time-box{
-  margin:20px 0;
-  font-size:18px;
-  color:#333;
-}
-</style>
-</head>
+    var redirectUrl = "https://api.whatsapp.com/send?phone=17655566144&text=Hello!";
 
-<body>
+    // Facebook Lead
+    if (typeof fbq !== "undefined") {
+        fbq('track', 'Lead', {
+            content_name: 'Private Invitation WhatsApp'
+        });
+    }
 
-<div class="container">
-  <h2>Schedule Your Consultation</h2>
-  <p>Please contact us during business hours.</p>
+    // TikTok Pixel
+    if (typeof ttq !== "undefined") {
 
-  <div class="time-box">
-    Current Time: <span id="currentTime"></span>
-  </div>
+        try {
 
-  <button onclick="contactNow()">Contact Now</button>
-</div>
+            // 主优化事件
+            ttq.track('SubmitForm', {
+                content_name: 'Private Invitation',
+                content_type: 'contact'
+            });
 
-<script>
-// 显示当前时间
-function updateTime(){
-  var now = new Date();
-  document.getElementById("currentTime").innerHTML = now.toLocaleString();
-}
-setInterval(updateTime,1000);
-updateTime();
+            // 备用事件
+            ttq.track('CompleteRegistration', {
+                content_name: 'Private Invitation'
+            });
 
-// 点击事件追踪
-function contactNow(){
-  ttq.track('ClickButton',{
-    content_name:'Contact Button'
-  });
-  
-  // 合规跳转
-  window.location.href="https://yourdomain.com/contact";
+        } catch(e){}
+
+        // ⭐ 给足够时间让事件发送完成
+        setTimeout(function(){
+            window.location.href = redirectUrl;
+        }, 1500);
+
+    } else {
+
+        // Pixel 不存在时
+        setTimeout(function(){
+            window.location.href = redirectUrl;
+        }, 800);
+    }
 }
 </script>
-
-</body>
-</html>
