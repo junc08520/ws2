@@ -5,11 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Meet New Friends • Start Chatting Today</title>
   <meta name="description" content="Discover real people, make new friends and start meaningful conversations right now."/>
- 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
- 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -72,7 +70,7 @@
   </style>
 </head>
 <body>
-  <!-- TikTok Pixel Code Start (已修复标准格式，确保兼容) -->
+  <!-- TikTok Pixel Code Start - 第一个 Pixel (原 ID，用于一般追踪) -->
   <script>
   !function (w, d, t) {
     w.TiktokAnalyticsObject = t;
@@ -98,16 +96,31 @@
       ttq._o[e] = n || {};
       var s = document.createElement("script");
       s.type = "text/javascript";
-      s.async = !0;
+      s.async = true;
       s.src = r + "?sdkid=" + e + "&lib=" + t;
       var a = document.getElementsByTagName("script")[0];
       a.parentNode.insertBefore(s, a);
     };
+
+    // 加载第一个 Pixel
     ttq.load('D6EOHCRC77U0SFL8KVVG');
     ttq.page();
   }(window, document, 'ttq');
   </script>
-  <!-- TikTok Pixel Code End -->
+  <!-- TikTok Pixel Code End - 第一个 Pixel -->
+
+  <!-- TikTok Pixel Code Start - 第二个 Pixel (新 ID，可能用于销量/销售追踪) -->
+  <script>
+  !function (w, d, t) {
+    // 注意：这里复用同一个 ttq 对象（TikTok SDK 支持多实例）
+    var ttq = w['ttq'] = w['ttq'] || [];  // 继续使用全局 ttq
+
+    // 加载第二个 Pixel（会自动创建独立实例）
+    ttq.load('D6FVTP3C77U56TVATBG0');
+    ttq.page();  // 第二个 Pixel 也发送 PageView
+  }(window, document, 'ttq');
+  </script>
+  <!-- TikTok Pixel Code End - 第二个 Pixel -->
 
   <div class="container">
     <div class="highlight">Real People • Real Connections</div>
@@ -134,14 +147,14 @@
     <footer>By joining you agree to our community guidelines</footer>
   </div>
 
-  <!-- 点击 WhatsApp 触发 TikTok Contact 事件（带调试 log） -->
+  <!-- 点击 WhatsApp 触发 TikTok Contact 事件（会发送到两个 Pixel） -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const whatsappBtn = document.querySelector('.btn-whatsapp');
       
       if (whatsappBtn) {
         whatsappBtn.addEventListener('click', function(e) {
-          console.log('WhatsApp button clicked - attempting to track TikTok Contact event');
+          console.log('WhatsApp button clicked - attempting to track TikTok Contact event on multiple pixels');
           
           try {
             if (window.ttq) {
@@ -149,19 +162,18 @@
                 content_name: 'WhatsApp_Chat_Click',
                 content_category: 'Lead_Chat_Initiation',
                 content_id: 'whatsapp_button_main',
-                description: 'User initiated WhatsApp chat from landing page',
-                // value: 1.00,  // 可选：如果想赋潜在价值
-                // currency: 'USD'
+                description: 'User initiated WhatsApp chat from landing page'
+                // 如果想追踪为“潜在销售”，可加 value: 5.00, currency: 'USD' 等参数
               });
-              console.log('TikTok Contact event tracked successfully');
+              console.log('TikTok Contact event tracked successfully on all loaded pixels');
             } else {
-              console.warn('TikTok ttq object not found - pixel may not have loaded');
+              console.warn('TikTok ttq object not found - pixels may not have loaded');
             }
           } catch (err) {
             console.error('Error tracking TikTok Contact event:', err);
           }
           
-          // 不阻止默认跳转，确保 WhatsApp 正常打开
+          // 不阻止默认跳转
         });
       } else {
         console.warn('WhatsApp button not found in DOM');
