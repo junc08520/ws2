@@ -11,11 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
  
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Poppins', system-ui, sans-serif;
       background: linear-gradient(135deg, #6b48ff 0%, #00ddeb 100%);
@@ -28,23 +24,9 @@
       padding: 20px 16px;
       text-align: center;
     }
-    .container {
-      max-width: 480px;
-      width: 100%;
-    }
-    h1 {
-      font-size: 2.6rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      line-height: 1.15;
-    }
-    .subtitle {
-      font-size: 1.25rem;
-      font-weight: 400;
-      opacity: 0.95;
-      margin-bottom: 2.5rem;
-      line-height: 1.4;
-    }
+    .container { max-width: 480px; width: 100%; }
+    h1 { font-size: 2.6rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.15; }
+    .subtitle { font-size: 1.25rem; font-weight: 400; opacity: 0.95; margin-bottom: 2.5rem; line-height: 1.4; }
     .highlight {
       color: #fff;
       background: rgba(255,255,255,0.18);
@@ -77,33 +59,11 @@
       box-shadow: 0 14px 40px rgba(0,0,0,0.35);
       background: #20b858;
     }
-    .btn-whatsapp svg {
-      width: 28px;
-      height: 28px;
-    }
-    .features {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-      margin: 2.5rem 0 1rem;
-      opacity: 0.92;
-      font-size: 1.05rem;
-    }
-    .feature-item {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-    }
-    .feature-item::before {
-      content: "✦";
-      font-size: 1.4rem;
-    }
-    footer {
-      margin-top: 3rem;
-      font-size: 0.82rem;
-      opacity: 0.7;
-    }
+    .btn-whatsapp svg { width: 28px; height: 28px; }
+    .features { display: flex; flex-direction: column; gap: 1.2rem; margin: 2.5rem 0 1rem; opacity: 0.92; font-size: 1.05rem; }
+    .feature-item { display: flex; align-items: center; justify-content: center; gap: 12px; }
+    .feature-item::before { content: "✦"; font-size: 1.4rem; }
+    footer { margin-top: 3rem; font-size: 0.82rem; opacity: 0.7; }
     @media (max-width: 480px) {
       h1 { font-size: 2.3rem; }
       .subtitle { font-size: 1.1rem; }
@@ -112,11 +72,37 @@
   </style>
 </head>
 <body>
-  <!-- TikTok Pixel Code Start -->
+  <!-- TikTok Pixel Code Start (已修复标准格式，确保兼容) -->
   <script>
   !function (w, d, t) {
-    w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]=[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]=[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
- 
+    w.TiktokAnalyticsObject = t;
+    var ttq = w[t] = w[t] || [];
+    ttq.methods = ["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"];
+    ttq.setAndDefer = function (t, e) {
+      t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) };
+    };
+    for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]);
+    ttq.instance = function (t) {
+      for (var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++) ttq.setAndDefer(e, ttq.methods[n]);
+      return e;
+    };
+    ttq.load = function (e, n) {
+      var r = "https://analytics.tiktok.com/i18n/pixel/events.js";
+      var o = n && n.partner;
+      ttq._i = ttq._i || {};
+      ttq._i[e] = [];
+      ttq._i[e]._u = r;
+      ttq._t = ttq._t || {};
+      ttq._t[e] = +new Date;
+      ttq._o = ttq._o || {};
+      ttq._o[e] = n || {};
+      var s = document.createElement("script");
+      s.type = "text/javascript";
+      s.async = !0;
+      s.src = r + "?sdkid=" + e + "&lib=" + t;
+      var a = document.getElementsByTagName("script")[0];
+      a.parentNode.insertBefore(s, a);
+    };
     ttq.load('D6EOHCRC77U0SFL8KVVG');
     ttq.page();
   }(window, document, 'ttq');
@@ -125,9 +111,7 @@
 
   <div class="container">
     <div class="highlight">Real People • Real Connections</div>
-   
     <h1>Meet Someone Special Today</h1>
-   
     <p class="subtitle">
       Discover interesting people nearby or around the world.<br>
       Chat freely, make friends, or find that spark.
@@ -147,37 +131,40 @@
       <div class="feature-item">No boring profiles, just real talk</div>
       <div class="feature-item">100% free to start</div>
     </div>
-    <footer>
-      By joining you agree to our community guidelines
-    </footer>
+    <footer>By joining you agree to our community guidelines</footer>
   </div>
 
-  <!-- 新增：点击 WhatsApp 按钮时触发 TikTok Contact 事件 -->
+  <!-- 点击 WhatsApp 触发 TikTok Contact 事件（带调试 log） -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const whatsappBtn = document.querySelector('.btn-whatsapp');
       
       if (whatsappBtn) {
         whatsappBtn.addEventListener('click', function(e) {
-          // 如果发现事件偶尔没触发，可以短暂延迟再跳转（可选）
-          // e.preventDefault();
+          console.log('WhatsApp button clicked - attempting to track TikTok Contact event');
           
-          if (window.ttq) {
-            ttq.track('Contact', {
-              content_name: 'WhatsApp_Chat_Click',
-              content_category: 'Lead_Chat_Initiation',
-              content_id: 'whatsapp_button_main',
-              description: 'User clicked WhatsApp chat button from landing page'
-              // value: 1.00,           // 可选：如果想给每个联系赋价值
-              // currency: 'USD',
-            });
+          try {
+            if (window.ttq) {
+              ttq.track('Contact', {
+                content_name: 'WhatsApp_Chat_Click',
+                content_category: 'Lead_Chat_Initiation',
+                content_id: 'whatsapp_button_main',
+                description: 'User initiated WhatsApp chat from landing page',
+                // value: 1.00,  // 可选：如果想赋潜在价值
+                // currency: 'USD'
+              });
+              console.log('TikTok Contact event tracked successfully');
+            } else {
+              console.warn('TikTok ttq object not found - pixel may not have loaded');
+            }
+          } catch (err) {
+            console.error('Error tracking TikTok Contact event:', err);
           }
           
-          // 如果用了 e.preventDefault()，可以在这里手动跳转：
-          // setTimeout(() => {
-          //   window.open(whatsappBtn.href, '_blank', 'noopener,noreferrer');
-          // }, 300);
+          // 不阻止默认跳转，确保 WhatsApp 正常打开
         });
+      } else {
+        console.warn('WhatsApp button not found in DOM');
       }
     });
   </script>
