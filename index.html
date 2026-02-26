@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Meet New Friends • Start Chatting Today</title>
   <meta name="description" content="Discover real people, make new friends and start meaningful conversations right now."/>
-  
+ 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
+ 
   <style>
     * {
       margin: 0;
@@ -112,12 +112,11 @@
   </style>
 </head>
 <body>
-
   <!-- TikTok Pixel Code Start -->
   <script>
   !function (w, d, t) {
     w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]=[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]=[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
-  
+ 
     ttq.load('D6EOHCRC77U0SFL8KVVG');
     ttq.page();
   }(window, document, 'ttq');
@@ -126,15 +125,14 @@
 
   <div class="container">
     <div class="highlight">Real People • Real Connections</div>
-    
+   
     <h1>Meet Someone Special Today</h1>
-    
+   
     <p class="subtitle">
       Discover interesting people nearby or around the world.<br>
       Chat freely, make friends, or find that spark.
     </p>
-
-    <a 
+    <a
       href="https://wa.me/12678341019?text=Hi%21%20I%27m%20from%20the%20app%20%E2%9C%A8"
       class="btn-whatsapp"
       target="_blank"
@@ -143,18 +141,46 @@
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.074-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004c-1.423 0-2.82-.394-4.039-1.139l-.289-.172-2.998 1.006.995-3.005-.195-.292c-.827-1.24-1.265-2.68-1.265-4.17 0-4.326 3.523-7.849 7.849-7.849 2.096 0 4.065.817 5.546 2.3a7.802 7.802 0 0 1 2.298 5.548c0 4.326-3.523 7.849-7.849 7.849z"/></svg>
       Chat on WhatsApp
     </a>
-
     <div class="features">
       <div class="feature-item">Instant private chat</div>
       <div class="feature-item">People who want to connect now</div>
       <div class="feature-item">No boring profiles, just real talk</div>
       <div class="feature-item">100% free to start</div>
     </div>
-
     <footer>
       By joining you agree to our community guidelines
     </footer>
   </div>
+
+  <!-- 新增：点击 WhatsApp 按钮时触发 TikTok Contact 事件 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const whatsappBtn = document.querySelector('.btn-whatsapp');
+      
+      if (whatsappBtn) {
+        whatsappBtn.addEventListener('click', function(e) {
+          // 如果发现事件偶尔没触发，可以短暂延迟再跳转（可选）
+          // e.preventDefault();
+          
+          if (window.ttq) {
+            ttq.track('Contact', {
+              content_name: 'WhatsApp_Chat_Click',
+              content_category: 'Lead_Chat_Initiation',
+              content_id: 'whatsapp_button_main',
+              description: 'User clicked WhatsApp chat button from landing page'
+              // value: 1.00,           // 可选：如果想给每个联系赋价值
+              // currency: 'USD',
+            });
+          }
+          
+          // 如果用了 e.preventDefault()，可以在这里手动跳转：
+          // setTimeout(() => {
+          //   window.open(whatsappBtn.href, '_blank', 'noopener,noreferrer');
+          // }, 300);
+        });
+      }
+    });
+  </script>
 
 </body>
 </html>
