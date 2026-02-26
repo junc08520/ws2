@@ -70,7 +70,7 @@
   </style>
 </head>
 <body>
-  <!-- TikTok Pixel 加载（两个 ID 一起加载，支持多 Pixel） -->
+  <!-- TikTok Pixel 加载脚本（支持两个 Pixel ID，同时发送事件） -->
   <script>
   !function (w, d, t) {
     w.TiktokAnalyticsObject = t;
@@ -102,10 +102,10 @@
       a.parentNode.insertBefore(s, a);
     };
 
-    // 加载两个 Pixel
+    // 加载两个 Pixel（销量代码已包含）
     ttq.load('D6EOHCRC77U0SFL8KVVG');  // 原 Pixel
-    ttq.load('D6FVTP3C77U56TVATBG0');  // 新销量相关 Pixel
-    ttq.page();  // 发送 PageView 到所有 Pixel
+    ttq.load('D6FVTP3C77U56TVATBG0');  // 销量相关 Pixel
+    ttq.page();  // PageView 发送到两个 Pixel
   }(window, document, 'ttq');
   </script>
 
@@ -121,7 +121,7 @@
       class="btn-whatsapp"
       target="_blank"
       rel="noopener noreferrer"
-      id="whatsapp-btn"  <!-- 加 ID 方便选择 -->
+      id="whatsapp-btn"
     >
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.074-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004c-1.423 0-2.82-.394-4.039-1.139l-.289-.172-2.998 1.006.995-3.005-.195-.292c-.827-1.24-1.265-2.68-1.265-4.17 0-4.326 3.523-7.849 7.849-7.849 2.096 0 4.065.817 5.546 2.3a7.802 7.802 0 0 1 2.298 5.548c0 4.326-3.523 7.849-7.849 7.849z"/></svg>
       Chat on WhatsApp
@@ -135,42 +135,42 @@
     <footer>By joining you agree to our community guidelines</footer>
   </div>
 
-  <!-- 点击 WhatsApp 触发 Contact 事件（带 value，当作销量转化） -->
+  <!-- 点击按钮触发 Contact 事件（视为销量转化，带价值参数） -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const whatsappBtn = document.getElementById('whatsapp-btn');
       
       if (whatsappBtn) {
         whatsappBtn.addEventListener('click', function(e) {
-          e.preventDefault();  // 先阻止跳转，确保事件发送
+          e.preventDefault();  // 阻止立即跳转，确保事件发送
           
-          console.log('WhatsApp 点击 - 尝试发送 Contact 事件（视为销量转化）');
+          console.log('【销量转化追踪】WhatsApp 按钮点击 - 发送 Contact 事件（带价值）');
           
           try {
             if (window.ttq) {
               ttq.track('Contact', {
-                content_name: 'WhatsApp_Chat_Click',
-                content_category: 'Lead_Sales_Initiation',  // 强调销售意图
-                content_id: 'whatsapp_button_main',
-                description: 'User started WhatsApp chat - potential sale lead',
-                value: 5.00,          // 每个联系的估算价值（改成你的真实估算，如 10.00）
-                currency: 'USD'       // 或改成 'KHR' 如果用柬埔寨货币
+                content_name: 'WhatsApp_Sales_Lead_Click',
+                content_category: 'High_Intention_Lead',  // 强调高意图销售线索
+                content_id: 'main_whatsapp_button',
+                description: 'User clicked WhatsApp for chat - treated as sales conversion lead',
+                value: 5.00,          // 每个点击的估算价值（改成你的真实平均，如 10.00 或更高）
+                currency: 'USD'       // 如果用柬埔寨本地货币，改成 'KHR' 并调整 value
               });
-              console.log('Contact 事件发送成功（两个 Pixel 都会收到）');
+              console.log('【成功】Contact 事件已发送到两个 Pixel（视为销量转化）');
             } else {
-              console.warn('ttq 未加载 - Pixel 可能没初始化');
+              console.warn('ttq 未就绪 - Pixel 加载可能慢或失败');
             }
           } catch (err) {
-            console.error('发送 Contact 事件出错:', err);
+            console.error('追踪 Contact 事件失败:', err);
           }
           
-          // 延迟 500ms 后跳转 WhatsApp（给事件发送时间）
+          // 延迟 500ms 打开 WhatsApp（给 TikTok 发送时间，通常够了）
           setTimeout(() => {
             window.open(whatsappBtn.href, '_blank', 'noopener,noreferrer');
           }, 500);
         });
       } else {
-        console.warn('找不到 WhatsApp 按钮');
+        console.warn('WhatsApp 按钮未找到');
       }
     });
   </script>
