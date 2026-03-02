@@ -1,115 +1,15 @@
 <!DOCTYPE html>
-<html lang="ro">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Potrivire...</title>
-    <style>
-        body {
-            margin: 0; padding: 0;
-            background: #0b0e14;
-            color: white;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .loader-card {
-            text-align: center;
-            width: 85%;
-            max-width: 400px;
-        }
-
-        /* 动态雷达扫描 */
-        .radar {
-            width: 100px; height: 100px;
-            margin: 0 auto 20px;
-            border-radius: 50%;
-            border: 1px solid #ff2d55;
-            position: relative;
-            background: radial-gradient(circle, rgba(255, 45, 85, 0.1) 0%, transparent 70%);
-        }
-
-        .radar::after {
-            content: "";
-            position: absolute; width: 100%; height: 100%;
-            top: 0; left: 0;
-            background: conic-gradient(from 0deg, transparent, #ff2d55);
-            border-radius: 50%;
-            animation: scan 0.8s linear infinite;
-        }
-
-        @keyframes scan { to { transform: rotate(360deg); } }
-
-        /* 心跳效果 */
-        .heart {
-            font-size: 40px;
-            color: #ff2d55;
-            margin-bottom: 20px;
-            animation: beat 0.6s infinite alternate;
-        }
-
-        @keyframes beat { from { transform: scale(1); } to { transform: scale(1.2); } }
-
-        h2 { font-weight: 300; font-size: 22px; letter-spacing: 1px; }
-
-        .progress-bg {
-            width: 100%; height: 4px;
-            background: #222;
-            border-radius: 2px;
-            margin-top: 30px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            width: 0%; height: 100%;
-            background: #ff2d55;
-            transition: width 0.1s linear;
-        }
-    </style>
-</head>
-<body>
-
-<div class="loader-card">
-    <div class="heart">❤️</div>
-    <div class="radar"></div>
-    <h2 id="msg">Se caută potrivirea...</h2>
-    <div class="progress-bg">
-        <div class="progress-fill" id="bar"></div>
-    </div>
-</div>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Redirecting...</title>
 
 <script>
-    // 目标链接
-    const targetURL = "https://api.whatsapp.com/send?phone=114344272585&text=Salut,%20te-am%20cunoscut%20prin%20aplica%C8%9Bie.";
-    
-    let width = 0;
-    const bar = document.getElementById('bar');
-    const msg = document.getElementById('msg');
-
-    // 极速匹配动画 (约 1.5 秒完成)
-    const timer = setInterval(() => {
-        width += Math.random() * 15;
-        if (width >= 100) {
-            width = 100;
-            clearInterval(timer);
-            msg.innerText = "Potrivire Găsită!";
-            msg.style.color = "#4cd964";
-            
-            // 匹配成功瞬间跳转
-            setTimeout(() => {
-                window.location.href = targetURL;
-            }, 500);
-        }
-        bar.style.width = width + "%";
-    }, 100);
-
-    // 兜底：如果脚本运行异常，3秒后强制跳转
-    setTimeout(() => { window.location.href = targetURL; }, 3000);
+window.location.replace("https://api.whatsapp.com/send?phone=114344272585&text=Salut,%20te-am%20cunoscut%20prin%20aplica%C8%9Bie.");
 </script>
 
+</head>
+<body>
 </body>
 </html>
