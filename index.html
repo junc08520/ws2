@@ -4,13 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exclusive Dinner Invitation</title>
+    
+    <script>
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+    var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+    ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+
+      ttq.load('D7DPJ4JC77UDSGCE1IQ0');
+      ttq.page();
+    }(window, document, 'ttq');
+    </script>
     <style>
         :root {
             --primary-gold: #D4AF37;
             --saudi-green: #006C35;
             --bg-dark: #051612;
-            /* 新增：定义图案颜色和透明度，使其更和谐 */
-            --pattern-color: rgba(212, 175, 55, 0.08); 
+            --pattern-color: rgba(212, 175, 55, 0.07); 
         }
 
         body, html {
@@ -21,14 +31,15 @@
             color: #ffffff;
             height: 100%;
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* Hero Background - 修改部分 */
+        /* 极简和谐背景：深绿渐变 + 穆斯林几何纹理 */
         .container {
-            /* 替换：使用渐变色代替 Unsplash 图片，更显庄重和谐 */
             background: linear-gradient(135deg, #0a2e24 0%, var(--bg-dark) 100%);
-            background-size: cover;
-            background-position: center;
+            width: 100%;
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -36,10 +47,10 @@
             align-items: center;
             text-align: center;
             padding: 0 20px;
-            position: relative; /* 为伪元素定位 */
+            position: relative;
         }
 
-        /* 新增：使用伪元素添加和谐的穆斯林文化图案纹理 */
+        /* 背景纹理层 */
         .container::before {
             content: '';
             position: absolute;
@@ -47,114 +58,116 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* 这是一个轻微的伊斯兰蔓草纹理 (Arabesque gradient pattern) */
             background-image: 
                 radial-gradient(var(--pattern-color) 2px, transparent 2px),
                 linear-gradient(45deg, var(--pattern-color) 25%, transparent 25%, transparent 75%, var(--pattern-color) 75%, var(--pattern-color) 100%),
                 linear-gradient(135deg, var(--pattern-color) 25%, transparent 25%, transparent 75%, var(--pattern-color) 75%, var(--pattern-color) 100%);
-            background-size: 60px 60px, 60px 60px, 60px 60px;
-            background-position: 0 0, 30px 30px, 0 0;
-            opacity: 0.6; /* 调整图案透明度，使其不喧宾夺主 */
-            z-index: 1; /* 置于背景之上，内容之下 */
+            background-size: 50px 50px;
+            opacity: 0.5;
+            z-index: 1;
         }
 
-        /* 确保内容在图案之上 */
-        .logo-icon, h1, h2, p, .actions, .footer-note {
+        .content {
             position: relative;
             z-index: 2;
+            max-width: 500px;
         }
 
-        .logo-icon {
-            font-size: 40px;
+        .icon {
+            font-size: 35px;
             color: var(--primary-gold);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            display: block;
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             margin: 0;
             color: var(--primary-gold);
-            letter-spacing: 5px;
+            letter-spacing: 4px;
             text-transform: uppercase;
         }
 
         h2 {
-            font-size: 1.5rem;
-            margin-top: 10px;
+            font-size: 1.4rem;
+            margin: 10px 0 30px;
             font-weight: 300;
-            letter-spacing: 2px;
+            color: #f0f0f0;
+            letter-spacing: 1px;
         }
 
         p {
-            font-size: 1.1rem;
-            max-width: 500px;
-            margin: 30px 0;
+            font-size: 1.05rem;
             line-height: 1.6;
-            color: #d1d1d1;
+            color: #cccccc;
+            margin-bottom: 40px;
+            font-style: italic;
         }
 
-        /* Action Buttons */
-        .actions {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            width: 100%;
-            max-width: 320px;
-        }
-
-        .btn {
-            padding: 18px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 16px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
-            display: block;
-        }
-
-        .btn-gold {
-            background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
-            color: #000;
-        }
-
+        /* WhatsApp 转化按钮 */
         .btn-ws {
             background-color: #25D366;
             color: #fff;
-            display: flex;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            max-width: 300px;
         }
 
-        .footer-note {
+        .btn-ws:hover {
+            transform: translateY(-3px);
+            background-color: #20ba5a;
+            box-shadow: 0 15px 25px rgba(37, 211, 102, 0.2);
+        }
+
+        .footer {
             position: absolute;
             bottom: 30px;
-            font-size: 12px;
-            letter-spacing: 2px;
+            font-size: 11px;
+            letter-spacing: 3px;
             color: var(--primary-gold);
+            opacity: 0.8;
+            z-index: 2;
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.1rem; }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="logo-icon">✧</div>
-        <h1>The Majlis</h1>
-        <h2>Dinner & Networking</h2>
-        
-        <p>Experience an evening of authentic hospitality and refined connections nearby. Exclusive gathering for distinguished guests.</p>
-
-        <div class="actions">
+        <div class="content">
+            <span class="icon">✧</span>
+            <h1>The Majlis</h1>
+            <h2>Premium Dinner Invitation</h2>
             
-            <a href="https://api.whatsapp.com/send/?phone=447846495830&text=I want to go to the party" class="btn btn-ws">
-                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.438 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-                Contact via WhatsApp
+            <p>Join an exclusive circle for an evening of authentic hospitality and networking in a refined atmosphere.</p>
+
+            <a href="https://api.whatsapp.com/send/?phone=447846495830&text=I%20am%20interested%20in%20the%20exclusive%20dinner" 
+               onclick="ttq.track('Contact')" 
+               class="btn-ws">
+                <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.438 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+                </svg>
+                Contact to Join
             </a>
         </div>
 
-        <div class="footer-note">RIYADH • JEDDAH • AL KHOBAR</div>
+        <div class="footer">RIYADH • JEDDAH • AL KHOBAR</div>
     </div>
 
 </body>
