@@ -11,33 +11,55 @@
       var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
       ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
 
-      // 1. 像素加载
+      // 加载像素 ID
       ttq.load('D7DQ6ABC77U1RGO03L1G');
 
-      // 2. 高级匹配 (PII 数据回传) - 如果有用户信息请填入，否则保留占位符或删除此段
+      // 高级匹配初始化 (PII 数据)
       ttq.identify({
         "email": "<hashed_email_address>", 
         "phone_number": "<hashed_phone_number>",
         "external_id": "<hashed_external_id>"
       });
 
-      // 3. 页面浏览事件
       ttq.page();
 
-      // 4. 内容查看事件
+      // 自动追踪页面查看事件
       ttq.track('ViewContent', {
-        "contents": [
-          {
-            "content_id": "majlis_dinner_event",
-            "content_type": "product",
-            "content_name": "Majlis_Premium_Dinner"
-          }
-        ],
-        "value": 1.0,
-        "currency": "USD"
+        "content_name": "Majlis_Invitation_Page",
+        "content_type": "product"
       });
 
     }(window, document, 'ttq');
+
+    // 处理点击转换逻辑
+    function handleConversionAndJump(event) {
+        event.preventDefault();
+
+        // 目标 WhatsApp 链接
+        const whatsappLink = "https://api.whatsapp.com/send/?phone=447846495830&text=Hi, I am interested in joining The Majlis dinner.";
+
+        if (typeof ttq !== 'undefined') {
+            // 发送点击事件 ClickButton
+            ttq.track('ClickButton', {
+                "contents": [
+                    {
+                        "content_id": "contact_ws",
+                        "content_name": "whatsapp_btn"
+                    }
+                ],
+                "value": 1.0,
+                "currency": "USD"
+            });
+            console.log('TikTok ClickButton event tracked successfully.');
+        }
+
+        // 延迟 300 毫秒跳转，确保像素请求发出
+        setTimeout(function() {
+            window.open(whatsappLink, '_blank');
+            // 如果你希望当前页面也跳转到特定网址，请取消下一行的注释
+            // window.location.href = "https://你的指定跳转网站.com";
+        }, 300);
+    }
     </script>
     <style>
         :root {
@@ -66,6 +88,7 @@
             position: relative; text-align: center; padding: 20px;
         }
 
+        /* 奢华曼陀罗装饰背景 */
         .main-container::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background-image: 
@@ -76,21 +99,27 @@
         }
 
         .content { position: relative; z-index: 2; max-width: 450px; }
-        .ornament { color: var(--gold); font-size: 35px; margin-bottom: 20px; }
+        .ornament { color: var(--gold); font-size: 35px; margin-bottom: 20px; text-shadow: 0 0 10px rgba(212,175,55,0.5); }
         h1 { font-size: 3rem; color: var(--gold); margin: 0; letter-spacing: 5px; text-transform: uppercase; }
         h2 { font-size: 1.4rem; font-weight: 300; margin: 15px 0 35px; letter-spacing: 2px; color: #f0f0f0; }
         p { font-size: 1.1rem; color: #cccccc; line-height: 1.6; margin-bottom: 45px; font-style: italic; }
 
+        /* 核心按钮样式 */
         .btn-cta {
             background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-            color: white; padding: 20px 40px; border-radius: 50px;
+            color: white; padding: 22px 45px; border-radius: 50px;
             text-decoration: none; font-weight: bold; font-size: 18px;
             display: inline-flex; align-items: center; justify-content: center;
             gap: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            transition: 0.3s; border: none; width: 100%; max-width: 300px; cursor: pointer;
+            transition: all 0.3s ease; border: none; width: 100%; max-width: 320px; cursor: pointer;
         }
 
-        .btn-cta:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.3); }
+        .btn-cta:hover { 
+            transform: translateY(-4px); 
+            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.4);
+            filter: brightness(1.1);
+        }
+
         .footer { position: absolute; bottom: 30px; font-size: 12px; color: var(--gold); letter-spacing: 4px; z-index: 2; opacity: 0.8; }
     </style>
 </head>
@@ -98,46 +127,20 @@
 
     <div class="main-container">
         <div class="content">
-            <div class="ornament">✧</div>
+            <div class="ornament">✦</div>
             <h1>The Majlis</h1>
             <h2>Premium Dinner & Networking</h2>
-            <p>Experience an evening of authentic hospitality and refined connections.</p>
+            <p>Experience an evening of authentic hospitality and refined connections in a truly royal setting.</p>
 
-            <a href="https://api.whatsapp.com/send/?phone=447846495830&text=Hi, I am interested in joining The Majlis dinner." 
-               id="whatsapp_btn"
-               class="btn-cta">
+            <button onclick="handleConversionAndJump(event)" class="btn-cta">
                 <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.438 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
                 </svg>
-                Contact via WhatsApp
-            </a>
+                Reserve via WhatsApp
+            </button>
         </div>
         <div class="footer">RIYADH • JEDDAH • AL KHOBAR</div>
     </div>
-
-    <script>
-        document.getElementById('whatsapp_btn').addEventListener('click', function() {
-            if (typeof ttq !== 'undefined') {
-                // 1. 触发按钮点击事件 (ClickButton)
-                ttq.track('ClickButton', {
-                    "contents": [{
-                        "content_id": "whatsapp_contact",
-                        "content_type": "product",
-                        "content_name": "Contact_Button"
-                    }],
-                    "value": 1.0,
-                    "currency": "USD"
-                });
-
-                // 2. 触发转化事件 (CompletePayment)
-                ttq.track('CompletePayment', {
-                    "content_name": "whatsapp_conversion",
-                    "value": 1.0,
-                    "currency": "USD"
-                });
-            }
-        });
-    </script>
 
 </body>
 </html>
