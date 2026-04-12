@@ -1,148 +1,161 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Tourist Connection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exclusive Dinner Invitation</title>
     <style>
+        :root {
+            --primary-gold: #D4AF37;
+            --saudi-green: #006C35;
+            --bg-dark: #051612;
+            /* 新增：定义图案颜色和透明度，使其更和谐 */
+            --pattern-color: rgba(212, 175, 55, 0.08); 
+        }
+
         body, html {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #121212;
-            color: #fff;
+            font-family: 'Times New Roman', serif;
+            background-color: var(--bg-dark);
+            color: #ffffff;
             height: 100%;
             overflow: hidden;
         }
 
-        /* 背景图层 */
-        .background {
-            position: fixed;
+        /* Hero Background - 修改部分 */
+        .container {
+            /* 替换：使用渐变色代替 Unsplash 图片，更显庄重和谐 */
+            background: linear-gradient(135deg, #0a2e24 0%, var(--bg-dark) 100%);
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative; /* 为伪元素定位 */
+        }
+
+        /* 新增：使用伪元素添加和谐的穆斯林文化图案纹理 */
+        .container::before {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('你的图片地址') no-repeat center center;
-            background-size: cover;
-            filter: blur(8px) brightness(0.4);
-            z-index: -1;
-            transform: scale(1.1);
+            /* 这是一个轻微的伊斯兰蔓草纹理 (Arabesque gradient pattern) */
+            background-image: 
+                radial-gradient(var(--pattern-color) 2px, transparent 2px),
+                linear-gradient(45deg, var(--pattern-color) 25%, transparent 25%, transparent 75%, var(--pattern-color) 75%, var(--pattern-color) 100%),
+                linear-gradient(135deg, var(--pattern-color) 25%, transparent 25%, transparent 75%, var(--pattern-color) 75%, var(--pattern-color) 100%);
+            background-size: 60px 60px, 60px 60px, 60px 60px;
+            background-position: 0 0, 30px 30px, 0 0;
+            opacity: 0.6; /* 调整图案透明度，使其不喧宾夺主 */
+            z-index: 1; /* 置于背景之上，内容之下 */
         }
 
-        .container {
+        /* 确保内容在图案之上 */
+        .logo-icon, h1, h2, p, .actions, .footer-note {
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo-icon {
+            font-size: 40px;
+            color: var(--primary-gold);
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            color: var(--primary-gold);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 10px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 30px 0;
+            line-height: 1.6;
+            color: #d1d1d1;
+        }
+
+        /* Action Buttons */
+        .actions {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            padding: 20px;
-            text-align: center;
-            box-sizing: border-box;
-        }
-
-        /* 虚拟身份图标 */
-        .profile-circle {
-            position: relative;
-            width: 110px;
-            height: 110px;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(255,255,255,0.2);
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
-        }
-
-        .user-svg {
-            width: 55px;
-            height: 55px;
-            fill: rgba(255,255,255,0.7);
-        }
-
-        .online-status {
-            position: absolute;
-            bottom: 8px;
-            right: 8px;
-            background: #4CAF50;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            border: 2px solid #121212;
-            box-shadow: 0 0 10px #4CAF50;
-        }
-
-        /* 文本区块 */
-        .info-card {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 20px;
-            border-radius: 15px;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.1);
+            gap: 15px;
+            width: 100%;
             max-width: 320px;
         }
 
-        h1 { font-size: 22px; margin: 0 0 10px 0; color: #ffcc00; }
-        .eng-sub { font-size: 18px; color: #fff; display: block; margin-top: 5px; }
-
-        p { font-size: 15px; line-height: 1.6; margin: 15px 0; color: #e0e0e0; }
-        .p-eng { font-size: 14px; color: #aaa; dir: ltr; display: block; margin-top: 8px; }
-
-        /* WhatsApp 按钮 */
-        .btn-ws {
-            margin-top: 25px;
-            background: #25D366;
-            color: white;
-            padding: 15px 40px;
-            border-radius: 50px;
+        .btn {
+            padding: 18px;
+            border-radius: 4px;
             text-decoration: none;
-            font-weight: bold;
-            font-size: 18px;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
-            transition: all 0.3s ease;
+            font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            display: block;
         }
 
-        .btn-ws:active { transform: scale(0.95); }
+        .btn-gold {
+            background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
+            color: #000;
+        }
 
-        .ws-svg { width: 24px; height: 24px; fill: white; }
+        .btn-ws {
+            background-color: #25D366;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
 
-        /* 强制英文部分左对齐 */
-        .ltr { direction: ltr; display: block; }
+        .footer-note {
+            position: absolute;
+            bottom: 30px;
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: var(--primary-gold);
+        }
     </style>
 </head>
 <body>
 
-    <div class="background"></div>
-
     <div class="container">
-        <div class="profile-circle">
-            <svg class="user-svg" viewBox="0 0 24 24">
-                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-            </svg>
-            <div class="online-status"></div>
-        </div>
+        <div class="logo-icon">✧</div>
+        <h1>The Majlis</h1>
+        <h2>Dinner & Networking</h2>
+        
+        <p>Experience an evening of authentic hospitality and refined connections nearby. Exclusive gathering for distinguished guests.</p>
 
-        <div class="info-card">
-            <h1>زائر أجنبي يبحث عن أصدقاء
-                <span class="eng-sub">Foreigner looking for friends</span>
-            </h1>
+        <div class="actions">
+            <a href="#" class="btn btn-gold">Explore Invitation</a>
             
-            <p>
-                أنا زائرة أجنبية في المملكة، أبحث عن أشخاص محليين لمشاركتي في <b>حفلة أو كشتة برية</b> نهاية هذا الأسبوع.
-                <span class="p-eng ltr">I'm a foreign traveler looking for locals to join me for a <b>party or desert camping (Kashta)</b> this weekend.</span>
-            </p>
+            <a href="https://wa.me/#" class="btn btn-ws">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.438 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                Contact via WhatsApp
+            </a>
         </div>
 
-        <a href="https://api.whatsapp.com/send/?phone=447846495830&text=I want to know about party activities." class="btn-ws">
-            <svg class="ws-svg" viewBox="0 0 448 512">
-                <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-11.4-5.7-22.5-10.5-33.1-20.5-10.4-9.8-16.2-19.1-16.2-19.1s-1.8-2-1.8-2c0 0 1.8-2 1.8-2s10.2-11.8 11.6-13.4c1.4-1.6 1.8-3.3 0-5.1-1.8-1.8-12.5-30.1-17.1-40.7-4.5-10.6-9.1-8.6-12.5-8.8-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
-            </svg>
-            <span>تواصل الآن / Chat Now</span>
-        </a>
+        <div class="footer-note">RIYADH • JEDDAH • AL KHOBAR</div>
     </div>
 
 </body>
