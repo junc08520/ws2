@@ -20,18 +20,6 @@
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=909673501935607&ev=PageView&noscript=1"
     /></noscript>
-    <script>
-    !function (w, d, t) {
-      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
-    var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._t=ttq._t||{},ttq._t[e]=+new Date;n=document.createElement("script");
-    n.type="text/javascript";n.async=!0;n.src=r+"?sdkid="+e+"&lib="+t;
-    e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
-
-      ttq.load('D60BSQBC77U3O6ND952G');
-      ttq.page();
-    }(window, document, 'ttq');
-    </script>
-
     <style>
     body {
       margin: 0;
@@ -65,24 +53,25 @@
       color: white;
       font-size: 18px;
       font-weight: bold;
+      cursor: pointer;
+      border: none;
     }
     </style>
 
     <script>
     function goWhatsApp() {
-      // --- TikTok 事件 ---
-      ttq.track('Contact'); 
+      // 1. 触发 Meta "联系" (Contact) 事件
+      // 这是您销量目标中对应的联系动作
+      if (typeof fbq === 'function') {
+          fbq('track', 'Contact');
+          console.log('FB Contact Event Tracked');
+      }
 
-      // --- Meta (Facebook) 事件 ---
-      // 触发 "联系" 事件
-      fbq('track', 'Contact');
-      // 触发 "购买" (销量) 事件，您可以根据需要添加价值和货币
-      fbq('track', 'Purchase', {value: 0.00, currency: 'USD'});
-
-      // 延迟 300 毫秒跳转，确保像素追踪请求发出
-      setTimeout(function(){
+      // 2. 延迟 500 毫秒后再执行跳转
+      // 关键：如果没有这个延迟，浏览器会直接掐断未发完的 FB 请求
+      setTimeout(function() {
         window.location.href = "https://api.whatsapp.com/send/?phone=447846495830&text=I want to know about party activities.";
-      }, 300);
+      }, 500); 
     }
     </script>
 
@@ -122,9 +111,9 @@
   <div class="highlight">مغامرات لا تُنسى — أصدقاء جدد — ذكريات رائعة</div>
   <div class="desc">انضم إلى مجتمع عشاق الطبيعة</div>
 
-  <a href="javascript:void(0)" onclick="goWhatsApp()" class="btn">
+  <button onclick="goWhatsApp()" class="btn">
     انضم إلى WhatsApp الآن
-  </a>
+  </button>
 
 </div>
 
