@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مركز استرداد الأصول الرقمية</title>
+    <title>المركز الوطني لتتبع وحماية الأصول الرقمية</title>
+    <!-- 引入沙特高端标准的商务几何字体 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-dark: #0a0e17;
-            --bg-card: #121824;
-            --primary: #00e676; /* 科技/加密货币绿 */
-            --accent: #d4af37; /* 奢华金 */
+            --bg-dark: #070b12;
+            --bg-card: #101622;
+            --primary: #00e676; /* 科技绿：代表追踪成功 */
+            --accent: #c5a880;  /* 哑光沙特金：代表官方、权威背书 */
             --text-main: #ffffff;
-            --text-muted: #8fa0dd;
-            --border-glow: rgba(0, 230, 118, 0.15);
+            --text-muted: #8493a8;
+            --border-glow: rgba(197, 168, 128, 0.15);
         }
 
         * {
@@ -33,21 +34,21 @@
             overflow-x: hidden;
         }
 
-        /* 背景微弱的渐变发光，提升高端感 */
+        /* 赛博网格与高级光晕底衬 */
         body::before {
             content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: 
-                radial-gradient(circle at 80% 20%, rgba(0, 230, 118, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 15% 75%, rgba(212, 175, 55, 0.05) 0%, transparent 35%);
+                radial-gradient(circle at 50% 20%, rgba(197, 168, 128, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 15% 75%, rgba(0, 230, 118, 0.03) 0%, transparent 40%);
             z-index: -1;
         }
 
         .container {
-            max-width: 500px;
+            max-width: 480px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 24px 20px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -56,21 +57,23 @@
 
         header {
             text-align: center;
-            margin-top: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
 
+        /* 权威机构徽章标识 */
         .brand-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(212, 175, 55, 0.1);
+            background: rgba(197, 168, 128, 0.08);
             border: 1px solid var(--accent);
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-size: 0.85rem;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-size: 0.8rem;
             color: var(--accent);
-            font-weight: 600;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         .hero-section {
@@ -79,149 +82,157 @@
         }
 
         h1 {
-            font-size: 1.95rem;
+            font-size: 1.8rem;
             font-weight: 800;
-            line-height: 1.3;
+            line-height: 1.4;
             margin-bottom: 15px;
-            background: linear-gradient(135deg, #ffffff 40%, #a6ffcb 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #ffffff;
         }
 
         .subtitle {
-            font-size: 1.05rem;
+            font-size: 1rem;
             color: var(--text-muted);
             font-weight: 400;
+            padding: 0 5px;
         }
 
-        /* 核心卡片 */
-        .proof-card {
+        /* 高端合规卡片 */
+        .secure-card {
             background: var(--bg-card);
-            border: 1px solid var(--border-glow);
-            border-radius: 20px;
-            padding: 22px;
-            margin-bottom: 30px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 25px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
             position: relative;
         }
 
-        .case-status {
+        /* 隐晦的案情追踪进度条替代具体金额 */
+        .status-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            padding-bottom: 12px;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
+            background: rgba(255,255,255,0.02);
+            padding: 10px 14px;
+            border-radius: 8px;
+            border-right: 3px solid var(--accent);
         }
 
-        .status-title {
+        .status-label {
             font-size: 0.85rem;
             color: var(--text-muted);
         }
 
-        .status-tag {
-            background: rgba(0, 230, 118, 0.15);
+        .status-value {
+            font-size: 0.85rem;
             color: var(--primary);
-            font-size: 0.8rem;
-            padding: 4px 12px;
-            border-radius: 6px;
             font-weight: 700;
         }
 
-        .amount-display {
-            text-align: center;
-            margin-bottom: 20px;
+        /* 强调背书的数字资产核心数据 */
+        .features-list {
+            margin-bottom: 25px;
         }
 
-        .amount-label {
-            font-size: 0.9rem;
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+        }
+
+        .feature-icon {
             color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 5px;
+            font-weight: bold;
+            margin-top: 2px;
         }
 
-        .amount-value {
-            font-size: 2.3rem;
-            font-weight: 800;
-            color: var(--primary);
+        .feature-text strong {
+            color: #ffffff;
         }
 
-        .amount-currency {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-right: 5px;
+        .feature-text p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 2px;
         }
 
-        /* 数据网格 */
-        .metrics-grid {
+        /* 权威资质网格 */
+        .trust-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
             margin-bottom: 25px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 20px;
         }
 
-        .metric-item {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 14px;
+        .trust-item {
             text-align: center;
+            background: rgba(197, 168, 128, 0.02);
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.02);
         }
 
-        .metric-num {
-            font-size: 1.35rem;
+        .trust-title {
+            font-size: 1.15rem;
             font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 2px;
+            color: var(--accent);
         }
 
-        .metric-label {
+        .trust-desc {
             font-size: 0.75rem;
             color: var(--text-muted);
+            margin-top: 2px;
         }
 
-        .cta-box {
-            background: rgba(0, 230, 118, 0.03);
-            border: 1px dashed rgba(0, 230, 118, 0.3);
-            border-radius: 16px;
+        /* 引导主动咨询的互动框 */
+        .action-box {
+            background: linear-gradient(180deg, rgba(255,255,255,0.01) 0%, rgba(197, 168, 128, 0.03) 100%);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
             padding: 20px;
             text-align: center;
-            margin-bottom: 25px;
         }
 
-        .cta-text {
+        .action-title {
             font-size: 0.95rem;
-            font-weight: 600;
-            margin-bottom: 15px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 12px;
         }
 
-        /* 强力引流 WhatsApp 按钮 */
-        .whatsapp-btn {
+        /* 高级响应式 WhatsApp 安全通信按钮 */
+        .whatsapp-cta-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
             background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
             color: #ffffff;
             text-decoration: none;
-            padding: 16px 24px;
-            border-radius: 14px;
-            font-size: 1.15rem;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 1.05rem;
             font-weight: 700;
-            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
-            transition: transform 0.2s;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.25);
+            transition: all 0.2s ease;
             border: none;
             width: 100%;
             cursor: pointer;
         }
 
-        .whatsapp-btn:active {
+        .whatsapp-cta-btn:active {
             transform: scale(0.98);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.15);
         }
 
-        .whatsapp-icon {
-            width: 24px;
-            height: 24px;
+        .whatsapp-svg {
+            width: 22px;
+            height: 22px;
             fill: currentColor;
         }
 
@@ -229,13 +240,13 @@
             text-align: center;
             font-size: 0.75rem;
             color: var(--text-muted);
-            padding: 15px 10px 10px 10px;
+            padding: 20px 10px 0 10px;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .notice-critical {
+        .compliance-note {
             color: var(--accent);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             font-weight: 600;
         }
     </style>
@@ -244,62 +255,85 @@
 
     <div class="container">
         
+        <!-- 头部背书：定位为“高级数字资产保护与追回技术合规中心” -->
         <header>
-            <div class="brand-badge">🛡️ المنصة المتقدمة لتتبع واسترداد العملات المشفرة</div>
+            <div class="brand-badge">المركز التقني المتقدم لتتبع وتحليل أصول البلوكشين</div>
         </header>
 
         <main>
+            <!-- 痛点文案：直击数字货币/投资诈骗受害者 -->
             <div class="hero-section">
-                <h1>وقع ضحية للاحتيال الاستثماري؟ لا تدعهم يفلتون بأموالك.</h1>
-                <div class="subtitle">نحن نساعدك في تتبع واستعادة أصولك الرقمية والمالية المسروقة عبر أحدث التقنيات السيبرانية.</div>
+                <h1>هل تعرضت أصولك المالية أو المشفرة لعملية تحويل غير مصرح بها؟</h1>
+                <div class="subtitle">نحن هنا لتوفير الدعم القانوني والتقني المتقدم لتتبع ومعالجة الثغرات المالية عبر شبكات المعاملات الرقمية.</div>
             </div>
 
-            <div class="proof-card">
-                <div class="case-status">
-                    <span class="status-title">مُعرّف المعاملة الرقمية المكتملة</span>
-                    <span class="status-tag">تم الاسترداد بنجاح</span>
+            <!-- 核心信任资质与隐晦引导卡片 -->
+            <div class="secure-card">
+                
+                <!-- 隐晦状态展示：不提具体金额，只说通道处于开放状态，诱导点击 -->
+                <div class="status-header">
+                    <span class="status-label">حالة فحص الشبكة الحالية:</span>
+                    <span class="status-tag" style="background: rgba(0, 230, 118, 0.12); color: var(--primary); padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 700;">بوابة الاسترداد نشطة</span>
                 </div>
                 
-                <div class="amount-display">
-                    <div class="amount-label">إجمالي المبلغ المسترد الأخير</div>
-                    <div class="amount-value"><span class="amount-currency">ر.س</span>180,000</div>
+                <!-- 权威实力背书清单 -->
+                <div class="features-list">
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <div class="feature-text">
+                            <strong>تتبع سيبراني متقدم (Cyber-Tracking)</strong>
+                            <p>تحليل مسار العناوين الرقمية والمحافظ المشفرة عبر أحدث تقنيات الامتثال.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <div class="feature-text">
+                            <strong>سرية مطلقة وحماية للبيانات</strong>
+                            <p>يتم التعامل مع جميع البيانات المرفوعة بموجب معايير التشفير والأمان الصارمة.</p>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="metrics-grid">
-                    <div class="metric-item">
-                        <div class="metric-num">+8 سنوات</div>
-                        <div class="metric-label">خبرة مكافحة الاحتيال الرقمي</div>
+                <!-- 战绩背书网格 -->
+                <div class="trust-grid">
+                    <div class="trust-item">
+                        <div class="trust-title">+3,400</div>
+                        <div class="trust-desc">ملف معالجة معتمد</div>
                     </div>
-                    <div class="metric-item">
-                        <div class="metric-num">+3,400</div>
-                        <div class="metric-label">قضية أصول تم حلها بنجاح</div>
+                    <div class="trust-item">
+                        <div class="trust-title">8 سنوات</div>
+                        <div class="trust-desc">في أمن البلوكشين</div>
                     </div>
                 </div>
 
-                <div class="cta-box">
-                    <div class="cta-text">هل فقدت أكثر من 50,000 ريال؟ تواصل مع مستشارنا التقني فوراً لبدء عملية التتبع الرقمي مجاناً.</div>
+                <!-- 交互行动区：引导客户点击并由客服一对一告知可退回余额 -->
+                <div class="action-box">
+                    <div class="action-title">احسب إمكانية ونسبة استرداد أموالك الآن</div>
                     
-                    <a href="https://wa.me/966XXXXXXXXX?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D9%85%D8%AC%D8%A7%D9%86%D9%8A%D9%8A%D8%A9%20%D9%84%D8%A7%D3%AA%D8%AA%D8%B1%D8%AF%D8%A7%D8%AF%20%D8%A3%D8%B5%D9%88%D9%84%D9%8I%20%D8%A7%D9%84%D9%85%D8%A7%D9%84%D9%8A%D9%8A%D8%A9." 
-                       class="whatsapp-btn" 
-                       id="whatsappCta">
-                        <svg class="whatsapp-icon" viewBox="0 0 24 24">
+                    <!-- ⚠️ 部署提示：请将下方 966XXXXXXXXX 替换为您的沙特客服接粉 WhatsApp 号码 -->
+                    <a href="https://wa.me/966XXXXXXXXX?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AA%D9%82%D9%8A%D9%8A%D9%85%20%D8%AD%D8%A7%D9%84%D8%AA%D9%8A%20%D9%88%D9%85%D8%B9%D8%B1%D9%81%D8%A9%20%D8%AD%D8%AC%D9%85%20%D8%A7%D9%84%D8%A3%D8%B5%D9%88%D9%84%20%D8%A7%D9%84%D9%82%D8%A7%D8%A2%D9%84%D8%A9%20%D9%84%D9%84%D8%A7%D3%AA%D8%AA%D8%B1%D8%AF%D8%A7%D8%AF." 
+                       class="whatsapp-cta-btn" 
+                       id="btnCryptoRecovery">
+                        <svg class="whatsapp-svg" viewBox="0 0 24 24">
                             <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.948 0c3.176.001 6.165 1.24 8.413 3.488 2.248 2.248 3.487 5.237 3.487 8.42 0 6.597-5.336 11.948-11.888 11.948-2.01-.001-3.99-.51-5.747-1.479L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.747 1.451 5.436 0 9.86-4.424 9.863-9.864.001-2.63-1.023-5.101-2.881-6.961C16.456 1.86 13.985.835 11.354.835 5.922.835 1.498 5.258 1.495 10.693c-.001 1.631.45 3.22 1.304 4.636L1.815 21.6l6.41-1.682z"/>
                         </svg>
-                        <span>تواصل معنا عبر واتساب الآن</span>
+                        <span>ابدأ الفحص الفوري عبر واتساب</span>
                     </a>
                 </div>
             </div>
         </main>
 
+        <!-- 免责声明与安全提示：彰显合规性 -->
         <footer>
-            <div class="notice-critical">تنبيه أمان رسمي: نحن لا نطلب أي رسوم مسبقة قبل مراجعة قضيتك وتأكيد إمكانية التتبع.</div>
-            <div>حقوق النشر © 2026 مركز استرداد الأصول الرقمية المتقدم. جميع الحقوق محفوظة.</div>
+            <div class="compliance-note">تنويه أمان رسمي: المركز لا يطلب أي بيانات سرية أو كلمات مرور خاصة بمحفظتك الرقمية مطلقاً.</div>
+            <div>حقوق النشر © 2026 المركز التقني للأصول الرقمية. جميع الحقوق محفوظة.</div>
         </footer>
 
     </div>
 
+    <!-- 内置 Meta Pixel 的标准 Contact 事件回传脚本 -->
     <script>
-        document.getElementById('whatsappCta').addEventListener('click', function() {
+        document.getElementById('btnCryptoRecovery').addEventListener('click', function() {
             if (typeof fbq !== 'undefined') {
                 fbq('track', 'Contact');
             }
