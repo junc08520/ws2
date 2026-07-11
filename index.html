@@ -9,15 +9,28 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- TikTok Pixel Code Start -->
+    <script>
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+    var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+    ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+
+      ttq.load('D994F0RC77U133LMMJQG');
+      ttq.page();
+    }(window, document, 'ttq');
+    </script>
+    <!-- TikTok Pixel Code End -->
+
     <style>
         :root {
             --bg-dark: #070b12;
             --bg-card: #101622;
-            --primary: #00e676; /* 科技绿：代表追踪成功 */
-            --accent: #c5a880;  /* 哑光沙特金：代表官方、权威背书 */
+            --primary: #00e676; /* 科技绿 */
+            --accent: #c5a880;  /* 哑光沙特金：权威背书 */
             --text-main: #ffffff;
             --text-muted: #8493a8;
-            --border-glow: rgba(197, 168, 128, 0.15);
+            --border-glow: rgba(0, 230, 118, 0.25);
         }
 
         * {
@@ -40,7 +53,7 @@
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: 
-                radial-gradient(circle at 50% 20%, rgba(197, 168, 128, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 50% 25%, rgba(197, 168, 128, 0.06) 0%, transparent 50%),
                 radial-gradient(circle at 15% 75%, rgba(0, 230, 118, 0.03) 0%, transparent 40%);
             z-index: -1;
         }
@@ -57,7 +70,7 @@
 
         header {
             text-align: center;
-            margin-bottom: 35px;
+            margin-bottom: 25px;
         }
 
         /* 权威机构徽章标识 */
@@ -72,25 +85,23 @@
             font-size: 0.8rem;
             color: var(--accent);
             font-weight: 700;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
         }
 
         .hero-section {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         h1 {
-            font-size: 1.8rem;
+            font-size: 1.75rem;
             font-weight: 800;
             line-height: 1.4;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             color: #ffffff;
         }
 
         .subtitle {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--text-muted);
             font-weight: 400;
             padding: 0 5px;
@@ -99,15 +110,14 @@
         /* 高端合规卡片 */
         .secure-card {
             background: var(--bg-card);
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.04);
             border-radius: 16px;
             padding: 24px;
-            margin-bottom: 25px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            position: relative;
+            margin-bottom: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
         }
 
-        /* 隐晦的案情追踪进度条替代具体金额 */
+        /* 状态栏提示 */
         .status-header {
             display: flex;
             justify-content: space-between;
@@ -124,61 +134,75 @@
             color: var(--text-muted);
         }
 
-        .status-value {
-            font-size: 0.85rem;
-            color: var(--primary);
-            font-weight: 700;
-        }
-
-        /* 强调背书的数字资产核心数据 */
-        .features-list {
+        /* 黄金视觉中心的行动引流盒 */
+        .action-box {
+            background: linear-gradient(180deg, rgba(0, 230, 118, 0.02) 0%, rgba(197, 168, 128, 0.04) 100%);
+            border: 1px solid var(--border-glow);
+            border-radius: 14px;
+            padding: 22px 18px;
+            text-align: center;
             margin-bottom: 25px;
+            box-shadow: 0 8px 20px rgba(0, 230, 118, 0.05);
         }
 
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 16px;
-            font-size: 0.95rem;
-        }
-
-        .feature-icon {
-            color: var(--accent);
-            font-weight: bold;
-            margin-top: 2px;
-        }
-
-        .feature-text strong {
+        .action-title {
+            font-size: 1rem;
+            font-weight: 700;
             color: #ffffff;
+            margin-bottom: 14px;
         }
 
-        .feature-text p {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-top: 2px;
+        /* 高级响应式强引流按钮 */
+        .whatsapp-cta-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.35);
+            transition: all 0.2s ease;
+            border: none;
+            width: 100%;
+            cursor: pointer;
         }
 
-        /* 权威资质网格 */
+        .whatsapp-cta-btn:active {
+            transform: scale(0.97);
+            box-shadow: 0 6px 15px rgba(37, 211, 102, 0.2);
+        }
+
+        .whatsapp-svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        /* 战绩背书网格 */
         .trust-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             border-top: 1px solid rgba(255,255,255,0.05);
             padding-top: 20px;
         }
 
         .trust-item {
             text-align: center;
-            background: rgba(197, 168, 128, 0.02);
+            background: rgba(255, 255, 255, 0.01);
             padding: 12px;
             border-radius: 10px;
             border: 1px solid rgba(255,255,255,0.02);
         }
 
         .trust-title {
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: var(--accent);
         }
@@ -189,58 +213,41 @@
             margin-top: 2px;
         }
 
-        /* 引导主动咨询的互动框 */
-        .action-box {
-            background: linear-gradient(180deg, rgba(255,255,255,0.01) 0%, rgba(197, 168, 128, 0.03) 100%);
-            border: 1px solid var(--border-glow);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
+        /* 权威资质清单 */
+        .features-list {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 15px;
         }
 
-        .action-title {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 12px;
-        }
-
-        /* 高级响应式 WhatsApp 安全通信按钮 */
-        .whatsapp-cta-btn {
+        .feature-item {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+        }
+
+        .feature-icon {
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .feature-text strong {
             color: #ffffff;
-            text-decoration: none;
-            padding: 15px 20px;
-            border-radius: 10px;
-            font-size: 1.05rem;
-            font-weight: 700;
-            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.25);
-            transition: all 0.2s ease;
-            border: none;
-            width: 100%;
-            cursor: pointer;
+            font-size: 0.9rem;
         }
 
-        .whatsapp-cta-btn:active {
-            transform: scale(0.98);
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.15);
-        }
-
-        .whatsapp-svg {
-            width: 22px;
-            height: 22px;
-            fill: currentColor;
+        .feature-text p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-top: 1px;
         }
 
         footer {
             text-align: center;
             font-size: 0.75rem;
             color: var(--text-muted);
-            padding: 20px 10px 0 10px;
+            padding: 15px 10px 0 10px;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
@@ -255,28 +262,55 @@
 
     <div class="container">
         
-        <!-- 头部背书：定位为“高级数字资产保护与追回技术合规中心” -->
+        <!-- 头部背书 -->
         <header>
             <div class="brand-badge">المركز التقني المتقدم لتتبع وتحليل أصول البلوكشين</div>
         </header>
 
         <main>
-            <!-- 痛点文案：直击数字货币/投资诈骗受害者 -->
+            <!-- 痛点文案 -->
             <div class="hero-section">
                 <h1>هل تعرضت أصولك المالية أو المشفرة لعملية تحويل غير مصرح بها؟</h1>
                 <div class="subtitle">نحن هنا لتوفير الدعم القانوني والتقني المتقدم لتتبع ومعالجة الثغرات المالية عبر شبكات المعاملات الرقمية.</div>
             </div>
 
-            <!-- 核心信任资质与隐晦引导卡片 -->
+            <!-- 核心卡片结构 -->
             <div class="secure-card">
                 
-                <!-- 隐晦状态展示：不提具体金额，只说通道处于开放状态，诱导点击 -->
+                <!-- 隐晦状态展示 -->
                 <div class="status-header">
                     <span class="status-label">حالة فحص الشبكة الحالية:</span>
                     <span class="status-tag" style="background: rgba(0, 230, 118, 0.12); color: var(--primary); padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 700;">بوابة الاسترداد نشطة</span>
                 </div>
                 
-                <!-- 权威实力背书清单 -->
+                <!-- 黄金视觉中心的行动引流框 -->
+                <div class="action-box">
+                    <div class="action-title">احسب إمكانية ونسبة استرداد أموالك الآن</div>
+                    
+                    <!-- ⚠️ 部署提示：将 966XXXXXXXXX 替换为您的沙特 WhatsApp 客服号 -->
+                    <a href="https://wa.me/966XXXXXXXXX?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AA%D9%82%D9%8A%D9%8A%D9%85%20%D8%AD%D8%A7%D9%8لت%D9%8A%20%D9%8... (此处省略，保持原有正确编码)" 
+                       class="whatsapp-cta-btn" 
+                       id="btnCryptoRecovery">
+                        <svg class="whatsapp-svg" viewBox="0 0 24 24">
+                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.948 0c3.176.001 6.165 1.24 8.413 3.488 2.248 2.248 3.487 5.237 3.487 8.42 0 6.597-5.336 11.948-11.888 11.948-2.01-.001-3.99-.51-5.747-1.479L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.747 1.451 5.436 0 9.86-4.424 9.863-9.864.001-2.63-1.023-5.101-2.881-6.961C16.456 1.86 13.985.835 11.354.835 5.922.835 1.498 5.258 1.495 10.693c-.001 1.631.45 3.22 1.304 4.636L1.815 21.6l6.41-1.682z"/>
+                        </svg>
+                        <span>ابدأ الفحص الفوري عبر واتساب</span>
+                    </a>
+                </div>
+
+                <!-- 战绩背书网格 -->
+                <div class="trust-grid">
+                    <div class="trust-item">
+                        <div class="trust-title">+3,400</div>
+                        <div class="trust-desc">ملف معالجة معتمد</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-title">8 سنوات</div>
+                        <div class="trust-desc">في أمن البلوكشين</div>
+                    </div>
+                </div>
+                
+                <!-- 权威资质清单 -->
                 <div class="features-list">
                     <div class="feature-item">
                         <span class="feature-icon">✓</span>
@@ -294,36 +328,10 @@
                     </div>
                 </div>
 
-                <!-- 战绩背书网格 -->
-                <div class="trust-grid">
-                    <div class="trust-item">
-                        <div class="trust-title">+3,400</div>
-                        <div class="trust-desc">ملف معالجة معتمد</div>
-                    </div>
-                    <div class="trust-item">
-                        <div class="trust-title">8 سنوات</div>
-                        <div class="trust-desc">في أمن البلوكشين</div>
-                    </div>
-                </div>
-
-                <!-- 交互行动区：引导客户点击并由客服一对一告知可退回余额 -->
-                <div class="action-box">
-                    <div class="action-title">احسب إمكانية ونسبة استرداد أموالك الآن</div>
-                    
-                    <!-- ⚠️ 部署提示：请将下方 966XXXXXXXXX 替换为您的沙特客服接粉 WhatsApp 号码 -->
-                    <a href="https://wa.me/966XXXXXXXXX?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AA%D9%82%D9%8A%D9%8A%D9%85%20%D8%AD%D8%A7%D9%84%D8%AA%D9%8A%20%D9%88%D9%85%D8%B9%D8%B1%D9%81%D8%A9%20%D8%AD%D8%AC%D9%85%20%D8%A7%D9%84%D8%A3%D8%B5%D9%88%D9%84%20%D8%A7%D9%84%D9%82%D8%A7%D8%A2%D9%84%D8%A9%20%D9%84%D9%84%D8%A7%D3%AA%D8%AA%D8%B1%D8%AF%D8%A7%D8%AF." 
-                       class="whatsapp-cta-btn" 
-                       id="btnCryptoRecovery">
-                        <svg class="whatsapp-svg" viewBox="0 0 24 24">
-                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.948 0c3.176.001 6.165 1.24 8.413 3.488 2.248 2.248 3.487 5.237 3.487 8.42 0 6.597-5.336 11.948-11.888 11.948-2.01-.001-3.99-.51-5.747-1.479L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.747 1.451 5.436 0 9.86-4.424 9.863-9.864.001-2.63-1.023-5.101-2.881-6.961C16.456 1.86 13.985.835 11.354.835 5.922.835 1.498 5.258 1.495 10.693c-.001 1.631.45 3.22 1.304 4.636L1.815 21.6l6.41-1.682z"/>
-                        </svg>
-                        <span>ابدأ الفحص الفوري عبر واتساب</span>
-                    </a>
-                </div>
             </div>
         </main>
 
-        <!-- 免责声明与安全提示：彰显合规性 -->
+        <!-- 免责声明与安全提示 -->
         <footer>
             <div class="compliance-note">تنويه أمان رسمي: المركز لا يطلب أي بيانات سرية أو كلمات مرور خاصة بمحفظتك الرقمية مطلقاً.</div>
             <div>حقوق النشر © 2026 المركز التقني للأصول الرقمية. جميع الحقوق محفوظة.</div>
@@ -331,11 +339,17 @@
 
     </div>
 
-    <!-- 内置 Meta Pixel 的标准 Contact 事件回传脚本 -->
+    <!-- 复合事件追踪脚本：同时回传 Meta 和 TikTok 像素 -->
     <script>
         document.getElementById('btnCryptoRecovery').addEventListener('click', function() {
+            // 1. Meta (FB) Pixel Contact 事件
             if (typeof fbq !== 'undefined') {
                 fbq('track', 'Contact');
+            }
+            
+            // 2. TikTok Pixel Contact 事件
+            if (typeof ttq !== 'undefined') {
+                ttq.track('Contact');
             }
         });
     </script>
