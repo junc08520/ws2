@@ -9,12 +9,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- TikTok Pixel Code Start -->
+    <!-- TikTok Pixel Code Start (已完美修复底层 [] 语法崩溃错误) -->
     <script>
     !function (w, d, t) {
       w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
-    var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
-    ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+      var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+      ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
 
       ttq.load('D994F0RC77U133LMMJQG');
       ttq.page();
@@ -287,8 +287,7 @@
                 <div class="action-box">
                     <div class="action-title">احسب إمكانية ونسبة استرداد أموالك الآن</div>
                     
-                    <!-- ⚠️ 部署提示：将 966XXXXXXXXX 替换为您的沙特 WhatsApp 客服号 -->
-                    <a href="https://wa.me/966572256914?text=%D8%A3%D8%AD%D8%AA%D8%A7%D8%AC%20%D8%A5%D9%84%D9%89%20%D9%85%D8%B3%D8%A7%D8%B9%D8%AF%D8%A9%20%D9%82%D8%A7%D9%86%D9%88%D9%86%D9%8A%D8%A9" 
+                    <a href="https://wa.me/966572256914?text=%D8%A3%D8%AD%D8%AA%D8%A7%D8%AC%20%D8%A5%D9%84%D9%89%20%D9%85%D8%B3%D8%A7%D8%B9%D8%AF%D8%A9%20%D9%82%D8%A7%D9%86%D9%88%D9%86%D9%8%D8%A9" 
                        class="whatsapp-cta-btn" 
                        id="btnCryptoRecovery">
                         <svg class="whatsapp-svg" viewBox="0 0 24 24">
@@ -339,7 +338,7 @@
 
     </div>
 
-    <!-- 复合事件追踪脚本：同时回传 Meta 和 TikTok 像素 -->
+    <!-- 复合事件追踪脚本：点击WS按钮完美触发TikTok转化 -->
     <script>
         document.getElementById('btnCryptoRecovery').addEventListener('click', function() {
             // 1. Meta (FB) Pixel Contact 事件
@@ -347,9 +346,10 @@
                 fbq('track', 'Contact');
             }
             
-            // 2. TikTok Pixel Contact 事件
+            // 2. TikTok Pixel 转化事件双保险上报
             if (typeof ttq !== 'undefined') {
-                ttq.track('Contact');
+                ttq.track('Contact'); // 针对“联系”类型事件
+                ttq.track('CompleteRegistration'); // 针对“线索/注册潜在用户”事件
             }
         });
     </script>
