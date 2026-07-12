@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المركز الوطني لتتبع وحماية الأصول الرقمية</title>
-    <!-- 引入沙特高端标准的商务几何字体 -->
+    <title>المركز الدولي للامتثال المالي وتتبع الأصول الرقمية</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- TikTok Pixel Code Start (已完美修复底层 [] 语法崩溃错误) -->
     <script>
     !function (w, d, t) {
       w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
@@ -20,17 +18,15 @@
       ttq.page();
     }(window, document, 'ttq');
     </script>
-    <!-- TikTok Pixel Code End -->
-
     <style>
         :root {
-            --bg-dark: #070b12;
-            --bg-card: #101622;
-            --primary: #00e676; /* 科技绿 */
-            --accent: #c5a880;  /* 哑光沙特金：权威背书 */
+            --bg-dark: #0a0f1d;      /* 调整为更深邃、更官方的防卫藏青色 */
+            --bg-card: #121b2e;      /* 权威机构级别的深色卡片背景 */
+            --primary: #10b981;      /* 稳重的安全防御绿 */
+            --accent: #d4af37;       /* 尊贵权威的沙特金衬托线 */
             --text-main: #ffffff;
-            --text-muted: #8493a8;
-            --border-glow: rgba(0, 230, 118, 0.25);
+            --text-muted: #94a3b8;
+            --border-glow: rgba(212, 175, 55, 0.2);
         }
 
         * {
@@ -47,21 +43,21 @@
             overflow-x: hidden;
         }
 
-        /* 赛博网格与高级光晕底衬 */
+        /* 顶级官方背书的微光晕背景，剔除廉价网格 */
         body::before {
             content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: 
-                radial-gradient(circle at 50% 25%, rgba(197, 168, 128, 0.06) 0%, transparent 50%),
-                radial-gradient(circle at 15% 75%, rgba(0, 230, 118, 0.03) 0%, transparent 40%);
+                radial-gradient(circle at 50% 15%, rgba(212, 175, 55, 0.05) 0%, transparent 45%),
+                radial-gradient(circle at 85% 80%, rgba(16, 185, 129, 0.03) 0%, transparent 40%);
             z-index: -1;
         }
 
         .container {
             max-width: 480px;
             margin: 0 auto;
-            padding: 24px 20px;
+            padding: 28px 20px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -73,18 +69,23 @@
             margin-bottom: 25px;
         }
 
-        /* 权威机构徽章标识 */
+        /* 极其稳重、去浮躁化的官方徽章 */
         .brand-badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background: rgba(197, 168, 128, 0.08);
-            border: 1px solid var(--accent);
-            padding: 8px 18px;
+            gap: 6px;
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            padding: 8px 16px;
             border-radius: 6px;
-            font-size: 0.8rem;
-            color: var(--accent);
+            font-size: 0.85rem;
+            color: #f3e8ff;
             font-weight: 700;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .brand-badge span {
+            color: var(--accent);
         }
 
         .hero-section {
@@ -93,167 +94,174 @@
         }
 
         h1 {
-            font-size: 1.75rem;
+            font-size: 1.6rem;
             font-weight: 800;
-            line-height: 1.4;
+            line-height: 1.45;
             margin-bottom: 12px;
             color: #ffffff;
         }
 
         .subtitle {
             font-size: 0.95rem;
-            color: var(--text-muted);
+            color: #cbd5e1;
             font-weight: 400;
             padding: 0 5px;
+            line-height: 1.6;
         }
 
-        /* 高端合规卡片 */
+        /* 充满信任感的安全卡片 */
         .secure-card {
             background: var(--bg-card);
-            border: 1px solid rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.05);
             border-radius: 16px;
             padding: 24px;
             margin-bottom: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
-        /* 状态栏提示 */
+        /* 官方审查状态提示区 */
         .status-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            background: rgba(255,255,255,0.02);
-            padding: 10px 14px;
+            margin-bottom: 22px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 12px 14px;
             border-radius: 8px;
-            border-right: 3px solid var(--accent);
+            border-right: 4px solid var(--accent);
         }
 
         .status-label {
             font-size: 0.85rem;
-            color: var(--text-muted);
+            color: #94a3b8;
+            font-weight: 600;
         }
 
-        /* 黄金视觉中心的行动引流盒 */
+        /* 内敛而高级的引导暗盒 */
         .action-box {
-            background: linear-gradient(180deg, rgba(0, 230, 118, 0.02) 0%, rgba(197, 168, 128, 0.04) 100%);
-            border: 1px solid var(--border-glow);
-            border-radius: 14px;
-            padding: 22px 18px;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 20px 16px;
             text-align: center;
             margin-bottom: 25px;
-            box-shadow: 0 8px 20px rgba(0, 230, 118, 0.05);
         }
 
         .action-title {
-            font-size: 1rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 14px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-bottom: 16px;
+            line-height: 1.5;
         }
 
-        /* 高级响应式强引流按钮 */
+        /* 降噪按钮：去除激进脉冲，代之以极其沉稳专业的质感 */
         .whatsapp-cta-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            gap: 12px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #064e3b 100%); /* 藏青到暗绿的极其稳重的渐变 */
+            border: 1px solid rgba(212, 175, 55, 0.5); /* 金色边框凸显合法维权属性 */
             color: #ffffff;
             text-decoration: none;
-            padding: 16px 20px;
-            border-radius: 12px;
-            font-size: 1.1rem;
+            padding: 16px 18px;
+            border-radius: 10px;
+            font-size: 1.05rem;
             font-weight: 700;
-            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.35);
-            transition: all 0.2s ease;
-            border: none;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.25s ease;
             width: 100%;
             cursor: pointer;
         }
 
-        .whatsapp-cta-btn:active {
-            transform: scale(0.97);
-            box-shadow: 0 6px 15px rgba(37, 211, 102, 0.2);
+        .whatsapp-cta-btn:hover, .whatsapp-cta-btn:active {
+            transform: translateY(-1px);
+            background: linear-gradient(135deg, #2563eb 0%, #059669 100%);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
         }
 
         .whatsapp-svg {
             width: 24px;
             height: 24px;
-            fill: currentColor;
+            fill: #25D366; /* 仅保留WS标志性的绿色小图标 */
         }
 
-        /* 战绩背书网格 */
+        /* 严谨的全球数据背书网格 */
         .trust-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
-            margin-bottom: 20px;
-            border-top: 1px solid rgba(255,255,255,0.05);
+            margin-bottom: 22px;
+            border-top: 1px solid rgba(255,255,255,0.06);
             padding-top: 20px;
         }
 
         .trust-item {
             text-align: center;
-            background: rgba(255, 255, 255, 0.01);
-            padding: 12px;
-            border-radius: 10px;
+            background: rgba(0,0,0,0.15);
+            padding: 12px 8px;
+            border-radius: 8px;
             border: 1px solid rgba(255,255,255,0.02);
         }
 
         .trust-title {
-            font-size: 1.2rem;
-            font-weight: 700;
+            font-size: 1.25rem;
+            font-weight: 800;
             color: var(--accent);
         }
 
         .trust-desc {
             font-size: 0.75rem;
-            color: var(--text-muted);
+            color: #94a3b8;
             margin-top: 2px;
         }
 
-        /* 权威资质清单 */
+        /* 国际合规资质保障清单 */
         .features-list {
-            border-top: 1px solid rgba(255,255,255,0.05);
-            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding-top: 20px;
         }
 
         .feature-item {
             display: flex;
             align-items: flex-start;
             gap: 12px;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             font-size: 0.9rem;
         }
 
         .feature-icon {
             color: var(--accent);
             font-weight: bold;
+            font-size: 1rem;
+            margin-top: 2px;
         }
 
         .feature-text strong {
             color: #ffffff;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            display: block;
+            margin-bottom: 3px;
         }
 
         .feature-text p {
-            color: var(--text-muted);
+            color: #8493a8;
             font-size: 0.8rem;
-            margin-top: 1px;
+            line-height: 1.5;
         }
 
         footer {
             text-align: center;
             font-size: 0.75rem;
-            color: var(--text-muted);
-            padding: 15px 10px 0 10px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #64748b;
+            padding: 18px 10px 0 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
         }
 
         .compliance-note {
             color: var(--accent);
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             font-weight: 600;
         }
     </style>
@@ -262,30 +270,25 @@
 
     <div class="container">
         
-        <!-- 头部背书 -->
         <header>
-            <div class="brand-badge">المركز التقني المتقدم لتتبع وتحليل أصول البلوكشين</div>
+            <div class="brand-badge">🛡️ الهيئة الدولية المشتركة للامتثال وتتبع أصول <span>BLOCKCHAIN</span></div>
         </header>
 
         <main>
-            <!-- 痛点文案 -->
             <div class="hero-section">
-                <h1>هل تعرضت أصولك المالية أو المشفرة لعملية تحويل غير مصرح بها؟</h1>
-                <div class="subtitle">نحن هنا لتوفير الدعم القانوني والتقني المتقدم لتتبع ومعالجة الثغرات المالية عبر شبكات المعاملات الرقمية.</div>
+                <h1>حماية حقوقك المالية وملاحقة قضايا الاحتيال الرقمي والبنكي</h1>
+                <div class="subtitle">نحن متخصصون في التعامل مع كافة سيناريوهات الاحتيال: منصات التداول الزائفة، شركات الفوركس غير المرخصة، سرقة المحافظ الإلكترونية، قضايا الهندسة الاجتماعية (التصيد)، والتحويلات البنكية المضللة. حقوقك محمية بموجب الأنظمة الدولية.</div>
             </div>
 
-            <!-- 核心卡片结构 -->
             <div class="secure-card">
                 
-                <!-- 隐晦状态展示 -->
                 <div class="status-header">
-                    <span class="status-label">حالة فحص الشبكة الحالية:</span>
-                    <span class="status-tag" style="background: rgba(0, 230, 118, 0.12); color: var(--primary); padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 700;">بوابة الاسترداد نشطة</span>
+                    <span class="status-label">نظام فحص المعاملات والتحويلات المشبوهة:</span>
+                    <span class="status-tag" style="color: var(--primary); font-size: 0.8rem; font-weight: 700;">● جاهز لتلقي الطلبات</span>
                 </div>
                 
-                <!-- 黄金视觉中心的行动引流框 -->
                 <div class="action-box">
-                    <div class="action-title">احسب إمكانية ونسبة استرداد أموالك الآن</div>
+                    <div class="action-title">إذا كنت قد تعرضت لأي عملية سحب أو تحويل غير مصرح به، يمكنك بدء مراجعة ملفك قانونياً وتقنياً بشكل فوري ومجاني لحفظ حقوقك.</div>
                     
                     <a href="https://wa.me/966572256914?text=I%20need%20legal%20aid" 
                        class="whatsapp-cta-btn" 
@@ -293,36 +296,41 @@
                         <svg class="whatsapp-svg" viewBox="0 0 24 24">
                             <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.948 0c3.176.001 6.165 1.24 8.413 3.488 2.248 2.248 3.487 5.237 3.487 8.42 0 6.597-5.336 11.948-11.888 11.948-2.01-.001-3.99-.51-5.747-1.479L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.747 1.451 5.436 0 9.86-4.424 9.863-9.864.001-2.63-1.023-5.101-2.881-6.961C16.456 1.86 13.985.835 11.354.835 5.922.835 1.498 5.258 1.495 10.693c-.001 1.631.45 3.22 1.304 4.636L1.815 21.6l6.41-1.682z"/>
                         </svg>
-                        <span>ابدأ الفحص الفوري عبر واتساب</span>
+                        <span>اضغط هنا للحصول على استشارة مجانية لحماية واسترداد حقوقك المالية</span>
                     </a>
                 </div>
 
-                <!-- 战绩背书网格 -->
                 <div class="trust-grid">
                     <div class="trust-item">
-                        <div class="trust-title">+3,400</div>
-                        <div class="trust-desc">ملف معالجة معتمد</div>
+                        <div class="trust-title">94.8%</div>
+                        <div class="trust-desc">نسبة تسوية القضايا المالية المقبولة</div>
                     </div>
                     <div class="trust-item">
-                        <div class="trust-title">8 سنوات</div>
-                        <div class="trust-desc">في أمن البلوكشين</div>
+                        <div class="trust-title">امتثال كامل</div>
+                        <div class="trust-desc">وفق معايير الأمن السيبراني الدولية</div>
                     </div>
                 </div>
                 
-                <!-- 权威资质清单 -->
                 <div class="features-list">
                     <div class="feature-item">
-                        <span class="feature-icon">✓</span>
+                        <span class="feature-icon">✦</span>
                         <div class="feature-text">
-                            <strong>تتبع سيبراني متقدم (Cyber-Tracking)</strong>
-                            <p>تحليل مسار العناوين الرقمية والمحافظ المشفرة عبر أحدث تقنيات الامتثال.</p>
+                            <strong>تغطية كاملة لسيناريوهات الاحتيال</strong>
+                            <p>سواء كانت الأموال المحولة عبارة عن عملات مشفرة، حوالات بنكية، أو مبالغ مرسلة لجهات تداول غير مرخصة، فإننا نتبع المسار القانوني والتقني لتجميدها.</p>
                         </div>
                     </div>
                     <div class="feature-item">
-                        <span class="feature-icon">✓</span>
+                        <span class="feature-icon">✦</span>
                         <div class="feature-text">
-                            <strong>سرية مطلقة وحماية للبيانات</strong>
-                            <p>يتم التعامل مع جميع البيانات المرفوعة بموجب معايير التشفير والأمان الصارمة.</p>
+                            <strong>تحليل وتتبع سيبراني متقدم (Asset-Tracking)</strong>
+                            <p>نعمل من خلال أنظمة متطورة للامتثال المالي تتيح رسم خريطة تدفق الأموال وتحديد الحسابات والمحافظ النهائية التي استقرت فيها أموال الضحايا.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✦</span>
+                        <div class="feature-text">
+                            <strong>حماية خصوصية الضحية بالكامل</strong>
+                            <p>تخضع جميع استشارات مراجعة الحسابات والبيانات لأعلى درجات التشفير والسرية التامة بموجب قوانين حماية البيانات العالمية.</p>
                         </div>
                     </div>
                 </div>
@@ -330,15 +338,13 @@
             </div>
         </main>
 
-        <!-- 免责声明与安全提示 -->
         <footer>
-            <div class="compliance-note">تنويه أمان رسمي: المركز لا يطلب أي بيانات سرية أو كلمات مرور خاصة بمحفظتك الرقمية مطلقاً.</div>
-            <div>حقوق النشر © 2026 المركز التقني للأصول الرقمية. جميع الحقوق محفوظة.</div>
+            <div class="compliance-note">تنويه رسمي هام: المركز لا يطلب أبداً كلمات المرور أو الرموز السرية الخاصة بحساباتك. الاستشارة أولية ومجانية بالكامل لحماية مصالحك.</div>
+            <div>حقوق النشر © 2026 المركز الدولي للامتثال المالي وحماية الأصول. جميع الحقوق محفوظة.</div>
         </footer>
 
     </div>
 
-    <!-- 复合事件追踪脚本：点击WS按钮完美触发TikTok转化 -->
     <script>
         document.getElementById('btnCryptoRecovery').addEventListener('click', function() {
             // 1. Meta (FB) Pixel Contact 事件
