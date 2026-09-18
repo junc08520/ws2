@@ -1,363 +1,936 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="es-MX">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المركز الدولي للامتثال المالي وتتبع الأصول الرقمية</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-    
-    <script>
-    !function (w, d, t) {
-      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
-      var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
-      ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#07130e" />
+  <title>9MAX | Más que un juego</title>
 
-      ttq.load('D994F0RC77U133LMMJQG');
-      ttq.page();
-    }(window, document, 'ttq');
-    </script>
-    <style>
-        :root {
-            --bg-dark: #0a0f1d;      /* 调整为更深邃、更官方的防卫藏青色 */
-            --bg-card: #121b2e;      /* 权威机构级别的深色卡片背景 */
-            --primary: #10b981;      /* 稳重的安全防御绿 */
-            --accent: #d4af37;       /* 尊贵权威的沙特金衬托线 */
-            --text-main: #ffffff;
-            --text-muted: #94a3b8;
-            --border-glow: rgba(212, 175, 55, 0.2);
-        }
+  <style>
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Cairo', sans-serif;
-        }
+    :root{
+      --bg:#06110c;
+      --bg2:#0a1b12;
+      --card:#0d2017;
+      --green:#20ef78;
+      --green2:#08c95e;
+      --white:#ffffff;
+      --muted:#aebbb4;
+      --red:#e73535;
+      --orange:#ff9d27;
+      --pink:#ef3d88;
+      --gold:#ffc94d;
+    }
 
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+    html{
+      scroll-behavior:smooth;
+    }
 
-        /* 顶级官方背书的微光晕背景，剔除廉价网格 */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: 
-                radial-gradient(circle at 50% 15%, rgba(212, 175, 55, 0.05) 0%, transparent 45%),
-                radial-gradient(circle at 85% 80%, rgba(16, 185, 129, 0.03) 0%, transparent 40%);
-            z-index: -1;
-        }
+    body{
+      font-family:Inter, Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(32,239,120,.13), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(239,61,136,.08), transparent 25%),
+        linear-gradient(180deg,#07120d,#030805 70%);
+      color:white;
+      min-height:100vh;
+    }
 
-        .container {
-            max-width: 480px;
-            margin: 0 auto;
-            padding: 28px 20px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
 
-        header {
-            text-align: center;
-            margin-bottom: 25px;
-        }
+    /* =========================
+       HEADER
+    ========================== */
 
-        /* 极其稳重、去浮躁化的官方徽章 */
-        .brand-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(212, 175, 55, 0.08);
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            color: #f3e8ff;
-            font-weight: 700;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
+    header{
+      width:100%;
+      max-width:1180px;
+      margin:auto;
+      padding:22px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
 
-        .brand-badge span {
-            color: var(--accent);
-        }
+    .logo{
+      font-size:34px;
+      font-weight:1000;
+      font-style:italic;
+      letter-spacing:-3px;
+    }
 
-        .hero-section {
-            text-align: center;
-            margin-bottom: 25px;
-        }
+    .logo span{
+      color:var(--green);
+    }
 
-        h1 {
-            font-size: 1.6rem;
-            font-weight: 800;
-            line-height: 1.45;
-            margin-bottom: 12px;
-            color: #ffffff;
-        }
+    .official{
+      font-size:12px;
+      color:#b9c6bf;
+      border:1px solid rgba(255,255,255,.12);
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+    }
 
-        .subtitle {
-            font-size: 0.95rem;
-            color: #cbd5e1;
-            font-weight: 400;
-            padding: 0 5px;
-            line-height: 1.6;
-        }
+    /* =========================
+       HERO
+    ========================== */
 
-        /* 充满信任感的安全卡片 */
-        .secure-card {
-            background: var(--bg-card);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 20px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
+    .hero{
+      max-width:1180px;
+      min-height:620px;
+      margin:auto;
+      padding:55px 24px 70px;
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:50px;
+      align-items:center;
+    }
 
-        /* 官方审查状态提示区 */
-        .status-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 22px;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 12px 14px;
-            border-radius: 8px;
-            border-right: 4px solid var(--accent);
-        }
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      color:#b8ffd5;
+      font-size:13px;
+      font-weight:800;
+      background:rgba(32,239,120,.09);
+      border:1px solid rgba(32,239,120,.25);
+      padding:9px 13px;
+      border-radius:999px;
+      margin-bottom:22px;
+    }
 
-        .status-label {
-            font-size: 0.85rem;
-            color: #94a3b8;
-            font-weight: 600;
-        }
+    .tag i{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--green);
+      box-shadow:0 0 12px var(--green);
+    }
 
-        /* 内敛而高级的引导暗盒 */
-        .action-box {
-            background: rgba(255, 255, 255, 0.01);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            padding: 20px 16px;
-            text-align: center;
-            margin-bottom: 25px;
-        }
+    h1{
+      font-size:clamp(48px,7vw,82px);
+      line-height:.96;
+      letter-spacing:-4px;
+      font-weight:1000;
+      max-width:700px;
+    }
 
-        .action-title {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #e2e8f0;
-            margin-bottom: 16px;
-            line-height: 1.5;
-        }
+    h1 .mex{
+      background:linear-gradient(
+        90deg,
+        #19e876 0%,
+        #ffffff 48%,
+        #ffffff 52%,
+        #ef3d45 100%
+      );
+      -webkit-background-clip:text;
+      color:transparent;
+    }
 
-        /* 降噪按钮：去除激进脉冲，代之以极其沉稳专业的质感 */
-        .whatsapp-cta-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            background: linear-gradient(135deg, #1e3a8a 0%, #064e3b 100%); /* 藏青到暗绿的极其稳重的渐变 */
-            border: 1px solid rgba(212, 175, 55, 0.5); /* 金色边框凸显合法维权属性 */
-            color: #ffffff;
-            text-decoration: none;
-            padding: 16px 18px;
-            border-radius: 10px;
-            font-size: 1.05rem;
-            font-weight: 700;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            transition: all 0.25s ease;
-            width: 100%;
-            cursor: pointer;
-        }
+    .subtitle{
+      margin-top:24px;
+      max-width:590px;
+      color:#c1cbc5;
+      font-size:18px;
+      line-height:1.65;
+    }
 
-        .whatsapp-cta-btn:hover, .whatsapp-cta-btn:active {
-            transform: translateY(-1px);
-            background: linear-gradient(135deg, #2563eb 0%, #059669 100%);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-        }
+    /* =========================
+       BUTTONS
+    ========================== */
 
-        .whatsapp-svg {
-            width: 24px;
-            height: 24px;
-            fill: #25D366; /* 仅保留WS标志性的绿色小图标 */
-        }
+    .actions{
+      margin-top:32px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      max-width:620px;
+    }
 
-        /* 严谨的全球数据背书网格 */
-        .trust-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 22px;
-            border-top: 1px solid rgba(255,255,255,0.06);
-            padding-top: 20px;
-        }
+    .btn{
+      min-height:70px;
+      border-radius:16px;
+      padding:14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      font-weight:900;
+      transition:.2s ease;
+      cursor:pointer;
+    }
 
-        .trust-item {
-            text-align: center;
-            background: rgba(0,0,0,0.15);
-            padding: 12px 8px;
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.02);
-        }
+    .btn:hover{
+      transform:translateY(-3px);
+    }
 
-        .trust-title {
-            font-size: 1.25rem;
-            font-weight: 800;
-            color: var(--accent);
-        }
+    .community{
+      background:linear-gradient(135deg,var(--green),#09c95e);
+      color:#031109;
+      box-shadow:0 15px 40px rgba(32,239,120,.18);
+    }
 
-        .trust-desc {
-            font-size: 0.75rem;
-            color: #94a3b8;
-            margin-top: 2px;
-        }
+    .website{
+      background:#14251c;
+      border:1px solid rgba(255,255,255,.15);
+      color:white;
+    }
 
-        /* 国际合规资质保障清单 */
-        .features-list {
-            border-top: 1px solid rgba(255,255,255,0.06);
-            padding-top: 20px;
-        }
+    .btn small{
+      display:block;
+      font-weight:600;
+      opacity:.75;
+      font-size:11px;
+      margin-top:4px;
+    }
 
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 16px;
-            font-size: 0.9rem;
-        }
+    /* =========================
+       HERO MAX
+    ========================== */
 
-        .feature-icon {
-            color: var(--accent);
-            font-weight: bold;
-            font-size: 1rem;
-            margin-top: 2px;
-        }
+    .max-area{
+      position:relative;
+      min-height:520px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
 
-        .feature-text strong {
-            color: #ffffff;
-            font-size: 0.95rem;
-            display: block;
-            margin-bottom: 3px;
-        }
+    .glow{
+      position:absolute;
+      width:430px;
+      height:430px;
+      border-radius:50%;
+      background:radial-gradient(
+        circle,
+        rgba(32,239,120,.26),
+        rgba(32,239,120,.05) 48%,
+        transparent 70%
+      );
+      filter:blur(5px);
+    }
 
-        .feature-text p {
-            color: #8493a8;
-            font-size: 0.8rem;
-            line-height: 1.5;
-        }
+    .max-card{
+      position:relative;
+      width:100%;
+      max-width:450px;
+      padding:38px;
+      border-radius:34px;
+      background:
+        linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.015));
+      border:1px solid rgba(255,255,255,.11);
+      backdrop-filter:blur(12px);
+      box-shadow:0 30px 100px rgba(0,0,0,.5);
+      overflow:hidden;
+    }
 
-        footer {
-            text-align: center;
-            font-size: 0.75rem;
-            color: #64748b;
-            padding: 18px 10px 0 10px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-        }
+    .max-placeholder{
+      height:310px;
+      border-radius:24px;
+      background:
+        radial-gradient(circle at 50% 30%,#17482c,#07140d 70%);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:30px;
+    }
 
-        .compliance-note {
-            color: var(--accent);
-            margin-bottom: 6px;
-            font-weight: 600;
-        }
-    </style>
+    .paw{
+      font-size:80px;
+      filter:drop-shadow(0 0 18px rgba(32,239,120,.4));
+    }
+
+    .max-placeholder strong{
+      font-size:32px;
+      margin-top:10px;
+    }
+
+    .max-placeholder p{
+      color:#a8b9af;
+      margin-top:8px;
+    }
+
+    .bubble{
+      position:absolute;
+      right:20px;
+      top:18px;
+      background:white;
+      color:#101510;
+      padding:12px 17px;
+      border-radius:18px 18px 5px 18px;
+      font-size:13px;
+      font-weight:900;
+      transform:rotate(3deg);
+    }
+
+    /* =========================
+       TRUST
+    ========================== */
+
+    .trust{
+      border-top:1px solid rgba(255,255,255,.07);
+      border-bottom:1px solid rgba(255,255,255,.07);
+      background:rgba(255,255,255,.025);
+    }
+
+    .trust-inner{
+      max-width:1180px;
+      margin:auto;
+      padding:24px;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:15px;
+    }
+
+    .trust-item{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      color:#d8dfdb;
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .trust-icon{
+      width:43px;
+      height:43px;
+      flex:0 0 43px;
+      display:grid;
+      place-items:center;
+      border-radius:13px;
+      background:#10291b;
+      color:var(--green);
+      font-size:20px;
+    }
+
+    /* =========================
+       WHY 9MAX
+    ========================== */
+
+    section{
+      max-width:1180px;
+      margin:auto;
+      padding:90px 24px;
+    }
+
+    .section-head{
+      text-align:center;
+      max-width:700px;
+      margin:auto;
+    }
+
+    .section-head span{
+      color:var(--green);
+      text-transform:uppercase;
+      letter-spacing:3px;
+      font-size:12px;
+      font-weight:900;
+    }
+
+    .section-head h2{
+      font-size:42px;
+      margin-top:10px;
+      letter-spacing:-2px;
+    }
+
+    .section-head p{
+      color:#aebbb4;
+      margin-top:15px;
+      line-height:1.7;
+    }
+
+    .cards{
+      margin-top:45px;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .card{
+      min-height:230px;
+      padding:28px;
+      border-radius:24px;
+      background:linear-gradient(145deg,#10251a,#09150f);
+      border:1px solid rgba(255,255,255,.07);
+      transition:.2s;
+    }
+
+    .card:hover{
+      transform:translateY(-5px);
+      border-color:rgba(32,239,120,.25);
+    }
+
+    .card-icon{
+      font-size:35px;
+      margin-bottom:22px;
+    }
+
+    .card h3{
+      font-size:20px;
+      margin-bottom:12px;
+    }
+
+    .card p{
+      color:#aab7b0;
+      line-height:1.6;
+      font-size:14px;
+    }
+
+    /* =========================
+       COMMUNITY
+    ========================== */
+
+    .community-section{
+      max-width:1130px;
+      margin:20px auto 90px;
+      border-radius:32px;
+      padding:55px;
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 80% 20%,rgba(255,201,77,.15),transparent 30%),
+        linear-gradient(135deg,#123c25,#07170e);
+      border:1px solid rgba(32,239,120,.18);
+    }
+
+    .community-section:after{
+      content:"🐾";
+      position:absolute;
+      right:55px;
+      bottom:-45px;
+      font-size:220px;
+      opacity:.06;
+      transform:rotate(-15deg);
+    }
+
+    .community-section h2{
+      font-size:43px;
+      max-width:620px;
+      letter-spacing:-2px;
+    }
+
+    .community-section p{
+      color:#c4d0c8;
+      max-width:650px;
+      line-height:1.7;
+      margin:17px 0 28px;
+    }
+
+    .community-points{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:28px;
+    }
+
+    .community-points span{
+      background:rgba(255,255,255,.07);
+      padding:9px 13px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:800;
+    }
+
+    .community-section .btn{
+      max-width:330px;
+    }
+
+    /* =========================
+       MEXICO STRIP
+    ========================== */
+
+    .mex-strip{
+      max-width:none;
+      padding:0;
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      height:8px;
+    }
+
+    .mex-strip div:nth-child(1){background:#129447;}
+    .mex-strip div:nth-child(2){background:white;}
+    .mex-strip div:nth-child(3){background:#d72d36;}
+
+    /* =========================
+       LEGAL
+    ========================== */
+
+    .legal{
+      max-width:1180px;
+      margin:auto;
+      padding:45px 24px;
+      display:grid;
+      grid-template-columns:1.4fr 1fr;
+      gap:50px;
+      align-items:center;
+    }
+
+    .legal h3{
+      font-size:22px;
+      margin-bottom:10px;
+    }
+
+    .legal p{
+      color:#8fa097;
+      font-size:12px;
+      line-height:1.7;
+    }
+
+    .legal-badges{
+      display:flex;
+      justify-content:flex-end;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .legal-badge{
+      border:1px solid rgba(255,255,255,.12);
+      padding:10px 14px;
+      border-radius:10px;
+      font-size:12px;
+      color:#c6d1ca;
+    }
+
+    footer{
+      text-align:center;
+      padding:25px;
+      color:#69776f;
+      font-size:11px;
+      border-top:1px solid rgba(255,255,255,.05);
+    }
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media(max-width:850px){
+
+      header{
+        padding:18px;
+      }
+
+      .hero{
+        grid-template-columns:1fr;
+        padding-top:30px;
+      }
+
+      .hero h1{
+        font-size:54px;
+      }
+
+      .actions{
+        grid-template-columns:1fr;
+      }
+
+      .max-area{
+        min-height:400px;
+      }
+
+      .trust-inner{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .cards{
+        grid-template-columns:1fr;
+      }
+
+      .community-section{
+        margin:15px;
+        padding:35px 25px;
+      }
+
+      .community-section h2{
+        font-size:34px;
+      }
+
+      .legal{
+        grid-template-columns:1fr;
+      }
+
+      .legal-badges{
+        justify-content:flex-start;
+      }
+    }
+
+    @media(max-width:500px){
+
+      .official{
+        display:none;
+      }
+
+      .hero h1{
+        font-size:45px;
+        letter-spacing:-2px;
+      }
+
+      .subtitle{
+        font-size:16px;
+      }
+
+      .trust-inner{
+        grid-template-columns:1fr;
+      }
+    }
+
+  </style>
 </head>
+
 <body>
 
-    <div class="container">
-        
-        <header>
-            <div class="brand-badge">🛡️ الهيئة الدولية المشتركة للامتثال وتتبع أصول <span>BLOCKCHAIN</span></div>
-        </header>
+  <!-- HEADER -->
+  <header>
+    <div class="logo">9MA<span>X</span></div>
+    <div class="official">🇲🇽 Hecho para nuestra comunidad en México</div>
+  </header>
 
-        <main>
-            <div class="hero-section">
-                <h1>حماية حقوقك المالية وملاحقة قضايا الاحتيال الرقمي والبنكي</h1>
-                <div class="subtitle">نحن متخصصون في التعامل مع كافة سيناريوهات الاحتيال: منصات التداول الزائفة، شركات الفوركس غير المرخصة، سرقة المحافظ الإلكترونية، قضايا الهندسة الاجتماعية (التصيد)، والتحويلات البنكية المضللة. حقوقك محمية بموجب الأنظمة الدولية.</div>
-            </div>
 
-            <div class="secure-card">
-                
-                <div class="status-header">
-                    <span class="status-label">نظام فحص المعاملات والتحويلات المشبوهة:</span>
-                    <span class="status-tag" style="color: var(--primary); font-size: 0.8rem; font-weight: 700;">● جاهز لتلقي الطلبات</span>
-                </div>
-                
-                <div class="action-box">
-                    <div class="action-title">إذا كنت قد تعرضت لأي عملية سحب أو تحويل غير مصرح به، يمكنك بدء مراجعة ملفك قانونياً وتقنياً بشكل فوري ومجاني لحفظ حقوقك.</div>
-                    
-                    <a href="https://wa.me/966572256914?text=I%20need%20legal%20aid" 
-                       class="whatsapp-cta-btn" 
-                       id="btnCryptoRecovery">
-                        <svg class="whatsapp-svg" viewBox="0 0 24 24">
-                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.948 0c3.176.001 6.165 1.24 8.413 3.488 2.248 2.248 3.487 5.237 3.487 8.42 0 6.597-5.336 11.948-11.888 11.948-2.01-.001-3.99-.51-5.747-1.479L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.747 1.451 5.436 0 9.86-4.424 9.863-9.864.001-2.63-1.023-5.101-2.881-6.961C16.456 1.86 13.985.835 11.354.835 5.922.835 1.498 5.258 1.495 10.693c-.001 1.631.45 3.22 1.304 4.636L1.815 21.6l6.41-1.682z"/>
-                        </svg>
-                        <span>اضغط هنا للحصول على استشارة مجانية لحماية واسترداد حقوقك المالية</span>
-                    </a>
-                </div>
+  <!-- HERO -->
+  <main class="hero">
 
-                <div class="trust-grid">
-                    <div class="trust-item">
-                        <div class="trust-title">94.8%</div>
-                        <div class="trust-desc">نسبة تسوية القضايا المالية المقبولة</div>
-                    </div>
-                    <div class="trust-item">
-                        <div class="trust-title">امتثال كامل</div>
-                        <div class="trust-desc">وفق معايير الأمن السيبراني الدولية</div>
-                    </div>
-                </div>
-                
-                <div class="features-list">
-                    <div class="feature-item">
-                        <span class="feature-icon">✦</span>
-                        <div class="feature-text">
-                            <strong>تغطية كاملة لسيناريوهات الاحتيال</strong>
-                            <p>سواء كانت الأموال المحولة عبارة عن عملات مشفرة، حوالات بنكية، أو مبالغ مرسلة لجهات تداول غير مرخصة، فإننا نتبع المسار القانوني والتقني لتجميدها.</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <span class="feature-icon">✦</span>
-                        <div class="feature-text">
-                            <strong>تحليل وتتبع سيبراني متقدم (Asset-Tracking)</strong>
-                            <p>نعمل من خلال أنظمة متطورة للامتثال المالي تتيح رسم خريطة تدفق الأموال وتحديد الحسابات والمحافظ النهائية التي استقرت فيها أموال الضحايا.</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <span class="feature-icon">✦</span>
-                        <div class="feature-text">
-                            <strong>حماية خصوصية الضحية بالكامل</strong>
-                            <p>تخضع جميع استشارات مراجعة الحسابات والبيانات لأعلى درجات التشفير والسرية التامة بموجب قوانين حماية البيانات العالمية.</p>
-                        </div>
-                    </div>
-                </div>
+    <div>
 
-            </div>
-        </main>
+      <div class="tag">
+        <i></i>
+        Comunidad 9MAX · México
+      </div>
 
-        <footer>
-            <div class="compliance-note">تنويه رسمي هام: المركز لا يطلب أبداً كلمات المرور أو الرموز السرية الخاصة بحساباتك. الاستشارة أولية ومجانية بالكامل لحماية مصالحك.</div>
-            <div>حقوق النشر © 2026 المركز الدولي للامتثال المالي وحماية الأصول. جميع الحقوق محفوظة.</div>
-        </footer>
+      <h1>
+        AQUÍ SIEMPRE<br>
+        <span class="mex">HAY ALGO NUEVO.</span>
+      </h1>
+
+      <p class="subtitle">
+        Entra a la comunidad de 9MAX y descubre dinámicas,
+        sorpresas, códigos y contenido que MAX prepara
+        todos los días para la banda.
+      </p>
+
+      <div class="actions">
+
+        <!-- 替换为你的 WhatsApp / Telegram 链接 -->
+        <a
+          class="btn community"
+          href="YOUR_COMMUNITY_LINK"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div>
+            🐾 ENTRAR A LA COMUNIDAD
+            <small>Beneficios · Sorpresas · Atención especial</small>
+          </div>
+        </a>
+
+        <!-- 替换为你的官方网站 -->
+        <a
+          class="btn website"
+          href="YOUR_WEBSITE_LINK"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div>
+            🎮 IR A 9MAX
+            <small>Visitar el sitio oficial →</small>
+          </div>
+        </a>
+
+      </div>
 
     </div>
 
-    <script>
-        document.getElementById('btnCryptoRecovery').addEventListener('click', function() {
-            // 1. Meta (FB) Pixel Contact 事件
-            if (typeof fbq !== 'undefined') {
-                fbq('track', 'Contact');
-            }
-            
-            // 2. TikTok Pixel 转化事件双保险上报
-            if (typeof ttq !== 'undefined') {
-                ttq.track('Contact'); // 针对“联系”类型事件
-                ttq.track('CompleteRegistration'); // 针对“线索/注册潜在用户”事件
-            }
-        });
-    </script>
+
+    <!-- MAX -->
+    <div class="max-area">
+
+      <div class="glow"></div>
+
+      <div class="max-card">
+
+        <div class="bubble">
+          👀 ¿Qué trae MAX hoy?
+        </div>
+
+        <!--
+          这里可以直接换成你的透明 MAX PNG：
+
+          <img
+            src="max.png"
+            alt="MAX 9MAX"
+            style="width:100%;display:block;"
+          >
+        -->
+
+        <div class="max-placeholder">
+          <div class="paw">🐾</div>
+          <strong>MAX</strong>
+          <p>
+            Coloca aquí tu imagen oficial<br>
+            de MAX con fondo transparente.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- TRUST BAR -->
+  <div class="trust">
+
+    <div class="trust-inner">
+
+      <div class="trust-item">
+        <div class="trust-icon">🛡️</div>
+        <div>
+          <strong>Información transparente</strong><br>
+          <small>Confianza primero</small>
+        </div>
+      </div>
+
+      <div class="trust-item">
+        <div class="trust-icon">🎁</div>
+        <div>
+          <strong>Contenido diario</strong><br>
+          <small>Siempre hay algo nuevo</small>
+        </div>
+      </div>
+
+      <div class="trust-item">
+        <div class="trust-icon">🇲🇽</div>
+        <div>
+          <strong>Comunidad México</strong><br>
+          <small>Más cerca de nuestra banda</small>
+        </div>
+      </div>
+
+      <div class="trust-item">
+        <div class="trust-icon">🔞</div>
+        <div>
+          <strong>Solo mayores de 18</strong><br>
+          <small>Juego responsable</small>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- WHY -->
+  <section>
+
+    <div class="section-head">
+      <span>¿Por qué 9MAX?</span>
+
+      <h2>
+        Más que entrar a jugar.
+      </h2>
+
+      <p>
+        Queremos que cada visita tenga algo diferente:
+        comunidad, entretenimiento, actividades y un MAX
+        que nunca sabes con qué va a salir.
+      </p>
+    </div>
+
+
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-icon">🐾</div>
+        <h3>MAX siempre anda por aquí</h3>
+        <p>
+          MAX aparece con historias, dinámicas,
+          códigos sorpresa y ocurrencias para hacer
+          la comunidad mucho más divertida.
+        </p>
+      </div>
+
+
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <h3>Algo nuevo cada día</h3>
+        <p>
+          Actualizamos contenido y actividades
+          constantemente. Hoy puede ser un código;
+          mañana, otra sorpresa.
+        </p>
+      </div>
+
+
+      <div class="card">
+        <div class="card-icon">🇲🇽</div>
+        <h3>Hecho para México</h3>
+        <p>
+          Fútbol, cafecito, tacos, fechas especiales
+          y conversaciones de todos los días.
+          Una comunidad con sabor local.
+        </p>
+      </div>
+
+
+      <div class="card">
+        <div class="card-icon">💬</div>
+        <h3>Comunidad más cercana</h3>
+        <p>
+          Participa en encuestas, comparte historias
+          y entérate de las novedades directamente
+          desde nuestra comunidad.
+        </p>
+      </div>
+
+
+      <div class="card">
+        <div class="card-icon">🎉</div>
+        <h3>Sorpresas de MAX</h3>
+        <p>
+          Algunas cosas simplemente aparecen.
+          Sigue a MAX y revisa la comunidad para
+          descubrir qué dejó hoy.
+        </p>
+      </div>
+
+
+      <div class="card">
+        <div class="card-icon">🤝</div>
+        <h3>Atención más cercana</h3>
+        <p>
+          La comunidad también sirve para estar
+          más cerca de nuestros jugadores y compartir
+          información importante.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- COMMUNITY CTA -->
+  <div class="community-section">
+
+    <h2>
+      🐾 MAX te dejó una invitación.
+    </h2>
+
+    <p>
+      Entra al espacio de la comunidad 9MAX.
+      Aquí compartimos novedades, actividades,
+      códigos y algunas sorpresas que MAX deja
+      cuando menos te lo esperas.
+    </p>
+
+    <div class="community-points">
+      <span>🎁 Códigos sorpresa</span>
+      <span>⚽ Fútbol</span>
+      <span>☕ Momentos con MAX</span>
+      <span>🗳️ Encuestas</span>
+      <span>🔥 Actividades</span>
+      <span>💬 Comunidad</span>
+    </div>
+
+    <a
+      href="YOUR_COMMUNITY_LINK"
+      class="btn community"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      UNIRME A LA COMUNIDAD →
+    </a>
+
+  </div>
+
+
+  <!-- MEXICO COLOR STRIP -->
+  <div class="mex-strip">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+
+  <!-- COMPLIANCE / LICENSE -->
+  <div class="legal">
+
+    <div>
+      <h3>Información legal y juego responsable</h3>
+
+      <p>
+        9MAX está destinado exclusivamente a personas mayores de 18 años.
+        Juega con responsabilidad.
+        <br><br>
+
+        <!--
+          重要：
+          只有你确实拥有相应墨西哥许可时，
+          才把下面内容替换成真实牌照信息。
+        -->
+
+        Licencia / autorización:
+        <strong>[NOMBRE REAL DE LA AUTORIDAD]</strong><br>
+
+        Número de permiso:
+        <strong>[NÚMERO REAL DE LICENCIA]</strong>
+      </p>
+    </div>
+
+
+    <div class="legal-badges">
+      <div class="legal-badge">18+</div>
+      <div class="legal-badge">Juego Responsable</div>
+      <div class="legal-badge">RNG / Juego Justo</div>
+      <div class="legal-badge">Soporte</div>
+    </div>
+
+  </div>
+
+
+  <footer>
+    © 9MAX · MÁS QUE UN JUEGO · Solo para mayores de 18 años.
+  </footer>
+
+
+  <!-- 点击统计，可接入你的 GA / Meta Pixel / 自有统计 -->
+  <script>
+
+    document.querySelectorAll(".btn").forEach(function(btn){
+
+      btn.addEventListener("click", function(){
+
+        const destination =
+          this.classList.contains("community")
+            ? "community"
+            : "website";
+
+        console.log("9MAX CTA:", destination);
+
+        /*
+          可以在这里接统计事件，例如：
+
+          gtag("event", "cta_click", {
+            destination: destination
+          });
+
+        */
+
+      });
+
+    });
+
+  </script>
+
 </body>
 </html>
